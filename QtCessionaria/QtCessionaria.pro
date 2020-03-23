@@ -32,6 +32,7 @@ HEADERS += \
     Autoveicolo.h \
     Camion.h \
     Carrozzeria.h \
+    Exceptions.h \
     Motore.h \
     Veicolo.h \
     mainwindow.h
