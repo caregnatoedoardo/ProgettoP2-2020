@@ -4,10 +4,13 @@
 using std::string;
 
 class Veicolo{
-public:
-
 private:
-
+    string marca;
+    string modello;
+public:
+    virtual ~Veicolo()=0;
+    virtual Veicolo * clone()const=0;
+    string getMarca()const;
+    string getModello()const;
 };
-
 #endif // VEICOLO_H
