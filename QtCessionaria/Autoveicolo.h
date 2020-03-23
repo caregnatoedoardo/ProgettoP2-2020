@@ -1,0 +1,4 @@
+#ifndef AUTOVEICOLO_H
+#define AUTOVEICOLO_H
+
+#endif // AUTOVEICOLO_H

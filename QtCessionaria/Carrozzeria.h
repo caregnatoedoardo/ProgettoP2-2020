@@ -1,0 +1,4 @@
+#ifndef CARROZZERIA_H
+#define CARROZZERIA_H
+
+#endif // CARROZZERIA_H
