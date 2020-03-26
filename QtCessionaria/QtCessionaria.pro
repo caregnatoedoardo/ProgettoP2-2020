@@ -24,7 +24,17 @@ SOURCES += \
     Motore.cpp \
     Veicolo.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    Autobus.cpp \
+    Automobile.cpp \
+    Autoveicolo.cpp \
+    Camion.cpp \
+    Carrozzeria.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    Motore.cpp \
+    Veicolo.cpp \
+    GUI/Controller.cpp
 
 HEADERS += \
     Autobus.h \
@@ -35,7 +45,17 @@ HEADERS += \
     Exceptions.h \
     Motore.h \
     Veicolo.h \
-    mainwindow.h
+    mainwindow.h \
+    Autobus.h \
+    Automobile.h \
+    Autoveicolo.h \
+    Camion.h \
+    Carrozzeria.h \
+    Exceptions.h \
+    mainwindow.h \
+    Motore.h \
+    Veicolo.h \
+    GUI/Controller.h
 
 FORMS += \
     mainwindow.ui
