@@ -16,46 +16,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Autobus.cpp \
-    Automobile.cpp \
-    Autoveicolo.cpp \
-    Camion.cpp \
-    Carrozzeria.cpp \
-    Motore.cpp \
-    Veicolo.cpp \
+    cpp/automobile.cpp \
+    cpp/camion.cpp \
+    cpp/carrozzeria.cpp \
+    cpp/mezzo.cpp \
+    cpp/moto.cpp \
+    cpp/motore.cpp \
+    cpp/veicolo.cpp \
     main.cpp \
-    mainwindow.cpp \
-    Autobus.cpp \
-    Automobile.cpp \
-    Autoveicolo.cpp \
-    Camion.cpp \
-    Carrozzeria.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    Motore.cpp \
-    Veicolo.cpp \
-    GUI/Controller.cpp
+    mainwindow.cpp
 
 HEADERS += \
-    Autobus.h \
-    Automobile.h \
-    Autoveicolo.h \
-    CONTAINER/container.h \
-    Camion.h \
-    Carrozzeria.h \
-    EXCEPTIONS/exceptions.h \
-    Motore.h \
-    Veicolo.h \
-    mainwindow.h \
-    Autobus.h \
-    Automobile.h \
-    Autoveicolo.h \
-    Camion.h \
-    Carrozzeria.h \
-    mainwindow.h \
-    Motore.h \
-    Veicolo.h \
-    GUI/Controller.h
+    container/container.h \
+    exceptions/exceptions.h \
+    hierarchy/auto.h \
+    hierarchy/camion.h \
+    hierarchy/carrozzeria.h \
+    hierarchy/mezzo.h \
+    hierarchy/moto.h \
+    hierarchy/motore.h \
+    hierarchy/veicolo.h \
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui

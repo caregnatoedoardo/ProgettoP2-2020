@@ -50,22 +50,22 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../QtCessionaria/Autobus.cpp \
-		../QtCessionaria/Automobile.cpp \
-		../QtCessionaria/Autoveicolo.cpp \
-		../QtCessionaria/Camion.cpp \
-		../QtCessionaria/Carrozzeria.cpp \
-		../QtCessionaria/Motore.cpp \
-		../QtCessionaria/Veicolo.cpp \
+SOURCES       = ../QtCessionaria/cpp/automobile.cpp \
+		../QtCessionaria/cpp/camion.cpp \
+		../QtCessionaria/cpp/carrozzeria.cpp \
+		../QtCessionaria/cpp/mezzo.cpp \
+		../QtCessionaria/cpp/moto.cpp \
+		../QtCessionaria/cpp/motore.cpp \
+		../QtCessionaria/cpp/veicolo.cpp \
 		../QtCessionaria/main.cpp \
 		../QtCessionaria/mainwindow.cpp moc_mainwindow.cpp
-OBJECTS       = Autobus.o \
-		Automobile.o \
-		Autoveicolo.o \
-		Camion.o \
-		Carrozzeria.o \
-		Motore.o \
-		Veicolo.o \
+OBJECTS       = automobile.o \
+		camion.o \
+		carrozzeria.o \
+		mezzo.o \
+		moto.o \
+		motore.o \
+		veicolo.o \
 		main.o \
 		mainwindow.o \
 		moc_mainwindow.o
@@ -229,21 +229,22 @@ DIST          = ../../../Qt/5.9.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.5/gcc_64/mkspecs/features/exceptions.prf \
 		../../../Qt/5.9.5/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.9.5/gcc_64/mkspecs/features/lex.prf \
-		../QtCessionaria/QtCessionaria.pro ../QtCessionaria/Autobus.h \
-		../QtCessionaria/Automobile.h \
-		../QtCessionaria/Autoveicolo.h \
-		../QtCessionaria/Camion.h \
-		../QtCessionaria/Carrozzeria.h \
-		../QtCessionaria/Exceptions.h \
-		../QtCessionaria/Motore.h \
-		../QtCessionaria/Veicolo.h \
-		../QtCessionaria/mainwindow.h ../QtCessionaria/Autobus.cpp \
-		../QtCessionaria/Automobile.cpp \
-		../QtCessionaria/Autoveicolo.cpp \
-		../QtCessionaria/Camion.cpp \
-		../QtCessionaria/Carrozzeria.cpp \
-		../QtCessionaria/Motore.cpp \
-		../QtCessionaria/Veicolo.cpp \
+		../QtCessionaria/QtCessionaria.pro ../QtCessionaria/container/container.h \
+		../QtCessionaria/exceptions/exceptions.h \
+		../QtCessionaria/hierarchy/auto.h \
+		../QtCessionaria/hierarchy/camion.h \
+		../QtCessionaria/hierarchy/carrozzeria.h \
+		../QtCessionaria/hierarchy/mezzo.h \
+		../QtCessionaria/hierarchy/moto.h \
+		../QtCessionaria/hierarchy/motore.h \
+		../QtCessionaria/hierarchy/veicolo.h \
+		../QtCessionaria/mainwindow.h ../QtCessionaria/cpp/automobile.cpp \
+		../QtCessionaria/cpp/camion.cpp \
+		../QtCessionaria/cpp/carrozzeria.cpp \
+		../QtCessionaria/cpp/mezzo.cpp \
+		../QtCessionaria/cpp/moto.cpp \
+		../QtCessionaria/cpp/motore.cpp \
+		../QtCessionaria/cpp/veicolo.cpp \
 		../QtCessionaria/main.cpp \
 		../QtCessionaria/mainwindow.cpp
 QMAKE_TARGET  = QtCessionaria
@@ -601,8 +602,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.9.5/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtCessionaria/Autobus.h ../QtCessionaria/Automobile.h ../QtCessionaria/Autoveicolo.h ../QtCessionaria/Camion.h ../QtCessionaria/Carrozzeria.h ../QtCessionaria/Exceptions.h ../QtCessionaria/Motore.h ../QtCessionaria/Veicolo.h ../QtCessionaria/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtCessionaria/Autobus.cpp ../QtCessionaria/Automobile.cpp ../QtCessionaria/Autoveicolo.cpp ../QtCessionaria/Camion.cpp ../QtCessionaria/Carrozzeria.cpp ../QtCessionaria/Motore.cpp ../QtCessionaria/Veicolo.cpp ../QtCessionaria/main.cpp ../QtCessionaria/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtCessionaria/container/container.h ../QtCessionaria/exceptions/exceptions.h ../QtCessionaria/hierarchy/auto.h ../QtCessionaria/hierarchy/camion.h ../QtCessionaria/hierarchy/carrozzeria.h ../QtCessionaria/hierarchy/mezzo.h ../QtCessionaria/hierarchy/moto.h ../QtCessionaria/hierarchy/motore.h ../QtCessionaria/hierarchy/veicolo.h ../QtCessionaria/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtCessionaria/cpp/automobile.cpp ../QtCessionaria/cpp/camion.cpp ../QtCessionaria/cpp/carrozzeria.cpp ../QtCessionaria/cpp/mezzo.cpp ../QtCessionaria/cpp/moto.cpp ../QtCessionaria/cpp/motore.cpp ../QtCessionaria/cpp/veicolo.cpp ../QtCessionaria/main.cpp ../QtCessionaria/mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../QtCessionaria/mainwindow.ui $(DISTDIR)/
 
 
@@ -765,27 +766,27 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-Autobus.o: ../QtCessionaria/Autobus.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Autobus.o ../QtCessionaria/Autobus.cpp
+automobile.o: ../QtCessionaria/cpp/automobile.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o automobile.o ../QtCessionaria/cpp/automobile.cpp
 
-Automobile.o: ../QtCessionaria/Automobile.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Automobile.o ../QtCessionaria/Automobile.cpp
+camion.o: ../QtCessionaria/cpp/camion.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o camion.o ../QtCessionaria/cpp/camion.cpp
 
-Autoveicolo.o: ../QtCessionaria/Autoveicolo.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Autoveicolo.o ../QtCessionaria/Autoveicolo.cpp
+carrozzeria.o: ../QtCessionaria/cpp/carrozzeria.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o carrozzeria.o ../QtCessionaria/cpp/carrozzeria.cpp
 
-Camion.o: ../QtCessionaria/Camion.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Camion.o ../QtCessionaria/Camion.cpp
+mezzo.o: ../QtCessionaria/cpp/mezzo.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mezzo.o ../QtCessionaria/cpp/mezzo.cpp
 
-Carrozzeria.o: ../QtCessionaria/Carrozzeria.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Carrozzeria.o ../QtCessionaria/Carrozzeria.cpp
+moto.o: ../QtCessionaria/cpp/moto.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moto.o ../QtCessionaria/cpp/moto.cpp
 
-Motore.o: ../QtCessionaria/Motore.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Motore.o ../QtCessionaria/Motore.cpp
+motore.o: ../QtCessionaria/cpp/motore.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o motore.o ../QtCessionaria/cpp/motore.cpp
 
-Veicolo.o: ../QtCessionaria/Veicolo.cpp ../QtCessionaria/Veicolo.h \
-		../QtCessionaria/Exceptions.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Veicolo.o ../QtCessionaria/Veicolo.cpp
+veicolo.o: ../QtCessionaria/cpp/veicolo.cpp ../QtCessionaria/hierarchy/veicolo.h \
+		../QtCessionaria/exceptions/exceptions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o veicolo.o ../QtCessionaria/cpp/veicolo.cpp
 
 main.o: ../QtCessionaria/main.cpp ../QtCessionaria/mainwindow.h \
 		../../../Qt/5.9.5/gcc_64/include/QtWidgets/QMainWindow \
@@ -1004,7 +1005,43 @@ mainwindow.o: ../QtCessionaria/mainwindow.cpp ../QtCessionaria/mainwindow.h \
 		../../../Qt/5.9.5/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.9.5/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../../../Qt/5.9.5/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.9.5/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.9.5/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.9.5/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.9.5/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/QHeaderView \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.9.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.9.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/5.9.5/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.9.5/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/QStatusBar \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../Qt/5.9.5/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../QtCessionaria/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
