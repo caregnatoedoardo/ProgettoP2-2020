@@ -2,6 +2,6 @@
 #define CONTROLLER_H
 
 
-class Controller : public QWidget{
+//class Controller : public QWidget{
 
 #endif // CONTROLLER_H

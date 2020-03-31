@@ -40,9 +40,10 @@ HEADERS += \
     Autobus.h \
     Automobile.h \
     Autoveicolo.h \
+    CONTAINER/container.h \
     Camion.h \
     Carrozzeria.h \
-    Exceptions.h \
+    EXCEPTIONS/exceptions.h \
     Motore.h \
     Veicolo.h \
     mainwindow.h \
@@ -51,7 +52,6 @@ HEADERS += \
     Autoveicolo.h \
     Camion.h \
     Carrozzeria.h \
-    Exceptions.h \
     mainwindow.h \
     Motore.h \
     Veicolo.h \

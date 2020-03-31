@@ -2,7 +2,7 @@
 #define CARROZZERIA_H
 #include "Veicolo.h"
 
-class Carrozzeria:virtual public Veicolo{
+class Carrozzeria: virtual public Veicolo{
 private:
     unsigned int n_telaio;
     bool cambio;
