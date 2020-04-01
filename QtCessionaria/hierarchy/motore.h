@@ -1,6 +1,7 @@
 #ifndef MOTORE_H
 #define MOTORE_H
 #include "hierarchy/veicolo.h"
+#include "exceptions/exceptions.h"
 
 enum alimentazione{diesel, benzina, elettrico, gpl, metano};
 
@@ -15,13 +16,15 @@ public:
     Motore(const Motore& mo);
     Motore& operator=(const Motore& mo);
     bool operator==(const Motore& mo)const;
-    ~Motore()=0;
+    bool operator!=(const Motore& mo)const;
+    virtual ~Motore()=default;
 
     unsigned int getNMotore()const;
     unsigned int getCilindrata()const;
     unsigned int getCavalli()const;
     alimentazione getAlimentazione()const;
-    string convertToString(alimentazione al)const;
+    bool checkAlimentazione(string al)const;
+    string convertToAlim(alimentazione al)const;
 
 };
 

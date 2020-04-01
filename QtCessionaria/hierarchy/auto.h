@@ -1,6 +1,7 @@
 #ifndef AUTO_H
 #define AUTO_H
-#include "mezzo.h"
+#include "hierarchy/mezzo.h"
+#include "exceptions/exceptions.h"
 
 enum segmento{berlina, station, coupe, suv};
 class Auto: public Mezzo{
@@ -12,10 +13,14 @@ public:
     Auto(const Auto& au);
     Auto& operator=(const Auto& au);
     bool operator==(const Auto& au)const;
-    ~Auto()=0;
+    bool operator!=(const Auto& au)const;
+    virtual ~Auto()override=default;
 
     segmento getSegmento()const;
     bool getAutocarro()const;
+
+    bool checkSegmento(string segmento)const;
+    string convertSegmento()const;
 };
 
 #endif // AUTO_H

@@ -18,6 +18,10 @@ bool Camion::operator==(const Camion &cam) const{
     return (Mezzo::operator==(cam) && n_assi==cam.n_assi && ribaltabile==cam.ribaltabile);
 }
 
+bool Camion::operator!=(const Camion &cam) const{
+    return !(Mezzo::operator==(cam) && n_assi==cam.n_assi && ribaltabile==cam.ribaltabile);
+}
+
 unsigned int Camion::getNumAssi() const{return n_assi;}
 bool Camion::getRibaltabile() const{return ribaltabile;}
 

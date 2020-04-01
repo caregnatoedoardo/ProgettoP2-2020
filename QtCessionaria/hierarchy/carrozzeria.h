@@ -1,6 +1,7 @@
 #ifndef CARROZZERIA_H
 #define CARROZZERIA_H
 #include "hierarchy/veicolo.h"
+#include "exceptions/exceptions.h"
 
 class Carrozzeria: virtual public Veicolo{
 private:
@@ -13,7 +14,8 @@ public:
     Carrozzeria(const Carrozzeria& ca);
     Carrozzeria& operator=(const Carrozzeria& ca);
     bool operator==(const Carrozzeria& ca)const;
-    ~Carrozzeria()=0;
+    bool operator!=(const Carrozzeria& ca)const;
+    virtual ~Carrozzeria()override=default;
 
     unsigned int getNTelaio()const;
     bool getCambio()const;

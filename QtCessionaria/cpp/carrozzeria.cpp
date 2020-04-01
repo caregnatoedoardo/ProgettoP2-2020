@@ -21,6 +21,11 @@ bool Carrozzeria::operator==(const Carrozzeria &ca) const{
             cambio==ca.cambio && colore==ca.colore &&
             lunghezza==ca.lunghezza);
 }
+bool Carrozzeria::operator!=(const Carrozzeria &ca) const{
+    return !(Veicolo::operator==(ca) && n_telaio==ca.n_telaio &&
+             cambio==ca.cambio && colore==ca.colore &&
+             lunghezza==ca.lunghezza);
+}
 
 unsigned int Carrozzeria::getNTelaio() const{return n_telaio;}
 bool Carrozzeria::getCambio() const{return cambio;}

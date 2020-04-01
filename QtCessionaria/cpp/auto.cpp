@@ -18,7 +18,24 @@ bool Auto::operator==(const Auto &au) const{
     return (Mezzo::operator==(au) && seg==au.seg && autocarro==au.autocarro);
 }
 
+bool Auto::operator!=(const Auto &au) const{
+    return !(Mezzo::operator==(au) && seg==au.seg && autocarro==au.autocarro);
+}
+
 segmento Auto::getSegmento() const{return seg;}
 bool Auto::getAutocarro() const{return autocarro;}
 
+
+string Auto::convertSegmento() const{//converte l'enum segmento in stringa
+    if(seg==berlina) return "berlina";
+    if(seg==station) return "station";
+    if(seg==coupe) return "coupe";
+    if(seg==suv) return "suv";
+
+    throw Exc(4);
+}
+
+bool Auto::checkSegmento(string segmento) const{
+    return ((segmento == "suv") || (segmento== "berlina") || (segmento == "station") || (segmento== "coupe"));
+}
 

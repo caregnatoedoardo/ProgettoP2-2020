@@ -1,6 +1,7 @@
 #ifndef CAMION_H
 #define CAMION_H
 #include "hierarchy/mezzo.h"
+#include "exceptions/exceptions.h"
 
 class Camion: public Mezzo{
 private:
@@ -11,7 +12,8 @@ public:
     Camion(const Camion& cam);
     Camion& operator=(const Camion& cam);
     bool operator==(const Camion& cam)const;
-    ~Camion()=0;
+    bool operator!=(const Camion& cam)const;
+    virtual ~Camion()override=default;
 
     unsigned int getNumAssi()const;
     bool getRibaltabile()const;

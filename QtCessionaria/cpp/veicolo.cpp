@@ -18,8 +18,13 @@ Veicolo& Veicolo::operator=(const Veicolo& ve){
     return *this;
 }
 
+
 bool Veicolo::operator==(const Veicolo &ve)const{
     return (marca == ve.marca && modello==ve.modello);
+}
+
+bool Veicolo::operator!=(const Veicolo &ve) const{
+    return !(marca == ve.marca && modello==ve.modello);
 }
 
 string Veicolo::getMarca() const{return marca;}
