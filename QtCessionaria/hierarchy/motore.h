@@ -5,7 +5,7 @@
 
 enum alimentazione{diesel, benzina, elettrico, gpl, metano};
 
-class Motore: virtual public Veicolo{
+class Motore:virtual public Veicolo{
 private:
     unsigned int n_motore;
     unsigned int cilindrata;
@@ -17,7 +17,7 @@ public:
     Motore& operator=(const Motore& mo);
     bool operator==(const Motore& mo)const;
     bool operator!=(const Motore& mo)const;
-    virtual ~Motore()=default;
+    virtual ~Motore();
 
     unsigned int getNMotore()const;
     unsigned int getCilindrata()const;

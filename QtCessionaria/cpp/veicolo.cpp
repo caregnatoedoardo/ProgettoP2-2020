@@ -18,6 +18,7 @@ Veicolo& Veicolo::operator=(const Veicolo& ve){
     return *this;
 }
 
+Veicolo::~Veicolo(){delete this;}
 
 bool Veicolo::operator==(const Veicolo &ve)const{
     return (marca == ve.marca && modello==ve.modello);

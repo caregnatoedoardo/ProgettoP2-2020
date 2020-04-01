@@ -31,3 +31,5 @@ unsigned int Carrozzeria::getNTelaio() const{return n_telaio;}
 bool Carrozzeria::getCambio() const{return cambio;}
 string Carrozzeria::getColore() const{return colore;}
 double Carrozzeria::getLunghezza() const{return lunghezza;}
+
+Carrozzeria::~Carrozzeria(){delete this;}//implementato distruttore sennò non compila!!!!!

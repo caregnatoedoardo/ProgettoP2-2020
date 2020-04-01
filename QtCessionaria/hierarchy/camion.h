@@ -13,10 +13,11 @@ public:
     Camion& operator=(const Camion& cam);
     bool operator==(const Camion& cam)const;
     bool operator!=(const Camion& cam)const;
-    virtual ~Camion()override=default;
+    virtual ~Camion();
 
     unsigned int getNumAssi()const;
     bool getRibaltabile()const;
 };
 
 #endif // CAMION_H
+

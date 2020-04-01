@@ -23,6 +23,8 @@ bool Motore::operator!=(const Motore &mo) const{
     return !(Veicolo::operator==(mo) && n_motore==mo.n_motore && cilindrata==mo.cilindrata && cavalli==mo.cavalli && alim==mo.alim);
 }
 
+Motore::~Motore(){delete this;}
+
 unsigned int Motore::getNMotore() const{return n_motore;}
 unsigned int Motore::getCilindrata() const{return cilindrata;}
 unsigned int Motore::getCavalli() const{return cavalli;}

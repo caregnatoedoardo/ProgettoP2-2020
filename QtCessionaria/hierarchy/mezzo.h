@@ -16,7 +16,7 @@ public:
     Mezzo& operator=(const Mezzo& me);//assegnazione profonda
     bool operator==(const Mezzo& me)const;
     bool operator!=(const Mezzo& me)const;
-    virtual ~Mezzo()override=default;
+    virtual ~Mezzo();
 
     string getTarga()const;
     double getPrezzo()const;

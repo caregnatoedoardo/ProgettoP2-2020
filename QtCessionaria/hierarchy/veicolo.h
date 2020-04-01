@@ -16,7 +16,6 @@ public:
     virtual ~Veicolo()=0;//distruttore
     bool operator==(const Veicolo& ve)const;//overloading operatore di uguaglianza
     bool operator!=(const Veicolo& ve)const;//overloading operatore di disuguaglianza
-
     string getMarca()const;
     string getModello()const;
 };

@@ -1,7 +1,7 @@
 #include "hierarchy/moto.h"
 
 Moto::Moto(string mar, string mo, unsigned int ntel,bool ca, string co, double lung,unsigned int nm,unsigned int cil,unsigned int cv, alimentazione al, string ta, double pr,unsigned int mas, unsigned int npos,bool sidec, unsigned int clem,tipomoto t):
-    Mezzo(mar,mo,ntel,ca,co,lung,nm,cil,cv,al,ta,pr,mas,npos), sidecar(sidec),classe_emissioni(clem),type(t){}
+    Veicolo(mar,mo),Mezzo(mar,mo,ntel,ca,co,lung,nm,cil,cv,al,ta,pr,mas,npos), sidecar(sidec),classe_emissioni(clem),type(t){}
 
 Moto::Moto(const Moto& mot):Mezzo(mot), sidecar(mot.sidecar),classe_emissioni(mot.classe_emissioni),type(mot.type){}
 
@@ -55,4 +55,6 @@ bool Moto::checkTarga() const{
 
     return true;
 }
+
+Moto::~Moto(){delete this;}//implementato distruttore sennò non compila!!!!!
 

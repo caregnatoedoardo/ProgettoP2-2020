@@ -3,7 +3,7 @@
 #include "hierarchy/veicolo.h"
 #include "exceptions/exceptions.h"
 
-class Carrozzeria: virtual public Veicolo{
+class Carrozzeria:virtual public Veicolo{
 private:
     unsigned int n_telaio;
     bool cambio;
@@ -15,7 +15,7 @@ public:
     Carrozzeria& operator=(const Carrozzeria& ca);
     bool operator==(const Carrozzeria& ca)const;
     bool operator!=(const Carrozzeria& ca)const;
-    virtual ~Carrozzeria()override=default;
+    virtual ~Carrozzeria();
 
     unsigned int getNTelaio()const;
     bool getCambio()const;
