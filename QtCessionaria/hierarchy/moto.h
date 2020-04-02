@@ -1,5 +1,5 @@
-#ifndef MOTOVEICOLO_H
-#define MOTOVEICOLO_H
+#ifndef MOTO_H
+#define MOTO_H
 #include "hierarchy/mezzo.h"
 #include "exceptions/exceptions.h"
 
@@ -11,10 +11,10 @@ private:
     unsigned int classe_emissioni;
     tipomoto type;
 public:
-    Moto(string mar="", string mo="", unsigned int ntel=0,bool ca=false, string co="",double lung=0,unsigned int nm=0,unsigned int cil=0,unsigned int cv=0, alimentazione al=diesel, string ta="AA00000", double pr=0,unsigned int mas=0, unsigned int npos=1,bool sidec=false,unsigned int clem=0,tipomoto t=corsa);
+    Moto(string ="", string ="", unsigned int =0, bool =false, string ="", double =0, unsigned int =0, unsigned int =0, unsigned int =0, alimentazione =diesel, string ="AA00000", double =0, unsigned int =0, unsigned int =1, bool =false, unsigned int =0, tipomoto =corsa);
     Moto(const Moto& mot);
     Moto& operator=(const Moto& mot);
-    virtual ~Moto();
+    virtual ~Moto()=default;
 
     bool operator==(const Moto& mot)const;
     bool operator!=(const Moto& mot)const;
@@ -26,4 +26,4 @@ public:
     bool checkTarga() const override;
 };
 
-#endif // MOTOVEICOLO_H
+#endif // MOTO_H

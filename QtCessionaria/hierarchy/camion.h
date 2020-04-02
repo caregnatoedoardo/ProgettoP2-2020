@@ -8,12 +8,12 @@ private:
     unsigned int n_assi;
     bool ribaltabile;
 public:
-    Camion(string mar="", string mo="", unsigned int ntel=0,bool ca=false, string co="",double lung=0,unsigned int nm=0,unsigned int cil=0,unsigned int cv=0, alimentazione al=diesel, string ta="", double pr=0,unsigned int mas=0, unsigned int npos=1, unsigned int nass=0,bool rib=false);
+    Camion(string ="", string ="", unsigned int =0, bool =false, string ="", double =0, unsigned int =0, unsigned int =0, unsigned int =0, alimentazione =diesel, string ="", double =0, unsigned int =0, unsigned int =1, unsigned int =0, bool =false);
     Camion(const Camion& cam);
     Camion& operator=(const Camion& cam);
     bool operator==(const Camion& cam)const;
     bool operator!=(const Camion& cam)const;
-    virtual ~Camion();
+    virtual ~Camion()=default;
 
     unsigned int getNumAssi()const;
     bool getRibaltabile()const;

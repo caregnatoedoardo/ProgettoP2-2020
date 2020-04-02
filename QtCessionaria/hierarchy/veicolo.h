@@ -10,7 +10,7 @@ private:
     string marca;
     string modello;
 public:
-    Veicolo(string ma="", string mo="");
+    Veicolo(string ="", string ="");
     Veicolo(const Veicolo& ve);//costruttore di copia profonda
     Veicolo& operator=(const Veicolo& ve);//assegnazione profonda
     virtual ~Veicolo()=0;//distruttore

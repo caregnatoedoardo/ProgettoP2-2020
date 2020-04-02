@@ -3,19 +3,19 @@
 #include "hierarchy/veicolo.h"
 #include "exceptions/exceptions.h"
 
-class Carrozzeria:virtual public Veicolo{
+class Carrozzeria: virtual public Veicolo{
 private:
     unsigned int n_telaio;
-    bool cambio;
+    bool cambio_auto;
     string colore;
     double lunghezza;
 public:
-    Carrozzeria(string ma="", string mo="", unsigned int nt=0, bool ca=false, string co="", double lung=0);
+    Carrozzeria(string ="", string ="", unsigned int =0, bool =false, string ="", double =0);
     Carrozzeria(const Carrozzeria& ca);
     Carrozzeria& operator=(const Carrozzeria& ca);
     bool operator==(const Carrozzeria& ca)const;
     bool operator!=(const Carrozzeria& ca)const;
-    virtual ~Carrozzeria();
+    virtual ~Carrozzeria()=default;
 
     unsigned int getNTelaio()const;
     bool getCambio()const;

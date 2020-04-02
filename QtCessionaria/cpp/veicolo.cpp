@@ -9,16 +9,15 @@ Veicolo::Veicolo(string ma, string mo):marca(ma),modello(mo){
 
 Veicolo::Veicolo(const Veicolo& ve):marca(ve.marca), modello(ve.modello){}
 
-Veicolo& Veicolo::operator=(const Veicolo& ve){
+Veicolo& Veicolo::operator=(const Veicolo& ve){//a=b
     if(this != &ve){
-        //delete this; ---> da vedere
         marca=ve.marca;
         modello=ve.modello;
     }
     return *this;
 }
 
-Veicolo::~Veicolo(){delete this;}
+Veicolo::~Veicolo(){}
 
 bool Veicolo::operator==(const Veicolo &ve)const{
     return (marca == ve.marca && modello==ve.modello);
