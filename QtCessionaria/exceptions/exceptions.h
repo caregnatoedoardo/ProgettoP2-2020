@@ -48,6 +48,10 @@ public:
             cout<<"Errore! Rilevato file vuoto! Nessuna operazione eseguita.";
             break;
         }
+        case 10:{
+            cout<<"Errore nel parametro ->"<<t<<"<- out of range";
+            break;
+        }
         default: cout<<"Errore generale!"; break;
         }
     }

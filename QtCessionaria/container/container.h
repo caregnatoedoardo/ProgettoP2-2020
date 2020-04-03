@@ -22,8 +22,8 @@ class Container{
 private:
     class Nodo{
     public:
-        T* info;//T o T*???
-        Nodo* next, *prev;
+        T info;
+        Nodo* next =nullptr, *prev =nullptr;
         Nodo(const T& i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
         ~Nodo(){if(next) delete next;}
     };
@@ -43,7 +43,7 @@ private:
     Iteratore end()const;
 public:
     Container(Nodo* p=nullptr):first(p){}
-    ~Container();
+    ~Container(){if(first) delete first;}
 
     bool isEmpty()const;
     void push_begin(const T&);
@@ -56,6 +56,7 @@ public:
     T& show(const Nodo* n)const;//restituisce una copia dell'oggetto a cui punta l'iteratore
     bool search(const T&)const;
     bool checkDuplicatePlate(string plate)const;
+    unsigned int getSize()const;
     //unsigned int checkDuplicate()const;//verifica se nel container ci sono elementi doppi e li elimina (non dovrebbe servire per pre e post delle push)
     Container& copy();//esegue una copia del container
 };
@@ -75,7 +76,7 @@ void Container<T>::push_begin(const T& t){
     if(!isDuplicate(t)){
         //first=new Nodo(t,nullptr,first);
         Nodo* newfirst=new Nodo(t,nullptr,first);
-        first->prec=newfirst;
+        first->prev=newfirst;
         first=newfirst;
     }else
         throw Exc(6,"duplicato");
@@ -98,7 +99,7 @@ void Container<T>::push_end(const T& t){
     return;
 }
 
-template<class T>
+/*template<class T>
 void Container<T>::push(const T& t, int posiz){
 
 }
@@ -107,7 +108,7 @@ template<class T>
 void Container<T>::remove(const T& t){
 
 }
-
+*/
 template<class T>
 bool Container<T>::isDuplicate(const T& t)const{
     if(isEmpty()) return false;// se è vuota non è duplicato
@@ -204,6 +205,64 @@ unsigned int Container<T>::checkDuplicate()const{
     }
     return duplicate;
 }//FUNZIONE LANCIATA PER VERIFICARE LA CONSISTENZA DELL'ARCHIVIO*/
+
+template<class T>
+void Container<T>::push(const T& t, int posiz){
+    if(posiz <0 || posiz>getSize()) throw Exc(10,"posizione");
+
+    if(isEmpty()) first=new Nodo(t,nullptr,first);
+    Nodo* scorri=first;
+    int pos=0;
+    while(scorri->next){
+        if(pos==posiz){
+            Nodo* prev=scorri->prev;
+            Nodo* succ=scorri->next;
+            Nodo* ins=new Nodo(t,prev,succ);
+            prev->next=ins;
+            succ->prev=ins;
+            //scorri=new Nodo(t,scorri->prev,scorri);
+            return;
+        }
+        pos++;
+        scorri=scorri->next;
+    }
+    if(scorri && pos==posiz)
+        scorri=new Nodo(t,scorri->prev,scorri);
+    return;
+}
+
+template<class T>
+void Container<T>::remove(const T& t){
+    if(isEmpty()) return;
+
+    Nodo* scorri=first;
+    while(scorri->next){
+        if(scorri->info==t){
+            Nodo* del=scorri;
+            scorri->prev=scorri->next;
+            delete scorri;
+        }
+        scorri=scorri->next;
+    }
+    if(scorri->info==t){
+        Nodo* del=scorri;
+        scorri->prev=scorri->next;
+        delete del;
+    }
+    return;
+}
+
+template<class T>
+unsigned int Container<T>::getSize()const{
+    if(isEmpty()) return 0;
+    unsigned int size=0;
+    Nodo*scorri=first;
+    while(scorri->next){
+        size++;
+        scorri=scorri->next;
+    }
+    return size++;
+}
 
 template<class T>
 Container<T>& Container<T>::copy(){
