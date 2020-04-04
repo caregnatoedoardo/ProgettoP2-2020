@@ -27,11 +27,13 @@ int main(int argc, char *argv[])
     Moto* mt2 = new Moto("Honda", "CBR",123,true,"rosso",1,456,600,60,benzina,"AB12345",17000,400,1,false,6,corsa);
 
     Container<Veicolo*> *ctveic= new Container<Veicolo*>;//Veicolo deve rimanere * perchè è astratta!!!
-    ctveic->push_begin(lf);
-    ctveic->push_begin(ca);
-    ctveic->push_begin(mt);
+    ctveic->push_end(lf);
+    ctveic->push_end(ca);
+    ctveic->push(mt,1);
 
-    /*if(lf2==lf) cout<<"MACCHINE UGUALI\n";
+    ctveic->remove(mt);
+
+    if(lf2==lf) cout<<"MACCHINE UGUALI\n";
     if(ca2==ca) cout<<"CAMION UGUALI\n";
-    if(mt2==mt) cout<<"MOTO UGUALI\n";*/
+    if(mt2==mt) cout<<"MOTO UGUALI\n";
 }

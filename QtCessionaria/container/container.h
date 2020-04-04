@@ -25,7 +25,7 @@ private:
         T info;
         Nodo* next =nullptr, *prev =nullptr;
         Nodo(const T& i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
-        ~Nodo(){if(next) delete next;}
+        ~Nodo(){delete info; delete prev; delete next;};
     };
     Nodo* first;
     class Iteratore{
@@ -144,7 +144,7 @@ int Container<T>::getPosiz(const T& t)const{
 
 template<class T>
 void Container<T>::modify(const T& t1, const T& t2){
-
+//remove del nodo t1 e una push con posizione del nodo t2
 }
 
 template<class T>
@@ -211,6 +211,7 @@ void Container<T>::push(const T& t, int posiz){
     if(posiz <0 || posiz>getSize()) throw Exc(10,"posizione");
 
     if(isEmpty()) first=new Nodo(t,nullptr,first);
+    //if(posiz==0){push_begin(t);}
     Nodo* scorri=first;
     int pos=0;
     while(scorri->next){
@@ -226,28 +227,41 @@ void Container<T>::push(const T& t, int posiz){
         pos++;
         scorri=scorri->next;
     }
-    if(scorri && pos==posiz)
-        scorri=new Nodo(t,scorri->prev,scorri);
+    if(scorri && pos==posiz){
+        Nodo* x=new Nodo(t,scorri->prev,scorri);
+        scorri=x;
+    }
     return;
 }
 
 template<class T>
 void Container<T>::remove(const T& t){
     if(isEmpty()) return;
+    if(first->info==t){                 //rimozione in testa
+        Nodo* elim=first;
+        first=first->next;
+        if(first)//se eliminiamo il solo ed unico nodo contenuto nel container
+            first->prev=nullptr;
+        elim->prev=elim->next=nullptr;
+        delete elim;
+        return;
+    }
 
-    Nodo* scorri=first;
+    Nodo* scorri=first;                 //rimozione nel mezzo
     while(scorri->next){
         if(scorri->info==t){
-            Nodo* del=scorri;
-            scorri->prev=scorri->next;
+            scorri->prev->next=scorri->next;
+            scorri->next->prev=scorri->prev;
+            scorri->next=scorri->prev=nullptr;
             delete scorri;
+            return;
         }
         scorri=scorri->next;
     }
-    if(scorri->info==t){
-        Nodo* del=scorri;
-        scorri->prev=scorri->next;
-        delete del;
+    if(scorri->info==t){                //rimozione alla fine
+        scorri->prev->next=nullptr;
+        scorri->prev=nullptr;
+        delete scorri;
     }
     return;
 }
