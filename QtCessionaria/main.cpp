@@ -29,7 +29,9 @@ int main(int argc, char *argv[])
     Container<Veicolo*> *ctveic= new Container<Veicolo*>;//Veicolo deve rimanere * perchè è astratta!!!
     ctveic->push_end(lf);
     ctveic->push_end(ca);
-    ctveic->push(mt,1);
+    //ctveic->push_end(ca);
+    ctveic->push(mt,0);
+
 
     ctveic->remove(mt);
 

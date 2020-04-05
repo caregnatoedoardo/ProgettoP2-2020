@@ -210,26 +210,31 @@ template<class T>
 void Container<T>::push(const T& t, int posiz){
     if(posiz <0 || posiz>getSize()) throw Exc(10,"posizione");
 
-    if(isEmpty()) first=new Nodo(t,nullptr,first);
+    if(isEmpty() || posiz==0){
+       // first=new Nodo(t,nullptr,first);
+        push_begin(t);
+        return;
+    }
     //if(posiz==0){push_begin(t);}
     Nodo* scorri=first;
     int pos=0;
     while(scorri->next){
         if(pos==posiz){
-            Nodo* prev=scorri->prev;
+           /* Nodo* prev=scorri->prev;
             Nodo* succ=scorri->next;
             Nodo* ins=new Nodo(t,prev,succ);
             prev->next=ins;
-            succ->prev=ins;
-            //scorri=new Nodo(t,scorri->prev,scorri);
+            succ->prev=ins;*/
+            scorri->prev->next=new Nodo(t,scorri->prev,scorri);
+            scorri->prev=scorri->prev->next;
             return;
         }
         pos++;
         scorri=scorri->next;
     }
     if(scorri && pos==posiz){
-        Nodo* x=new Nodo(t,scorri->prev,scorri);
-        scorri=x;
+        scorri->prev->next=new Nodo(t,scorri->prev,scorri);
+        scorri->prev=scorri->prev->next;
     }
     return;
 }
