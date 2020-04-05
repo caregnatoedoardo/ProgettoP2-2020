@@ -14,23 +14,29 @@
  *      3.6) Verifica elementi doppi (stessa targa) nel container
  *      3.7) COPIA DI CONTAINER (?) nel caso in cui nel progetto sia implementata la vendita di veicoli
  *      3.8) Flush del container (elimina tutti gli elementi)
- *          for(auto it=vec.begin();it!=vec.end();++it)
+ *
  * * */
 
 template<class T>
+class Iteratore;
+
+template<class T>
 class Container{
+    friend class Iteratore<T>;
 private:
     class Nodo{
     public:
         T info;
-        Nodo* next =nullptr, *prev =nullptr;
+        Nodo* prev=nullptr, *next =nullptr ;
         Nodo(const T& i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
         ~Nodo(){delete info; delete prev; delete next;};
     };
     Nodo* first;
     class Iteratore{
-    public:
+        friend class Container<T>;
+    private:
         Nodo* punt;//è il puntatore che punta ad un nodo della doppialista;
+    public:
         Iteratore(Nodo* p=nullptr):punt(p){}
         Iteratore& operator=(const Iteratore&);
         Iteratore& operator++();
@@ -39,16 +45,16 @@ private:
         bool operator!=(const Iteratore&)const;
         T& operator*()const; //dereferenziazione, restituisce l'oggetto a cui punta l'iteratore
     };
+public:
     Iteratore begin()const;
     Iteratore end()const;
-public:
     Container(Nodo* p=nullptr):first(p){}
     ~Container(){if(first) delete first;}
 
     bool isEmpty()const;
     void push_begin(const T&);
     void push_end(const T&);
-    void push(const T&, int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
+    void push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
     void remove(const T&);
     bool isDuplicate(const T&) const;//richiamata dalle push per vedere se la targa di un veicolo è doppia
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
@@ -61,7 +67,59 @@ public:
     Container& copy();//esegue una copia del container
 };
 
+//METODI ITERATORE
+//for(auto it=vec.begin();it!=vec.end();++it)
 
+template<class T>
+typename Container<T>::Iteratore& Container<T>::Iteratore::operator=(const Iteratore& it){
+    if(this != &it){
+        delete punt;
+        punt=it.punt;
+    }
+    return *this;
+}
+
+template<class T>
+typename Container<T>::Iteratore& Container<T>::Iteratore::operator++(){
+    punt=punt->next;
+    return *this;
+}
+
+template<class T>
+typename Container<T>::Iteratore& Container<T>::Iteratore::operator--(){
+    punt=punt->prev;
+    return *this;
+}
+
+template<class T>
+bool Container<T>::Iteratore::operator==(const Iteratore& it)const{
+    return punt==it.punt;
+}
+
+template<class T>
+bool Container<T>::Iteratore::operator!=(const Iteratore& it)const{
+    return punt!=it.punt;
+}
+
+template<class T>
+T& Container<T>::Iteratore::operator*()const{
+    return *punt;
+}
+
+template<class T>
+typename Container<T>::Iteratore Container<T>::begin()const{
+    Iteratore nuovo;
+    nuovo.punt=first;
+    return nuovo;
+}
+
+template<class T>
+typename Container<T>::Iteratore Container<T>::end()const{
+    Iteratore nuovo=nullptr;
+    return nuovo;
+}
+
+//METODI CONTAINER
 template<class T>
 bool Container<T>::isEmpty()const{
     return (!first);
@@ -100,8 +158,13 @@ void Container<T>::push_end(const T& t){
 }
 
 template<class T>
-void Container<T>::push(const T& t, int posiz){
-    if(posiz <0 || posiz>getSize()) throw Exc(10,"posizione");
+void Container<T>::push(const T& t, unsigned int posiz){
+    if(posiz>getSize()) throw Exc(10,"posizione"); //check della posizione
+
+    if(isDuplicate(t)){                                        //check se il veicolo è duplicato
+        throw Exc(6,"duplicato");
+        return;
+    }
 
     if(isEmpty() || posiz==0){
         push_begin(t);
@@ -189,8 +252,11 @@ int Container<T>::getPosiz(const T& t)const{
 }//RITORNA LA POSIZIONE DELL'ELEMENTO t SE ESISTE, SENNO' RITORNA -1 (oppure solleva una eccezione???);
 
 template<class T>
-void Container<T>::modify(const T& t1, const T& t2){
-//remove del nodo t1 e una push con posizione del nodo t2
+void Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una push con posizione del nodo t2
+    if(isEmpty()) return;
+    push(t2,getPosiz(t1));
+    remove(t1);
+    return;
 }
 
 template<class T>
@@ -267,7 +333,8 @@ unsigned int Container<T>::getSize()const{
 }
 
 template<class T>
-Container<T>& Container<T>::copy(){
-
+Container<T>& Container<T>::copy(){ //usata per fare dei file di backup dei container delle auto vendute e presenti
+    Container* nuovo = new Container(first);
+    return *nuovo;
 }
 #endif // CONTAINER_H

@@ -25,19 +25,26 @@ int main(int argc, char *argv[])
     Auto* lf2= new Auto("Lancsia","Fulvia",1234,false,"marrone",4,56789,1296,90, benzina, "CA456AC",17000, 1200, 4, berlina, false);
     Camion* ca2 = new Camion("Man", "TVX",123,false,"nero",1,456,6800,400,benzina,"GA456DS",456,6,1,0,false);
     Moto* mt2 = new Moto("Honda", "CBR",123,true,"rosso",1,456,600,60,benzina,"AB12345",17000,400,1,false,6,corsa);
+    Camion* ca3 = new Camion("IVECO", "STRALIS",123,false,"nero",1,456,6800,400,benzina,"IV333CO",456,6,1,0,false);
 
     Container<Veicolo*> *ctveic= new Container<Veicolo*>;//Veicolo deve rimanere * perchè è astratta!!!
     ctveic->push_end(lf);
     ctveic->push_end(ca);
     ctveic->push(mt,0);
 
-    bool dup=ctveic->checkDuplicatePlate("GA456DS");
+    for(auto it=ctveic->begin();it!=ctveic->end();--it){
+        cout<<"CIAO";
+    }
+    //ctveic->modify(mt,ca3);
+
+    /*bool dup=ctveic->checkDuplicatePlate("GA456DS");
     if(dup)
-        cout<<"DUPLICATA";
+        cout<<"DUPLICATA";*/
 
-    ctveic->remove(mt);
-
-    if(lf2==lf) cout<<"MACCHINE UGUALI\n";
+    //ctveic->remove(mt);
+    //Cont nuovo=ctveic.copy();
+    /*if(lf2==lf) cout<<"MACCHINE UGUALI\n";
     if(ca2==ca) cout<<"CAMION UGUALI\n";
-    if(mt2==mt) cout<<"MOTO UGUALI\n";
+    if(mt2==mt) cout<<"MOTO UGUALI\n";*/
+    cout<<"END\n";
 }
