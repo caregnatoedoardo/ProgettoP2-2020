@@ -14,8 +14,7 @@
  *      3.6) Verifica elementi doppi (stessa targa) nel container
  *      3.7) COPIA DI CONTAINER (?) nel caso in cui nel progetto sia implementata la vendita di veicoli
  *      3.8) Flush del container (elimina tutti gli elementi)
- *
- * * */
+ * * * */
 
 template<class T>
 class Iteratore;
@@ -30,6 +29,7 @@ private:
         Nodo* prev=nullptr, *next =nullptr ;
         Nodo(const T& i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
         ~Nodo(){delete info; delete prev; delete next;};
+        T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
     };
     Nodo* first;
     class Iteratore{
@@ -41,14 +41,17 @@ private:
         Iteratore& operator=(const Iteratore&);
         Iteratore& operator++();
         Iteratore& operator--();
+        Iteratore(const Iteratore& it):punt(it.punt){}
         bool operator==(const Iteratore&)const;
         bool operator!=(const Iteratore&)const;
         T& operator*()const; //dereferenziazione, restituisce l'oggetto a cui punta l'iteratore
+        ~Iteratore(){delete punt;}
     };
 public:
     Iteratore begin()const;
     Iteratore end()const;
     Container(Nodo* p=nullptr):first(p){}
+    Container(const Container& ct);
     ~Container(){if(first) delete first;}
 
     bool isEmpty()const;
@@ -56,15 +59,16 @@ public:
     void push_end(const T&);
     void push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
     void remove(const T&);
-    bool isDuplicate(const T&) const;//richiamata dalle push per vedere se la targa di un veicolo è doppia
+    bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il T passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
     void modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
-    T& show(const Nodo* n)const;//restituisce una copia dell'oggetto a cui punta l'iteratore
+    //T& getVeicolo(const Nodo* n)const;//restituisce una copia dell'oggetto a cui punta l'iteratore
     bool search(const T&)const;
     bool checkDuplicatePlate(string plate)const;
     unsigned int getSize()const;
     //unsigned int checkDuplicate()const;//verifica se nel container ci sono elementi doppi e li elimina (non dovrebbe servire per pre e post delle push)
-    Container& copy();//esegue una copia del container
+    Container<T>& copy(const Container&);//esegue una copia del container
+    Container<T>* getVehicleByType(const T&);//restituisce un nuovo container con tutti i veicoli di tipo T inserito
 };
 
 //METODI ITERATORE
@@ -103,7 +107,7 @@ bool Container<T>::Iteratore::operator!=(const Iteratore& it)const{
 
 template<class T>
 T& Container<T>::Iteratore::operator*()const{
-    return *punt;
+    return punt->info;
 }
 
 template<class T>
@@ -171,7 +175,7 @@ void Container<T>::push(const T& t, unsigned int posiz){
         return;
     }
     Nodo* scorri=first;
-    int pos=0;
+    unsigned int pos=0;
     while(scorri->next){
         if(pos==posiz){
             scorri->prev->next=new Nodo(t,scorri->prev,scorri);
@@ -259,10 +263,10 @@ void Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una p
     return;
 }
 
-template<class T>
-T& Container<T>::show(const Nodo* n)const{
+/*template<class T>
+T& Container<T>::getVeicolo(const Nodo* n)const{
     return new T(n->info);
-}//RITORNA L'OGGETTO t CONTENUTO NEL NODO
+}//RITORNA L'OGGETTO t CONTENUTO NEL NODO*/
 
 template<class T>
 bool Container<T>::search(const T& t)const{
@@ -333,8 +337,28 @@ unsigned int Container<T>::getSize()const{
 }
 
 template<class T>
-Container<T>& Container<T>::copy(){ //usata per fare dei file di backup dei container delle auto vendute e presenti
-    Container* nuovo = new Container(first);
-    return *nuovo;
+Container<T>::Container(const Container& ct){
+    delete first;
+    first=ct.first;
 }
+
+template<class T>
+Container<T>& Container<T>::copy(const Container<T>& ct){ //usata per fare dei file di backup dei container delle auto vendute e presenti
+    delete first;
+    first=ct.first;
+    return *this;
+}
+
+template<class T>
+Container<T>* Container<T>::getVehicleByType(const T& typeveic){
+    Container<T>* nuovo=new Container<T>;
+    for(auto it=begin(); it != end();++it){
+        Veicolo* ve=dynamic_cast<Veicolo*>(*it);
+        if(ve && typeid (*ve) == typeid (*typeveic)){
+            nuovo->push_begin(ve);
+        }
+    }
+    return nuovo;
+}//ritorna un container templatizzato con tutti gli elementi pari al tipo di typeveic
+
 #endif // CONTAINER_H

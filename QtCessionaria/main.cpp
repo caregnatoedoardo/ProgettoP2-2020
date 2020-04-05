@@ -30,11 +30,18 @@ int main(int argc, char *argv[])
     Container<Veicolo*> *ctveic= new Container<Veicolo*>;//Veicolo deve rimanere * perchè è astratta!!!
     ctveic->push_end(lf);
     ctveic->push_end(ca);
+    ctveic->push_end(lf2);
     ctveic->push(mt,0);
 
-    for(auto it=ctveic->begin();it!=ctveic->end();--it){
+    for(auto it=ctveic->begin();it!=ctveic->end();++it){
         cout<<"CIAO";
     }
+
+
+    Container<Veicolo*> *ctcopia= new Container<Veicolo*>;
+    ctcopia=ctveic->getVehicleByType(new Camion);
+    //ctcopia->copy(*ctveic);
+
     //ctveic->modify(mt,ca3);
 
     /*bool dup=ctveic->checkDuplicatePlate("GA456DS");
@@ -42,7 +49,6 @@ int main(int argc, char *argv[])
         cout<<"DUPLICATA";*/
 
     //ctveic->remove(mt);
-    //Cont nuovo=ctveic.copy();
     /*if(lf2==lf) cout<<"MACCHINE UGUALI\n";
     if(ca2==ca) cout<<"CAMION UGUALI\n";
     if(mt2==mt) cout<<"MOTO UGUALI\n";*/
