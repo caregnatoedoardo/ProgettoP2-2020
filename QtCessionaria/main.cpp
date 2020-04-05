@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
 
     Container<Veicolo*> *ctcopia= new Container<Veicolo*>;
-    ctcopia=ctveic->getVehicleByType(new Camion);
+    ctcopia=ctveic->getVehicleByType(new Auto);
     //ctcopia->copy(*ctveic);
 
     //ctveic->modify(mt,ca3);

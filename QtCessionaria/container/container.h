@@ -352,12 +352,9 @@ Container<T>& Container<T>::copy(const Container<T>& ct){ //usata per fare dei f
 template<class T>
 Container<T>* Container<T>::getVehicleByType(const T& typeveic){
     Container<T>* nuovo=new Container<T>;
-    for(auto it=begin(); it != end();++it){
-        Veicolo* ve=dynamic_cast<Veicolo*>(*it);
-        if(ve && typeid (*ve) == typeid (*typeveic)){
-            nuovo->push_begin(ve);
-        }
-    }
+    for(auto it=begin(); it != end();++it)
+        if(typeid (**it) == typeid (*typeveic))
+            nuovo->push_begin(*it);
     return nuovo;
 }//ritorna un container templatizzato con tutti gli elementi pari al tipo di typeveic
 
