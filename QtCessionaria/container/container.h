@@ -99,16 +99,64 @@ void Container<T>::push_end(const T& t){
     return;
 }
 
-/*template<class T>
+template<class T>
 void Container<T>::push(const T& t, int posiz){
+    if(posiz <0 || posiz>getSize()) throw Exc(10,"posizione");
 
+    if(isEmpty() || posiz==0){
+        push_begin(t);
+        return;
+    }
+    Nodo* scorri=first;
+    int pos=0;
+    while(scorri->next){
+        if(pos==posiz){
+            scorri->prev->next=new Nodo(t,scorri->prev,scorri);
+            scorri->prev=scorri->prev->next;
+            return;
+        }
+        pos++;
+        scorri=scorri->next;
+    }
+    if(scorri && pos==posiz){
+        scorri->prev->next=new Nodo(t,scorri->prev,scorri);
+        scorri->prev=scorri->prev->next;
+    }
+    return;
 }
 
 template<class T>
 void Container<T>::remove(const T& t){
+    if(isEmpty()) return;
+    if(first->info==t){                 //rimozione in testa
+        Nodo* elim=first;
+        first=first->next;
+        if(first)//se eliminiamo il solo ed unico nodo contenuto nel container
+            first->prev=nullptr;
+        elim->prev=elim->next=nullptr;
+        delete elim;
+        return;
+    }
 
+    Nodo* scorri=first;                 //rimozione nel mezzo
+    while(scorri->next){
+        if(scorri->info==t){
+            scorri->prev->next=scorri->next;
+            scorri->next->prev=scorri->prev;
+            scorri->next=scorri->prev=nullptr;
+            delete scorri;
+            return;
+        }
+        scorri=scorri->next;
+    }
+    if(scorri->info==t){                //rimozione alla fine
+        scorri->prev->next=nullptr;
+        scorri->prev=nullptr;
+        delete scorri;
+    }
+    return;
 }
-*/
+
 template<class T>
 bool Container<T>::isDuplicate(const T& t)const{
     if(isEmpty()) return false;// se è vuota non è duplicato
@@ -118,9 +166,7 @@ bool Container<T>::isDuplicate(const T& t)const{
         if(scorri->info == t) return true;
         scorri=scorri->next;
     }
-    //return (scorri->info==t); oppure
-    if(scorri->info == t) return true;
-    return false;
+    return (scorri->info==t);
 }
 
 template<class T>
@@ -206,70 +252,7 @@ unsigned int Container<T>::checkDuplicate()const{
     return duplicate;
 }//FUNZIONE LANCIATA PER VERIFICARE LA CONSISTENZA DELL'ARCHIVIO*/
 
-template<class T>
-void Container<T>::push(const T& t, int posiz){
-    if(posiz <0 || posiz>getSize()) throw Exc(10,"posizione");
 
-    if(isEmpty() || posiz==0){
-       // first=new Nodo(t,nullptr,first);
-        push_begin(t);
-        return;
-    }
-    //if(posiz==0){push_begin(t);}
-    Nodo* scorri=first;
-    int pos=0;
-    while(scorri->next){
-        if(pos==posiz){
-           /* Nodo* prev=scorri->prev;
-            Nodo* succ=scorri->next;
-            Nodo* ins=new Nodo(t,prev,succ);
-            prev->next=ins;
-            succ->prev=ins;*/
-            scorri->prev->next=new Nodo(t,scorri->prev,scorri);
-            scorri->prev=scorri->prev->next;
-            return;
-        }
-        pos++;
-        scorri=scorri->next;
-    }
-    if(scorri && pos==posiz){
-        scorri->prev->next=new Nodo(t,scorri->prev,scorri);
-        scorri->prev=scorri->prev->next;
-    }
-    return;
-}
-
-template<class T>
-void Container<T>::remove(const T& t){
-    if(isEmpty()) return;
-    if(first->info==t){                 //rimozione in testa
-        Nodo* elim=first;
-        first=first->next;
-        if(first)//se eliminiamo il solo ed unico nodo contenuto nel container
-            first->prev=nullptr;
-        elim->prev=elim->next=nullptr;
-        delete elim;
-        return;
-    }
-
-    Nodo* scorri=first;                 //rimozione nel mezzo
-    while(scorri->next){
-        if(scorri->info==t){
-            scorri->prev->next=scorri->next;
-            scorri->next->prev=scorri->prev;
-            scorri->next=scorri->prev=nullptr;
-            delete scorri;
-            return;
-        }
-        scorri=scorri->next;
-    }
-    if(scorri->info==t){                //rimozione alla fine
-        scorri->prev->next=nullptr;
-        scorri->prev=nullptr;
-        delete scorri;
-    }
-    return;
-}
 
 template<class T>
 unsigned int Container<T>::getSize()const{
