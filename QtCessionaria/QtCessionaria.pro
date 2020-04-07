@@ -24,7 +24,9 @@ SOURCES += \
     cpp/motore.cpp \
     cpp/veicolo.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    GUI/insertveicolo.cpp \
+    model.cpp
 
 HEADERS += \
     container/container.h \
@@ -36,7 +38,9 @@ HEADERS += \
     hierarchy/moto.h \
     hierarchy/motore.h \
     hierarchy/veicolo.h \
-    mainwindow.h
+    mainwindow.h \
+    GUI/insertveicolo.h \
+    model.h
 
 FORMS += \
     mainwindow.ui
