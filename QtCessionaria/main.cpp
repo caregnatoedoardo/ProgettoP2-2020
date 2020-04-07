@@ -22,15 +22,15 @@ int main(int argc, char *argv[])
     Camion* ca=new Camion ("Man", "TVX",123,false,"nero",1,456,6800,400,benzina,"GA456DS",456,6,1,0,true);
     Moto* mt = new Moto("Honda", "CBR",123,true,"rosso",1,456,600,60,benzina,"AB12345",17000,400,1,false,6,corsa);
 
-    Auto* lf2= new Auto("Lancsia","Fulvia",1234,false,"marrone",4,56789,1296,90, benzina, "CA456AC",17000, 1200, 4, berlina, false);
-    Camion* ca2 = new Camion("Man", "TVX",123,false,"nero",1,456,6800,400,benzina,"GA456DS",456,6,1,0,false);
-    Moto* mt2 = new Moto("Honda", "CBR",123,true,"rosso",1,456,600,60,benzina,"AB12345",17000,400,1,false,6,corsa);
-    Camion* ca3 = new Camion("IVECO", "STRALIS",123,false,"nero",1,456,6800,400,benzina,"IV333CO",456,6,1,0,false);
+    Auto* lf2= new Auto("Lancsia","Fulvia",1234,false,"marrone",4,56789,1296,90, benzina, "CA451AC",17000, 1200, 4, berlina, false);
+    Camion* ca2 = new Camion("Man", "TVX",123,false,"nero",1,456,6800,400,benzina,"CA459AC",456,6,1,0,false);
+    Moto* mt2 = new Moto("Honda", "CBR",123,true,"rosso",1,456,600,60,benzina,"AB12045",17000,400,1,false,6,corsa);
+    Camion* ca3 = new Camion("IVECO", "STRALIS",123,false,"nero",1,456,6800,400,benzina,"IV333C4",456,6,1,0,false);
 
     Container<Veicolo*> *ctveic= new Container<Veicolo*>;//Veicolo deve rimanere * perchè è astratta!!!
     ctveic->push_end(lf);
     ctveic->push_end(ca);
-    ctveic->push_end(lf2);
+    ctveic->push_end(ca2);
     ctveic->push(mt,0);
 
     for(auto it=ctveic->begin();it!=ctveic->end();++it){

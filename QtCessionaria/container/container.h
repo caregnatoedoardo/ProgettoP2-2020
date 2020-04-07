@@ -28,7 +28,7 @@ private:
         T info;
         Nodo* prev=nullptr, *next =nullptr ;
         Nodo(const T& i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
-        ~Nodo(){delete info; delete prev; delete next;};
+        ~Nodo(){delete info; delete prev; delete next;}
         T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
     };
     Nodo* first;
@@ -64,7 +64,8 @@ public:
     void modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
     //T& getVeicolo(const Nodo* n)const;//restituisce una copia dell'oggetto a cui punta l'iteratore
     bool search(const T&)const;
-    bool checkDuplicatePlate(string plate)const;
+    bool checkDuplicatePlate(const T&)const;
+    bool checkPlate(string)const;//sarà usata per controllare la stringa nella textbox dell'interfaccia grafica. Uguale a checkDuplicatePlate ma senza cast del parametro formale
     unsigned int getSize()const;
     //unsigned int checkDuplicate()const;//verifica se nel container ci sono elementi doppi e li elimina (non dovrebbe servire per pre e post delle push)
     Container<T>& copy(const Container&);//esegue una copia del container
@@ -135,13 +136,12 @@ void Container<T>::push_begin(const T& t){
         first=new Nodo(t,nullptr,nullptr);
         return;
     }
-    if(!isDuplicate(t)){
-        //first=new Nodo(t,nullptr,first);
+    if(!isDuplicate(t) && !checkDuplicatePlate(t)){
         Nodo* newfirst=new Nodo(t,nullptr,first);
         first->prev=newfirst;
         first=newfirst;
     }else
-        throw Exc(6,"duplicato");
+        throw Exc(6,"veicolo duplicato");
     return;
 }
 
@@ -151,7 +151,7 @@ void Container<T>::push_end(const T& t){
         first=new Nodo(t,nullptr, nullptr);
         return;
     }
-    if(!isDuplicate(t)){
+    if(!isDuplicate(t) && !checkDuplicatePlate(t)){
         Nodo* scorri=first;
         while(scorri->next)
             scorri=scorri->next;
@@ -165,7 +165,7 @@ template<class T>
 void Container<T>::push(const T& t, unsigned int posiz){
     if(posiz>getSize()) throw Exc(10,"posizione"); //check della posizione
 
-    if(isDuplicate(t)){                                        //check se il veicolo è duplicato
+    if(isDuplicate(t) && !checkDuplicatePlate(t)){                                        //check se il veicolo è duplicato
         throw Exc(6,"duplicato");
         return;
     }
@@ -282,20 +282,36 @@ bool Container<T>::search(const T& t)const{
 }//CERCA L'ELEMENTO t ALL'INTERNO DEL CONTAINER E RITORNA TRUE O FALSE
 
 template<class T>
-bool Container<T>::checkDuplicatePlate(string plate)const{
-    if(isEmpty()) return false;
+bool Container<T>::checkDuplicatePlate(const T& t)const{
 
+    if(isEmpty()) return false;
+    Mezzo* me=dynamic_cast<Mezzo*>(t);
     Nodo* scorri=first;
     while(scorri->next){
-        Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-        if(mz && mz->getTarga()==plate)
+       Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
+        if(me && mz && mz->getTarga()==me->getTarga())
             return true;
 
         scorri=scorri->next;
     }
     //confronto ultimo nodo:
     Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-    return(mz && mz->getTarga()==plate);
+    return(me && mz && mz->getTarga()==me->getTarga());
+}
+
+template<class T>
+bool Container<T>::checkPlate(string plate)const{
+     if(isEmpty()) return false;
+     Nodo* scorri=first;
+     while(scorri->next){
+         Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
+         if(mz && mz->getTarga()==plate)
+             return true;
+         scorri=scorri->next;
+     }
+     //confronto ultimo nodo:
+     Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
+     return(mz && mz->getTarga()==plate);
 }
 
 /*template<class T>
