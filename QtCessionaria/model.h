@@ -1,11 +1,13 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include <container/container.h>
+#include "container/container.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QString>
-#include <hierarchy/veicolo.h>
+#include "hierarchy/auto.h"
+#include "hierarchy/moto.h"
+#include "hierarchy/camion.h"
 
 
 
@@ -26,13 +28,27 @@ public:
     Container<Veicolo*>::Iteratore end()const;
 
     //implementazione di tutti i filtri di ricerca
-    void filterByMarca(string="")const;
-    void filterByModello(string="")const;
-    void filterByNTelaio(unsigned int=0)const;
-    void filterByCambio(bool=false)const;
-    void filterByColore(string="")const;
-    void filterByLunghezza(double=0)const;
-
+    void filterByMarca(string="");
+    void filterByModello(string="");
+    void filterByNTelaio(unsigned int=0);
+    void filterByCambio(bool=false);
+    void filterByColore(string="");
+    void filterByLunghezza(double=0);
+    void filterByNMotore(unsigned int =0);
+    void filterByCilindrata(unsigned int =0);
+    void filterByCavalli(unsigned int =0);
+    void filterByAlim(alimentazione=diesel);
+    void filterByTarga(string="");
+    void filterByPrezzo(double=0);
+    void filterByMassa(unsigned int=0);
+    void filterByPosti(unsigned int=0);
+    void filterBySegmento(segmento=suv);
+    void filterByAutocarro(bool=false);
+    void filterByNAssi(unsigned int =0);
+    void filterByRibaltabile(bool=false);
+    void filterBySidecar(bool=false);
+    void filterByClasseEmissioni(unsigned int);
+    void filterByType(tipomoto=corsa);
 };
 
 #endif // MODEL_H
