@@ -41,7 +41,7 @@ public:
     void filterByTarga(string="");
     void filterByPrezzo(double=0);
     void filterByMassa(unsigned int=0);
-    void filterByPosti(unsigned int=0);
+    void filterByNPosti(unsigned int=0);
     void filterBySegmento(segmento=suv);
     void filterByAutocarro(bool=false);
     void filterByNAssi(unsigned int =0);
