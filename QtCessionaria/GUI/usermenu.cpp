@@ -22,4 +22,14 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     addAction(ricerca);
     addAction(inserisci);
 
+    //connect(esci, SIGNAL(triggered()),parent,SLOT(slotClose()));
+   //connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));
+   //connect(carica, SIGNAL(triggered()),parent,SLOT(slotCarica()));
+   //connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotRicerca()));
+   //connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotInserisci()));
+
+
+
+
+
 }

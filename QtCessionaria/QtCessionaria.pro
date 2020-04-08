@@ -29,7 +29,23 @@ SOURCES += \
     model.cpp \
     GUI/alimtipebox.cpp \
     GUI/segmentotipebox.cpp \
-    GUI/tipomotobox.cpp
+    GUI/tipomotobox.cpp \
+    cpp/auto.cpp \
+    cpp/camion.cpp \
+    cpp/carrozzeria.cpp \
+    cpp/mezzo.cpp \
+    cpp/moto.cpp \
+    cpp/motore.cpp \
+    cpp/veicolo.cpp \
+    GUI/alimtipebox.cpp \
+    GUI/insertveicolo.cpp \
+    GUI/segmentotipebox.cpp \
+    GUI/tipomotobox.cpp \
+    GUI/usermenu.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    model.cpp \
+    controller/controller.cpp
 
 HEADERS += \
     container/container.h \
@@ -46,7 +62,24 @@ HEADERS += \
     model.h \
     GUI/alimtipebox.h \
     GUI/segmentotipebox.h \
-    GUI/tipomotobox.h
+    GUI/tipomotobox.h \
+    container/container.h \
+    controller/controller.h \
+    exceptions/exceptions.h \
+    GUI/alimtipebox.h \
+    GUI/insertveicolo.h \
+    GUI/segmentotipebox.h \
+    GUI/tipomotobox.h \
+    GUI/usermenu.h \
+    hierarchy/auto.h \
+    hierarchy/camion.h \
+    hierarchy/carrozzeria.h \
+    hierarchy/mezzo.h \
+    hierarchy/moto.h \
+    hierarchy/motore.h \
+    hierarchy/veicolo.h \
+    mainwindow.h \
+    model.h
 
 FORMS += \
     mainwindow.ui
