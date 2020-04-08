@@ -5,6 +5,8 @@
 #include "container/container.h"
 #include "GUI/usermenu.h"
 #include <QVBoxLayout>
+#include <QMessageBox>
+#include "model.h"
 
 class Controller:public QWidget{
 private:
@@ -12,16 +14,16 @@ private:
 
    Container<Veicolo*> *dbveicoli;
    Container<Veicolo*> *dbvenduti;
-
+   Model* model;
    Usermenu* menuUtente;
    QHBoxLayout* mainLayout;
 
 
 public:
-// Controller(Model*,QWidget* = nullptr);
-   Controller(QWidget* = nullptr);
+ Controller(Model*,QWidget* = nullptr);
+   //Controller(QWidget* = nullptr);
 
-~Controller();
+   ~Controller();
 
    string getTarga()const;
 

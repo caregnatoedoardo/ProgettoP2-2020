@@ -1,12 +1,16 @@
 #include "controller.h"
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QBuffer>
 using std::string;
 
-#include <QHBoxLayout>
 
 
-Controller::Controller(QWidget *parent):
+
+Controller::Controller(Model*m, QWidget *parent):
     QWidget(parent),
     menuUtente(new Usermenu(this)),
+    model(m),
     mainLayout(new QHBoxLayout(this))
 
 {
