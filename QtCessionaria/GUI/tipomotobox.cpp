@@ -3,10 +3,10 @@
 TipomotoBox::TipomotoBox(QWidget* parent):
     QComboBox (parent)
 {
-addItem("Corsa");
-addItem("Custom");
-addItem("Naked");
-addItem("Cross");
+addItem("corsa");
+addItem("custom");
+addItem("naked");
+addItem("cross");
 }
 
 

@@ -4,9 +4,9 @@
 AlimTipeBox::AlimTipeBox(QWidget* parent):
     QComboBox (parent)
 {
-addItem("Benzina");
-addItem("Disel");
-addItem("Elettrica");
-addItem("GPL");
-addItem("Metano");
+addItem("benzina");
+addItem("disel");
+addItem("elettrica");
+addItem("gpl");
+addItem("metano");
 }

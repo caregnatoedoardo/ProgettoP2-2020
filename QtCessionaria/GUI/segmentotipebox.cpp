@@ -2,9 +2,9 @@
 
 SegmentoTipeBox::SegmentoTipeBox(QWidget* parent): QComboBox(parent)
 {
-addItem("Berlina");
-addItem("Station");
-addItem("SUV");
-addItem("Coupe");
+addItem("berlina");
+addItem("station");
+addItem("suv");
+addItem("coupe");
 }
 
