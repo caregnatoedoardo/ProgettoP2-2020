@@ -27,11 +27,12 @@ private:
     public:
         T info;
         Nodo* prev=nullptr, *next =nullptr ;
-        Nodo(const T& i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
+        Nodo(const T i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
         ~Nodo(){delete info; delete prev; delete next;}
         T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
     };
     Nodo* first;
+public:
     class Iteratore{
         friend class Container<T>;
     private:

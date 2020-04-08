@@ -12,8 +12,6 @@ class Controller:public QWidget{
 private:
    Q_OBJECT
 
-   Container<Veicolo*> *dbveicoli;
-   Container<Veicolo*> *dbvenduti;
    Model* model;
    Usermenu* menuUtente;
    QHBoxLayout* mainLayout;
