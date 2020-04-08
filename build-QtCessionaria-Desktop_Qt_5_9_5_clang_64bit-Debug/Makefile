@@ -60,7 +60,11 @@ SOURCES       = ../QtCessionaria/cpp/auto.cpp \
 		../QtCessionaria/main.cpp \
 		../QtCessionaria/mainwindow.cpp \
 		../QtCessionaria/GUI/insertveicolo.cpp \
-		../QtCessionaria/model.cpp moc_mainwindow.cpp
+		../QtCessionaria/model.cpp \
+		../QtCessionaria/GUI/alimtipebox.cpp \
+		../QtCessionaria/GUI/segmentotipebox.cpp \
+		../QtCessionaria/GUI/tipomotobox.cpp moc_mainwindow.cpp \
+		moc_insertveicolo.cpp
 OBJECTS       = auto.o \
 		camion.o \
 		carrozzeria.o \
@@ -72,7 +76,11 @@ OBJECTS       = auto.o \
 		mainwindow.o \
 		insertveicolo.o \
 		model.o \
-		moc_mainwindow.o
+		alimtipebox.o \
+		segmentotipebox.o \
+		tipomotobox.o \
+		moc_mainwindow.o \
+		moc_insertveicolo.o
 DIST          = ../../../../Qt5.9.5/5.9.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.9.5/5.9.5/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt5.9.5/5.9.5/clang_64/mkspecs/features/device_config.prf \
@@ -244,7 +252,10 @@ DIST          = ../../../../Qt5.9.5/5.9.5/clang_64/mkspecs/features/spec_pre.prf
 		../QtCessionaria/hierarchy/veicolo.h \
 		../QtCessionaria/mainwindow.h \
 		../QtCessionaria/GUI/insertveicolo.h \
-		../QtCessionaria/model.h ../QtCessionaria/cpp/auto.cpp \
+		../QtCessionaria/model.h \
+		../QtCessionaria/GUI/alimtipebox.h \
+		../QtCessionaria/GUI/segmentotipebox.h \
+		../QtCessionaria/GUI/tipomotobox.h ../QtCessionaria/cpp/auto.cpp \
 		../QtCessionaria/cpp/camion.cpp \
 		../QtCessionaria/cpp/carrozzeria.cpp \
 		../QtCessionaria/cpp/mezzo.cpp \
@@ -254,7 +265,10 @@ DIST          = ../../../../Qt5.9.5/5.9.5/clang_64/mkspecs/features/spec_pre.prf
 		../QtCessionaria/main.cpp \
 		../QtCessionaria/mainwindow.cpp \
 		../QtCessionaria/GUI/insertveicolo.cpp \
-		../QtCessionaria/model.cpp
+		../QtCessionaria/model.cpp \
+		../QtCessionaria/GUI/alimtipebox.cpp \
+		../QtCessionaria/GUI/segmentotipebox.cpp \
+		../QtCessionaria/GUI/tipomotobox.cpp
 QMAKE_TARGET  = QtCessionaria
 DESTDIR       = 
 TARGET        = QtCessionaria.app/Contents/MacOS/QtCessionaria
@@ -631,8 +645,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.9.5/5.9.5/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtCessionaria/container/container.h ../QtCessionaria/exceptions/exceptions.h ../QtCessionaria/hierarchy/auto.h ../QtCessionaria/hierarchy/camion.h ../QtCessionaria/hierarchy/carrozzeria.h ../QtCessionaria/hierarchy/mezzo.h ../QtCessionaria/hierarchy/moto.h ../QtCessionaria/hierarchy/motore.h ../QtCessionaria/hierarchy/veicolo.h ../QtCessionaria/mainwindow.h ../QtCessionaria/GUI/insertveicolo.h ../QtCessionaria/model.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtCessionaria/cpp/auto.cpp ../QtCessionaria/cpp/camion.cpp ../QtCessionaria/cpp/carrozzeria.cpp ../QtCessionaria/cpp/mezzo.cpp ../QtCessionaria/cpp/moto.cpp ../QtCessionaria/cpp/motore.cpp ../QtCessionaria/cpp/veicolo.cpp ../QtCessionaria/main.cpp ../QtCessionaria/mainwindow.cpp ../QtCessionaria/GUI/insertveicolo.cpp ../QtCessionaria/model.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtCessionaria/container/container.h ../QtCessionaria/exceptions/exceptions.h ../QtCessionaria/hierarchy/auto.h ../QtCessionaria/hierarchy/camion.h ../QtCessionaria/hierarchy/carrozzeria.h ../QtCessionaria/hierarchy/mezzo.h ../QtCessionaria/hierarchy/moto.h ../QtCessionaria/hierarchy/motore.h ../QtCessionaria/hierarchy/veicolo.h ../QtCessionaria/mainwindow.h ../QtCessionaria/GUI/insertveicolo.h ../QtCessionaria/model.h ../QtCessionaria/GUI/alimtipebox.h ../QtCessionaria/GUI/segmentotipebox.h ../QtCessionaria/GUI/tipomotobox.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtCessionaria/cpp/auto.cpp ../QtCessionaria/cpp/camion.cpp ../QtCessionaria/cpp/carrozzeria.cpp ../QtCessionaria/cpp/mezzo.cpp ../QtCessionaria/cpp/moto.cpp ../QtCessionaria/cpp/motore.cpp ../QtCessionaria/cpp/veicolo.cpp ../QtCessionaria/main.cpp ../QtCessionaria/mainwindow.cpp ../QtCessionaria/GUI/insertveicolo.cpp ../QtCessionaria/model.cpp ../QtCessionaria/GUI/alimtipebox.cpp ../QtCessionaria/GUI/segmentotipebox.cpp ../QtCessionaria/GUI/tipomotobox.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../QtCessionaria/mainwindow.ui $(DISTDIR)/
 
 
@@ -665,15 +679,37 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../Qt5.9.5/5.9.5/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.10 -Wall -W -dM -E -o moc_predefs.h ../../../../Qt5.9.5/5.9.5/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_insertveicolo.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_insertveicolo.cpp
 moc_mainwindow.cpp: ../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../QtCessionaria/mainwindow.h \
 		moc_predefs.h \
 		../../../../Qt5.9.5/5.9.5/clang_64/bin/moc
 	/Users/marco/Qt5.9.5/5.9.5/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/marco/Qt5.9.5/5.9.5/clang_64/mkspecs/macx-clang -I'/Users/marco/PROGETTI/Programmazione Oggetti/ProgettoP2-2020/QtCessionaria' -I/Users/marco/Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/marco/Qt5.9.5/5.9.5/clang_64/lib/QtGui.framework/Headers -I/Users/marco/Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/marco/Qt5.9.5/5.9.5/clang_64/lib ../QtCessionaria/mainwindow.h -o moc_mainwindow.cpp
+
+moc_insertveicolo.cpp: ../QtCessionaria/GUI/alimtipebox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../QtCessionaria/GUI/segmentotipebox.h \
+		../QtCessionaria/GUI/tipomotobox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../QtCessionaria/GUI/insertveicolo.h \
+		moc_predefs.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/bin/moc
+	/Users/marco/Qt5.9.5/5.9.5/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/marco/Qt5.9.5/5.9.5/clang_64/mkspecs/macx-clang -I'/Users/marco/PROGETTI/Programmazione Oggetti/ProgettoP2-2020/QtCessionaria' -I/Users/marco/Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/marco/Qt5.9.5/5.9.5/clang_64/lib/QtGui.framework/Headers -I/Users/marco/Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/marco/Qt5.9.5/5.9.5/clang_64/lib ../QtCessionaria/GUI/insertveicolo.h -o moc_insertveicolo.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -763,14 +799,55 @@ mainwindow.o: ../QtCessionaria/mainwindow.cpp ../QtCessionaria/mainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../QtCessionaria/mainwindow.cpp
 
-insertveicolo.o: ../QtCessionaria/GUI/insertveicolo.cpp ../QtCessionaria/GUI/insertveicolo.h
+insertveicolo.o: ../QtCessionaria/GUI/insertveicolo.cpp ../QtCessionaria/GUI/insertveicolo.h \
+		../QtCessionaria/GUI/alimtipebox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../QtCessionaria/GUI/segmentotipebox.h \
+		../QtCessionaria/GUI/tipomotobox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o insertveicolo.o ../QtCessionaria/GUI/insertveicolo.cpp
 
 model.o: ../QtCessionaria/model.cpp ../QtCessionaria/model.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o ../QtCessionaria/model.cpp
 
+alimtipebox.o: ../QtCessionaria/GUI/alimtipebox.cpp ../QtCessionaria/GUI/alimtipebox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/qobject.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o alimtipebox.o ../QtCessionaria/GUI/alimtipebox.cpp
+
+segmentotipebox.o: ../QtCessionaria/GUI/segmentotipebox.cpp ../QtCessionaria/GUI/segmentotipebox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/qobject.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o segmentotipebox.o ../QtCessionaria/GUI/segmentotipebox.cpp
+
+tipomotobox.o: ../QtCessionaria/GUI/tipomotobox.cpp ../QtCessionaria/GUI/tipomotobox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.9.5/5.9.5/clang_64/lib/QtCore.framework/Headers/qobject.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tipomotobox.o ../QtCessionaria/GUI/tipomotobox.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_insertveicolo.o: moc_insertveicolo.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_insertveicolo.o moc_insertveicolo.cpp
 
 ####### Install
 

@@ -26,7 +26,10 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     GUI/insertveicolo.cpp \
-    model.cpp
+    model.cpp \
+    GUI/alimtipebox.cpp \
+    GUI/segmentotipebox.cpp \
+    GUI/tipomotobox.cpp
 
 HEADERS += \
     container/container.h \
@@ -40,7 +43,10 @@ HEADERS += \
     hierarchy/veicolo.h \
     mainwindow.h \
     GUI/insertveicolo.h \
-    model.h
+    model.h \
+    GUI/alimtipebox.h \
+    GUI/segmentotipebox.h \
+    GUI/tipomotobox.h
 
 FORMS += \
     mainwindow.ui
