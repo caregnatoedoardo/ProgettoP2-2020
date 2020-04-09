@@ -84,7 +84,7 @@ void Model::filterByLunghezza(double lun){
 
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
         Carrozzeria* car=dynamic_cast<Carrozzeria*>(*it);
-        if(car && car->getLunghezza()!=lun)
+        if(car && car->getLunghezza()>=lun)
             searchRes->remove(car);
     }
     return;
@@ -150,7 +150,7 @@ void Model::filterByPrezzo(double pr){
 
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
         Mezzo* mz=dynamic_cast<Mezzo*>(*it);
-        if(mz && mz->getPrezzo()!=pr)
+        if(mz && mz->getPrezzo()>=pr)
             searchRes->remove(mz);
     }
     return;
@@ -161,7 +161,7 @@ void Model::filterByMassa(unsigned int ma){
 
         for(auto it=searchRes->begin();it!=searchRes->end();++it){
             Mezzo* mz=dynamic_cast<Mezzo*>(*it);
-            if(mz && mz->getMassa()!=ma)
+            if(mz && mz->getMassa()>=ma)
                 searchRes->remove(mz);
         }
         return;
