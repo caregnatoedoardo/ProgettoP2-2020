@@ -62,7 +62,7 @@ void Model::filterByCambio(bool gbx){
 
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
         Carrozzeria* car=dynamic_cast<Carrozzeria*>(*it);
-        if(car && car->getCambio()==gbx)
+        if(car && car->getCambio()!=gbx)
             searchRes->remove(car);
     }
     return;
@@ -73,7 +73,7 @@ void Model::filterByColore(string col){
 
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
         Carrozzeria* car=dynamic_cast<Carrozzeria*>(*it);
-        if(car && car->getColore()==col)
+        if(car && car->getColore()!=col)
             searchRes->remove(car);
     }
     return;
