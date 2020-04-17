@@ -1,7 +1,10 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
-#include "exceptions/exceptions.h"
-#include "hierarchy/mezzo.h"
+
+#include "hierarchy/camion.h"
+#include "hierarchy/auto.h"
+#include "hierarchy/moto.h"
+
 
 /* 1) Lista concatenata o lista doppiamente concatenata?
  * 2) Obbligatorio un iteratore per scorrere gli elementi della lista (cuscino tra la lista e l'interfaccia)
@@ -53,8 +56,10 @@ public:
     Iteratore end()const;
     Container(Nodo* p=nullptr):first(p){}
     Container(const Container& ct);
+    Container<T>& operator=(const Container&);
+    bool operator==(const Container&);
+    bool operator!=(const Container&);
     ~Container(){if(first) delete first;}
-    bool operator==(const Container<T>&);
 
     bool isEmpty()const;
     void push_begin(const T&);
@@ -72,17 +77,51 @@ public:
     //unsigned int checkDuplicate()const;//verifica se nel container ci sono elementi doppi e li elimina (non dovrebbe servire per pre e post delle push)
     Container<T>& copy(const Container&);//esegue una copia del container
     Container<T>* getVehicleByType(const T&);//restituisce un nuovo container con tutti i veicoli di tipo T inserito
+    string getTipoVeicolo()const;//restituisce una stringa che identifica la tipologia del veicolo dell'oggetto di invocazione
 };
 
 //METODI ITERATORE
 //for(auto it=vec.begin();it!=vec.end();++it)
 
 template<class T>
-bool Container<T>::operator==(const Container<T>&a )
-{return true;}
+bool Container<T>::operator==(const Container<T>& ct){
+    if(ct.isEmpty() && isEmpty()) return true;
+    if(getSize() != ct.getSize()) return false;
 
+    Nodo* scorri=first;
+    Nodo* scorrict=ct.first;
+    while(scorri->next){
+        if(scorri->info!=scorrict->info) return false;
+        scorri=scorri->next;
+        scorrict=scorrict->next;
+    }
+    return(scorri->info == scorrict->info);
+}
 
+template<class T>
+bool Container<T>::operator!=(const Container<T>& ct){
+    if(ct.isEmpty() && isEmpty()) return false;
+    if(getSize() != ct.getSize()) return true;
 
+    Nodo* scorri=first;
+    Nodo* scorrict=ct.first;
+    while(scorri->next){
+        if(scorri->info==scorrict->info) return false;
+        scorri=scorri->next;
+        scorrict=scorrict->next;
+    }
+    return !(scorri->info == scorrict->info);
+}
+
+template<class T>
+Container<T>& Container<T>::operator=(const Container<T>& ct){
+    if(ct.isEmpty()) return nullptr;
+    if(this != &ct){
+        delete first;
+        first=ct.first;
+    }
+    return *this;
+}
 
 template<class T>
 typename Container<T>::Iteratore& Container<T>::Iteratore::operator=(const Iteratore& it){
@@ -384,6 +423,27 @@ Container<T>* Container<T>::getVehicleByType(const T& typeveic){
             nuovo->push_begin(*it);
     return nuovo;
 }//ritorna un container templatizzato con tutti gli elementi pari al tipo di typeveic
+
+template<class T>
+string Container<T>::getTipoVeicolo()const{
+    Carrozzeria*cr=dynamic_cast<Carrozzeria*>(*this);
+    if(cr) return "carrozzeria";
+
+    Motore* mt=dynamic_cast<Motore*>(*this);
+    if(mt) return "motore";
+
+    Auto* au=dynamic_cast<Auto*>(*this);
+    if(au) return "auto";
+
+    Camion* cm=dynamic_cast<Camion*>(*this);
+    if(cm) return "camion";
+
+    Moto* mto=dynamic_cast<Moto*>(*this);
+    if(mto) return "moto";
+
+    return "";//da verificare
+}
+
 
 #endif // CONTAINER_H
 
