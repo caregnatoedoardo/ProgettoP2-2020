@@ -37,7 +37,7 @@ void Model::save(){
     while(it!=dbVeicoli->end()){
        // const Veicolo* save = *it;
 
-          const QString tipologia;
+        //  const QString tipologia;  (*it)->getTipologia()
         //const QString tipologia = QString::fromStdString(save->) //bisogna avere la tipologia auto o camion o moto
 
         writer.writeAttribute("marca",QString::fromStdString((*it)->getMarca()));
@@ -109,18 +109,23 @@ void Model::load(){
             while(reader.readNextStartElement()){
                 const QXmlStreamAttributes att =reader.attributes();
 
+                //VEICOLO
                 string marca = att.hasAttribute("marca")? att.value("marca").toString().toStdString():"";
                 string modello = att.hasAttribute("modello")? att.value("modello").toString().toStdString():"";
+
+                //CARROZZERIA
                 unsigned int n_telaio = att.hasAttribute("n_telaio")? att.value("n_telaio").toInt(): 0;
                 bool cambio_auto = att.hasAttribute("cambio_auto")? att.value("cambio_auto").toString()=="Si" ? true:false:false;
                 string colore = att.hasAttribute("colore")? att.value("colore").toString().toStdString():"";
                 double  lunghezza = att.hasAttribute("lunghezza")? att.value("lunghezza").toDouble():1;
 
+                //MOTORE
                 unsigned int n_motore = att.hasAttribute("n_motore")? att.value("n_motore").toInt(): 0;
                 unsigned int cilindrata = att.hasAttribute("cilindrata")? att.value("cilindrata").toInt(): 0;
                 unsigned int cavalli = att.hasAttribute("cavalli")? att.value("cavalli").toInt(): 0;
-                string alimentazione = att.hasAttribute("alim")? att.value("alim").toString().toStdString():"";
-
+                //string alim = att.hasAttribute("alim")? att.value("alim").toString().toStdString():"";
+                alimentazione alim;
+                //MEZZO
                 string targa = att.hasAttribute("targa")? att.value("targa").toString().toStdString():"";
                 double  prezzo = att.hasAttribute("prezzo")? att.value("prezzo").toDouble():1;
                 unsigned int massa = att.hasAttribute("massa")? att.value("massa").toInt(): 0;
@@ -130,15 +135,32 @@ void Model::load(){
                 Veicolo* toPush = nullptr;
                 if(reader.name() == "auto"){
 
-                    string seg = att.hasAttribute("seg")? att.value("seg").toString().toStdString():"";
+                    //string seg = att.hasAttribute("seg")? att.value("seg").toString().toStdString():"";
+                    segmento seg;
                     bool autocarro = att.hasAttribute("autocarro")? att.value("autocarro").toString()=="Si" ? true:false:false;
 
+
+                    toPush = new Auto(marca,modello,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
+                                      prezzo,massa,numposti,seg,autocarro);
 
                 } else if(reader.name()=="camion"){
 
 
+                 unsigned int  n_assi = att.hasAttribute("n_assi")? att.value("n_assi").toDouble():1;
+                 bool ribaltabile = att.hasAttribute("ribaltabile")? att.value("ribaltabile").toString()=="Si" ? true:false:false;
+
+                 toPush = new Camion(marca,modello,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
+                                   prezzo,massa,numposti,n_assi,ribaltabile);
+
 
                 } else if(reader.name() =="moto"){
+
+                 bool sidecar = att.hasAttribute("sidecar")? att.value("sidecar").toString()=="Si" ? true:false:false;
+                 unsigned int classe_emissioni = att.hasAttribute("classe_emissioni")? att.value("classe_emissioni").toInt(): 0;
+                 tipomoto type;
+
+                 toPush = new Moto(marca,modello,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
+                                   prezzo,massa,numposti,sidecar,classe_emissioni,type);
 
 
                 } if(toPush!= nullptr){
