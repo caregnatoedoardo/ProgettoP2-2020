@@ -54,6 +54,7 @@ public:
     Container(Nodo* p=nullptr):first(p){}
     Container(const Container& ct);
     ~Container(){if(first) delete first;}
+    bool operator==(const Container<T>&);
 
     bool isEmpty()const;
     void push_begin(const T&);
@@ -75,6 +76,13 @@ public:
 
 //METODI ITERATORE
 //for(auto it=vec.begin();it!=vec.end();++it)
+
+template<class T>
+bool Container<T>::operator==(const Container<T>&a )
+{return true;}
+
+
+
 
 template<class T>
 typename Container<T>::Iteratore& Container<T>::Iteratore::operator=(const Iteratore& it){
@@ -341,6 +349,8 @@ unsigned int Container<T>::checkDuplicate()const{
 
 
 
+
+
 template<class T>
 unsigned int Container<T>::getSize()const{
     if(isEmpty()) return 0;
@@ -376,3 +386,5 @@ Container<T>* Container<T>::getVehicleByType(const T& typeveic){
 }//ritorna un container templatizzato con tutti gli elementi pari al tipo di typeveic
 
 #endif // CONTAINER_H
+
+

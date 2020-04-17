@@ -429,7 +429,7 @@ void Model::filterByType(tipomoto tm){
 void Model::push_end(Veicolo *a){
 
     dbVeicoli->push_end(a);
-    if(!(*searchRes==*dbVeicoli))
+    //if(!(*searchRes==*dbVeicoli))
         *searchRes=*dbVeicoli;
     isDataSaved=false;
 }
