@@ -27,6 +27,11 @@ public:
     Container<Veicolo*>::Iteratore begin()const;
     Container<Veicolo*>::Iteratore end()const;
 
+    void save();
+    void load();
+
+    void push_end(Veicolo*);
+
     //implementazione di tutti i filtri di ricerca
     void filterByMarca(string="");
     void filterByModello(string="");
