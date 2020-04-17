@@ -9,8 +9,8 @@ using std::string;
 
 Controller::Controller(Model*m, QWidget *parent):
     QWidget(parent),
-    menuUtente(new Usermenu(this)),
     model(m),
+    menuUtente(new Usermenu(this)),
     mainLayout(new QHBoxLayout(this))
 
 {

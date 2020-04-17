@@ -21,7 +21,7 @@ public:
  Controller(Model*,QWidget* = nullptr);
    //Controller(QWidget* = nullptr);
 
-   ~Controller();
+   //~Controller();
 
    string getTarga()const;
 

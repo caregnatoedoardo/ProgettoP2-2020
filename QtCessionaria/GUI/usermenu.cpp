@@ -4,9 +4,9 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     menu(new QMenu("File",this)),
     salva(new QAction("Salva",this)),
     carica(new QAction("Carica",this)),
-    esci(new QAction("Esci",this)),
 
     ricerca(new QAction("Ricerca",this)),
+    esci(new QAction("Esci",this)),
     inserisci(new QAction("Inserisci",this))
 
 {
