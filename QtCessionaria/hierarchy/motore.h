@@ -25,6 +25,7 @@ public:
     alimentazione getAlimentazione()const;
     bool checkAlimentazione(string al)const;
     string convertToAlim(alimentazione al)const;
+    alimentazione convertToAlimentazione(const string)const;
 
 };
 

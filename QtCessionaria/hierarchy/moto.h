@@ -23,7 +23,9 @@ public:
     tipomoto getTipoMoto()const;
     bool checkTipoMoto()const;
     string convertToString(tipomoto tm)const;
+    tipomoto convertToTipomoto(const string)const;
     bool checkTarga() const override;
+
 };
 
 #endif // MOTO_H

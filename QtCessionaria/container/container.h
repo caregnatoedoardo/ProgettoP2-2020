@@ -115,7 +115,7 @@ bool Container<T>::operator!=(const Container<T>& ct){
 
 template<class T>
 Container<T>& Container<T>::operator=(const Container<T>& ct){
-    if(ct.isEmpty()) return nullptr;
+    //if(ct.isEmpty()) return nullptr;
     if(this != &ct){
         delete first;
         first=ct.first;
