@@ -39,14 +39,7 @@ string Moto::convertToString(tipomoto tm) const{
     throw Exc(4);
 }
 
-tipomoto Moto::convertToTipomoto(const string st) const{
-    if(st=="corsa") return corsa;
-    if(st=="custom") return custom;
-    if(st=="naked") return naked;
-    if(st=="cross") return cross;
 
-    throw Exc(4);
-}
 
 bool Moto::checkTarga() const{
     string targa=getTarga();

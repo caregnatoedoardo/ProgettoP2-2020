@@ -123,8 +123,8 @@ void Model::load(){
                 unsigned int n_motore = att.hasAttribute("n_motore")? att.value("n_motore").toInt(): 0;
                 unsigned int cilindrata = att.hasAttribute("cilindrata")? att.value("cilindrata").toInt(): 0;
                 unsigned int cavalli = att.hasAttribute("cavalli")? att.value("cavalli").toInt(): 0;
-                //string alim = att.hasAttribute("alim")? att.value("alim").toString().toStdString():"";
-                alimentazione alim;
+
+                alimentazione alim = convertToAlimentazione(att.hasAttribute("alim")? att.value("alim").toString().toStdString():"");
                 //MEZZO
                 string targa = att.hasAttribute("targa")? att.value("targa").toString().toStdString():"";
                 double  prezzo = att.hasAttribute("prezzo")? att.value("prezzo").toDouble():1;
@@ -135,8 +135,8 @@ void Model::load(){
                 Veicolo* toPush = nullptr;
                 if(reader.name() == "auto"){
 
-                    //string seg = att.hasAttribute("seg")? att.value("seg").toString().toStdString():"";
-                    segmento seg;
+
+                    segmento seg = convertToSeg(att.hasAttribute("seg")? att.value("seg").toString().toStdString():"");
                     bool autocarro = att.hasAttribute("autocarro")? att.value("autocarro").toString()=="Si" ? true:false:false;
 
 
@@ -157,7 +157,7 @@ void Model::load(){
 
                  bool sidecar = att.hasAttribute("sidecar")? att.value("sidecar").toString()=="Si" ? true:false:false;
                  unsigned int classe_emissioni = att.hasAttribute("classe_emissioni")? att.value("classe_emissioni").toInt(): 0;
-                 tipomoto type;
+                 tipomoto type = convertToTipomoto(att.hasAttribute("type")? att.value("type").toString().toStdString():"");
 
                  toPush = new Moto(marca,modello,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
                                    prezzo,massa,numposti,sidecar,classe_emissioni,type);
@@ -433,5 +433,42 @@ void Model::push_end(Veicolo *a){
         *searchRes=*dbVeicoli;
     isDataSaved=false;
 }
+
+
+
+tipomoto Model::convertToTipomoto(const string st)const {
+    if(st=="corsa") return corsa;
+    if(st=="custom") return custom;
+    if(st=="naked") return naked;
+    if(st=="cross") return cross;
+
+    throw Exc(4);
+}
+
+
+segmento Model::convertToSeg(const string st) const{
+    if(st=="berlina") return berlina;
+    if(st=="station") return station;
+    if(st=="coupe") return coupe;
+    if(st=="suv") return suv;
+
+    throw Exc(4);
+}
+
+
+alimentazione Model::convertToAlimentazione(const string al)const{
+    if(al=="diesel") return diesel;
+    if(al=="benzina") return benzina;
+    if(al=="elettrico") return elettrico;
+    if(al=="gpl") return gpl;
+    if(al=="metano") return metano;
+
+    throw Exc(5);
+}
+
+
+
+
+
 
 

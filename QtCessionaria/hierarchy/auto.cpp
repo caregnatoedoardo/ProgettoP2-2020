@@ -36,14 +36,7 @@ string Auto::convertSegmento() const{//converte l'enum segmento in stringa
     throw Exc(4);
 }
 
-segmento Auto::convertToSeg(const string st) const{
-    if(st=="berlina") return berlina;
-    if(st=="station") return station;
-    if(st=="coupe") return coupe;
-    if(st=="suv") return suv;
 
-    throw Exc(4);
-}
 
 bool Auto::checkSegmento(string segmento) const{
     return ((segmento == "suv") || (segmento== "berlina") || (segmento == "station") || (segmento== "coupe"));

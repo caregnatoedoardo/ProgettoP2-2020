@@ -22,7 +22,7 @@ public:
 
     bool checkSegmento(string segmento)const;
     string convertSegmento()const;
-    segmento convertToSeg(const string)const;
+
 };
 
 #endif // AUTO_H

@@ -11,6 +11,7 @@
 
 
 
+
 class Model{
 
 private:
@@ -54,6 +55,9 @@ public:
     void filterBySidecar(bool=false);
     void filterByClasseEmissioni(unsigned int);
     void filterByType(tipomoto=corsa);
+    tipomoto convertToTipomoto(const string st)const;
+    segmento convertToSeg(const string)const;
+    alimentazione convertToAlimentazione(const string)const;
 };
 
 #endif // MODEL_H
