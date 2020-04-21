@@ -1,9 +1,5 @@
 #include "ricerca.h"
 #include <qlabel.h>
-#include "hierarchy/veicolo.h"
-#include "hierarchy/motore.h"
-#include "hierarchy/carrozzeria.h"
-#include "hierarchy/mezzo.h"
 #include "hierarchy/auto.h"
 #include "hierarchy/camion.h"
 #include "hierarchy/moto.h"
@@ -189,6 +185,10 @@ QLineEdit* Ricerca::getCercaMassa() const{return cercaMassa;}
 QLineEdit* Ricerca::getCercaNumeroPosti() const{return cercaNumeroPosti;}
 QLineEdit* Ricerca::getCercaNumeroAssi() const{return cercaNumeroAssi;}
 QLineEdit* Ricerca::getCercaClasseEmissioni() const{return cercaClasseEmissioni;}
+VeicoloTipeBox* Ricerca::getBoxTipoVeicolo() const{return boxTipoVeicolo;}
+AlimTipeBox* Ricerca::getBoxAlimentazione() const{return boxAlimentazione;}
+SegmentoTipeBox* Ricerca::getBoxSegmento() const{return boxSegmento;}
+TipomotoBox* Ricerca::getBoxTipoMoto() const{return boxTipoMoto;}
 
 
 
