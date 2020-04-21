@@ -83,45 +83,6 @@ public:
 //METODI ITERATORE
 //for(auto it=vec.begin();it!=vec.end();++it)
 
-template<class T>
-bool Container<T>::operator==(const Container<T>& ct){
-    if(ct.isEmpty() && isEmpty()) return true;
-    if(getSize() != ct.getSize()) return false;
-
-    Nodo* scorri=first;
-    Nodo* scorrict=ct.first;
-    while(scorri->next){
-        if(scorri->info!=scorrict->info) return false;
-        scorri=scorri->next;
-        scorrict=scorrict->next;
-    }
-    return(scorri->info == scorrict->info);
-}
-
-template<class T>
-bool Container<T>::operator!=(const Container<T>& ct){
-    if(ct.isEmpty() && isEmpty()) return false;
-    if(getSize() != ct.getSize()) return true;
-
-    Nodo* scorri=first;
-    Nodo* scorrict=ct.first;
-    while(scorri->next){
-        if(scorri->info==scorrict->info) return false;
-        scorri=scorri->next;
-        scorrict=scorrict->next;
-    }
-    return !(scorri->info == scorrict->info);
-}
-
-template<class T>
-Container<T>& Container<T>::operator=(const Container<T>& ct){
-    if(ct.isEmpty()) return *this;
-    if(this != &ct){
-        delete first;
-        first=ct.first;
-    }
-    return *this;
-}
 
 template<class T>
 typename Container<T>::Iteratore& Container<T>::Iteratore::operator=(const Iteratore& it){
@@ -173,6 +134,53 @@ typename Container<T>::Iteratore Container<T>::end()const{
 }
 
 //METODI CONTAINER
+
+template<class T>
+Container<T>::Container(const Container& ct){
+    delete first;
+    first=ct.first;
+}
+
+template<class T>
+Container<T>& Container<T>::operator=(const Container<T>& ct){
+    if(ct.isEmpty()) return *this;
+    if(this != &ct){
+        delete first;
+        first=ct.first;
+    }
+    return *this;
+}
+
+template<class T>
+bool Container<T>::operator==(const Container<T>& ct){
+    if(ct.isEmpty() && isEmpty()) return true;
+    if(getSize() != ct.getSize()) return false;
+
+    Nodo* scorri=first;
+    Nodo* scorrict=ct.first;
+    while(scorri->next){
+        if(scorri->info!=scorrict->info) return false;
+        scorri=scorri->next;
+        scorrict=scorrict->next;
+    }
+    return(scorri->info == scorrict->info);
+}
+
+template<class T>
+bool Container<T>::operator!=(const Container<T>& ct){
+    if(ct.isEmpty() && isEmpty()) return false;
+    if(getSize() != ct.getSize()) return true;
+
+    Nodo* scorri=first;
+    Nodo* scorrict=ct.first;
+    while(scorri->next){
+        if(scorri->info==scorrict->info) return false;
+        scorri=scorri->next;
+        scorrict=scorrict->next;
+    }
+    return !(scorri->info == scorrict->info);
+}
+
 template<class T>
 bool Container<T>::isEmpty()const{
     return (!first);
@@ -400,12 +408,6 @@ unsigned int Container<T>::getSize()const{
         scorri=scorri->next;
     }
     return size++;
-}
-
-template<class T>
-Container<T>::Container(const Container& ct){
-    delete first;
-    first=ct.first;
 }
 
 template<class T>
