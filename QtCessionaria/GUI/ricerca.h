@@ -38,7 +38,7 @@ private:
     QCheckBox* ckColore;
     QLineEdit* cercaColore;
 
-    QCheckBox* ckLungehzza;
+    QCheckBox* ckLunghezza;
     QLineEdit* cercaLunghezza;
 
     QCheckBox* ckNumeroMotore;
@@ -83,6 +83,10 @@ private:
     QCheckBox* ckTipoMoto;
     TipomotoBox* boxTipoMoto;
 
+    QPushButton* cerca;
+    QPushButton* elimina;
+    QPushButton* reset;
+
 
 
 public:
@@ -100,7 +104,7 @@ public:
     QCheckBox* getCkCambio()const;
     QCheckBox* getCkColore()const;
     QLineEdit* getCercaColore()const;
-    QCheckBox* getCkLungehzza()const;
+    QCheckBox* getCkLunghezza()const;
     QLineEdit* getCercaLunghezza()const;
     QCheckBox* getCkNumeroMotore()const;
     QLineEdit* getCercaNumeroMotore()const;
@@ -130,10 +134,15 @@ public:
     QCheckBox* getCkTipoMoto()const;
     TipomotoBox* getBoxTipoMoto()const;
 
+    QPushButton* getButtonRicerca() const;
+    QPushButton* getButtonElimina() const;
+    QPushButton* getButtonReset() const;
+
+
 
 private slots:
 
-   // void slotDisableElements() const;
+    void slotDisableElements() const;
 
 public slots:
 
