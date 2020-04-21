@@ -106,13 +106,38 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 void InsertVeicolo::slotDisableForm(int i) const {
 
     switch(i){
-    case 1:
+    case 1: //AUTO
+
+        numeroAssi->setEnabled(false);
+        ribaltabile->setEnabled(false);
+        sidecar->setEnabled(false);
+        classeEmissioni->setEnabled(false);
+        tipoMoto->setEnabled(false);
+         break;
+
+    case 2: //CAMION
+
+        segmento->setEnabled(false);
+        autocarro->setEnabled(false);
+        numeroAssi->setEnabled(true);
+        ribaltabile->setEnabled(true);
+        sidecar->setEnabled(false);
+        classeEmissioni->setEnabled(false);
+        tipoMoto->setEnabled(false);
         break;
 
-    case 2:
-        break;
 
-    case 3:
+    case 3: //MOTO
+
+         segmento->setEnabled(false);
+         autocarro->setEnabled(false);
+         numeroAssi->setEnabled(true);
+         ribaltabile->setEnabled(true);
+         sidecar->setEnabled(true);
+         classeEmissioni->setEnabled(true);
+         tipoMoto->setEnabled(true);
+
+
         break;
     }
 }

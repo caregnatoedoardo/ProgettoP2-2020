@@ -34,6 +34,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
+    GUI/ricerca.cpp
 
 
 HEADERS += \
@@ -58,6 +59,7 @@ HEADERS += \
     controller/controller.h \
     exceptions/exceptions.h \
     GUI/veicolotipebox.h \
+    GUI/ricerca.h
 
 
 FORMS += \
