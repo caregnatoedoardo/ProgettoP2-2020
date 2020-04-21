@@ -102,3 +102,121 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 
 
 }
+
+void InsertVeicolo::slotDisableForm(int i) const {
+
+    switch(i){
+    case 1:
+        break;
+
+    case 2:
+        break;
+
+    case 3:
+        break;
+    }
+}
+
+
+
+
+
+
+
+VeicoloTipeBox* InsertVeicolo::getTipoVeicolo() const
+{
+    return tipoVeicolo;
+}
+QLineEdit* InsertVeicolo::getMarca() const
+{
+    return marca;
+}
+QLineEdit* InsertVeicolo::getModello() const
+{
+    return modello ;
+}
+QLineEdit* InsertVeicolo::getNumeroTelaio() const
+{
+    return  numeroTelaio;
+}
+QCheckBox* InsertVeicolo::getCambio() const
+{
+    return cambio ;
+}
+QLineEdit* InsertVeicolo::getColore() const
+{
+    return colore;
+}
+QLineEdit* InsertVeicolo::getLunghezza() const
+{
+    return lunghezza;
+}
+QLineEdit* InsertVeicolo::getNumeroMotore() const
+{
+    return numeroMotore ;
+}
+QLineEdit* InsertVeicolo::getCilindrata() const
+{
+    return cilindrata;
+}
+QLineEdit* InsertVeicolo::getCavalli() const
+{
+    return cavalli;
+}
+AlimTipeBox* InsertVeicolo::getAlimentazione() const
+{
+    return  alimentazione;
+}
+QLineEdit* InsertVeicolo::getTarga() const
+{
+    return targa ;
+}
+QLineEdit* InsertVeicolo::getPrezzo() const
+{
+    return prezzo;
+}
+QLineEdit* InsertVeicolo::getMassa() const
+{
+    return massa;
+}
+QLineEdit* InsertVeicolo::getNumeroPosti() const
+{
+    return numeroPosti;
+}
+SegmentoTipeBox* InsertVeicolo::getSegmento() const
+{
+    return segmento;
+}
+QCheckBox* InsertVeicolo::getAutocarro() const
+{
+    return autocarro;
+}
+QLineEdit* InsertVeicolo::getNumeroAssi() const
+{
+    return  numeroAssi;
+}
+QCheckBox* InsertVeicolo::getRibaltabile() const
+{
+    return  ribaltabile;
+}
+QCheckBox* InsertVeicolo::getSidecar() const
+{
+    return  sidecar;
+}
+QLineEdit* InsertVeicolo::getClasseEmissioni() const
+{
+    return classeEmissioni;
+}
+TipomotoBox* InsertVeicolo::getTipoMoto() const
+{
+    return  tipoMoto;
+}
+
+QPushButton* InsertVeicolo::getAddButton() const
+{
+    return AddButton;
+}
+
+
+
+

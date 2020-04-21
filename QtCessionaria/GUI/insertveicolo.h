@@ -93,10 +93,10 @@ public:
 
 
 public slots:
-    // void slotDisableForm(int) const; // disabilita form sulla base del case dell'inseriemnto
+     void slotDisableForm(int) const; // disabilita form sulla base del case dell'inseriemnto
 
 signals:
-   //  void signalDisableForm(int);
+    void signalDisableForm(int);
 
 
 
