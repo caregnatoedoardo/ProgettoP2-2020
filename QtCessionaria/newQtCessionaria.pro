@@ -21,6 +21,7 @@ SOURCES += \
     GUI/segmentotipebox.cpp \
     GUI/tipomotobox.cpp \
     GUI/usermenu.cpp \
+    GUI/veicolotipebox.cpp \
     container/container.cpp \
     controller/controller.cpp \
     hierarchy/auto.cpp \
@@ -32,7 +33,8 @@ SOURCES += \
     hierarchy/veicolo.cpp \
     main.cpp \
     mainwindow.cpp \
-    model.cpp
+    model.cpp \
+
 
 HEADERS += \
     GUI/alimtipebox.h \
@@ -51,7 +53,12 @@ HEADERS += \
     hierarchy/motore.h \
     hierarchy/veicolo.h \
     mainwindow.h \
-    model.h
+    model.h \
+    container/container.h \
+    controller/controller.h \
+    exceptions/exceptions.h \
+    GUI/veicolotipebox.h \
+
 
 FORMS += \
     mainwindow.ui
