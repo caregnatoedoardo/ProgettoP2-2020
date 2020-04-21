@@ -171,9 +171,24 @@ void Ricerca::slotDisableElements() const
  ckTipoMoto->isChecked()?
              boxTipoMoto->setEnabled(true):
              boxTipoMoto->setEnabled(false);
-
-
 }
+
+//GET ricerca:
+
+QLineEdit* Ricerca::getCercaMarca() const{return cercaMarca;}
+QLineEdit* Ricerca::getCercaModello() const{return cercaModello;}
+QLineEdit* Ricerca::getCercaNumeroTelaio() const{return cercaNumeroTelaio;}
+QLineEdit* Ricerca::getCercaColore() const{return cercaColore;}
+QLineEdit* Ricerca::getCercaLunghezza() const{return cercaLunghezza;}
+QLineEdit* Ricerca::getCercaNumeroMotore() const{return cercaNumeroMotore;}
+QLineEdit* Ricerca::getCercaCilindrata() const{return cercaCilindrata;}
+QLineEdit* Ricerca::getCercaCavalli() const{return cercaCavalli;}
+QLineEdit* Ricerca::getCercaTarga() const{return cercaTarga;}
+QLineEdit* Ricerca::getCercaPrezzo() const{return cercaPrezzo;}
+QLineEdit* Ricerca::getCercaMassa() const{return cercaMassa;}
+QLineEdit* Ricerca::getCercaNumeroPosti() const{return cercaNumeroPosti;}
+QLineEdit* Ricerca::getCercaNumeroAssi() const{return cercaNumeroAssi;}
+QLineEdit* Ricerca::getCercaClasseEmissioni() const{return cercaClasseEmissioni;}
 
 
 
