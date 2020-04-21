@@ -24,7 +24,7 @@ void Model::save(){
 
     QSaveFile file(QString::fromStdString(path));
     if(!file.open(QIODevice::WriteOnly)){
-        throw Exc(11,"file");
+        throw Exc(11,"scrittura");
     }
 
     QXmlStreamWriter writer(&file);
@@ -87,7 +87,7 @@ void Model::save(){
             writer.writeAttribute("type",QString::fromStdString(isMoto->convertToString(isMoto->getTipoMoto())));
         }
 
-        if(writer.hasError()) throw Exc(11,"file");
+        if(writer.hasError()) throw Exc(11,"salvataggio");
         ++it;
     }
         writer.writeEndElement();
@@ -100,7 +100,7 @@ void Model::load(){
 
     QFile file(QString::fromStdString(path));
     if(!file.open(QIODevice::ReadOnly)){
-        throw Exc(11,"file");
+        throw Exc(11,"sola lettura");
     }
 
     QXmlStreamReader reader(&file);

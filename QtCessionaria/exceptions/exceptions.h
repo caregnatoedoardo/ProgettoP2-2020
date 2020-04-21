@@ -52,6 +52,10 @@ public:
             cout<<"Errore nel parametro ->"<<t<<"<- out of range";
             break;
         }
+        case 12:{
+            cout<<"Errore:"<<t<<".";
+            break;
+        }
         default: cout<<"Errore generale!"; break;
         }
     }

@@ -74,14 +74,12 @@ public:
     bool checkDuplicatePlate(const T&)const;
     bool checkPlate(string)const;//sarà usata per controllare la stringa nella textbox dell'interfaccia grafica. Uguale a checkDuplicatePlate ma senza cast del parametro formale
     unsigned int getSize()const;
-    //unsigned int checkDuplicate()const;//verifica se nel container ci sono elementi doppi e li elimina (non dovrebbe servire per pre e post delle push)
     Container<T>& copy(const Container&);//esegue una copia del container
     Container<T>* getVehicleByType(const T&);//restituisce un nuovo container con tutti i veicoli di tipo T inserito
     string getTipoVeicolo()const;//restituisce una stringa che identifica la tipologia del veicolo dell'oggetto di invocazione
 };
 
 //METODI ITERATORE
-//for(auto it=vec.begin();it!=vec.end();++it)
 
 
 template<class T>
@@ -370,34 +368,6 @@ bool Container<T>::checkPlate(string plate)const{
      return(mz && mz->getTarga()==plate);
 }
 
-/*template<class T>
-unsigned int Container<T>::checkDuplicate()const{
-    if(isEmpty()) return false;
-    unsigned int duplicate=0;
-    Nodo* check=first;
-    Nodo* scorri=first;//check è il nodo che scorrerà la mia lista per vedere se ci sono duplicati
-    while(check->next){
-        while(scorri->next){
-            if(isDuplicate(scorri)){
-                if(getPosiz(check) != getPosiz(scorri)){//evita di controllare due nodi che puntano allo stesso elemento
-                        remove(scorri);
-                        duplicate++;
-                    }
-                }
-            scorri=scorri->next;
-        }
-        if(isDuplicate(scorri)) remove(scorri);
-
-        scorri=first;
-        check=check->next;
-    }
-    return duplicate;
-}//FUNZIONE LANCIATA PER VERIFICARE LA CONSISTENZA DELL'ARCHIVIO*/
-
-
-
-
-
 template<class T>
 unsigned int Container<T>::getSize()const{
     if(isEmpty()) return 0;
@@ -443,7 +413,7 @@ string Container<T>::getTipoVeicolo()const{
     Moto* mto=dynamic_cast<Moto*>(*this);
     if(mto) return "moto";
 
-    return "";//da verificare
+    throw Exc(6,"non valido");
 }
 
 
