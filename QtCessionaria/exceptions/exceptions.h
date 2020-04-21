@@ -52,6 +52,10 @@ public:
             cout<<"Errore nel parametro ->"<<t<<"<- out of range";
             break;
         }
+        case 11:{
+            cout<<"Errore di acquisizione del lock del file in "<<t<<".";
+            break;
+        }
         case 12:{
             cout<<"Errore:"<<t<<".";
             break;
