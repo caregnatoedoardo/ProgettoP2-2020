@@ -10,7 +10,7 @@ private:
     string colore;
     double lunghezza;
 public:
-    Carrozzeria(string ="", string ="", unsigned int =0, bool =false, string ="", double =0);
+    Carrozzeria(string ="", string ="", string="", unsigned int =0, bool =false, string ="", double =0);
     Carrozzeria(const Carrozzeria& ca);
     Carrozzeria& operator=(const Carrozzeria& ca);
     bool operator==(const Carrozzeria& ca)const;

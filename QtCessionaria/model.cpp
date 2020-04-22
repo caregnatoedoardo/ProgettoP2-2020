@@ -35,13 +35,14 @@ void Model::save(){
 
     auto it = dbVeicoli->begin();
     while(it!=dbVeicoli->end()){
-       // const Veicolo* save = *it;
+        //const Veicolo* save = *it;
 
-        //  const QString tipologia;  (*it)->getTipologia()
+        //const QString tipologia;  (*it)->getTipologia()
         //const QString tipologia = QString::fromStdString(save->) //bisogna avere la tipologia auto o camion o moto
 
         writer.writeAttribute("marca",QString::fromStdString((*it)->getMarca()));
         writer.writeAttribute("modello",QString::fromStdString((*it)->getModello()));
+        writer.writeAttribute("pathimg",QString::fromStdString((*it)->getPathImg()));
 
         Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it);
         if(veicoloCarrozzeria){
@@ -112,6 +113,7 @@ void Model::load(){
                 //VEICOLO
                 string marca = att.hasAttribute("marca")? att.value("marca").toString().toStdString():"";
                 string modello = att.hasAttribute("modello")? att.value("modello").toString().toStdString():"";
+                string path = att.hasAttribute("pathimg")?att.value("pathimg").toString().toStdString():"";
 
                 //CARROZZERIA
                 unsigned int n_telaio = att.hasAttribute("n_telaio")? att.value("n_telaio").toInt(): 0;
@@ -140,7 +142,7 @@ void Model::load(){
                     bool autocarro = att.hasAttribute("autocarro")? att.value("autocarro").toString()=="Si" ? true:false:false;
 
 
-                    toPush = new Auto(marca,modello,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
+                    toPush = new Auto(marca,modello,path,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
                                       prezzo,massa,numposti,seg,autocarro);
 
                 } else if(reader.name()=="camion"){
@@ -149,7 +151,7 @@ void Model::load(){
                  unsigned int  n_assi = att.hasAttribute("n_assi")? att.value("n_assi").toDouble():1;
                  bool ribaltabile = att.hasAttribute("ribaltabile")? att.value("ribaltabile").toString()=="Si" ? true:false:false;
 
-                 toPush = new Camion(marca,modello,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
+                 toPush = new Camion(marca,modello,path,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
                                    prezzo,massa,numposti,n_assi,ribaltabile);
 
 
@@ -159,7 +161,7 @@ void Model::load(){
                  unsigned int classe_emissioni = att.hasAttribute("classe_emissioni")? att.value("classe_emissioni").toInt(): 0;
                  tipomoto type = convertToTipomoto(att.hasAttribute("type")? att.value("type").toString().toStdString():"");
 
-                 toPush = new Moto(marca,modello,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
+                 toPush = new Moto(marca,modello,path,n_telaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,
                                    prezzo,massa,numposti,sidecar,classe_emissioni,type);
 
 

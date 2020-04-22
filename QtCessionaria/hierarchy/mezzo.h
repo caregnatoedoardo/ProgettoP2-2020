@@ -11,7 +11,7 @@ private:
     unsigned int massa;
     unsigned int numposti;
 public:
-    Mezzo(string ="", string ="", unsigned int =0,bool =false,string ="",double =0,unsigned int =0,unsigned int =0,unsigned int =0, alimentazione =diesel, string ="AA000AA", double =0,unsigned int =0, unsigned int =1);
+    Mezzo(string ="", string ="", string="", unsigned int =0,bool =false,string ="",double =0,unsigned int =0,unsigned int =0,unsigned int =0, alimentazione =diesel, string ="AA000AA", double =0,unsigned int =0, unsigned int =1);
     Mezzo(const Mezzo& me);//copia profonda
     Mezzo& operator=(const Mezzo& me);//assegnazione profonda
     bool operator==(const Mezzo& me)const;

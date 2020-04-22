@@ -12,7 +12,7 @@ private:
     unsigned int cavalli;
     alimentazione alim;
 public:
-    Motore(string ="", string ="", unsigned int =0, unsigned int =0, unsigned int =0, alimentazione =diesel);
+    Motore(string ="", string ="", string ="", unsigned int =0, unsigned int =0, unsigned int =0, alimentazione =diesel);
     Motore(const Motore& mo);
     Motore& operator=(const Motore& mo);
     bool operator==(const Motore& mo)const;

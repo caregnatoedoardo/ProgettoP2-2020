@@ -11,7 +11,7 @@ private:
     segmento seg;
     bool autocarro;
 public:
-    Auto(string ="", string ="", unsigned int =0,bool =false, string ="", double =0, unsigned int =0, unsigned int =0, unsigned int =0, alimentazione =diesel, string ="", double =0, unsigned int =0, unsigned int =1, segmento =coupe, bool =false);
+    Auto(string ="", string ="", string ="", unsigned int =0,bool =false, string ="", double =0, unsigned int =0, unsigned int =0, unsigned int =0, alimentazione =diesel, string ="", double =0, unsigned int =0, unsigned int =1, segmento =coupe, bool =false);
     Auto(const Auto& au);
     Auto& operator=(const Auto& au);
     bool operator==(const Auto& au)const;

@@ -1,6 +1,6 @@
 #include "hierarchy/motore.h"
 
-Motore::Motore(string ma, string mo, unsigned int nm, unsigned int cil, unsigned int cv, alimentazione al):Veicolo(ma,mo), n_motore(nm), cilindrata(cil), cavalli(cv), alim(al){}
+Motore::Motore(string ma, string mo, string pt, unsigned int nm, unsigned int cil, unsigned int cv, alimentazione al):Veicolo(ma,mo,pt), n_motore(nm), cilindrata(cil), cavalli(cv), alim(al){}
 
 Motore::Motore(const Motore& mo):Veicolo(mo), n_motore(mo.n_motore), cilindrata(mo.cilindrata), cavalli(mo.cavalli),alim(mo.alim){}
 

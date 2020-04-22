@@ -1,6 +1,6 @@
 #include "hierarchy/carrozzeria.h"
 
-Carrozzeria::Carrozzeria(string ma, string mo, unsigned int nt, bool ca, string co, double lung):Veicolo(ma,mo),n_telaio(nt), cambio_auto(ca), colore(co), lunghezza(lung){}
+Carrozzeria::Carrozzeria(string ma, string mo, string pt, unsigned int nt, bool ca, string co, double lung):Veicolo(ma,mo,pt),n_telaio(nt), cambio_auto(ca), colore(co), lunghezza(lung){}
 
 Carrozzeria::Carrozzeria(const Carrozzeria& ca):Veicolo(ca),n_telaio(ca.n_telaio), cambio_auto(ca.cambio_auto), colore(ca.colore), lunghezza(ca.lunghezza){}
 

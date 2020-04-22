@@ -11,7 +11,7 @@ private:
     unsigned int classe_emissioni;
     tipomoto type;
 public:
-    Moto(string ="", string ="", unsigned int =0, bool =false, string ="", double =0, unsigned int =0, unsigned int =0, unsigned int =0, alimentazione =diesel, string ="AA00000", double =0, unsigned int =0, unsigned int =1, bool =false, unsigned int =0, tipomoto =corsa);
+    Moto(string ="", string ="", string ="", unsigned int =0, bool =false, string ="", double =0, unsigned int =0, unsigned int =0, unsigned int =0, alimentazione =diesel, string ="AA00000", double =0, unsigned int =0, unsigned int =1, bool =false, unsigned int =0, tipomoto =corsa);
     Moto(const Moto& mot);
     Moto& operator=(const Moto& mot);
     virtual ~Moto()=default;

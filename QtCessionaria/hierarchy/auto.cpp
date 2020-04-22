@@ -1,7 +1,7 @@
 #include "hierarchy/auto.h"
 
-Auto::Auto(string mar, string mo, unsigned int ntel,bool ca, string co, double lung,unsigned int nm,unsigned int cil,unsigned int cv, alimentazione al, string ta, double pr,unsigned int mas, unsigned int npos, segmento se, bool autocar):
-    Veicolo(mar,mo), Mezzo(mar,mo,ntel,ca,co,lung,nm,cil,cv,al,ta,pr,mas,npos), seg(se),autocarro(autocar){}
+Auto::Auto(string mar, string mo, string pt, unsigned int ntel,bool ca, string co, double lung,unsigned int nm,unsigned int cil,unsigned int cv, alimentazione al, string ta, double pr,unsigned int mas, unsigned int npos, segmento se, bool autocar):
+    Veicolo(mar,mo,pt), Mezzo(mar,mo,pt,ntel,ca,co,lung,nm,cil,cv,al,ta,pr,mas,npos), seg(se),autocarro(autocar){}
 
 Auto::Auto(const Auto& au): Veicolo(au), Mezzo(au), seg(au.seg),autocarro(au.autocarro){}
 
