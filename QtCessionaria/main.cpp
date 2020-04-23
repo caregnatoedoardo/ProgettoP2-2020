@@ -20,12 +20,12 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();*/
 
-    QApplication a(argc, argv);
+    /*QApplication a(argc, argv);
    Controller w(new Model());
    w.setFixedSize(2000,1000);
    w.show();
 
-    return a.exec();
+    return a.exec();*/
 
 
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 
 
     Container<Veicolo*> *ctcopia= new Container<Veicolo*>;
-    ctcopia=ctveic->getVehicleByType(new Auto);
+    ctcopia=ctveic->getVehicleByType("camion");
     //ctcopia->copy(*ctveic);
 
     //ctveic->modify(mt,ca3);

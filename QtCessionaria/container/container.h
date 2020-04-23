@@ -75,7 +75,7 @@ public:
     bool checkPlate(string)const;//sarà usata per controllare la stringa nella textbox dell'interfaccia grafica. Uguale a checkDuplicatePlate ma senza cast del parametro formale
     unsigned int getSize()const;
     Container<T>& copy(const Container&);//esegue una copia del container
-    Container<T>* getVehicleByType(const T&);//restituisce un nuovo container con tutti i veicoli di tipo T inserito
+    Container<T>* getVehicleByType(const string type);//restituisce un nuovo container con tutti i veicoli di tipo T inserito
     string getTipoVeicolo()const;//restituisce una stringa che identifica la tipologia del veicolo dell'oggetto di invocazione
 };
 
@@ -388,10 +388,10 @@ Container<T>& Container<T>::copy(const Container<T>& ct){ //usata per fare dei f
 }
 
 template<class T>
-Container<T>* Container<T>::getVehicleByType(const T& typeveic){
+Container<T>* Container<T>::getVehicleByType(const string type){
     Container<T>* nuovo=new Container<T>;
     for(auto it=begin(); it != end();++it)
-        if(typeid (**it) == typeid (*typeveic))
+        if((*it)->getTipo()==type)
             nuovo->push_begin(*it);
     return nuovo;
 }//ritorna un container templatizzato con tutti gli elementi pari al tipo di typeveic
