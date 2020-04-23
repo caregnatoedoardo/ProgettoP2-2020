@@ -21,11 +21,11 @@ int main(int argc, char *argv[])
     return a.exec();*/
 
     QApplication a(argc, argv);
-   // Controller w(new Model());
-   // w.setFixedSize(2000,1000);
-  // w.show();
+   Controller w(new Model());
+   w.setFixedSize(2000,1000);
+   w.show();
 
-   // return a.exec();
+    return a.exec();
 
 
 

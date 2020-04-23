@@ -19,6 +19,8 @@ Mezzo& Mezzo::operator=(const Mezzo &me){
     return *this;
 }
 
+Mezzo::~Mezzo(){}
+
 bool Mezzo::operator==(const Mezzo &me) const{
     return (Carrozzeria::operator==(me) && Motore::operator==(me) && targa==me.targa && prezzo==me.prezzo && massa==me.massa && numposti==me.numposti);
 }

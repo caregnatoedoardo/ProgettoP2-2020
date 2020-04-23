@@ -36,7 +36,8 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 
      sidecar(new QCheckBox("Sidecar",this)),
         classeEmissioni(new QLineEdit(this)),
-         tipoMoto(new TipomotoBox(this))
+         tipoMoto(new TipomotoBox(this)),
+         AddButton(new QPushButton("Aggiungi",this) )
 
 {
     QGridLayout* form = new QGridLayout(this);

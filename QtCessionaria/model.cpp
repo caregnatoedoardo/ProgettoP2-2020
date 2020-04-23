@@ -115,19 +115,19 @@ void Model::load(){
                 string modello = att.hasAttribute("modello")? att.value("modello").toString().toStdString():"";
                 string path = att.hasAttribute("pathimg")?att.value("pathimg").toString().toStdString():"";
 
-                //CARROZZERIA
+                //CARROZZERIA if(carrozzeria,auto,camion,moto)
                 unsigned int n_telaio = att.hasAttribute("n_telaio")? att.value("n_telaio").toInt(): 0;
                 bool cambio_auto = att.hasAttribute("cambio_auto")? att.value("cambio_auto").toString()=="Si" ? true:false:false;
                 string colore = att.hasAttribute("colore")? att.value("colore").toString().toStdString():"";
                 double  lunghezza = att.hasAttribute("lunghezza")? att.value("lunghezza").toDouble():1;
 
-                //MOTORE
+                //MOTORE if(motore,auto,camion,moto)
                 unsigned int n_motore = att.hasAttribute("n_motore")? att.value("n_motore").toInt(): 0;
                 unsigned int cilindrata = att.hasAttribute("cilindrata")? att.value("cilindrata").toInt(): 0;
                 unsigned int cavalli = att.hasAttribute("cavalli")? att.value("cavalli").toInt(): 0;
 
                 alimentazione alim = convertToAlimentazione(att.hasAttribute("alim")? att.value("alim").toString().toStdString():"");
-                //MEZZO
+                //MEZZO if(auto,camion,moto)
                 string targa = att.hasAttribute("targa")? att.value("targa").toString().toStdString():"";
                 double  prezzo = att.hasAttribute("prezzo")? att.value("prezzo").toDouble():1;
                 unsigned int massa = att.hasAttribute("massa")? att.value("massa").toInt(): 0;
