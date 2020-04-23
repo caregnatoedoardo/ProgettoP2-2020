@@ -31,3 +31,4 @@ unsigned int Carrozzeria::getNTelaio() const{return n_telaio;}
 bool Carrozzeria::getCambio() const{return cambio_auto;}
 string Carrozzeria::getColore() const{return colore;}
 double Carrozzeria::getLunghezza() const{return lunghezza;}
+string Carrozzeria::getTipo() const{return "carrozzeria";}

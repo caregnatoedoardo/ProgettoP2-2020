@@ -42,3 +42,5 @@ bool Auto::checkSegmento(string segmento) const{
     return ((segmento == "suv") || (segmento== "berlina") || (segmento == "station") || (segmento== "coupe"));
 }
 
+string Auto::getTipo() const{return "auto";}
+

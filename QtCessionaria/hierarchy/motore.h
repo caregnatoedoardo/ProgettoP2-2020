@@ -25,7 +25,7 @@ public:
     alimentazione getAlimentazione()const;
     bool checkAlimentazione(string al)const;
     string convertToAlim(alimentazione al)const;
-
+    virtual string getTipo() const override;
 
 };
 

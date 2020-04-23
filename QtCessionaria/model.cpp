@@ -38,14 +38,15 @@ void Model::save(){
         //const Veicolo* save = *it;
 
         //const QString tipologia;  (*it)->getTipologia()
-        //const QString tipologia = QString::fromStdString(save->) //bisogna avere la tipologia auto o camion o moto
+        const QString tipologia = QString::fromStdString((*it)->getTipo()); //bisogna avere la tipologia auto o camion o moto
+        writer.writeEmptyElement(tipologia);
 
         writer.writeAttribute("marca",QString::fromStdString((*it)->getMarca()));
         writer.writeAttribute("modello",QString::fromStdString((*it)->getModello()));
         writer.writeAttribute("pathimg",QString::fromStdString((*it)->getPathImg()));
 
         Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it);
-        if(veicoloCarrozzeria){
+        if(veicoloCarrozzeria){//in alternativa if(tipo=="carrozzeria")
         writer.writeAttribute("n_telaio",QString::number(veicoloCarrozzeria->getNTelaio()));
         writer.writeAttribute("cambio_auto",veicoloCarrozzeria->getCambio()? "Si" : "No");
         writer.writeAttribute("colore",QString::fromStdString(veicoloCarrozzeria->getColore()));
@@ -53,7 +54,7 @@ void Model::save(){
             }
 
         Motore* veicoloMotore = dynamic_cast<Motore*>(*it);
-        if(veicoloMotore){
+        if(veicoloMotore){//in alternativa if(tipo=="motore")
         writer.writeAttribute("n_motore",QString::number(veicoloMotore->getNMotore()));
         writer.writeAttribute("cilindrata",QString::number(veicoloMotore->getCilindrata()));
         writer.writeAttribute("cavalli",QString::number(veicoloMotore->getCavalli()));
@@ -70,19 +71,19 @@ void Model::save(){
 
 
         Auto* isAuto = dynamic_cast<Auto*>(*it);
-        if(isAuto) {
+        if(isAuto) {//in alternativa if(tipo=="auto")
             writer.writeAttribute("seg",QString::fromStdString(isAuto->convertSegmento()));
             writer.writeAttribute("autocarro",isAuto->getAutocarro()? "Si" : "No");
         }
 
         Camion* isCamion = dynamic_cast<Camion*>(*it);
-        if(isCamion){
+        if(isCamion){//in alternativa if(tipo=="camion")
             writer.writeAttribute("n_assi",QString::number(isCamion->getNumAssi()));
             writer.writeAttribute("ribaltabile",isCamion->getRibaltabile()? "Si" : "No");
         }
 
         Moto* isMoto = dynamic_cast<Moto*>(*it);
-        if(isMoto){
+        if(isMoto){//in alternativa if(tipo=="camion")
             writer.writeAttribute("sidecar",isMoto->getSidecar()? "Si" : "No");
             writer.writeAttribute("classe_emissioni",QString::number(isMoto->getClasseEmissioni()));
             writer.writeAttribute("type",QString::fromStdString(isMoto->convertToString(isMoto->getTipoMoto())));

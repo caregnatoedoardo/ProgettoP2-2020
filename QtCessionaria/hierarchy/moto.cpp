@@ -56,3 +56,5 @@ bool Moto::checkTarga() const{
 
     return true;
 }
+
+string Moto::getTipo() const{return "moto";}

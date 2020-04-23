@@ -24,6 +24,7 @@ public:
     unsigned int getNumPosti()const;
 
     virtual bool checkTarga()const;
+    virtual string getTipo() const override=0;
 
 };
 

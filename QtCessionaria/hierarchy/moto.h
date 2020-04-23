@@ -25,6 +25,7 @@ public:
     string convertToString(tipomoto tm)const;
 
     bool checkTarga() const override;
+    virtual string getTipo() const override;
 
 };
 

@@ -22,7 +22,7 @@ public:
 
     bool checkSegmento(string segmento)const;
     string convertSegmento()const;
-
+    virtual string getTipo() const override;
 };
 
 #endif // AUTO_H

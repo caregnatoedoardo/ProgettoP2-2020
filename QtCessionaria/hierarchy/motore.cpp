@@ -27,6 +27,7 @@ bool Motore::operator!=(const Motore &mo) const{
 unsigned int Motore::getNMotore() const{return n_motore;}
 unsigned int Motore::getCilindrata() const{return cilindrata;}
 unsigned int Motore::getCavalli() const{return cavalli;}
+string Motore::getTipo() const{return "motore";}
 alimentazione Motore::getAlimentazione() const{return alim;}
 bool Motore::checkAlimentazione(string al) const{
     return((al == "diesel") || (al== "benzina") || (al == "elettrico") || (al == "gpl") || (al == "metano"));
