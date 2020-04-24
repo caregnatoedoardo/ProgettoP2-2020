@@ -38,8 +38,8 @@ void Model::save(){
         //const Veicolo* save = *it;
 
         //const QString tipologia;  (*it)->getTipologia()
-        const QString tipologia = QString::fromStdString((*it)->getTipo()); //bisogna avere la tipologia auto o camion o moto
-        writer.writeEmptyElement(tipologia);
+        //const QString tipologia = QString::fromStdString((*it)->getTipo()); //bisogna avere la tipologia auto o camion o moto
+        writer.writeEmptyElement(QString::fromStdString((*it)->getTipo()));
 
         writer.writeAttribute("marca",QString::fromStdString((*it)->getMarca()));
         writer.writeAttribute("modello",QString::fromStdString((*it)->getModello()));
