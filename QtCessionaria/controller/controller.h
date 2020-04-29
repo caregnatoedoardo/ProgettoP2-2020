@@ -43,11 +43,11 @@ public slots:
     void slotShowVisualizza() const;
     void slotShowModifica();
     void slotResetRicerca() const;
-    void slotAggiungiVeicolo() const;
+
 
     void closeEvent(QCloseEvent*);
 */
-
+void slotAggiungiVeicolo() const;
 void slotShowInserisci() const;
 
 
