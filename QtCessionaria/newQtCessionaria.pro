@@ -22,7 +22,6 @@ SOURCES += \
     GUI/tipomotobox.cpp \
     GUI/usermenu.cpp \
     GUI/veicolotipebox.cpp \
-    container/container.cpp \
     controller/controller.cpp \
     hierarchy/auto.cpp \
     hierarchy/camion.cpp \

@@ -18,6 +18,7 @@ public:
     unsigned int getNumAssi()const;
     bool getRibaltabile()const;
     virtual string getTipo() const override;
+    virtual string getDetails() const override;
 };
 
 #endif // CAMION_H

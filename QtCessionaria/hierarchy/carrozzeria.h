@@ -22,6 +22,7 @@ public:
     string getColore()const;
     double getLunghezza()const;
     virtual string getTipo() const override;
+    virtual string getDetails() const override;
 };
 
 #endif // CARROZZERIA_H

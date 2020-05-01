@@ -21,5 +21,6 @@ public:
     string getModello()const;
     string getPathImg()const;
     virtual string getTipo()const=0;
+    virtual string getDetails()const;
 };
 #endif // VEICOLO_H

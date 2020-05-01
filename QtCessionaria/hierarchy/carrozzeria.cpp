@@ -32,3 +32,7 @@ bool Carrozzeria::getCambio() const{return cambio_auto;}
 string Carrozzeria::getColore() const{return colore;}
 double Carrozzeria::getLunghezza() const{return lunghezza;}
 string Carrozzeria::getTipo() const{return "carrozzeria";}
+
+string Carrozzeria::getDetails() const{
+    return Veicolo::getDetails()+std::to_string(n_telaio)+" "+std::to_string(cambio_auto)+" "+colore+" "+std::to_string(lunghezza)+" ";
+}

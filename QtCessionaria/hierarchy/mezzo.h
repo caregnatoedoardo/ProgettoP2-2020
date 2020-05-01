@@ -25,6 +25,7 @@ public:
 
     virtual bool checkTarga()const;
     virtual string getTipo() const override=0;
+    virtual string getDetails() const override;
 
 };
 

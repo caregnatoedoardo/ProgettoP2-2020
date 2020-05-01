@@ -26,3 +26,7 @@ unsigned int Camion::getNumAssi() const{return n_assi;}
 bool Camion::getRibaltabile() const{return ribaltabile;}
 
 string Camion::getTipo() const{return "camion";}
+
+string Camion::getDetails() const{
+    return Mezzo::getDetails()+std::to_string(n_assi)+" "+std::to_string(ribaltabile);
+}
