@@ -233,6 +233,7 @@ void Container<T>::push(const T& t, unsigned int posiz){
     }
     catch(Exc){
         Exc(6,"duplicato");
+        return;
     }
 
     if(posiz>getSize()){
@@ -264,7 +265,14 @@ void Container<T>::push(const T& t, unsigned int posiz){
 
 template<class T>
 void Container<T>::remove(const T& t){
-    if(isEmpty()) return;
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return;
+    }
+
     if(first->info==t){                 //rimozione in testa
         Nodo* elim=first;
         first=first->next;
@@ -274,7 +282,6 @@ void Container<T>::remove(const T& t){
         delete elim;
         return;
     }
-
     Nodo* scorri=first;                 //rimozione nel mezzo
     while(scorri->next){
         if(scorri->info==t){
@@ -286,17 +293,29 @@ void Container<T>::remove(const T& t){
         }
         scorri=scorri->next;
     }
-    if(scorri->info==t){                //rimozione alla fine
-        scorri->prev->next=nullptr;
-        scorri->prev=nullptr;
-        delete scorri;
+    try{
+        if(scorri->info==t){                //rimozione alla fine
+            scorri->prev->next=nullptr;
+            scorri->prev=nullptr;
+            delete scorri;
+        }
+        else
+            throw Exc();
+    }catch(Exc){
+        Exc(12, "Veicolo non presente");
     }
     return;
 }
 
 template<class T>
 bool Container<T>::isDuplicate(const T& t)const{
-    if(isEmpty()) return false;// se è vuota non è duplicato
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return false;
+    }// se è vuota non è duplicato
 
     Nodo* scorri=first;
     while(scorri->next){
@@ -308,7 +327,13 @@ bool Container<T>::isDuplicate(const T& t)const{
 
 template<class T>
 int Container<T>::getPosiz(const T& t)const{
-    if(isEmpty()) return -1;
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return -1;
+    }
 
     int posiz=0;
     Nodo* scorri=first;
@@ -327,7 +352,13 @@ int Container<T>::getPosiz(const T& t)const{
 
 template<class T>
 void Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una push con posizione del nodo t2
-    if(isEmpty()) return;
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return;
+    }
     push(t2,getPosiz(t1));
     remove(t1);
     return;
@@ -340,7 +371,13 @@ T& Container<T>::getVeicolo(const Nodo* n)const{
 
 template<class T>
 bool Container<T>::search(const T& t)const{
-    if(isEmpty()) return false;
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return false;
+    }
 
     Nodo* scorri=first;
     while(scorri->next){
@@ -353,8 +390,13 @@ bool Container<T>::search(const T& t)const{
 
 template<class T>
 bool Container<T>::checkDuplicatePlate(const T& t)const{
-
-    if(isEmpty()) return false;
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return false;
+    }
     Mezzo* me=dynamic_cast<Mezzo*>(t);
     Nodo* scorri=first;
     while(scorri->next){
@@ -371,7 +413,13 @@ bool Container<T>::checkDuplicatePlate(const T& t)const{
 
 template<class T>
 bool Container<T>::checkPlate(string plate)const{
-     if(isEmpty()) return false;
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return false;
+    }
      Nodo* scorri=first;
      while(scorri->next){
          Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
@@ -386,7 +434,13 @@ bool Container<T>::checkPlate(string plate)const{
 
 template<class T>
 unsigned int Container<T>::getSize()const{
-    if(isEmpty()) return 0;
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return 0;
+    }
     unsigned int size=0;
     Nodo*scorri=first;
     while(scorri->next){
@@ -414,22 +468,25 @@ Container<T>* Container<T>::getVehicleByType(const string type){
 
 template<class T>
 string Container<T>::getTipoVeicolo()const{
-    Carrozzeria*cr=dynamic_cast<Carrozzeria*>(*this);
-    if(cr) return "carrozzeria";
+    try{
+        Carrozzeria*cr=dynamic_cast<Carrozzeria*>(*this);
+        if(cr) return "carrozzeria";
 
-    Motore* mt=dynamic_cast<Motore*>(*this);
-    if(mt) return "motore";
+        Motore* mt=dynamic_cast<Motore*>(*this);
+        if(mt) return "motore";
 
-    Auto* au=dynamic_cast<Auto*>(*this);
-    if(au) return "auto";
+        Auto* au=dynamic_cast<Auto*>(*this);
+        if(au) return "auto";
 
-    Camion* cm=dynamic_cast<Camion*>(*this);
-    if(cm) return "camion";
+        Camion* cm=dynamic_cast<Camion*>(*this);
+        if(cm) return "camion";
 
-    Moto* mto=dynamic_cast<Moto*>(*this);
-    if(mto) return "moto";
-
-    throw Exc(6,"non valido");
+        Moto* mto=dynamic_cast<Moto*>(*this);
+        if(mto) return "moto";
+        throw Exc();
+    }catch(Exc){
+         Exc(6,"non valido");
+    }
 }
 
 

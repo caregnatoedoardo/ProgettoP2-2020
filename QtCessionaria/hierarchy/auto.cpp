@@ -35,7 +35,9 @@ string Auto::convertSegmento() const{//converte l'enum segmento in stringa
         if(seg==suv) return "suv";
         throw Exc();
     }
-    catch (Exc){ Exc(4);}
+    catch(Exc){
+        Exc(4);
+    }
 }
 
 
