@@ -26,9 +26,7 @@ bool Moto::operator!=(const Moto& mot) const{
 bool Moto::getSidecar() const{return sidecar;}
 unsigned int Moto::getClasseEmissioni() const{return classe_emissioni;}
 tipomoto Moto::getTipoMoto() const{return type;}
-bool Moto::checkTipoMoto() const{
-    return (type==corsa || type==custom || type==naked || type== cross);
-}
+bool Moto::checkTipoMoto() const{return (type==corsa || type==custom || type==naked || type==cross);}
 
 string Moto::convertToString(tipomoto tm) const{
     if(tm==corsa) return "corsa";

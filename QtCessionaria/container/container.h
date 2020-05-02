@@ -190,13 +190,18 @@ void Container<T>::push_begin(const T& t){
         first=new Nodo(t,nullptr,nullptr);
         return;
     }
-    if(!isDuplicate(t) && !checkDuplicatePlate(t)){
-        Nodo* newfirst=new Nodo(t,nullptr,first);
-        first->prev=newfirst;
-        first=newfirst;
-    }else
-        throw Exc(6,"veicolo duplicato");
-    return;
+    try{
+        if(!isDuplicate(t) && !checkDuplicatePlate(t)){
+            Nodo* newfirst=new Nodo(t,nullptr,first);
+            first->prev=newfirst;
+            first=newfirst;
+            return;
+        }
+        throw Exc();
+    }
+    catch (Exc){
+        Exc(6,"veicolo duplicato");
+    }
 }
 
 template<class T>
@@ -205,25 +210,35 @@ void Container<T>::push_end(const T& t){
         first=new Nodo(t,nullptr, nullptr);
         return;
     }
-    if(!isDuplicate(t) && !checkDuplicatePlate(t)){
-        Nodo* scorri=first;
-        while(scorri->next)
-            scorri=scorri->next;
-        scorri->next=new Nodo(t,scorri,nullptr);
-    }else
-        throw Exc(6,"duplicato");
-    return;
+    try{
+        if(!isDuplicate(t) && !checkDuplicatePlate(t)){
+            Nodo* scorri=first;
+            while(scorri->next)
+                scorri=scorri->next;
+            scorri->next=new Nodo(t,scorri,nullptr);
+            return;
+        }
+        throw Exc();
+    }
+    catch(Exc){
+        Exc(6,"veicolo duplicato");
+    }
 }
 
 template<class T>
 void Container<T>::push(const T& t, unsigned int posiz){
-    if(posiz>getSize()) throw Exc(10,"posizione"); //check della posizione
-
-    if(isDuplicate(t) && !checkDuplicatePlate(t)){                                        //check se il veicolo è duplicato
-        throw Exc(6,"duplicato");
-        return;
+    try{
+        if(isDuplicate(t) && !checkDuplicatePlate(t))   //check se il veicolo è duplicato
+            throw Exc();
+    }
+    catch(Exc){
+        Exc(6,"duplicato");
     }
 
+    if(posiz>getSize()){
+        push_end(t);
+        return;
+    }
     if(isEmpty() || posiz==0){
         push_begin(t);
         return;
@@ -243,6 +258,7 @@ void Container<T>::push(const T& t, unsigned int posiz){
         scorri->prev->next=new Nodo(t,scorri->prev,scorri);
         scorri->prev=scorri->prev->next;
     }
+
     return;
 }
 

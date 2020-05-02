@@ -28,12 +28,14 @@ bool Auto::getAutocarro() const{return autocarro;}
 
 
 string Auto::convertSegmento() const{//converte l'enum segmento in stringa
-    if(seg==berlina) return "berlina";
-    if(seg==station) return "station";
-    if(seg==coupe) return "coupe";
-    if(seg==suv) return "suv";
-
-    throw Exc(4);
+    try{
+        if(seg==berlina) return "berlina";
+        if(seg==station) return "station";
+        if(seg==coupe) return "coupe";
+        if(seg==suv) return "suv";
+        throw Exc();
+    }
+    catch (Exc){ Exc(4);}
 }
 
 
