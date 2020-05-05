@@ -20,9 +20,10 @@ Controller::Controller(Model*m, QWidget *parent):
     mainLayout->setMenuBar(menuUtente);
     mainLayout->addWidget(inserisciVeicolo);
 
+}
 
-
-
+Model* Controller::getModel(){
+    return model;
 }
 
 
@@ -74,4 +75,8 @@ void Controller::slotShowInserisci()const{
 
     inserisciVeicolo->show();
 
+}
+
+Controller::~Controller(){
+    model->save();
 }

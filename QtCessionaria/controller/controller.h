@@ -23,9 +23,8 @@ private:
 
 public:
  Controller(Model*,QWidget* = nullptr);
-   //Controller(QWidget* = nullptr);
-
-   //~Controller();
+ Model *getModel();
+   ~Controller();
 
    string getTarga()const;
 
