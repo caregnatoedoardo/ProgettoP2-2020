@@ -182,12 +182,6 @@ void Model::load(){
 
 }
 
-
-
-
-
-
-
 Container<Veicolo*>::Iteratore Model::begin() const{
     return searchRes->begin();
 }
