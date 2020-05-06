@@ -53,7 +53,8 @@ int main(int argc, char *argv[])
 
 
     Container<Veicolo*> *ctcopia= new Container<Veicolo*>;
-    ctcopia=ctveic->getVehicleByType("camion");
+    //ctcopia=ctveic->getVehicleByType("camion");
+    ctcopia->remove(lf);
     //ctcopia->copy(*ctveic);
 
     //ctveic->modify(mt,ca3);

@@ -34,13 +34,16 @@ bool Motore::checkAlimentazione(string al) const{
 }
 
 string Motore::convertToAlim(alimentazione al) const{
-    if(al==diesel) return "diesel";
-    if(al==benzina) return "benzina";
-    if(al==elettrico) return "elettrico";
-    if(al==gpl) return "gpl";
-    if(al==metano) return "metano";
-
-    throw Exc(5);
+    try{
+        if(al==diesel) return "diesel";
+        if(al==benzina) return "benzina";
+        if(al==elettrico) return "elettrico";
+        if(al==gpl) return "gpl";
+        if(al==metano) return "metano";
+        throw Exc();
+    }catch(Exc){
+        Exc(5);
+    }
 }
 
 string Motore::getDetails() const{
