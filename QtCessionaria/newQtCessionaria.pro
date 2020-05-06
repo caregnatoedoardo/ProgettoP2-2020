@@ -34,9 +34,10 @@ SOURCES += \
     mainwindow.cpp \
     model.cpp \
     GUI/ricerca.cpp \
-    GUI/displayview.cpp \
     GUI/listviewwidget.cpp \
-    GUI/printlistview.cpp
+    GUI/printlistview.cpp \
+    GUI/viewveicolo.cpp \
+    GUI/groupview.cpp
 
 
 HEADERS += \
@@ -62,9 +63,10 @@ HEADERS += \
     exceptions/exceptions.h \
     GUI/veicolotipebox.h \
     GUI/ricerca.h \
-    GUI/displayview.h \
     GUI/listviewwidget.h \
-    GUI/printlistview.h
+    GUI/printlistview.h \
+    GUI/viewveicolo.h \
+    GUI/groupview.h
 
 
 FORMS += \
