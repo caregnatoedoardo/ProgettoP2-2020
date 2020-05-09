@@ -5,6 +5,14 @@
 #include "container/container.h"
 #include "GUI/usermenu.h"
 #include "GUI/insertveicolo.h"
+#include "GUI/groupview.h"
+#include "GUI/viewveicolo.h"
+#include "GUI/ricerca.h"
+
+
+
+
+
 #include <QVBoxLayout>
 #include <QMessageBox>
 #include "model.h"
@@ -17,6 +25,11 @@ private:
    Usermenu* menuUtente;
    QHBoxLayout* mainLayout;
    InsertVeicolo* inserisciVeicolo;
+      Ricerca* ricercaView;
+   GroupView* groupView;
+   ViewVeicolo* dialog;
+
+
 
 
 

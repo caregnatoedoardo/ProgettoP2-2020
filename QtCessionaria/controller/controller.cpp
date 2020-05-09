@@ -2,6 +2,15 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QBuffer>
+#include <hierarchy/veicolo.h>
+#include <hierarchy/carrozzeria.h>
+#include <hierarchy/motore.h>
+#include <hierarchy/mezzo.h>
+#include <hierarchy/auto.h>
+#include <hierarchy/moto.h>
+#include <hierarchy/camion.h>
+
+
 using std::string;
 
 
@@ -12,13 +21,23 @@ Controller::Controller(Model*m, QWidget *parent):
     model(m),
     menuUtente(new Usermenu(this)),
     mainLayout(new QHBoxLayout(this)),
-    inserisciVeicolo(new InsertVeicolo(this))
+    inserisciVeicolo(new InsertVeicolo(this)),
+    ricercaView(new Ricerca(this)),
+    groupView(new GroupView(this)),
+    dialog(nullptr)
 
 
 {
 
     mainLayout->setMenuBar(menuUtente);
+    mainLayout->addWidget(ricercaView);
+    mainLayout->addWidget(groupView);
     mainLayout->addWidget(inserisciVeicolo);
+
+    slotShowInserisci();
+
+
+
 
 }
 
@@ -72,7 +91,8 @@ void Controller:: slotAggiungiVeicolo() const{
 
 
 void Controller::slotShowInserisci()const{
-
+    groupView->hide();
+    ricercaView->hide();
     inserisciVeicolo->show();
 
 }

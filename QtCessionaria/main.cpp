@@ -20,12 +20,6 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();*/
 
-    /*QApplication a(argc, argv);
-   Controller w(new Model());
-   w.setFixedSize(2000,1000);
-   w.show();
-
-    return a.exec();*/
 
 
 
@@ -68,6 +62,7 @@ int main(int argc, char *argv[])
     if(ca2==ca) cout<<"CAMION UGUALI\n";
     if(mt2==mt) cout<<"MOTO UGUALI\n";*/
 
+
     cout<<std::endl;
     cout<<lf->getDetails();
     cout<<std::endl;
@@ -77,6 +72,16 @@ int main(int argc, char *argv[])
 
 
     cout<<"END\n";
+
+    QApplication a(argc, argv);
+   Controller w(new Model());
+   w.setFixedSize(2000,1000);
+   w.show();
+
+    return a.exec();
+
+
+
 
 
 
