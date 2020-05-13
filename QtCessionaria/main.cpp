@@ -45,10 +45,11 @@ int main(int argc, char *argv[])
         cout<<"CIAO";
     }
 
+    ctveic->erase();
 
-    Container<Veicolo*> *ctcopia= new Container<Veicolo*>;
+    //Container<Veicolo*> *ctcopia= new Container<Veicolo*>;
     //ctcopia=ctveic->getVehicleByType("camion");
-    ctcopia->remove(lf);
+    //ctcopia->remove(lf);
     //ctcopia->copy(*ctveic);
 
     //ctveic->modify(mt,ca3);
@@ -63,12 +64,12 @@ int main(int argc, char *argv[])
     if(mt2==mt) cout<<"MOTO UGUALI\n";*/
 
 
-    cout<<std::endl;
+    /*cout<<std::endl;
     cout<<lf->getDetails();
     cout<<std::endl;
     cout<<ca2->getDetails();
     cout<<std::endl;
-    cout<<mt->getDetails();
+    cout<<mt->getDetails();*/
 
 
     cout<<"END\n";

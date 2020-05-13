@@ -77,6 +77,7 @@ public:
     Container<T>& copy(const Container&);//esegue una copia del container
     Container<T>* getVehicleByType(const string type);//restituisce un nuovo container con tutti i veicoli di tipo type inserito
     string getTipoVeicolo()const;//restituisce una stringa che identifica la tipologia del veicolo dell'oggetto di invocazione
+    void erase();
 };
 
 //METODI ITERATORE
@@ -489,6 +490,13 @@ string Container<T>::getTipoVeicolo()const{
     }
 }
 
+template<class T>
+void Container<T>::erase(){
+    while(!isEmpty()){
+        remove(first->info);
+    }
+    return;
+}
 
 #endif // CONTAINER_H
 
