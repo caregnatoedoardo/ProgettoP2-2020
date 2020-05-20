@@ -26,6 +26,7 @@ class InsertVeicolo : public QWidget
     VeicoloTipeBox* tipoVeicolo;
     QLineEdit* marca;
     QLineEdit* modello;
+
     QLineEdit* numeroTelaio;
     QCheckBox* cambio;
     QLineEdit* colore;
@@ -94,6 +95,7 @@ public:
 
 public slots:
      void slotDisableForm(int) const; // disabilita form sulla base del case dell'inseriemnto
+     void slotChangeFormLayout(QString typeVeic)const;
 
 signals:
     void signalDisableForm(int);

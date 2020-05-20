@@ -101,7 +101,150 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     form->addWidget(AddButton,6,3);
 
 
+    connect(tipoVeicolo,static_cast<void (QComboBox::*)(int index)>(&QComboBox::currentIndexChanged),[this]{
+        slotChangeFormLayout(tipoVeicolo->currentText());
+    });
 
+
+}
+
+void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
+    if(typeveic=="carrozzeria"){
+        //show
+        marca->show();
+        modello->show();
+        numeroTelaio->show();
+        cambio->show();
+        colore->show();
+        lunghezza->show();
+        //hide
+        numeroMotore->hide();
+        cilindrata->hide();
+        cavalli->hide();
+        alimentazione->hide();
+        lunghezza->hide();
+        targa->hide();
+        prezzo->hide();
+        massa->hide();
+        numeroPosti->hide();
+        segmento->hide();
+        autocarro->hide();
+        numeroAssi->hide();
+        ribaltabile->hide();
+        sidecar->hide();
+        classeEmissioni->hide();
+        tipoMoto->hide();
+
+        AddButton->show();
+
+    }
+    if(typeveic=="motore"){
+        //show
+        marca->show();
+        modello->show();
+        numeroMotore->show();
+        cilindrata->show();
+        cavalli->show();
+        alimentazione->show();
+        //hide
+        numeroTelaio->hide();
+        cambio->hide();
+        colore->hide();
+        lunghezza->hide();
+        targa->hide();
+        prezzo->hide();
+        massa->hide();
+        numeroPosti->hide();
+        segmento->hide();
+        autocarro->hide();
+        numeroAssi->hide();
+        ribaltabile->hide();
+        sidecar->hide();
+        classeEmissioni->hide();
+        tipoMoto->hide();
+
+        AddButton->show();
+    }
+    if(typeveic=="auto"){
+        //show
+        marca->show();
+        modello->show();
+        numeroTelaio->show();
+        cambio->show();
+        colore->show();
+        lunghezza->show();
+        numeroMotore->show();
+        cilindrata->show();
+        cavalli->show();
+        alimentazione->show();
+        targa->show();
+        prezzo->show();
+        massa->show();
+        numeroPosti->show();
+        segmento->show();
+        autocarro->show();
+        //hide
+        numeroAssi->hide();
+        ribaltabile->hide();
+        sidecar->hide();
+        classeEmissioni->hide();
+        tipoMoto->hide();
+
+        AddButton->show();
+
+    }
+    if(typeveic=="moto"){
+        //show
+        marca->show();
+        modello->show();
+        numeroTelaio->show();
+        cambio->show();
+        colore->show();
+        lunghezza->show();
+        numeroMotore->show();
+        cilindrata->show();
+        cavalli->show();
+        alimentazione->show();
+        targa->show();
+        prezzo->show();
+        massa->show();
+        numeroPosti->show();
+        sidecar->show();
+        classeEmissioni->show();
+        tipoMoto->show();
+        //hide
+        segmento->hide();
+        autocarro->hide();
+        numeroAssi->hide();
+        ribaltabile->hide();
+
+        AddButton->show();
+    }
+    if(typeveic=="camion"){
+        //show
+        marca->show();
+        modello->show();
+        numeroTelaio->show();
+        cambio->show();
+        colore->show();
+        lunghezza->show();
+        numeroMotore->show();
+        cilindrata->show();
+        cavalli->show();
+        alimentazione->show();
+        targa->show();
+        prezzo->show();
+        massa->show();
+        numeroPosti->show();
+        //hide
+        segmento->hide();
+        autocarro->hide();
+        sidecar->hide();
+        classeEmissioni->hide();
+        tipoMoto->hide();
+
+        AddButton->show();
+    }
 }
 
 void InsertVeicolo::slotDisableForm(int i) const {
