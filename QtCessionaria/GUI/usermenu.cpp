@@ -12,24 +12,45 @@ Usermenu::Usermenu(QWidget* p):parent(p),
 {
 
     QList<QAction*> actionList;
+    actionList.push_back(ricerca);
     actionList.push_back(salva);
     actionList.push_back(carica);
     actionList.push_back(esci);
 
     menu->addActions(actionList);
+   actionList.clear();
 
     addMenu(menu);
-    addAction(ricerca);
     addAction(inserisci);
+    addAction(ricerca);
 
-    //connect(esci, SIGNAL(triggered()),parent,SLOT(slotClose()));
-   //connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));
-   //connect(carica, SIGNAL(triggered()),parent,SLOT(slotCarica()));
-   //connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotRicerca()));
-   //connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotInserisci()));
+    actionList.clear();
+
+    connect(esci, SIGNAL(triggered()),parent,SLOT(slotClose()));
+   connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));
+   connect(carica, SIGNAL(triggered()),parent,SLOT(slotCarica()));
+   connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotShowRicerca()));
+   connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotShowInserisci()));
 
 
 
 
 
+}
+
+
+QMenu* Usermenu::getMenu()const {
+    return menu;
+}
+
+QAction* Usermenu::getSalva() const {
+    return salva;
+}
+
+QAction* Usermenu::getCarica() const {
+    return carica;
+}
+
+QAction* Usermenu::getEsci() const {
+    return esci;
 }

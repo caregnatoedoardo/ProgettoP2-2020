@@ -182,6 +182,14 @@ void Model::load(){
 
 }
 
+void Model::erase(unsigned int i){
+    isDataSaved = false;
+    dbVeicoli->erase();
+
+}
+
+
+
 Container<Veicolo*>::Iteratore Model::begin() const{
     return searchRes->begin();
 }

@@ -190,6 +190,19 @@ AlimTipeBox* Ricerca::getBoxAlimentazione() const{return boxAlimentazione;}
 SegmentoTipeBox* Ricerca::getBoxSegmento() const{return boxSegmento;}
 TipomotoBox* Ricerca::getBoxTipoMoto() const{return boxTipoMoto;}
 
+QPushButton* Ricerca::getButtonRicerca() const{
+    return  cerca;
+
+}
+QPushButton* Ricerca::getButtonElimina() const{
+    return elimina;
+
+}
+QPushButton* Ricerca::getButtonReset() const{
+    return reset;
+
+}
+
 
 
 

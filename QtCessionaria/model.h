@@ -31,6 +31,10 @@ public:
     void save();
     void load();
 
+    void erase (unsigned int);
+    void erase (Veicolo*);
+
+
     void push_end(Veicolo*);
 
     //implementazione di tutti i filtri di ricerca

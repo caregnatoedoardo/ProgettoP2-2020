@@ -44,22 +44,29 @@ public:
 
 public slots:
 
-   /* void slotSalva() const;
+   /*
     void slotDataChanged(bool) const;
-    void slotRicerca();
+
     void slotLoad();
 
-    void slotShowRicerca() const;
 
-    void slotEliminaElemento() const;
+
+
     void slotShowVisualizza() const;
     void slotShowModifica();
     void slotResetRicerca() const;
 
 
-    void closeEvent(QCloseEvent*);
+
 */
+
+void closeEvent(QCloseEvent*);
+void slotShowRicerca() const;
+void slotRicerca()const;
+void slotEliminaElemento() const;
+void slotSalva() const;
 void slotAggiungiVeicolo() const;
+
 void slotShowInserisci() const;
 
 
