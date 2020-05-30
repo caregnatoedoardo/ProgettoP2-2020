@@ -185,10 +185,33 @@ QLineEdit* Ricerca::getCercaMassa() const{return cercaMassa;}
 QLineEdit* Ricerca::getCercaNumeroPosti() const{return cercaNumeroPosti;}
 QLineEdit* Ricerca::getCercaNumeroAssi() const{return cercaNumeroAssi;}
 QLineEdit* Ricerca::getCercaClasseEmissioni() const{return cercaClasseEmissioni;}
+QCheckBox* Ricerca::getCkTipo() const{return ckTipo;}
+QCheckBox* Ricerca::getCkMarca() const{return ckMarca;}
+QCheckBox* Ricerca::getCkModello() const{return ckModello;}
+QCheckBox* Ricerca::getCkNumeroTelaio() const{return ckNumeroTelaio;}
+QCheckBox* Ricerca::getCkCambio() const{return ckCambio;}
+QCheckBox* Ricerca::getCkColore() const{return ckColore;}
+QCheckBox* Ricerca::getCkLunghezza() const{return ckLunghezza;}
+QCheckBox* Ricerca::getCkNumeroMotore() const{return ckNumeroMotore;}
+QCheckBox* Ricerca::getCkCilindrata() const{return ckCilindrata;}
+QCheckBox* Ricerca::getCkCavalli() const{return ckCavalli;}
+QCheckBox* Ricerca::getCkAlimentazione() const{return ckAlimentazione;}
+QCheckBox* Ricerca::getCkTarga() const{return ckTarga;}
+QCheckBox* Ricerca::getCkPrezzo() const{return ckPrezzo;}
+QCheckBox* Ricerca::getCkMassa() const{return ckMassa;}
+QCheckBox* Ricerca::getCkNumeroPosti() const{return ckNumeroPosti;}
+QCheckBox* Ricerca::getCkSegmento() const{return ckSegmento;}
+QCheckBox* Ricerca::getCkAutocarro() const{return ckAutocarro;}
+QCheckBox* Ricerca::getCkNumeroAssi() const{return ckNumeroAssi;}
+QCheckBox* Ricerca::getCkRibaltabile() const{return ckRibaltabile;}
+QCheckBox* Ricerca::getCkSidecar() const{return ckSidecar;}
+QCheckBox* Ricerca::getCkClasseEmissioni() const{return ckClasseEmissioni;}
+QCheckBox* Ricerca::getCkTipoMoto() const{return ckTipoMoto;}
 VeicoloTipeBox* Ricerca::getBoxTipoVeicolo() const{return boxTipoVeicolo;}
 AlimTipeBox* Ricerca::getBoxAlimentazione() const{return boxAlimentazione;}
 SegmentoTipeBox* Ricerca::getBoxSegmento() const{return boxSegmento;}
 TipomotoBox* Ricerca::getBoxTipoMoto() const{return boxTipoMoto;}
+ListViewWidget* Ricerca::getListaVeic() const{return listaveic;}
 
 QPushButton* Ricerca::getButtonRicerca() const{
     return  cerca;

@@ -1,12 +1,13 @@
 #ifndef RICERCA_H
 #define RICERCA_H
 
-#include <QObject>
-#include <QWidget>
 #include "veicolotipebox.h"
 #include "alimtipebox.h"
 #include "tipomotobox.h"
 #include "segmentotipebox.h"
+#include "listviewwidget.h"
+#include <QObject>
+#include <QWidget>
 #include <QLineEdit>
 #include <QCheckBox>
 #include <QComboBox>
@@ -14,6 +15,7 @@
 #include <QFormLayout>
 #include <QRadioButton>
 #include <model.h>
+
 
 
 class Ricerca : public QWidget
@@ -87,7 +89,7 @@ private:
     QPushButton* elimina;
     QPushButton* reset;
 
-
+    ListViewWidget* listaveic;
 
 public:
 
@@ -138,7 +140,7 @@ public:
     QPushButton* getButtonElimina() const;
     QPushButton* getButtonReset() const;
 
-
+    ListViewWidget* getListaVeic()const;
 
 private slots:
 

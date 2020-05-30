@@ -3,7 +3,9 @@
 
 #include <QComboBox>
 #include <QObject>
+#include <string>
 
+using std::string;
 
 class VeicoloTipeBox : public QComboBox
 {

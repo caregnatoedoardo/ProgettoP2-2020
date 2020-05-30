@@ -21,7 +21,7 @@ public:
     bool getAutocarro()const;
 
     bool checkSegmento(string segmento)const;
-    string convertSegmento()const;
+    string convertSegmento(segmento seg)const;
     virtual string getTipo() const override;
     virtual string getDetails() const override;
 };

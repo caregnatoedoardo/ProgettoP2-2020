@@ -9,6 +9,4 @@ addItem("camion");
 addItem("moto");
 addItem("carrozzeria");
 addItem("motore");
-
-
 }

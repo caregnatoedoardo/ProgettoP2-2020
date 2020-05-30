@@ -8,11 +8,6 @@
 #include "GUI/groupview.h"
 #include "GUI/viewveicolo.h"
 #include "GUI/ricerca.h"
-
-
-
-
-
 #include <QVBoxLayout>
 #include <QMessageBox>
 #include "model.h"

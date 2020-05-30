@@ -41,6 +41,7 @@ string Motore::convertToAlim(alimentazione al) const{
         if(al==gpl) return "gpl";
         if(al==metano) return "metano";
         throw Exc();
+
     }catch(Exc){
         Exc(5);
     }
@@ -49,5 +50,6 @@ string Motore::convertToAlim(alimentazione al) const{
 string Motore::getDetails() const{
     return Veicolo::getDetails()+std::to_string(n_motore)+" "+std::to_string(cilindrata)+" "+std::to_string(cavalli)+" "+convertToAlim(alim)+" ";
 }
+
 
 

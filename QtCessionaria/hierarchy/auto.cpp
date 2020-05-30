@@ -27,7 +27,7 @@ bool Auto::getAutocarro() const{return autocarro;}
 
 
 
-string Auto::convertSegmento() const{//converte l'enum segmento in stringa
+string Auto::convertSegmento(segmento seg) const{//converte l'enum segmento in stringa
     try{
         if(seg==berlina) return "berlina";
         if(seg==station) return "station";
@@ -49,6 +49,6 @@ bool Auto::checkSegmento(string segmento) const{
 string Auto::getTipo() const{return "auto";}
 
 string Auto::getDetails() const{
-    return Mezzo::getDetails()+convertSegmento()+" "+std::to_string(autocarro);
+    return Mezzo::getDetails()+convertSegmento(seg)+" "+std::to_string(autocarro);
 }
 

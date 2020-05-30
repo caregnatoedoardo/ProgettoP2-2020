@@ -138,7 +138,82 @@ void Controller::slotShowRicerca() const {
 }
 
 void Controller::slotRicerca() const {
+    //bisogna resettare tutti i campi ricerca.
+    //slotResetRicerca
+    ricercaView->getListaVeic()->clear();
+    try{
+        if(!model->getContainerSize())
+            throw Exc();
+        else{
+            if(ricercaView->getCkTipo()->isChecked())
+                model->filterByType(ricercaView->getBoxTipoVeicolo()->currentText().toStdString());
 
+            if(ricercaView->getCkMarca()->isChecked())
+                model->filterByMarca(ricercaView->getCercaMarca()->text().toStdString());
+
+            if(ricercaView->getCkModello()->isChecked())
+                model->filterByModello(ricercaView->getCercaModello()->text().toStdString());
+
+            if(ricercaView->getCkNumeroTelaio()->isChecked())
+                model->filterByNTelaio(ricercaView->getCercaNumeroTelaio()->text().toInt());
+
+            if(ricercaView->getCkCambio()->isChecked())
+                model->filterByCambio(ricercaView->getCkCambio()->isChecked());
+
+            if(ricercaView->getCkColore()->isChecked())
+                model->filterByColore(ricercaView->getCercaColore()->text().toStdString());
+
+            if(ricercaView->getCkLunghezza()->isChecked())
+                model->filterByLunghezza(ricercaView->getCercaLunghezza()->text().toDouble());
+
+            if(ricercaView->getCkNumeroMotore()->isChecked())
+                model->filterByNMotore(ricercaView->getCercaNumeroMotore()->text().toInt());
+
+            if(ricercaView->getCkCilindrata()->isChecked())
+                model->filterByCilindrata(ricercaView->getCercaCilindrata()->text().toInt());
+
+            if(ricercaView->getCkCavalli()->isChecked())
+                model->filterByCavalli(ricercaView->getCercaCavalli()->text().toInt());
+
+            if(ricercaView->getCkAlimentazione()->isChecked())
+                model->filterByAlim(ricercaView->getBoxAlimentazione()->currentText().toStdString());
+
+            if(ricercaView->getCkTarga()->isChecked())
+                model->filterByTarga(ricercaView->getCercaTarga()->text().toStdString());
+
+            if(ricercaView->getCkPrezzo()->isChecked())
+                model->filterByPrezzo(ricercaView->getCercaPrezzo()->text().toDouble());
+
+            if(ricercaView->getCkMassa()->isChecked())
+                model->filterByMassa(ricercaView->getCercaMassa()->text().toDouble());
+
+            if(ricercaView->getCkNumeroPosti()->isChecked())
+                model->filterByNPosti(ricercaView->getCercaNumeroPosti()->text().toInt());
+
+            if(ricercaView->getCkSegmento()->isChecked())
+                model->filterBySegmento(ricercaView->getBoxSegmento()->currentText().toStdString());
+
+            if(ricercaView->getCkAutocarro()->isChecked())
+                model->filterByAutocarro(ricercaView->getCkAutocarro()->isChecked());
+
+            if(ricercaView->getCkNumeroAssi()->isChecked())
+                model->filterByNAssi(ricercaView->getCercaNumeroAssi()->text().toInt());
+
+            if(ricercaView->getCkRibaltabile()->isChecked())
+                model->filterByRibaltabile(ricercaView->getCkRibaltabile()->isChecked());
+
+            if(ricercaView->getCkSidecar()->isChecked())
+                model->filterBySidecar(ricercaView->getCkSidecar()->isChecked());
+
+            if(ricercaView->getCkClasseEmissioni()->isChecked())
+                model->filterByClasseEmissioni(ricercaView->getCercaClasseEmissioni()->text().toInt());
+
+            if(ricercaView->getCkTipo()->isChecked())
+                model->filterByTypeMoto(ricercaView->getCkTipoMoto()->text().toStdString());
+        }
+    }catch(Exc){
+        Exc(7);
+    }
 }
 
 

@@ -72,7 +72,7 @@ void Model::save(){
 
         Auto* isAuto = dynamic_cast<Auto*>(*it);
         if(isAuto) {//in alternativa if(tipo=="auto")
-            writer.writeAttribute("seg",QString::fromStdString(isAuto->convertSegmento()));
+            writer.writeAttribute("seg",QString::fromStdString(isAuto->convertSegmento(isAuto->getSegmento())));
             writer.writeAttribute("autocarro",isAuto->getAutocarro()? "Si" : "No");
         }
 
@@ -172,23 +172,22 @@ void Model::load(){
 
                 if(!reader.isEndDocument())
                     reader.skipCurrentElement();
-
             }
         }
     }
 
     file.close();
     isDataSaved=true;
-
 }
 
 void Model::erase(unsigned int i){
     isDataSaved = false;
     dbVeicoli->erase();
-
 }
 
-
+unsigned int Model::getContainerSize() const{
+    return dbVeicoli->getSize();
+}
 
 Container<Veicolo*>::Iteratore Model::begin() const{
     return searchRes->begin();
@@ -199,6 +198,16 @@ Container<Veicolo*>::Iteratore Model::end() const{
 }
 
 //lavorano tutti su SearchRes, che all'inizio sarà una copia di dbveicoli
+void Model::filterByType(string ty){
+    if(searchRes->isEmpty()) return;
+    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+        Veicolo* ve=dynamic_cast<Veicolo*>(*it);
+        if(ve && ve->getTipo()!=ty)
+            searchRes->remove(ve);
+    }
+    return;
+}
+
 void Model::filterByMarca(string ma){
     if(searchRes->isEmpty()) return;
 
@@ -298,12 +307,12 @@ void Model::filterByCavalli(unsigned int cv){
     return;
 }
 
-void Model::filterByAlim(alimentazione al){
+void Model::filterByAlim(string al){
     if(searchRes->isEmpty()) return;
 
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
         Motore* eng=dynamic_cast<Motore*>(*it);
-        if(eng && eng->getAlimentazione()!=al)
+        if(eng && eng->convertToAlim(eng->getAlimentazione())!=al)
             searchRes->remove(eng);
     }
     return;
@@ -353,12 +362,12 @@ void Model::filterByNPosti(unsigned int np){
     return;
 }
 
-void Model::filterBySegmento(segmento sg){
+void Model::filterBySegmento(string sg){
     if(searchRes->isEmpty()) return;
 
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
         Auto* aut=dynamic_cast<Auto*>(*it);
-        if(aut && aut->getSegmento()!=sg)
+        if(aut && aut->convertSegmento(aut->getSegmento())!=sg)
             searchRes->remove(aut);
     }
     return;
@@ -419,12 +428,12 @@ void Model::filterByClasseEmissioni(unsigned int ce){
     return;
 }
 
-void Model::filterByType(tipomoto tm){
+void Model::filterByTypeMoto(string tm){
     if(searchRes->isEmpty()) return;
 
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
         Moto* mt=dynamic_cast<Moto*>(*it);
-        if(mt && mt->getTipoMoto()!=tm)
+        if(mt && mt->convertToString(mt->getTipoMoto())!=tm)
             searchRes->remove(mt);
     }
     return;
