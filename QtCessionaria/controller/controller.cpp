@@ -169,7 +169,6 @@ void Controller:: slotAggiungiVeicolo() const{
         groupView->getList()->addVeicolo(veic);
         slotFlagDataChange(true);
         //popup da implementare con messaggio di effettivo inserimento.
-
     } catch (Exc){
         throw Exc(4,inserisciVeicolo->getTipoVeicolo()->currentText().toStdString());
     }
@@ -178,17 +177,15 @@ void Controller:: slotAggiungiVeicolo() const{
 
 
 void Controller::slotSalva() const {
-    //if(!model->getIsDataSaved()){
-    model->save();
-    //slotDataChanged(false);
-
+    if(!model->getFlagDataSaved())
+        model->save();
+    slotFlagDataChange(false);
 }
 
 void Controller::slotShowRicerca() const {
     groupView->hide();
     ricercaView->show();
     inserisciVeicolo->hide();
-
 }
 
 void Controller::slotRicerca() const {
@@ -270,8 +267,6 @@ void Controller::slotRicerca() const {
     }
 }
 
-
-
 void Controller::slotEliminaElemento() const {
     if(groupView->getList()->count() && groupView->getList()->currentItem()!=nullptr){
         PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
@@ -282,7 +277,6 @@ void Controller::slotEliminaElemento() const {
 
     }
 }
-
 
 void Controller::slotShowInserisci()const{
     groupView->hide();
@@ -297,7 +291,7 @@ Controller::~Controller(){
 
 
 void Controller::closeEvent(QCloseEvent *event){
-   // slotSalva();
+    // slotSalva();
     QWidget::closeEvent(event);
 
 }

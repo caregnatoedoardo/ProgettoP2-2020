@@ -17,8 +17,9 @@ Model::Model(string path):
     dbVenduti(new Container<Veicolo*>),
     searchRes(new Container<Veicolo*>),
     path(path),
-    isDataSaved(true){}
+    flagsaved(true){}
 
+bool Model::getFlagDataSaved() const{return flagsaved;}
 
 void Model::save(){
 
@@ -94,7 +95,7 @@ void Model::save(){
     }
         writer.writeEndElement();
         writer.writeEndDocument();
-        isDataSaved=true;               // CAMBIO LA SENTINELLA, HO SALVATO!;)
+        flagsaved=true;               // CAMBIO LA SENTINELLA, HO SALVATO!;)
 }
 
 
@@ -177,11 +178,11 @@ void Model::load(){
     }
 
     file.close();
-    isDataSaved=true;
+    flagsaved=true;
 }
 
 void Model::erase(unsigned int i){
-    isDataSaved = false;
+    flagsaved = false;
     dbVeicoli->erase();
 }
 
@@ -445,7 +446,7 @@ void Model::push_end(Veicolo *a){
     dbVeicoli->push_end(a);
     //if(!(*searchRes==*dbVeicoli))
         *searchRes=*dbVeicoli;
-    isDataSaved=false;
+    flagsaved=false;
 }
 
 

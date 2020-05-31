@@ -19,9 +19,7 @@ private:
     Container<Veicolo*>* dbVenduti;//Container che rappresenta i veicoli venduti
     Container<Veicolo*>* searchRes;//Container temporaneo che servirà a contenere i risultati di ricerca dell'utente
     string path;                   //Percorso dei file di salvataggio/caricamento
-    bool isDataSaved;
-
-
+    bool flagsaved;
 public:
     Model(string="../dati.xml"); //file di salvataggio locale
     ~Model();
@@ -64,6 +62,7 @@ public:
     tipomoto convertToTipomoto(const string st)const;
     segmento convertToSeg(const string)const;
     alimentazione convertToAlimentazione(const string)const;
+    bool getFlagDataSaved()const;
 };
 
 #endif // MODEL_H
