@@ -20,52 +20,29 @@ private:
    Usermenu* menuUtente;
    QHBoxLayout* mainLayout;
    InsertVeicolo* inserisciVeicolo;
-      Ricerca* ricercaView;
+   Ricerca* ricercaView;
    GroupView* groupView;
    ViewVeicolo* dialog;
-
-
-
-
-
-
 public:
- Controller(Model*,QWidget* = nullptr);
- Model *getModel();
+   Controller(Model*,QWidget* = nullptr);
+   Model *getModel();
    ~Controller();
-
    string getTarga()const;
-
-
 public slots:
-
    /*
-    void slotDataChanged(bool) const;
-
     void slotLoad();
-
-
-
-
     void slotShowVisualizza() const;
     void slotShowModifica();
     void slotResetRicerca() const;
-
-
-
 */
-
-void closeEvent(QCloseEvent*);
-void slotShowRicerca() const;
-void slotRicerca()const;
-void slotEliminaElemento() const;
-void slotSalva() const;
-void slotAggiungiVeicolo() const;
-void slotFlagDataChange(bool flag)const;
-
-void slotShowInserisci() const;
-
-
+    void closeEvent(QCloseEvent*);
+    void slotShowRicerca() const;
+    void slotRicerca()const;
+    void slotEliminaElemento() const;
+    void slotSalva() const;
+    void slotAggiungiVeicolo() const;
+    void slotFlagDataChange(bool flag)const;
+    void slotShowInserisci() const;
 };
 
 #endif // CONTROLLER_H

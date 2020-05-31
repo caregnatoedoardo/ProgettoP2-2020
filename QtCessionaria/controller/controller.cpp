@@ -37,7 +37,7 @@ Controller::Controller(Model*m, QWidget *parent):
     slotShowInserisci();
      //connect(groupView->getBtnElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
     //connect(groupView->getBtnModifica(),SIGNAL(clicked()),this,SLOT(slotShowModifica()));
-    //connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotAggiungiVeicolo()));
+    connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotAggiungiVeicolo()));
    // connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
 
     connect(ricercaView->getButtonElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
@@ -45,13 +45,6 @@ Controller::Controller(Model*m, QWidget *parent):
     connect(ricercaView->getButtonRicerca(),SIGNAL(clicked()), this, SLOT(slotRicerca()));
     connect(ricercaView->getButtonReset(), SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
     connect(ricercaView->getButtonReset(),SIGNAL(clicked()),ricercaView,SLOT(slotReset()));
-
-
-
-
-
-
-
 
 }
 
@@ -94,14 +87,14 @@ void Controller:: slotAggiungiVeicolo() const{
         string tipomt="";
         string pathimg="";
         //CARROZZERIA
-        if(tipo == 1 || 2 || 3 || 4){
+        if(tipo == 1 || tipo==2 || tipo==3 || tipo==4){
             numeroTelaio = inserisciVeicolo->getNumeroTelaio()->text().toInt();
             cambio_auto = inserisciVeicolo->getCambio()->isChecked();
             colore = inserisciVeicolo->getColore()->text().toStdString();
             lunghezza = inserisciVeicolo->getLunghezza()->text().toDouble();
         }
         //MOTORE
-        if(tipo == 0 || 2 || 3 || 4){
+        if(tipo==0 || tipo==2 || tipo==3 || tipo==4){
             n_motore = inserisciVeicolo->getNumeroMotore()->text().toInt();
             cilindrata = inserisciVeicolo->getCilindrata()->text().toInt();
             cavalli = inserisciVeicolo->getCavalli()->text().toInt();
@@ -109,7 +102,7 @@ void Controller:: slotAggiungiVeicolo() const{
         }
 
         //MEZZO
-        if(tipo == 2 || 3 || 4){
+        if(tipo==2 || tipo==3 || tipo==4){
             targa = inserisciVeicolo->getTarga()->text().toStdString();
             prezzo = inserisciVeicolo->getPrezzo()->text().toDouble();
             massa = inserisciVeicolo->getMassa()->text().toInt();
@@ -117,23 +110,23 @@ void Controller:: slotAggiungiVeicolo() const{
         }
 
         //AUTO
-        if(tipo == 2){
+        if(tipo==2){
              seg = inserisciVeicolo->getSegmento()->currentText().toStdString();
              autocarro = inserisciVeicolo->getAutocarro()->isChecked();
 
         }
         //MOTO
-        if (tipo == 3){
+        if(tipo==3){
             sid=inserisciVeicolo->getSidecar()->isChecked();
             clemiss=inserisciVeicolo->getClasseEmissioni()->text().toInt();
             tipomt=inserisciVeicolo->getTipoMoto()->currentText().toStdString();
         }
         // CAMION
-        if (tipo == 4){
+        if(tipo==4){
              nassi=inserisciVeicolo->getNumeroAssi()->text().toInt();
              rib=inserisciVeicolo->getRibaltabile()->isChecked();
         }
-        throw Exc();//da rivedere
+        //throw Exc();//da rivedere
 
         Veicolo* veic=nullptr;
         switch (tipo){
@@ -172,6 +165,7 @@ void Controller:: slotAggiungiVeicolo() const{
     } catch (Exc){
         throw Exc(4,inserisciVeicolo->getTipoVeicolo()->currentText().toStdString());
     }
+    return;
 }
 
 

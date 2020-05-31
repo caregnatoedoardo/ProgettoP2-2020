@@ -447,6 +447,7 @@ void Model::push_end(Veicolo *a){
     //if(!(*searchRes==*dbVeicoli))
         *searchRes=*dbVeicoli;
     flagsaved=false;
+    return;
 }
 
 
