@@ -55,72 +55,126 @@ Controller::Controller(Model*m, QWidget *parent):
 
 }
 
+void Controller::slotFlagDataChange(bool flag)const{
+    menuUtente->getSalva()->setEnabled(flag);
+}
+
 Model* Controller::getModel(){
     return model;
 }
 
-
-
 void Controller:: slotAggiungiVeicolo() const{
+    //MOTORE        =0
+    //CARROZZERIA   =1
+    //AUTO          =2
+    //MOTO          =3
+    //CAMION        =4
+    int tipo = inserisciVeicolo->getTipoVeicolo()->currentIndex(); //acquisisco index select
     try{
-
-        int tipo = inserisciVeicolo->getTipoVeicolo()->currentIndex(); //acquisisco index select
-        //if(tipo == 0) throw Exception errore tipologia veicolo
-
         string marca = inserisciVeicolo->getMarca()->text().toStdString();
         string modello = inserisciVeicolo->getModello()->text().toStdString();
-
+        unsigned int numeroTelaio=0;
+        int cambio_auto=0;
+        string colore="";
+        double lunghezza=0;
+        unsigned int n_motore=0;
+        unsigned int cilindrata=0;
+        unsigned int cavalli=0;
+        string alim="";
+        string targa="";
+        double prezzo=0;
+        unsigned int massa=0;
+        unsigned int numposti=0;
+        string seg="";
+        bool autocarro=false;
+        bool sid=false;
+        unsigned int clemiss=0;
+        int nassi=0;
+        bool rib=false;
+        string tipomt="";
+        string pathimg="";
         //CARROZZERIA
         if(tipo == 1 || 2 || 3 || 4){
-        unsigned int numeroTelaio = inserisciVeicolo->getNumeroTelaio()->text().toInt();
-        int cambio_auto = inserisciVeicolo->getCambio()->isChecked();
-        string colore = inserisciVeicolo->getColore()->text().toStdString();
-        double lunghezza = inserisciVeicolo->getLunghezza()->text().toDouble();
+            numeroTelaio = inserisciVeicolo->getNumeroTelaio()->text().toInt();
+            cambio_auto = inserisciVeicolo->getCambio()->isChecked();
+            colore = inserisciVeicolo->getColore()->text().toStdString();
+            lunghezza = inserisciVeicolo->getLunghezza()->text().toDouble();
         }
-
         //MOTORE
-        if(tipo == 1 || 2 || 3 || 5){
-        unsigned int n_motore = inserisciVeicolo->getNumeroMotore()->text().toInt();
-        unsigned int cilindrata = inserisciVeicolo->getCilindrata()->text().toInt();
-        unsigned int cavalli = inserisciVeicolo->getCavalli()->text().toInt();
-        //alimentazione alim = inserisciVeicolo->getAlimentazione();
+        if(tipo == 0 || 2 || 3 || 4){
+            n_motore = inserisciVeicolo->getNumeroMotore()->text().toInt();
+            cilindrata = inserisciVeicolo->getCilindrata()->text().toInt();
+            cavalli = inserisciVeicolo->getCavalli()->text().toInt();
+            alim = inserisciVeicolo->getAlimentazione()->currentText().toStdString();
         }
 
         //MEZZO
-        if(tipo == 1 || 2 || 3){
-        string targa = inserisciVeicolo->getTarga()->text().toStdString();
-        double prezzo = inserisciVeicolo->getPrezzo()->text().toDouble();
-        unsigned int massa = inserisciVeicolo->getMassa()->text().toInt();
-        unsigned int numposti = inserisciVeicolo->getNumeroPosti()->text().toInt();
+        if(tipo == 2 || 3 || 4){
+            targa = inserisciVeicolo->getTarga()->text().toStdString();
+            prezzo = inserisciVeicolo->getPrezzo()->text().toDouble();
+            massa = inserisciVeicolo->getMassa()->text().toInt();
+            numposti = inserisciVeicolo->getNumeroPosti()->text().toInt();
         }
 
         //AUTO
-        if(tipo == 1){
-            // segmento seg = inserisciVeicolo->getSegmento();
-             int autocarro = inserisciVeicolo->getAutocarro()->isChecked();
+        if(tipo == 2){
+             seg = inserisciVeicolo->getSegmento()->currentText().toStdString();
+             autocarro = inserisciVeicolo->getAutocarro()->isChecked();
 
         }
-        // CAMION
-        if (tipo == 2){
-
-
-        }
-
         //MOTO
         if (tipo == 3){
-
-
+            sid=inserisciVeicolo->getSidecar()->isChecked();
+            clemiss=inserisciVeicolo->getClasseEmissioni()->text().toInt();
+            tipomt=inserisciVeicolo->getTipoMoto()->currentText().toStdString();
         }
+        // CAMION
+        if (tipo == 4){
+             nassi=inserisciVeicolo->getNumeroAssi()->text().toInt();
+             rib=inserisciVeicolo->getRibaltabile()->isChecked();
+        }
+        throw Exc();//da rivedere
 
+        Veicolo* veic=nullptr;
+        switch (tipo){
+        case 0:{
+            alimentazione al=model->convertToAlimentazione(alim);
+            veic=new Motore(marca,modello,pathimg,n_motore,cilindrata,cavalli,al);
+            break;
+        }
+        case 1:{
+            veic=new Carrozzeria(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza);
+            break;
+        }
+        case 2:{
+            alimentazione al=model->convertToAlimentazione(alim);
+            segmento sg=model->convertToSeg(seg);
+            veic=new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sg,autocarro);
+            break;
+        }
+        case 3:{
+            alimentazione al=model->convertToAlimentazione(alim);
+            tipomoto tpm=model->convertToTipomoto(tipomt);
+            veic=new Moto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sid,clemiss,tpm);
+            break;
+        }
+        case 4:{
+            alimentazione al=model->convertToAlimentazione(alim);
+            veic=new Camion(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,nassi,rib);            break;
+            break;
+        }
+        default: throw Exc(12);//da vedere se inserirla qui
+        }
+        model->push_end(veic);
+        groupView->getList()->addVeicolo(veic);
+        slotFlagDataChange(true);
+        //popup da implementare con messaggio di effettivo inserimento.
 
-
-
-
-
-    } catch (std::exception e){
-
+    } catch (Exc){
+        throw Exc(4,inserisciVeicolo->getTipoVeicolo()->currentText().toStdString());
     }
 }
+
 
 
 void Controller::slotSalva() const {

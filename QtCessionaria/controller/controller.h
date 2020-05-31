@@ -61,6 +61,7 @@ void slotRicerca()const;
 void slotEliminaElemento() const;
 void slotSalva() const;
 void slotAggiungiVeicolo() const;
+void slotFlagDataChange(bool flag)const;
 
 void slotShowInserisci() const;
 

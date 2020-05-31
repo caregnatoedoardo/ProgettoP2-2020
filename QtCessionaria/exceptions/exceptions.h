@@ -62,6 +62,11 @@ public:
             break;
         }
         case 12:{
+            cerr<<"Errore di inserimento del veicolo "<<t<<".";
+            break;
+        }
+
+        case 13:{
             cerr<<"Errore:"<<t<<".";
             break;
         }
