@@ -4,10 +4,10 @@
 #include <QComboBox>
 #include <QObject>
 
-class AlimTipeBox : public QComboBox
+class AlimTypeBox : public QComboBox
 {
 public:
-    AlimTipeBox(QWidget* = nullptr);
+    AlimTypeBox(QWidget* = nullptr);
 };
 
 #endif // ALIMTIPEBOX_H

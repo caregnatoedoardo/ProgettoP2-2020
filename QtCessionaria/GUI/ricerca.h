@@ -1,10 +1,10 @@
 #ifndef RICERCA_H
 #define RICERCA_H
 
-#include "veicolotipebox.h"
-#include "alimtipebox.h"
+#include "veicolotypebox.h"
+#include "alimtypebox.h"
 #include "tipomotobox.h"
-#include "segmentotipebox.h"
+#include "segmentotypebox.h"
 #include "listviewwidget.h"
 #include <QObject>
 #include <QWidget>
@@ -24,7 +24,7 @@ class Ricerca : public QWidget
 
 private:
     QCheckBox* ckTipo;
-    VeicoloTipeBox* boxTipoVeicolo;
+    VeicoloTypeBox* boxTipoVeicolo;
 
     QCheckBox* ckMarca;
     QLineEdit* cercaMarca;
@@ -53,7 +53,7 @@ private:
     QLineEdit* cercaCavalli;
 
     QCheckBox* ckAlimentazione;
-    AlimTipeBox* boxAlimentazione;
+    AlimTypeBox* boxAlimentazione;
 
     QCheckBox* ckTarga;
     QLineEdit* cercaTarga;
@@ -68,7 +68,7 @@ private:
     QLineEdit* cercaNumeroPosti;
 
     QCheckBox* ckSegmento;
-    SegmentoTipeBox* boxSegmento;
+    SegmentoTypeBox* boxSegmento;
 
     QCheckBox* ckAutocarro;
 
@@ -96,7 +96,7 @@ public:
     Ricerca(QWidget* = nullptr);
 
     QCheckBox* getCkTipo() const;
-    VeicoloTipeBox* getBoxTipoVeicolo() const;
+    VeicoloTypeBox* getBoxTipoVeicolo() const;
     QCheckBox* getCkMarca()const;
     QLineEdit* getCercaMarca()const;
     QCheckBox* getCkModello()const;
@@ -115,7 +115,7 @@ public:
     QCheckBox* getCkCavalli()const;
     QLineEdit* getCercaCavalli()const;
     QCheckBox* getCkAlimentazione()const;
-    AlimTipeBox* getBoxAlimentazione()const;
+    AlimTypeBox* getBoxAlimentazione()const;
     QCheckBox* getCkTarga()const;
     QLineEdit* getCercaTarga()const;
     QCheckBox* getCkPrezzo()const;
@@ -125,7 +125,7 @@ public:
     QCheckBox* getCkNumeroPosti()const;
     QLineEdit* getCercaNumeroPosti()const;
     QCheckBox* getCkSegmento()const;
-    SegmentoTipeBox* getBoxSegmento()const;
+    SegmentoTypeBox* getBoxSegmento()const;
     QCheckBox* getCkAutocarro()const;
     QCheckBox* getCkNumeroAssi()const;
     QLineEdit* getCercaNumeroAssi()const;

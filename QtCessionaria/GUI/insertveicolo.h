@@ -1,10 +1,10 @@
 #ifndef INSERTVEICOLO_H
 #define INSERTVEICOLO_H
 
-#include "alimtipebox.h"
-#include "segmentotipebox.h"
+#include "alimtypebox.h"
+#include "segmentotypebox.h"
 #include "tipomotobox.h"
-#include "veicolotipebox.h"
+#include "veicolotypebox.h"
 
 #include <QComboBox>
 #include <QFormLayout>
@@ -23,7 +23,7 @@ class InsertVeicolo : public QWidget
     Q_OBJECT
 
  private:
-    VeicoloTipeBox* tipoVeicolo;
+    VeicoloTypeBox* tipoVeicolo;
     QLineEdit* marca;
     QLineEdit* modello;
 
@@ -35,7 +35,7 @@ class InsertVeicolo : public QWidget
     QLineEdit* numeroMotore;
     QLineEdit* cilindrata;
     QLineEdit* cavalli;
-    AlimTipeBox* alimentazione;
+    AlimTypeBox* alimentazione;
 
     QLineEdit* targa;
     QLineEdit* prezzo;
@@ -45,7 +45,7 @@ class InsertVeicolo : public QWidget
 
     //AUTO
 
-    SegmentoTipeBox* segmento;
+    SegmentoTypeBox* segmento;
     QCheckBox* autocarro;
 
     //CAMION
@@ -66,7 +66,7 @@ class InsertVeicolo : public QWidget
 public:
      InsertVeicolo(QWidget* = nullptr);
 
-     VeicoloTipeBox* getTipoVeicolo() const;
+     VeicoloTypeBox* getTipoVeicolo() const;
      QLineEdit* getMarca() const;
      QLineEdit* getModello() const;
      QLineEdit* getNumeroTelaio() const;
@@ -76,12 +76,12 @@ public:
      QLineEdit* getNumeroMotore() const;
      QLineEdit* getCilindrata() const;
      QLineEdit* getCavalli() const;
-     AlimTipeBox* getAlimentazione() const;
+     AlimTypeBox* getAlimentazione() const;
      QLineEdit* getTarga() const;
      QLineEdit* getPrezzo() const;
      QLineEdit* getMassa() const;
      QLineEdit* getNumeroPosti() const;
-     SegmentoTipeBox* getSegmento() const;
+     SegmentoTypeBox* getSegmento() const;
      QCheckBox* getAutocarro() const;
      QLineEdit* getNumeroAssi() const;
      QCheckBox* getRibaltabile() const;
