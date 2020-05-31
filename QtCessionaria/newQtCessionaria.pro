@@ -16,12 +16,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    GUI/alimtipebox.cpp \
+    GUI/alimtypebox.cpp \
     GUI/insertveicolo.cpp \
-    GUI/segmentotipebox.cpp \
+    GUI/segmentotypebox.cpp \
     GUI/tipomotobox.cpp \
     GUI/usermenu.cpp \
-    GUI/veicolotipebox.cpp \
+    GUI/veicolotypebox.cpp \
     controller/controller.cpp \
     hierarchy/auto.cpp \
     hierarchy/camion.cpp \
@@ -41,11 +41,12 @@ SOURCES += \
 
 
 HEADERS += \
-    GUI/alimtipebox.h \
+    GUI/alimtypebox.h \
     GUI/insertveicolo.h \
-    GUI/segmentotipebox.h \
+    GUI/segmentotypebox.h \
     GUI/tipomotobox.h \
     GUI/usermenu.h \
+    GUI/veicolotypebox.h \
     container/container.h \
     controller/controller.h \
     exceptions/exceptions.h \
@@ -61,7 +62,6 @@ HEADERS += \
     container/container.h \
     controller/controller.h \
     exceptions/exceptions.h \
-    GUI/veicolotipebox.h \
     GUI/ricerca.h \
     GUI/listviewwidget.h \
     GUI/printlistview.h \

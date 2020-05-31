@@ -4,10 +4,10 @@
 #include <QComboBox>
 #include <QObject>
 
-class SegmentoTipeBox : public QComboBox
+class SegmentoTypeBox : public QComboBox
 {
 public:
-    SegmentoTipeBox(QWidget* = nullptr);
+    SegmentoTypeBox(QWidget* = nullptr);
 };
 
 #endif // SEGMENTOTIPEBOX_H

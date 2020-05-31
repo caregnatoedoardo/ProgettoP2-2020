@@ -7,10 +7,10 @@
 
 using std::string;
 
-class VeicoloTipeBox : public QComboBox
+class VeicoloTypeBox : public QComboBox
 {
 public:
-    VeicoloTipeBox(QWidget* = nullptr);
+    VeicoloTypeBox(QWidget* = nullptr);
 };
 
 #endif // VEICOLOTIPEBOX_H

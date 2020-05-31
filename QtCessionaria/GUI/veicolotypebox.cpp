@@ -1,6 +1,6 @@
-#include "veicolotipebox.h"
+#include "veicolotypebox.h"
 
-VeicoloTipeBox::VeicoloTipeBox(QWidget* parent):
+VeicoloTypeBox::VeicoloTypeBox(QWidget* parent):
     QComboBox (parent)
 {
 addItem("Tipo Inserimento");

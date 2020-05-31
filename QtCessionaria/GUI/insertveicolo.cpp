@@ -13,7 +13,7 @@
 
 InsertVeicolo::InsertVeicolo(QWidget*p):
     QWidget(p),
-    tipoVeicolo(new VeicoloTipeBox(this)),
+    tipoVeicolo(new VeicoloTypeBox(this)),
     marca(new QLineEdit(this)),
     modello(new QLineEdit(this)),
     numeroTelaio(new QLineEdit(this)),
@@ -23,13 +23,13 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     numeroMotore(new QLineEdit(this)),
     cilindrata(new QLineEdit(this)),
     cavalli(new QLineEdit(this)),
-    alimentazione(new AlimTipeBox(this)),
+    alimentazione(new AlimTypeBox(this)),
     targa(new QLineEdit(this)),
     prezzo(new QLineEdit(this)),
     massa(new QLineEdit(this)),
     numeroPosti(new QLineEdit(this)),
 
-    segmento(new SegmentoTipeBox(this)),
+    segmento(new SegmentoTypeBox(this)),
     autocarro(new QCheckBox("Autocarro",this)),
     numeroAssi(new QLineEdit(this)),
     ribaltabile(new QCheckBox("Ribaltabile",this)),
@@ -292,7 +292,7 @@ void InsertVeicolo::slotDisableForm(int i) const {
 
 
 
-VeicoloTipeBox* InsertVeicolo::getTipoVeicolo() const
+VeicoloTypeBox* InsertVeicolo::getTipoVeicolo() const
 {
     return tipoVeicolo;
 }
@@ -332,7 +332,7 @@ QLineEdit* InsertVeicolo::getCavalli() const
 {
     return cavalli;
 }
-AlimTipeBox* InsertVeicolo::getAlimentazione() const
+AlimTypeBox* InsertVeicolo::getAlimentazione() const
 {
     return  alimentazione;
 }
@@ -352,7 +352,7 @@ QLineEdit* InsertVeicolo::getNumeroPosti() const
 {
     return numeroPosti;
 }
-SegmentoTipeBox* InsertVeicolo::getSegmento() const
+SegmentoTypeBox* InsertVeicolo::getSegmento() const
 {
     return segmento;
 }

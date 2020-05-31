@@ -1,7 +1,7 @@
-#include "alimtipebox.h"
+#include "alimtypebox.h"
 
 
-AlimTipeBox::AlimTipeBox(QWidget* parent):
+AlimTypeBox::AlimTypeBox(QWidget* parent):
     QComboBox (parent)
 {
     addItem("benzina");

@@ -8,7 +8,7 @@ Ricerca::Ricerca(QWidget *p):
     QWidget(p),
 
     ckTipo(new QCheckBox("Tipo",this)),
-    boxTipoVeicolo(new VeicoloTipeBox(this)),
+    boxTipoVeicolo(new VeicoloTypeBox(this)),
 
     ckMarca(new QCheckBox("Marca",this)),
     cercaMarca(new QLineEdit(this)),
@@ -28,7 +28,7 @@ Ricerca::Ricerca(QWidget *p):
     ckCavalli(new QCheckBox("Cavalli",this)),
     cercaCavalli(new QLineEdit(this)),
     ckAlimentazione(new QCheckBox("Alimentazione",this)),
-    boxAlimentazione(new AlimTipeBox(this)),
+    boxAlimentazione(new AlimTypeBox(this)),
     ckTarga(new QCheckBox("Targa",this)),
     cercaTarga(new QLineEdit(this)),
     ckPrezzo(new QCheckBox("Prezzo",this)),
@@ -38,7 +38,7 @@ Ricerca::Ricerca(QWidget *p):
     ckNumeroPosti(new QCheckBox("Numero Posti",this)),
     cercaNumeroPosti(new QLineEdit(this)),
     ckSegmento(new QCheckBox("Segmento",this)),
-    boxSegmento(new SegmentoTipeBox(this)),
+    boxSegmento(new SegmentoTypeBox(this)),
     ckAutocarro(new QCheckBox("Autocarro",this)),
     ckNumeroAssi(new QCheckBox("Numero Assi",this)),
     cercaNumeroAssi(new QLineEdit(this)),
@@ -207,9 +207,9 @@ QCheckBox* Ricerca::getCkRibaltabile() const{return ckRibaltabile;}
 QCheckBox* Ricerca::getCkSidecar() const{return ckSidecar;}
 QCheckBox* Ricerca::getCkClasseEmissioni() const{return ckClasseEmissioni;}
 QCheckBox* Ricerca::getCkTipoMoto() const{return ckTipoMoto;}
-VeicoloTipeBox* Ricerca::getBoxTipoVeicolo() const{return boxTipoVeicolo;}
-AlimTipeBox* Ricerca::getBoxAlimentazione() const{return boxAlimentazione;}
-SegmentoTipeBox* Ricerca::getBoxSegmento() const{return boxSegmento;}
+VeicoloTypeBox* Ricerca::getBoxTipoVeicolo() const{return boxTipoVeicolo;}
+AlimTypeBox* Ricerca::getBoxAlimentazione() const{return boxAlimentazione;}
+SegmentoTypeBox* Ricerca::getBoxSegmento() const{return boxSegmento;}
 TipomotoBox* Ricerca::getBoxTipoMoto() const{return boxTipoMoto;}
 ListViewWidget* Ricerca::getListaVeic() const{return listaveic;}
 
