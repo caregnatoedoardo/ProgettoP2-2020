@@ -31,7 +31,7 @@ private:
         T info;
         Nodo* prev=nullptr, *next =nullptr ;
         Nodo(const T i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
-        ~Nodo(){delete info; delete prev; delete next;}
+        ~Nodo(){delete info;/* delete prev; delete next;*/}
         T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
     };
     Nodo* first;
@@ -319,7 +319,7 @@ bool Container<T>::isDuplicate(const T& t)const{
     }// se è vuota non è duplicato
 
     Nodo* scorri=first;
-    while(scorri->next){
+    while(scorri && scorri->next){
         if(scorri->info == t) return true;
         scorri=scorri->next;
     }
