@@ -26,6 +26,8 @@ public:
     Container<Veicolo*>::Iteratore begin()const;
     Container<Veicolo*>::Iteratore end()const;
 
+
+
     void save();
     void load();
 

@@ -86,8 +86,10 @@ Ricerca::Ricerca(QWidget *p):
     form->addRow(cerca,reset);
 
     mainLayout->addLayout(form);
-    //list
+    mainLayout->addWidget(listaveic);
     mainLayout->addWidget(elimina);
+
+
 
 
 }
