@@ -398,18 +398,22 @@ bool Container<T>::checkDuplicatePlate(const T& t)const{
         Exc(7);
         return false;
     }
+
+    //se l'oggetto è di tipo carrozzeria, controllo se ha il numero telaio uguale ad un mezzo/veicolo già inserito.
+
     Mezzo* me=dynamic_cast<Mezzo*>(t);
+    //parte di carrozzeria e motore per controllare se il numero telaio o numero motore uguali.
     Nodo* scorri=first;
     while(scorri->next){
        Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-        if(me && mz && mz->getTarga()==me->getTarga())
+        if(me && mz && (mz->getTarga()==me->getTarga() || mz->getNMotore()==me->getNMotore() || mz->getNTelaio()==mz->getNTelaio()))
             return true;
 
         scorri=scorri->next;
     }
     //confronto ultimo nodo:
     Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-    return(me && mz && mz->getTarga()==me->getTarga());
+    return(me && mz && (mz->getTarga()==me->getTarga() || mz->getNMotore()==me->getNMotore() || mz->getNTelaio()==mz->getNTelaio()));
 }
 
 template<class T>

@@ -287,5 +287,4 @@ Controller::~Controller(){
 void Controller::closeEvent(QCloseEvent *event){
     // slotSalva();
     QWidget::closeEvent(event);
-
 }
