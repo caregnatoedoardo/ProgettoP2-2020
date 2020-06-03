@@ -15,17 +15,12 @@ using std::cout;
 
 int main(int argc, char *argv[])
 {
-    /*QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();*/
-
     /*Auto* lf=new Auto("Lancia","Fulvia","",1234,false,"marrone",4,56789,1296,90, benzina, "CA456AC",17000, 1200, 4, berlina, false);
     Camion* ca=new Camion ("Man", "TVX","",123,false,"nero",1,456,6800,400,benzina,"GA456DS",456,6,1,0,true);
     Moto* mt = new Moto("Honda", "CBR","",123,true,"rosso",1,456,600,60,benzina,"AB12345",17000,400,1,false,6,corsa);
 
     Auto* lf2= new Auto("Lancsia","Fulvia","",1234,false,"marrone",4,56789,1296,90, benzina, "CA451AC",17000, 1200, 4, berlina, false);
-    Camion* ca2 = new Camion("Man", "TVX","",123,false,"nero",1,456,6800,400,benzina,"CA459AC",49000,6,1,0,false);
+    Camion* ca2 = new Camion("Man", "TVX","",123,false,"nero",1,456,6800,400,benzina,"AA009AV",49000,6,1,0,false);
     Moto* mt2 = new Moto("Honda", "CBR","",123,true,"rosso",1,456,600,60,benzina,"AB12045",17000,400,1,false,6,corsa);
     Camion* ca3 = new Camion("IVECO", "STRALIS","",123,false,"nero",1,456,6800,400,benzina,"IV333C4",456,6,1,0,false);
 
@@ -34,12 +29,13 @@ int main(int argc, char *argv[])
     ctveic->push_end(ca);
     ctveic->push_end(ca2);
     ctveic->push(mt,0);
+    //ctveic->push_end(lf2);
 
     for(auto it=ctveic->begin();it!=ctveic->end();++it){
         cout<<"CIAO";
     }
 
-    ctveic->erase();
+    //ctveic->erase();
 
     //Container<Veicolo*> *ctcopia= new Container<Veicolo*>;
     //ctcopia=ctveic->getVehicleByType("camion");
@@ -48,17 +44,17 @@ int main(int argc, char *argv[])
 
     //ctveic->modify(mt,ca3);
 
-    /*bool dup=ctveic->checkDuplicatePlate("GA456DS");
+    bool dup=ctveic->checkDuplicatePlate("GA456DS");
     if(dup)
-        cout<<"DUPLICATA";*/
+        cout<<"DUPLICATA";
 
     //ctveic->remove(mt);
-    /*if(lf2==lf) cout<<"MACCHINE UGUALI\n";
+    if(lf2==lf) cout<<"MACCHINE UGUALI\n";
     if(ca2==ca) cout<<"CAMION UGUALI\n";
-    if(mt2==mt) cout<<"MOTO UGUALI\n";*/
+    if(mt2==mt) cout<<"MOTO UGUALI\n";
 
 
-    /*cout<<std::endl;
+    cout<<std::endl;
     cout<<lf->getDetails();
     cout<<std::endl;
     cout<<ca2->getDetails();

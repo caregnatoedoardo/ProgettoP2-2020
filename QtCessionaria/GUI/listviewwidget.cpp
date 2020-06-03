@@ -11,8 +11,8 @@ ListViewWidget::ListViewWidget(QWidget* p): parent(p)
 
 void ListViewWidget::addVeicolo(Veicolo *a)
 {
-PrintListView* ve = new PrintListView(a,parent);
-addItem(ve);
+    PrintListView* ve = new PrintListView(a,parent);
+    addItem(ve);
 }
 
 PrintListView* ListViewWidget::takeItem(int i){

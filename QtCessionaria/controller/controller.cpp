@@ -185,7 +185,6 @@ void Controller::slotShowRicerca() const {
 void Controller::slotRicerca() const {
     //bisogna resettare tutti i campi ricerca.
     //slotResetRicerca
-    ricercaView->getListaVeic()->clear();
     try{
         if(!model->getContainerSize())
             throw Exc();
@@ -262,12 +261,11 @@ void Controller::slotRicerca() const {
                     ricercaView->getListaVeic()->addVeicolo(*it);
                 }
             }
-
-
         }
     }catch(Exc){
         Exc(7);
     }
+    ricercaView->getListaVeic()->clear();
 }
 
 void Controller::slotEliminaElemento() const {

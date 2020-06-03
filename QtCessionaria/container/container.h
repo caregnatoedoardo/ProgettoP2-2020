@@ -73,6 +73,8 @@ public:
     bool search(const T&)const;
     bool checkDuplicatePlate(const T&)const;
     bool checkPlate(string)const;//sarà usata per controllare la stringa nella textbox dell'interfaccia grafica. Uguale a checkDuplicatePlate ma senza cast del parametro formale
+    bool checkDuplicateChassis(const T&)const;
+    bool checkDuplicateEngine(const T&)const;
     unsigned int getSize()const;
     Container<T>& copy(const Container&);//esegue una copia del container
     Container<T>* getVehicleByType(const string type);//restituisce un nuovo container con tutti i veicoli di tipo type inserito
@@ -192,7 +194,7 @@ void Container<T>::push_begin(const T& t){
         return;
     }
     try{
-        if(!isDuplicate(t) && !checkDuplicatePlate(t)){
+        if(isDuplicate(t) && checkDuplicatePlate(t) && checkDuplicateEngine(t) && checkDuplicateChassis(t)){
             Nodo* newfirst=new Nodo(t,nullptr,first);
             first->prev=newfirst;
             first=newfirst;
@@ -201,7 +203,7 @@ void Container<T>::push_begin(const T& t){
         throw Exc();
     }
     catch (Exc){
-        Exc(6,"veicolo duplicato");
+        Exc(6,"duplicato");
     }
 }
 
@@ -212,7 +214,7 @@ void Container<T>::push_end(const T& t){
         return;
     }
     try{
-        if(!isDuplicate(t) && !checkDuplicatePlate(t)){
+        if(isDuplicate(t) && checkDuplicatePlate(t) && checkDuplicateEngine(t) && checkDuplicateChassis(t)){
             Nodo* scorri=first;
             while(scorri->next)
                 scorri=scorri->next;
@@ -222,14 +224,14 @@ void Container<T>::push_end(const T& t){
         throw Exc();
     }
     catch(Exc){
-        Exc(6,"veicolo duplicato");
+        Exc(6,"duplicato");
     }
 }
 
 template<class T>
 void Container<T>::push(const T& t, unsigned int posiz){
     try{
-        if(isDuplicate(t) && !checkDuplicatePlate(t))   //check se il veicolo è duplicato
+        if(isDuplicate(t) && checkDuplicatePlate(t) && checkDuplicateEngine(t) && checkDuplicateChassis(t))  //check se il veicolo è duplicato
             throw Exc();
     }
     catch(Exc){
@@ -399,21 +401,18 @@ bool Container<T>::checkDuplicatePlate(const T& t)const{
         return false;
     }
 
-    //se l'oggetto è di tipo carrozzeria, controllo se ha il numero telaio uguale ad un mezzo/veicolo già inserito.
-
     Mezzo* me=dynamic_cast<Mezzo*>(t);
-    //parte di carrozzeria e motore per controllare se il numero telaio o numero motore uguali.
     Nodo* scorri=first;
     while(scorri->next){
        Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-        if(me && mz && (mz->getTarga()==me->getTarga() || mz->getNMotore()==me->getNMotore() || mz->getNTelaio()==mz->getNTelaio()))
+        if(me && mz && (mz->getTarga()==me->getTarga()))
             return true;
 
         scorri=scorri->next;
     }
     //confronto ultimo nodo:
     Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-    return(me && mz && (mz->getTarga()==me->getTarga() || mz->getNMotore()==me->getNMotore() || mz->getNTelaio()==mz->getNTelaio()));
+    return(me && mz && (mz->getTarga()==me->getTarga()));
 }
 
 template<class T>
@@ -438,14 +437,53 @@ bool Container<T>::checkPlate(string plate)const{
 }
 
 template<class T>
-unsigned int Container<T>::getSize()const{
+bool Container<T>::checkDuplicateEngine(const T& t)const{
     try{
         if(isEmpty()) throw Exc();
     }
     catch(Exc){
         Exc(7);
-        return 0;
+        return false;
     }
+    Nodo* scorri=first;
+    Motore* mt=dynamic_cast<Motore*>(t);
+    while(mt && scorri->next){
+        Motore* mttemp=dynamic_cast<Mezzo*>(scorri->info);
+        if(mttemp && mt->getNMotore()==mttemp->getNMotore())
+            return true;
+        scorri=scorri->next;
+    }
+    //confronto ultimo nodo:
+    Mezzo* mttemp=dynamic_cast<Mezzo*>(scorri->info);
+    return(mt && (mttemp && mt->getNMotore()==mttemp->getNMotore()));
+}
+
+template<class T>
+bool Container<T>::checkDuplicateChassis(const T& t)const{
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return false;
+    }
+    Nodo* scorri=first;
+    Carrozzeria* cr=dynamic_cast<Carrozzeria*>(t);
+    while(cr && scorri->next){
+        Carrozzeria* crtemp=dynamic_cast<Carrozzeria*>(scorri->info);
+        if(crtemp && cr->getNTelaio()==crtemp->getNTelaio())
+            return true;
+        scorri=scorri->next;
+    }
+    //confronto ultimo nodo:
+    Carrozzeria* crtemp=dynamic_cast<Carrozzeria*>(scorri->info);
+    return(cr && (crtemp && cr->getNTelaio()==crtemp->getNTelaio()));
+}
+
+template<class T>
+unsigned int Container<T>::getSize()const{
+    if(isEmpty()) return 0;
+
     unsigned int size=0;
     Nodo*scorri=first;
     while(scorri->next){
@@ -490,18 +528,15 @@ string Container<T>::getTipoVeicolo()const{
         if(mto) return "moto";
         throw Exc();
     }catch(Exc){
-         Exc(6,"non valido");
+         Exc(4,"non valido");
     }
 }
 
 template<class T>
 void Container<T>::erase(){
-    while(!isEmpty()){
+    while(!isEmpty())
         remove(first->info);
-    }
     return;
 }
 
 #endif // CONTAINER_H
-
-
