@@ -7,8 +7,6 @@ ListViewWidget::ListViewWidget(QWidget* p): parent(p)
 
 }
 
-
-
 void ListViewWidget::addVeicolo(Veicolo *a)
 {
     PrintListView* ve = new PrintListView(a,parent);
@@ -30,9 +28,8 @@ PrintListView*  ListViewWidget::takeItem(Veicolo* iad){
             ritornato = static_cast<PrintListView*>(takeItem(i));
             find = true;
         }
-        return ritornato;
     }
-
+    return ritornato;
 }
 
 

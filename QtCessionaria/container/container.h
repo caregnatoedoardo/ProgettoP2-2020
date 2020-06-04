@@ -31,7 +31,7 @@ private:
         T info;
         Nodo* prev=nullptr, *next =nullptr ;
         Nodo(const T i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
-        ~Nodo(){delete info;/* delete prev; delete next;*/}
+        ~Nodo(){delete info;}
         T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
     };
     Nodo* first;
@@ -490,7 +490,7 @@ unsigned int Container<T>::getSize()const{
         size++;
         scorri=scorri->next;
     }
-    return size++;
+    return ++size;
 }
 
 template<class T>

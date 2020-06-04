@@ -186,6 +186,7 @@ void Controller::slotRicerca() const {
     //bisogna resettare tutti i campi ricerca.
     //slotResetRicerca
     try{
+        int size=model->getContainerSize();
         if(!model->getContainerSize())
             throw Exc();
         else{
@@ -252,7 +253,7 @@ void Controller::slotRicerca() const {
             if(ricercaView->getCkClasseEmissioni()->isChecked())
                 model->filterByClasseEmissioni(ricercaView->getCercaClasseEmissioni()->text().toInt());
 
-            if(ricercaView->getCkTipo()->isChecked())
+            if(ricercaView->getCkTipoMoto()->isChecked())
                 model->filterByTypeMoto(ricercaView->getCkTipoMoto()->text().toStdString());
 
             if(1==0) return ;
