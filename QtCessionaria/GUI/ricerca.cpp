@@ -49,7 +49,8 @@ Ricerca::Ricerca(QWidget *p):
     ckTipoMoto(new QCheckBox("Tipo Moto",this)),
     boxTipoMoto(new TipomotoBox(this)),
 
-    //BOTTONI
+
+    listaveic(new ListViewWidget(this)),
     cerca(new QPushButton("CERCA",this)),
     elimina(new QPushButton("ELIMINA TUTTI I RISULTATI",this)),
     reset(new QPushButton("RESET RICERCA",this))

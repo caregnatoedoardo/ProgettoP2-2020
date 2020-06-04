@@ -1,6 +1,7 @@
 #ifndef PRINTLISTVIEW_H
 #define PRINTLISTVIEW_H
 #include <hierarchy/veicolo.h>
+#include <hierarchy/carrozzeria.h>
 #include <QListWidgetItem>
 
 
