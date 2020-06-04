@@ -286,6 +286,17 @@ void Controller::slotShowInserisci()const{
 
 }
 
+void Controller::slotShowVisualizza()const{
+    groupView->show();
+    ricercaView->hide();
+    inserisciVeicolo->hide();
+
+}
+
+
+
+
+
 Controller::~Controller(){
     model->save();
 }

@@ -4,7 +4,7 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     menu(new QMenu("File",this)),
     salva(new QAction("Salva",this)),
     carica(new QAction("Carica",this)),
-
+    visualizza(new QAction("Visualizza",this)),
     ricerca(new QAction("Ricerca",this)),
     esci(new QAction("Esci",this)),
     inserisci(new QAction("Inserisci",this))
@@ -15,6 +15,8 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     actionList.push_back(ricerca);
     actionList.push_back(salva);
     actionList.push_back(carica);
+    actionList.push_back(inserisci);
+    actionList.push_back(visualizza);
     actionList.push_back(esci);
 
     menu->addActions(actionList);
@@ -22,6 +24,7 @@ Usermenu::Usermenu(QWidget* p):parent(p),
 
     addMenu(menu);
     addAction(inserisci);
+    addAction(visualizza);
     addAction(ricerca);
 
     actionList.clear();
@@ -31,6 +34,7 @@ Usermenu::Usermenu(QWidget* p):parent(p),
    connect(carica, SIGNAL(triggered()),parent,SLOT(slotCarica()));
    connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotShowRicerca()));
    connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotShowInserisci()));
+   connect(visualizza,SIGNAL(triggered()),parent,SLOT(slotShowVisualizza()));
 }
 
 

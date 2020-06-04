@@ -31,7 +31,7 @@ public:
 public slots:
    /*
     void slotLoad();
-    void slotShowVisualizza() const;
+
     void slotShowModifica();
     void slotResetRicerca() const;
 */
@@ -43,6 +43,7 @@ public slots:
     void slotAggiungiVeicolo() const;
     void slotFlagDataChange(bool flag)const;
     void slotShowInserisci() const;
+    void slotShowVisualizza() const;
 };
 
 #endif // CONTROLLER_H

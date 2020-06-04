@@ -15,6 +15,7 @@ private:
 
     QAction* salva;
     QAction* carica;
+    QAction* visualizza;
     QAction* ricerca;
     QAction* inserisci;
     QAction* esci;

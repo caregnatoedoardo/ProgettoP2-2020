@@ -14,7 +14,7 @@ QPushButton* GroupView::getBtnModifica()const
 
 GroupView::GroupView(QWidget* p):
     QWidget(p),
-    btnElimina(new QPushButton("Elimina FDV Selezionato",this)),
+    btnElimina(new QPushButton("Elimina Record Selezionato",this)),
     btnModifica(new QPushButton("Modifica",this)),
     list(new ListViewWidget(this)),
     dialog(nullptr)

@@ -9,7 +9,9 @@ PrintListView::PrintListView(Veicolo* i, QWidget* p):
 }
 
 void PrintListView::update(){
-    setText(QString::fromStdString(veicolo->getDetails()));
+   setText(QString::fromStdString(veicolo->getDetails()));
+
+
 }
 
 Veicolo* PrintListView::getItemAddress()const{
