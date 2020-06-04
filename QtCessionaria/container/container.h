@@ -194,7 +194,7 @@ void Container<T>::push_begin(const T& t){
         return;
     }
     try{
-        if(isDuplicate(t) && checkDuplicatePlate(t) && checkDuplicateEngine(t) && checkDuplicateChassis(t)){
+        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t)){
             Nodo* newfirst=new Nodo(t,nullptr,first);
             first->prev=newfirst;
             first=newfirst;
@@ -214,7 +214,7 @@ void Container<T>::push_end(const T& t){
         return;
     }
     try{
-        if(isDuplicate(t) && checkDuplicatePlate(t) && checkDuplicateEngine(t) && checkDuplicateChassis(t)){
+        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t)){
             Nodo* scorri=first;
             while(scorri->next)
                 scorri=scorri->next;
@@ -231,7 +231,7 @@ void Container<T>::push_end(const T& t){
 template<class T>
 void Container<T>::push(const T& t, unsigned int posiz){
     try{
-        if(isDuplicate(t) && checkDuplicatePlate(t) && checkDuplicateEngine(t) && checkDuplicateChassis(t))  //check se il veicolo è duplicato
+        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t))  //check se il veicolo è duplicato
             throw Exc();
     }
     catch(Exc){
@@ -312,13 +312,7 @@ void Container<T>::remove(const T& t){
 
 template<class T>
 bool Container<T>::isDuplicate(const T& t)const{
-    try{
-        if(isEmpty()) throw Exc();
-    }
-    catch(Exc){
-        Exc(7);
-        return false;
-    }// se è vuota non è duplicato
+    if(isEmpty()) return false;
 
     Nodo* scorri=first;
     while(scorri && scorri->next){
@@ -393,17 +387,11 @@ bool Container<T>::search(const T& t)const{
 
 template<class T>
 bool Container<T>::checkDuplicatePlate(const T& t)const{
-    try{
-        if(isEmpty()) throw Exc();
-    }
-    catch(Exc){
-        Exc(7);
-        return false;
-    }
+    if(isEmpty()) return false;
 
     Mezzo* me=dynamic_cast<Mezzo*>(t);
     Nodo* scorri=first;
-    while(scorri->next){
+    while(me && scorri->next){
        Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
         if(me && mz && (mz->getTarga()==me->getTarga()))
             return true;
@@ -438,13 +426,8 @@ bool Container<T>::checkPlate(string plate)const{
 
 template<class T>
 bool Container<T>::checkDuplicateEngine(const T& t)const{
-    try{
-        if(isEmpty()) throw Exc();
-    }
-    catch(Exc){
-        Exc(7);
-        return false;
-    }
+    if(isEmpty()) return false;
+
     Nodo* scorri=first;
     Motore* mt=dynamic_cast<Motore*>(t);
     while(mt && scorri->next){
@@ -460,13 +443,8 @@ bool Container<T>::checkDuplicateEngine(const T& t)const{
 
 template<class T>
 bool Container<T>::checkDuplicateChassis(const T& t)const{
-    try{
-        if(isEmpty()) throw Exc();
-    }
-    catch(Exc){
-        Exc(7);
-        return false;
-    }
+    if(isEmpty()) return false;
+
     Nodo* scorri=first;
     Carrozzeria* cr=dynamic_cast<Carrozzeria*>(t);
     while(cr && scorri->next){

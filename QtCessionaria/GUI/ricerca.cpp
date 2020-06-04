@@ -50,10 +50,10 @@ Ricerca::Ricerca(QWidget *p):
     boxTipoMoto(new TipomotoBox(this)),
 
 
-    listaveic(new ListViewWidget(this)),
     cerca(new QPushButton("CERCA",this)),
     elimina(new QPushButton("ELIMINA TUTTI I RISULTATI",this)),
-    reset(new QPushButton("RESET RICERCA",this))
+    reset(new QPushButton("RESET RICERCA",this)),
+    listaveic(new ListViewWidget(this))
 
 {
 

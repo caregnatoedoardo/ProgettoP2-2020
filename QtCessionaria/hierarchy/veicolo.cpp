@@ -33,5 +33,5 @@ string Veicolo::getModello() const{return modello;}
 string Veicolo::getPathImg() const{return pathimg;}
 
 string Veicolo::getDetails()const{
-    return marca+" "+modello+" ";
+    return "MARCA: "+marca+" MODELLO: "+modello+" ";
 }

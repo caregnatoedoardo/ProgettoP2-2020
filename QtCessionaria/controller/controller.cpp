@@ -186,7 +186,6 @@ void Controller::slotRicerca() const {
     //bisogna resettare tutti i campi ricerca.
     //slotResetRicerca
     try{
-        int size=model->getContainerSize();
         if(!model->getContainerSize())
             throw Exc();
         else{

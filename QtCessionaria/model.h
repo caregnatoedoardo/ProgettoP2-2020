@@ -31,7 +31,7 @@ public:
     void save();
     void load();
 
-    void erase (unsigned int);
+    void erase ();
     void erase (Veicolo*);
 
     unsigned int getContainerSize()const;

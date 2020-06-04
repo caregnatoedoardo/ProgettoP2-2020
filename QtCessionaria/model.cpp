@@ -181,7 +181,7 @@ void Model::load(){
     flagsaved=true;
 }
 
-void Model::erase(unsigned int i){
+void Model::erase(){
     flagsaved = false;
     dbVeicoli->erase();
 }

@@ -26,16 +26,11 @@ Usermenu::Usermenu(QWidget* p):parent(p),
 
     actionList.clear();
 
-    connect(esci, SIGNAL(triggered()),parent,SLOT(slotClose()));
+   connect(esci, SIGNAL(triggered()),parent,SLOT(slotClose()));
    connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));
    connect(carica, SIGNAL(triggered()),parent,SLOT(slotCarica()));
    connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotShowRicerca()));
    connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotShowInserisci()));
-
-
-
-
-
 }
 
 

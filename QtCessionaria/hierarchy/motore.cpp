@@ -45,10 +45,11 @@ string Motore::convertToAlim(alimentazione al) const{
     }catch(Exc){
         Exc(5);
     }
+    return "";
 }
 
 string Motore::getDetails() const{
-    return Veicolo::getDetails()+std::to_string(n_motore)+" "+std::to_string(cilindrata)+" "+std::to_string(cavalli)+" "+convertToAlim(alim)+" ";
+    return Veicolo::getDetails()+"NUMERO MOTORE: "+ std::to_string(n_motore)+" CILINDRATA: "+std::to_string(cilindrata)+" CAVALLI: "+std::to_string(cavalli)+" ALIMENTAZIONE: "+convertToAlim(alim)+" ";
 }
 
 

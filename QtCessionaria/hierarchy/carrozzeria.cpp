@@ -34,5 +34,5 @@ double Carrozzeria::getLunghezza() const{return lunghezza;}
 string Carrozzeria::getTipo() const{return "carrozzeria";}
 
 string Carrozzeria::getDetails() const{
-    return Veicolo::getDetails()+std::to_string(n_telaio)+" "+std::to_string(cambio_auto)+" "+colore+" "+std::to_string(lunghezza)+" ";
+    return Veicolo::getDetails()+"NUMERO TELAIO: "+std::to_string(n_telaio)+" CAMBIO AUTOMATICO: "+std::to_string(cambio_auto)+" COLORE: "+colore+" LUNGHEZZA: "+std::to_string(lunghezza)+" ";
 }
