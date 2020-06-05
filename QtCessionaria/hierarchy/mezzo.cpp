@@ -50,7 +50,7 @@ bool Mezzo::checkTarga()const{//funzione valida solamente per auto e camion. Sar
 
 
 string Mezzo::getDetails() const{
-    return Carrozzeria::getDetails()+"NUMERO MOTORE: "+std::to_string(Motore::getNMotore())+" CILINDRATA: "+std::to_string(Motore::getCilindrata())+" CAVALLI: "+std::to_string(Motore::getCavalli())+" ALIMENTAZIONE: "+Motore::convertToAlim(getAlimentazione())+" TARGA: "+targa+" PREZZO: "+std::to_string(prezzo)+" MASSA: "+std::to_string(massa)+" NUMPOSTI: "+std::to_string(numposti)+" ";
+    return Carrozzeria::getDetails()+"NUMERO MOTORE: "+std::to_string(Motore::getNMotore())+" \nCILINDRATA: "+std::to_string(Motore::getCilindrata())+" \nCAVALLI: "+std::to_string(Motore::getCavalli())+" \nALIMENTAZIONE: "+Motore::convertToAlim(getAlimentazione())+" \nTARGA: "+targa+" \nPREZZO: "+std::to_string(prezzo)+" \nMASSA: "+std::to_string(massa)+" \nNUMPOSTI: "+std::to_string(numposti)+" \n";
     //non richiamo Motore::getDetails() per non avere i doppi dettagli di veicolo (marca e modello).
 }
 

@@ -56,7 +56,7 @@ Model* Controller::getModel(){
     return model;
 }
 
-void Controller:: slotAggiungiVeicolo() const{
+void Controller::slotAggiungiVeicolo() const{
     //MOTORE        =0
     //CARROZZERIA   =1
     //AUTO          =2
@@ -265,7 +265,7 @@ void Controller::slotRicerca() const {
     }catch(Exc){
         Exc(7);
     }
-    ricercaView->getListaVeic()->clear();
+    //ricercaView->getListaVeic()->clear();
 }
 
 void Controller::slotEliminaElemento() const {
