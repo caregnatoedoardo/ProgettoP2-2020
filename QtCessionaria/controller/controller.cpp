@@ -294,9 +294,6 @@ void Controller::slotShowVisualizza()const{
 }
 
 
-
-
-
 Controller::~Controller(){
     model->save();
 }

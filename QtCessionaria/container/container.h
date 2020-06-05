@@ -72,7 +72,7 @@ public:
     //T& getVeicolo(const Nodo* n)const;//restituisce una copia dell'oggetto a cui punta l'iteratore
     bool search(const T&)const;
     bool checkDuplicatePlate(const T&)const;
-    bool checkPlate(string)const;//sarà usata per controllare la stringa nella textbox dell'interfaccia grafica. Uguale a checkDuplicatePlate ma senza cast del parametro formale
+    bool checkPlate(const T&)const;//sarà usata per controllare la stringa nella textbox dell'interfaccia grafica. Uguale a checkDuplicatePlate ma senza cast del parametro formale
     bool checkDuplicateChassis(const T&)const;
     bool checkDuplicateEngine(const T&)const;
     unsigned int getSize()const;
@@ -194,7 +194,7 @@ void Container<T>::push_begin(const T& t){
         return;
     }
     try{
-        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t)){
+        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkPlate(t)){
             Nodo* newfirst=new Nodo(t,nullptr,first);
             first->prev=newfirst;
             first=newfirst;
@@ -214,7 +214,7 @@ void Container<T>::push_end(const T& t){
         return;
     }
     try{
-        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t)){
+        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkPlate(t)){
             Nodo* scorri=first;
             while(scorri->next)
                 scorri=scorri->next;
@@ -231,7 +231,7 @@ void Container<T>::push_end(const T& t){
 template<class T>
 void Container<T>::push(const T& t, unsigned int posiz){
     try{
-        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t))  //check se il veicolo è duplicato
+        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkPlate(t))  //check se il veicolo è duplicato
             throw Exc();
     }
     catch(Exc){
@@ -404,8 +404,12 @@ bool Container<T>::checkDuplicatePlate(const T& t)const{
 }
 
 template<class T>
-bool Container<T>::checkPlate(string plate)const{
-    try{
+bool Container<T>::checkPlate(const T& t)const{
+    Mezzo* mz=dynamic_cast<Mezzo*>(t);
+    if(mz)
+        return mz->checkTarga();
+    return false;
+    /*try{
         if(isEmpty()) throw Exc();
     }
     catch(Exc){
@@ -421,7 +425,7 @@ bool Container<T>::checkPlate(string plate)const{
      }
      //confronto ultimo nodo:
      Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-     return(mz && mz->getTarga()==plate);
+     return(mz && mz->getTarga()==plate);*/
 }
 
 template<class T>
