@@ -62,9 +62,9 @@ public:
     ~Container(){if(first) delete first;}
 
     bool isEmpty()const;
-    void push_begin(const T&);
+    bool push_begin(const T&);
     bool push_end(const T&);
-    void push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
+    bool push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
     void remove(const T&);
     bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il T passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
@@ -188,22 +188,23 @@ bool Container<T>::isEmpty()const{
 }
 
 template<class T>
-void Container<T>::push_begin(const T& t){
+bool Container<T>::push_begin(const T& t){
     if(isEmpty() && checkPlate(t)){
         first=new Nodo(t,nullptr,nullptr);
-        return;
+        return true;
     }
     try{
-        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && checkPlate(t)){
+        if(checkPlate(t) && !isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t)){
             Nodo* newfirst=new Nodo(t,nullptr,first);
             first->prev=newfirst;
             first=newfirst;
-            return;
+            return true;
         }
         throw Exc();
     }
     catch (Exc){
         Exc(6,"duplicato");
+        return false;
     }
 }
 
@@ -236,23 +237,23 @@ bool Container<T>::push_end(const T& t){
 }
 
 template<class T>
-void Container<T>::push(const T& t, unsigned int posiz){
+bool Container<T>::push(const T& t, unsigned int posiz){
     try{
         if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && checkPlate(t))  //check se il veicolo è duplicato
             throw Exc();
     }
     catch(Exc){
         Exc(6,"duplicato");
-        return;
+        return false;
     }
 
     if(posiz>getSize()){
         push_end(t);
-        return;
+        return true;
     }
     if(isEmpty() || posiz==0){
         push_begin(t);
-        return;
+        return true;
     }
     Nodo* scorri=first;
     unsigned int pos=0;
@@ -260,7 +261,7 @@ void Container<T>::push(const T& t, unsigned int posiz){
         if(pos==posiz){
             scorri->prev->next=new Nodo(t,scorri->prev,scorri);
             scorri->prev=scorri->prev->next;
-            return;
+            return true;
         }
         pos++;
         scorri=scorri->next;
@@ -268,9 +269,10 @@ void Container<T>::push(const T& t, unsigned int posiz){
     if(scorri && pos==posiz){
         scorri->prev->next=new Nodo(t,scorri->prev,scorri);
         scorri->prev=scorri->prev->next;
+        return true;
     }
 
-    return;
+    return false;
 }
 
 template<class T>
@@ -416,23 +418,6 @@ bool Container<T>::checkPlate(const T& t)const{
     if(mz)
         return mz->checkTarga();
     return true;
-    /*try{
-        if(isEmpty()) throw Exc();
-    }
-    catch(Exc){
-        Exc(7);
-        return false;
-    }
-     Nodo* scorri=first;
-     while(scorri->next){
-         Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-         if(mz && mz->getTarga()==plate)
-             return true;
-         scorri=scorri->next;
-     }
-     //confronto ultimo nodo:
-     Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-     return(mz && mz->getTarga()==plate);*/
 }
 
 template<class T>
