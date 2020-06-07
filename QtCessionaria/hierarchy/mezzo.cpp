@@ -35,15 +35,18 @@ unsigned int Mezzo::getMassa() const{return massa;}
 unsigned int Mezzo::getNumPosti() const{return numposti;}
 
 bool Mezzo::checkTarga()const{//funzione valida solamente per auto e camion. Sarà ridefinita per moto
-    char alfabeto [26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    char alfabeto [26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
     char numeri[10]={'0','1','2','3','4','5','6','7','8','9'};
     if(targa.size()!=7) return false;
 
-    for(int i=0;i<26;i++){                           //controllo del primo, secondo, sesto e settimo carattere della targa (lettere)
-            if(targa[0]!=alfabeto[i] || targa[1]!=alfabeto[i] || targa[5]!=alfabeto[i] || targa[6]!=alfabeto[i]) return false;
+    for(int i=0;i<10;i++){                           //controllo del primo, secondo, sesto e settimo carattere della targa (lettere)
+        if(targa[0]==numeri[i] || targa[1]==numeri[i] || targa[5]==numeri[i] || targa[6]==numeri[i])
+            return false;
     }
-    for(int i=0;i<10;i++){                           //controllo del terzo, quarto, quinto carattere della targa (cifre)
-        if(targa[2]!=numeri[i] || targa[3]!=numeri[i] || targa[4]!=numeri[i]) return false;
+
+    for(int i=0;i<26;i++){                          //controllo del terzo, quarto, quinto carattere della targa (cifre)
+                if(targa[2]==alfabeto[i] || targa[3]==alfabeto[i] || targa[4]==alfabeto[i])
+                    return false;
     }
     return true;
 }

@@ -156,13 +156,16 @@ void Controller::slotAggiungiVeicolo() const{
             veic=new Camion(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,nassi,rib);            break;
             break;
         }
-        default: throw Exc(12);//da vedere se inserirla qui
+        default:{throw Exc(12);
+            return;
+            }//da vedere se inserirla qui
+        }//end switch
+        if(model->push_end(veic)){
+            groupView->getList()->addVeicolo(veic);
+            slotFlagDataChange(true);
         }
-        model->push_end(veic);
-        groupView->getList()->addVeicolo(veic);
-        slotFlagDataChange(true);
         //popup da implementare con messaggio di effettivo inserimento.
-    } catch (Exc){
+    }catch (Exc){
         throw Exc(4,inserisciVeicolo->getTipoVeicolo()->currentText().toStdString());
     }
     return;

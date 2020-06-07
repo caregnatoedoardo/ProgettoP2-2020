@@ -36,7 +36,7 @@ public:
 
     unsigned int getContainerSize()const;
 
-    void push_end(Veicolo*);
+    bool push_end(Veicolo*);
 
     //implementazione di tutti i filtri di ricerca
     void filterByType(string ="auto");
