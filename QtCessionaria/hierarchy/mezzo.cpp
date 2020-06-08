@@ -45,8 +45,8 @@ bool Mezzo::checkTarga()const{//funzione valida solamente per auto e camion. Sar
     }
 
     for(int i=0;i<26;i++){                          //controllo del terzo, quarto, quinto carattere della targa (cifre)
-                if(targa[2]==alfabeto[i] || targa[3]==alfabeto[i] || targa[4]==alfabeto[i])
-                    return false;
+        if(targa[2]==alfabeto[i] || targa[3]==alfabeto[i] || targa[4]==alfabeto[i])
+            return false;
     }
     return true;
 }
