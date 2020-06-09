@@ -23,6 +23,7 @@ bool Model::getFlagDataSaved() const{return flagsaved;}
 
 void Model::save(){
 
+
     QSaveFile file(QString::fromStdString(path));
     if(!file.open(QIODevice::WriteOnly)){
         throw Exc(11,"scrittura");
@@ -96,6 +97,7 @@ void Model::save(){
         writer.writeEndElement();
         writer.writeEndDocument();
         flagsaved=true;               // CAMBIO LA SENTINELLA, HO SALVATO!;)
+        file.commit();
 }
 
 

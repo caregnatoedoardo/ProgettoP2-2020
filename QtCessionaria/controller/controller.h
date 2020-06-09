@@ -13,8 +13,9 @@
 #include "model.h"
 
 class Controller:public QWidget{
+     Q_OBJECT
 private:
-   Q_OBJECT
+
 
    Model* model;
    Usermenu* menuUtente;
@@ -30,9 +31,9 @@ public:
    string getTarga()const;
 public slots:
    /*
-    void slotLoad();
 
-    void slotShowModifica();
+
+
     void slotResetRicerca() const;
 */
     void closeEvent(QCloseEvent*);
@@ -40,10 +41,12 @@ public slots:
     void slotRicerca()const;
     void slotEliminaElemento() const;
     void slotSalva() const;
+    void slotLoad();
     void slotAggiungiVeicolo() const;
     void slotFlagDataChange(bool flag)const;
     void slotShowInserisci() const;
     void slotShowVisualizza() const;
+    void slotShowModifica() ;
 };
 
 #endif // CONTROLLER_H

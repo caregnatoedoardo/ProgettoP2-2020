@@ -17,6 +17,8 @@
 #include <hierarchy/camion.h>
 
 
+
+
 ViewVeicolo::ViewVeicolo(PrintListView* a, QWidget* parent):
     listVeicoli(a),
     btnClose(new QPushButton("Chiudi Senza Salvare",parent)),
@@ -46,6 +48,7 @@ ViewVeicolo::ViewVeicolo(PrintListView* a, QWidget* parent):
 
 
 }
+
 
 
 

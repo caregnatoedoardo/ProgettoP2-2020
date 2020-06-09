@@ -21,7 +21,7 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
-    Model(string="../dati.xml"); //file di salvataggio locale
+    Model(string="../dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
     ~Model();
     Container<Veicolo*>::Iteratore begin()const;
     Container<Veicolo*>::Iteratore end()const;

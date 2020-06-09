@@ -1,7 +1,13 @@
 #include "controller.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QLabel>
+#include <istream>
+#include<QMessageBox>
+#include <QFileDialog>
 #include <QBuffer>
+
+
 #include <hierarchy/veicolo.h>
 #include <hierarchy/carrozzeria.h>
 #include <hierarchy/motore.h>
@@ -36,7 +42,7 @@ Controller::Controller(Model*m, QWidget *parent):
 
     slotShowInserisci();
      //connect(groupView->getBtnElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
-    //connect(groupView->getBtnModifica(),SIGNAL(clicked()),this,SLOT(slotShowModifica()));
+    connect(groupView->getBtnModifica(),SIGNAL(clicked()),this,SLOT(slotShowModifica()));
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotAggiungiVeicolo()));
    // connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
 
@@ -171,13 +177,49 @@ void Controller::slotAggiungiVeicolo() const{
     return;
 }
 
+void Controller::slotShowModifica(){
+
+    PrintListView* b = groupView->getList()->currentItem();
+  if(dialog!=nullptr) delete dialog;
+  dialog = new ViewVeicolo(b,this);
+
+    dialog->show();
+
+    slotFlagDataChange(true);
+
+
+}
+
 
 
 void Controller::slotSalva() const {
     if(!model->getFlagDataSaved())
         model->save();
     slotFlagDataChange(false);
+    QMessageBox info;
+   info.information(0,"avviso", "salvato");
+
 }
+
+void Controller::slotLoad(){
+
+    groupView->getList()->clear();
+    model->load();
+    if(model->getContainerSize()==0){
+       //ECCEZIONE DA FARE
+    } else {
+        for(unsigned int i=0; i<model->getContainerSize();i++)
+           // groupView->getList()->addVeicolo(model->elementAt(i));
+
+        slotShowVisualizza();
+        slotFlagDataChange(false);
+    }
+
+
+}
+
+
+
 
 void Controller::slotShowRicerca() const {
     groupView->hide();
@@ -302,7 +344,12 @@ Controller::~Controller(){
 }
 
 
+
+
 void Controller::closeEvent(QCloseEvent *event){
     // slotSalva();
     QWidget::closeEvent(event);
 }
+
+
+

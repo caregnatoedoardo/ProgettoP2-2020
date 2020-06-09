@@ -28,7 +28,8 @@ private:
     QTextEdit* descrizione;
 
 public:
-    ViewVeicolo(PrintListView*, QWidget* = nullptr);
+
+    ViewVeicolo(PrintListView* = nullptr, QWidget* = nullptr);
 
 
 public slots:
