@@ -30,12 +30,7 @@ public:
    ~Controller();
    string getTarga()const;
 public slots:
-   /*
 
-
-
-    void slotResetRicerca() const;
-*/
     void closeEvent(QCloseEvent*);
     void slotShowRicerca() const;
     void slotRicerca()const;
@@ -47,6 +42,7 @@ public slots:
     void slotShowInserisci() const;
     void slotShowVisualizza() const;
     void slotShowModifica() ;
+    void slotResetRicerca() const;
 };
 
 #endif // CONTROLLER_H

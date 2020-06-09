@@ -47,6 +47,7 @@ void Model::save(){
         writer.writeAttribute("modello",QString::fromStdString((*it)->getModello()));
         writer.writeAttribute("pathimg",QString::fromStdString((*it)->getPathImg()));
 
+
         Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it);
         if(veicoloCarrozzeria){//in alternativa if(tipo=="carrozzeria")
         writer.writeAttribute("n_telaio",QString::number(veicoloCarrozzeria->getNTelaio()));
@@ -310,6 +311,8 @@ void Model::filterByCavalli(unsigned int cv){
     return;
 }
 
+
+
 void Model::filterByAlim(string al){
     if(searchRes->isEmpty()) return;
 
@@ -484,6 +487,27 @@ alimentazione Model::convertToAlimentazione(const string al)const{
 
     throw Exc(5);
 }
+
+QPixmap Model::getImage(const std::string &i){
+    QImage* image= new QImage;
+    QByteArray array= QByteArray(i.data());
+    image->loadFromData(QByteArray::fromBase64(array), "PNG");
+
+    QPixmap p=QPixmap::fromImage(*image);
+    return p.scaled(500,600,Qt::AspectRatioMode::KeepAspectRatio);
+}
+
+
+void Model::clearRicerca()  {
+
+    if(!(searchRes == dbVeicoli))
+        searchRes = dbVeicoli;
+    QMessageBox info;
+   info.information(0,"avviso", "RESET OK");
+
+}
+
+
 
 
 

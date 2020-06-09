@@ -14,6 +14,7 @@
 InsertVeicolo::InsertVeicolo(QWidget*p):
     QWidget(p),
     tipoVeicolo(new VeicoloTypeBox(this)),
+    scegliFoto(new QLabel(this)),
     marca(new QLineEdit(this)),
     modello(new QLineEdit(this)),
     numeroTelaio(new QLineEdit(this)),
@@ -37,12 +38,19 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
      sidecar(new QCheckBox("Sidecar",this)),
         classeEmissioni(new QLineEdit(this)),
          tipoMoto(new TipomotoBox(this)),
+         bottoneScegliFoto(new QPushButton(this)),
          AddButton(new QPushButton("Aggiungi",this) )
 
 {
     QGridLayout* form = new QGridLayout(this);
 
     form->addWidget(tipoVeicolo,0,0);
+
+    bottoneScegliFoto->setText("Carica Immagine");
+
+    form->addWidget(scegliFoto,5,5);
+    form->addWidget(bottoneScegliFoto,5,6);
+
 
     marca->setPlaceholderText("MARCA");
     form->addWidget(marca,1,0);
@@ -105,12 +113,15 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
         slotChangeFormLayout(tipoVeicolo->currentText());
     });
 
+    connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
+
 
 }
 
 void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
     if(typeveic=="carrozzeria"){
         //show
+
         marca->show();
         modello->show();
         numeroTelaio->show();
@@ -384,6 +395,24 @@ TipomotoBox* InsertVeicolo::getTipoMoto() const
 QPushButton* InsertVeicolo::getAddButton() const
 {
     return AddButton;
+}
+
+
+void InsertVeicolo::slotScegliFoto(){
+    QString file = QFileDialog::getOpenFileName(
+                this,
+                tr("Scegli Immagine"),
+            "../immagini",
+            "Image file (*.jpg)" );
+    QFileInfo relativePath(file);
+
+    if(file!=""){
+        QImage im(file);
+        QByteArray array;
+        QBuffer b(&array);
+       im.save(&b,"JPG");
+       scegliFoto->setPixmap(QPixmap::fromImage(im));
+    }
 }
 
 

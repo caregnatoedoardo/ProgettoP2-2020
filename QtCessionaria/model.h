@@ -37,6 +37,7 @@ public:
     unsigned int getContainerSize()const;
 
     bool push_end(Veicolo*);
+    void clearRicerca();
 
     //implementazione di tutti i filtri di ricerca
     void filterByType(string ="auto");
@@ -65,6 +66,9 @@ public:
     segmento convertToSeg(const string)const;
     alimentazione convertToAlimentazione(const string)const;
     bool getFlagDataSaved()const;
+
+    static QPixmap getImage(const std::string&);
+
 };
 
 #endif // MODEL_H
