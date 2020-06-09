@@ -26,7 +26,7 @@ public:
             break;
         }
         case 3:{                                                                                                         //identifica errori nelle targhe.
-            cerr<<"Errore! Rilevata targa "<<t<<" mal formata. La targa è una stringa avente solo questo formato: AA000AA. Nessuna operazione eseguita.";
+            cerr<<"Errore! Rilevata targa "<<t<<" mal formata. La targa è una stringa avente solo questo formato: AA000AA per i veicoli, o AA000000 per i motoveicoli. Nessuna operazione eseguita.";
             break;
         }
         case 4:{                                                                                                        //identifica errori nel segmento.
