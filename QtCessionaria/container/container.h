@@ -189,12 +189,17 @@ bool Container<T>::isEmpty()const{
 
 template<class T>
 bool Container<T>::push_begin(const T& t){
-    if(isEmpty() && checkPlate(t)){
+    bool checkplate=checkPlate(t);
+    if(isEmpty() && checkplate){
         first=new Nodo(t,nullptr,nullptr);
         return true;
     }
+    bool checkduplicate=isDuplicate(t);
+    bool checkduplicateengine=checkDuplicateEngine(t);
+    bool checkduplicatechassis=checkDuplicateChassis(t);
+    bool checkduplicateplate=checkDuplicatePlate(t);
     try{
-        if(checkPlate(t) && !isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t)){
+        if(checkplate && !checkduplicate && !checkduplicateengine && ! checkduplicatechassis && !checkduplicateplate){
             Nodo* newfirst=new Nodo(t,nullptr,first);
             first->prev=newfirst;
             first=newfirst;
@@ -203,7 +208,16 @@ bool Container<T>::push_begin(const T& t){
         throw Exc();
     }
     catch (Exc){
-        Exc(6,"duplicato");
+        if(checkduplicate)
+            Exc(6,"duplicato");
+        if(checkduplicateengine)
+            Exc(6,"N motore duplicato");
+        if(checkduplicatechassis)
+            Exc(6,"N chassis duplicato");
+        if(checkduplicateplate)
+            Exc(13);
+        if(!checkplate)
+            Exc(3);
         return false;
     }
 }
@@ -215,13 +229,12 @@ bool Container<T>::push_end(const T& t){
         first=new Nodo(t,nullptr, nullptr);
         return true;
     }
+    bool checkduplicate=isDuplicate(t);
+    bool checkduplicateengine=checkDuplicateEngine(t);
+    bool checkduplicatechassis=checkDuplicateChassis(t);
+     bool checkduplicateplate=checkDuplicatePlate(t);
     try{
-
-        bool checkduplicate=isDuplicate(t);
-        bool checkduplicateengine=checkDuplicateEngine(t);
-        bool checkduplicatechassis=checkDuplicateChassis(t);
-        //if(checkPlate(t) && !isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t)){
-        if(checkplate && !checkduplicate && !checkduplicateengine && ! checkduplicatechassis){
+        if(checkplate && !checkduplicate && !checkduplicateengine && ! checkduplicatechassis && !checkduplicateplate){
             Nodo* scorri=first;
             while(scorri->next)
                 scorri=scorri->next;
@@ -231,19 +244,42 @@ bool Container<T>::push_end(const T& t){
         throw Exc();
     }
     catch(Exc){
-        Exc(6,"duplicato");
+        if(checkduplicate)
+            Exc(6,"duplicato");
+        if(checkduplicateengine)
+            Exc(6,"N motore duplicato");
+        if(checkduplicatechassis)
+            Exc(6,"N chassis duplicato");
+        if(checkduplicateplate)
+            Exc(13);
+        if(!checkplate)
+            Exc(3);
         return false;
     }
 }
 
 template<class T>
 bool Container<T>::push(const T& t, unsigned int posiz){
+    bool checkplate=checkPlate(t);
+    bool checkduplicate=isDuplicate(t);
+    bool checkduplicateengine=checkDuplicateEngine(t);
+    bool checkduplicatechassis=checkDuplicateChassis(t);
+    bool checkduplicateplate=checkDuplicatePlate(t);
     try{
-        if(!isDuplicate(t) && !checkDuplicatePlate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && checkPlate(t))  //check se il veicolo è duplicato
-            throw Exc();
+         if(checkplate && !checkduplicate && !checkduplicateengine && !checkduplicatechassis && !checkduplicateplate)
+             throw Exc();
     }
     catch(Exc){
-        Exc(6,"duplicato");
+        if(checkduplicate)
+            Exc(6,"duplicato");
+        if(checkduplicateengine)
+            Exc(6,"N motore duplicato");
+        if(checkduplicatechassis)
+            Exc(6,"N chassis duplicato");
+        if(checkduplicateplate)
+            Exc(13);
+        if(!checkplate)
+            Exc(3);
         return false;
     }
 
@@ -271,7 +307,6 @@ bool Container<T>::push(const T& t, unsigned int posiz){
         scorri->prev=scorri->prev->next;
         return true;
     }
-
     return false;
 }
 
@@ -433,7 +468,7 @@ bool Container<T>::checkDuplicateEngine(const T& t)const{
         scorri=scorri->next;
     }
     //confronto ultimo nodo:
-    Mezzo* mttemp=dynamic_cast<Mezzo*>(scorri->info);
+    Motore* mttemp=dynamic_cast<Motore*>(scorri->info);
     return(mt && (mttemp && mt->getNMotore()==mttemp->getNMotore()));
 }
 
