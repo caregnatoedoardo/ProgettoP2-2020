@@ -148,7 +148,7 @@ private slots:
 
 public slots:
 
-    void slotReset() const;
+   // void slotReset() const;
 
 signals:
 

@@ -41,13 +41,12 @@ Controller::Controller(Model*m, QWidget *parent):
     mainLayout->addWidget(inserisciVeicolo);
 
     slotShowInserisci();
-    connect(groupView->getBtnElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
+     //connect(groupView->getBtnElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
     connect(groupView->getBtnModifica(),SIGNAL(clicked()),this,SLOT(slotShowModifica()));
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotAggiungiVeicolo()));
-    connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
+   // connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
+
     connect(ricercaView->getButtonElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
-
-
 
     connect(ricercaView->getButtonRicerca(),SIGNAL(clicked()), this, SLOT(slotRicerca()));
     connect(ricercaView->getButtonReset(), SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
@@ -228,16 +227,9 @@ void Controller::slotShowRicerca() const {
     inserisciVeicolo->hide();
 }
 
-void Controller::slotResetRicerca()const{
-    //CHIAMATA CHE RI-SETTA I RISULTATI DI RICERCA = TUTTO IL VECTOR
-    model->clearRicerca();
-}
-
-
-
 void Controller::slotRicerca() const {
-
-    slotResetRicerca();
+    //bisogna resettare tutti i campi ricerca.
+    //slotResetRicerca
     try{
         if(!model->getContainerSize())
             throw Exc();
@@ -355,8 +347,7 @@ Controller::~Controller(){
 
 
 void Controller::closeEvent(QCloseEvent *event){
-
-    slotSalva();
+    // slotSalva();
     QWidget::closeEvent(event);
 }
 
