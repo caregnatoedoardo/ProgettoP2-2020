@@ -65,8 +65,11 @@ public:
             cerr<<"Errore di inserimento del veicolo "<<t<<".";
             break;
         }
-
         case 13:{
+            cerr<<"Errore! Rilevata targa duplicata. Nessuna operazione eseguita."<<t<<".";
+            break;
+        }
+        case 14:{
             cerr<<"Errore:"<<t<<".";
             break;
         }
