@@ -3,6 +3,8 @@
 #include "hierarchy/auto.h"
 #include "hierarchy/camion.h"
 #include "hierarchy/moto.h"
+#include "controller/controller.h"
+
 
 Ricerca::Ricerca(QWidget *p):
     QWidget(p),
@@ -229,6 +231,54 @@ QPushButton* Ricerca::getButtonReset() const{
 
 }
 
+
+void Ricerca::slotReset()const {
+
+
+
+    ckTipo->setChecked(false);
+    ckMarca->setChecked(false);
+    ckModello->setChecked(false);
+    ckNumeroTelaio->setChecked(false);
+    ckColore->setChecked(false);
+    ckLunghezza->setChecked(false);
+    ckNumeroMotore->setChecked(false);
+    ckCilindrata->setChecked(false);
+    ckCavalli->setChecked(false);
+    ckAlimentazione->setChecked(false);
+    ckTarga->setChecked(false);
+    ckPrezzo->setChecked(false);
+    ckMassa->setChecked(false);
+    ckNumeroPosti->setChecked(false);
+    ckSegmento->setChecked(false);
+    ckNumeroAssi->setChecked(false);
+    ckClasseEmissioni->setChecked(false);
+    ckTipoMoto->setChecked(false);
+    ckCambio->setChecked(false);
+
+
+
+                boxTipoVeicolo->setCurrentIndex(0);
+                cercaMarca->clear();
+                cercaModello->clear();
+                cercaNumeroTelaio->clear();
+                cercaColore->clear();
+                cercaLunghezza->clear();
+                cercaNumeroMotore->clear();
+                cercaCilindrata->clear();
+                cercaCavalli->clear();
+                boxAlimentazione->setCurrentIndex(0);
+                cercaTarga->clear();
+                cercaPrezzo->clear();
+                cercaMassa->clear();
+                cercaNumeroPosti->clear();
+                boxSegmento->setCurrentIndex(0);
+                cercaNumeroAssi->clear();
+                cercaClasseEmissioni->clear();
+                boxTipoMoto->setCurrentIndex(0);
+
+
+}
 
 
 

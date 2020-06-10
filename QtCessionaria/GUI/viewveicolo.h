@@ -26,6 +26,10 @@ private:
     QPushButton* salvaMod;
     Veicolo* veicolo;
     QTextEdit* descrizione;
+    QLabel* immagine;
+    QLineEdit* pathFoto;
+    QPushButton* bottoneScegliFoto;
+    void setFoto(const QPixmap&);
 
 public:
 
@@ -34,6 +38,7 @@ public:
 
 public slots:
     void slotSalvaModifica() const;
+    //void slotFotoModifica();
 
 };
 
