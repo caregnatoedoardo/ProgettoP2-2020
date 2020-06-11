@@ -6,8 +6,8 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     carica(new QAction("Carica",this)),
     visualizza(new QAction("Visualizza",this)),
     ricerca(new QAction("Ricerca",this)),
-    esci(new QAction("Esci",this)),
-    inserisci(new QAction("Inserisci",this))
+    inserisci(new QAction("Inserisci",this)),
+    esci(new QAction("Esci",this))
 
 {
 

@@ -94,46 +94,54 @@ void Controller::slotAggiungiVeicolo() const{
         string tipomt="";
         string pathimg="";
         //CARROZZERIA
+        bool campidati=true;
         if(tipo == 1 || tipo==2 || tipo==3 || tipo==4){
             numeroTelaio = inserisciVeicolo->getNumeroTelaio()->text().toInt();
+            if(numeroTelaio==0) campidati=false;
             cambio_auto = inserisciVeicolo->getCambio()->isChecked();
             colore = inserisciVeicolo->getColore()->text().toStdString();
             lunghezza = inserisciVeicolo->getLunghezza()->text().toDouble();
         }
         //MOTORE
-        if(tipo==0 || tipo==2 || tipo==3 || tipo==4){
+        if(campidati && (tipo==0 || tipo==2 || tipo==3 || tipo==4)){
             n_motore = inserisciVeicolo->getNumeroMotore()->text().toInt();
+            if(!n_motore) campidati=false;
             cilindrata = inserisciVeicolo->getCilindrata()->text().toInt();
             cavalli = inserisciVeicolo->getCavalli()->text().toInt();
             alim = inserisciVeicolo->getAlimentazione()->currentText().toStdString();
         }
 
         //MEZZO
-        if(tipo==2 || tipo==3 || tipo==4){
+        if(campidati && (tipo==2 || tipo==3 || tipo==4)){
             targa = inserisciVeicolo->getTarga()->text().toStdString();
+            if(targa=="") campidati=false;
             prezzo = inserisciVeicolo->getPrezzo()->text().toDouble();
             massa = inserisciVeicolo->getMassa()->text().toInt();
             numposti = inserisciVeicolo->getNumeroPosti()->text().toInt();
         }
 
         //AUTO
-        if(tipo==2){
+        if(campidati && (tipo==2)){
              seg = inserisciVeicolo->getSegmento()->currentText().toStdString();
              autocarro = inserisciVeicolo->getAutocarro()->isChecked();
 
         }
         //MOTO
-        if(tipo==3){
+        if(campidati && (tipo==3)){
             sid=inserisciVeicolo->getSidecar()->isChecked();
             clemiss=inserisciVeicolo->getClasseEmissioni()->text().toInt();
             tipomt=inserisciVeicolo->getTipoMoto()->currentText().toStdString();
         }
         // CAMION
-        if(tipo==4){
+        if(campidati && (tipo==4)){
              nassi=inserisciVeicolo->getNumeroAssi()->text().toInt();
              rib=inserisciVeicolo->getRibaltabile()->isChecked();
         }
-        //throw Exc();//da rivedere
+        if(!campidati){
+            QMessageBox avviso;
+            avviso.information(0,"AVVISO","ERRORE CAMPI DATI MANCANTI!");
+            return;
+        }
 
         Veicolo* veic=nullptr;
         switch (tipo){
@@ -187,8 +195,6 @@ void Controller::slotShowModifica(){
     dialog->show();
 
     slotFlagDataChange(true);
-
-
 }
 
 
@@ -218,8 +224,6 @@ void Controller::slotLoad(){
 
 
 }
-
-
 
 
 void Controller::slotShowRicerca() const {

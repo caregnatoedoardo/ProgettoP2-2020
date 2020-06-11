@@ -39,13 +39,12 @@ string Moto::convertToString(tipomoto tm) const{
     catch(Exc){
         Exc(4);
     }
+    return "";
 }
-
-
 
 bool Moto::checkTarga() const{
     string targa=getTarga();
-    char alfabeto [26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    char alfabeto [26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
     char numeri[10]={'0','1','2','3','4','5','6','7','8','9'};
     if(targa.size()!=7) return false;
 

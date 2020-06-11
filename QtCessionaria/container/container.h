@@ -449,6 +449,9 @@ bool Container<T>::checkDuplicatePlate(const T& t)const{
 
 template<class T>
 bool Container<T>::checkPlate(const T& t)const{
+    Moto*mt=dynamic_cast<Moto*>(t);
+    if(mt)
+        return mt->checkTarga();
     Mezzo* mz=dynamic_cast<Mezzo*>(t);
     if(mz)
         return mz->checkTarga();
