@@ -419,7 +419,7 @@ void InsertVeicolo::slotScegliFoto(){
 void InsertVeicolo::slotResetForm()const {
 
 
-    tipoVeicolo->setCurrentIndex(0);
+    //tipoVeicolo->setCurrentIndex(0);
     marca->clear();
     modello->clear();
     numeroTelaio->clear();
