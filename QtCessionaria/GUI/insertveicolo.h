@@ -101,6 +101,8 @@ public slots:
      void slotDisableForm(int) const; // disabilita form sulla base del case dell'inseriemnto
      void slotChangeFormLayout(QString typeVeic)const;
      void slotScegliFoto();
+     void slotResetForm()const;
+
 
 signals:
     void signalDisableForm(int);

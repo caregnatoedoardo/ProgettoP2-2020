@@ -178,6 +178,7 @@ void Controller::slotAggiungiVeicolo() const{
         if(model->push_end(veic)){
             groupView->getList()->addVeicolo(veic);
             slotFlagDataChange(true);
+            inserisciVeicolo->slotResetForm();
         }
         //popup da implementare con messaggio di effettivo inserimento.
     }catch (Exc){
@@ -236,6 +237,7 @@ void Controller::slotResetRicerca()const{
     //CHIAMATA CHE RI-SETTA I RISULTATI DI RICERCA = TUTTO IL VECTOR
     model->clearRicerca();
 }
+
 
 
 

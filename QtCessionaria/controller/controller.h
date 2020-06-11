@@ -43,6 +43,7 @@ public slots:
     void slotShowVisualizza() const;
     void slotShowModifica() ;
     void slotResetRicerca() const;
+
 };
 
 #endif // CONTROLLER_H

@@ -416,5 +416,37 @@ void InsertVeicolo::slotScegliFoto(){
 }
 
 
+void InsertVeicolo::slotResetForm()const {
+
+
+    tipoVeicolo->setCurrentIndex(0);
+    marca->clear();
+    modello->clear();
+    numeroTelaio->clear();
+    cambio->setChecked(false);
+    colore->clear();
+    lunghezza->clear();
+    numeroMotore->clear();
+    cilindrata->clear();
+    cavalli->clear();
+    alimentazione->clear();
+    lunghezza->clear();
+    targa->clear();
+    prezzo->clear();
+    massa->clear();
+    numeroPosti->clear();
+    segmento->clear();
+    autocarro->setChecked(false);
+    numeroAssi->clear();
+    ribaltabile->setChecked(false);
+    sidecar->setChecked(false);
+    classeEmissioni->clear();
+    tipoMoto->setCurrentIndex(0);
+
+
+
+}
+
+
 
 
