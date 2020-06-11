@@ -44,9 +44,6 @@ int main(int argc, char *argv[])
 
     //ctveic->modify(mt,ca3);
 
-    bool dup=ctveic->checkDuplicatePlate("GA456DS");
-    if(dup)
-        cout<<"DUPLICATA";
 
     //ctveic->remove(mt);
     if(lf2==lf) cout<<"MACCHINE UGUALI\n";
@@ -59,16 +56,16 @@ int main(int argc, char *argv[])
     cout<<std::endl;
     cout<<ca2->getDetails();
     cout<<std::endl;
-    cout<<mt->getDetails();*/
+    cout<<mt->getDetails();//*/
 
 
     //cout<<"END\n";
+    /*Veicolo* veic;
+    veic=ctveic->getVeicolo(1);*/
 
     QApplication a(argc, argv);
     Controller w(new Model());
     w.setFixedSize(1024,768);
     w.show();
     return a.exec();
-
-    //CONTROLLO DELLA TARGA DA IMPLEMENTARE SULLA RELATIVA TEXTBOX, NON SULLE PUSH!!!
 }
