@@ -69,8 +69,8 @@ public:
     bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il T passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
     void modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
-    //T& getVeicolo(const Nodo* n)const;//restituisce una copia dell'oggetto a cui punta l'iteratore
     bool search(const T&)const;
+    T getVeicolo(unsigned int)const;
     bool checkDuplicatePlate(const T&)const;
     bool checkPlate(const T&)const;//sarà usata per controllare la stringa nella textbox dell'interfaccia grafica. Uguale a checkDuplicatePlate ma senza cast del parametro formale
     bool checkDuplicateChassis(const T&)const;
@@ -428,6 +428,18 @@ bool Container<T>::search(const T& t)const{
     return (scorri->info==t);
 
 }//CERCA L'ELEMENTO t ALL'INTERNO DEL CONTAINER E RITORNA TRUE O FALSE
+
+template<class T>
+T Container<T>::getVeicolo(unsigned int i)const{
+    if(i<0 || i>getSize()) return nullptr;
+    int index=0;
+    Nodo* scorri=first;
+    while(scorri && index<i){
+        scorri=scorri->next;
+        index++;
+    }
+    return scorri->info;
+}
 
 template<class T>
 bool Container<T>::checkDuplicatePlate(const T& t)const{
