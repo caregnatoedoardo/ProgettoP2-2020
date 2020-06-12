@@ -191,13 +191,12 @@ void Controller::slotAggiungiVeicolo() const{
 
 void Controller::slotShowModifica(){
 
-  if(dialog!=nullptr) delete dialog;
 
   dialog = inserisciVeicolo;
-  dialog->hideButton(false);
+
 
  if(groupView->getList()->currentItem()!=nullptr){
-
+     dialog->hideButton(false);
   if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "motore"){
       Motore* a = dynamic_cast<Motore*>(groupView->getList()->currentItem()->getItemAddress());
       dialog->setTipoVeicolo(0);

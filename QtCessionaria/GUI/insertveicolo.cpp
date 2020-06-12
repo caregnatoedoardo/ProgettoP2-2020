@@ -463,15 +463,15 @@ void InsertVeicolo::setColore(string a ){
 
 
 void InsertVeicolo::hideButton(bool a){
-AddButton->hide();
-saveEditButton->show();
+    if(!a){
+        AddButton->hide();
+        saveEditButton->show();
+    }
 
-if(a){
-    AddButton->show();
-    saveEditButton->hide();
-
-}
-
+    if(a){
+        AddButton->show();
+        saveEditButton->hide();
+    }
 }
 
 
