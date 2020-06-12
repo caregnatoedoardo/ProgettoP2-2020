@@ -409,7 +409,7 @@ void Controller::slotRicerca() const {
 void Controller::slotEliminaElemento() const {
     if(groupView->getList()->count() && groupView->getList()->currentItem()!=nullptr){
         PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
-       // model->erase(item->getItemAddress());
+        model->remove(item->getItemAddress());
 
         delete item;
         groupView->getList()->reset();
