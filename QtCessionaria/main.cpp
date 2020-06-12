@@ -63,6 +63,11 @@ int main(int argc, char *argv[])
     /*Veicolo* veic;
     veic=ctveic->getVeicolo(1);*/
 
+    //DOPO PRIMO INSERIMENTO -> RESET DEI CAMPI DATI ANCHE DI ALIMENTAZIONE E SEGMENTO, senza possibilità di selezionarli in quanto rimossi dal menu a tendina
+    //CORRETTO
+    //CORRETTO ERRORE IN INSERIMENTO ALIMENTAZIONE NON ESISTENTE (elettricA)
+    //Tipo Veicolo non più modificabile dopo Visualizza -> Modifica
+
     QApplication a(argc, argv);
     Controller w(new Model());
     w.setFixedSize(1024,768);

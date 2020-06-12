@@ -38,7 +38,7 @@ public slots:
     void slotEliminaElemento() const;
     void slotSalva() const;
     void slotLoad();
-    void slotAggiungiVeicolo() const;
+    bool slotAggiungiVeicolo() const;
     void slotFlagDataChange(bool flag)const;
     void slotShowInserisci() const;
     void slotShowVisualizza() const;

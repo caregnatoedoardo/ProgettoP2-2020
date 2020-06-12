@@ -489,7 +489,7 @@ segmento Model::convertToSeg(const string st) const{
 alimentazione Model::convertToAlimentazione(const string al)const{
     if(al=="diesel") return diesel;
     if(al=="benzina") return benzina;
-    if(al=="elettrico") return elettrico;
+    if(al=="elettrica") return elettrica;
     if(al=="gpl") return gpl;
     if(al=="metano") return metano;
 

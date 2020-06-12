@@ -65,7 +65,7 @@ Model* Controller::getModel(){
     return model;
 }
 
-void Controller::slotAggiungiVeicolo() const{
+bool Controller::slotAggiungiVeicolo() const{
     //MOTORE        =0
     //CARROZZERIA   =1
     //AUTO          =2
@@ -142,7 +142,7 @@ void Controller::slotAggiungiVeicolo() const{
         if(!campidati){
             QMessageBox avviso;
             avviso.information(0,"AVVISO","ERRORE CAMPI DATI MANCANTI!");
-            return;
+            return false;
         }
 
         Veicolo* veic=nullptr;
@@ -174,19 +174,20 @@ void Controller::slotAggiungiVeicolo() const{
             break;
         }
         default:{throw Exc(12);
-            return;
-            }//da vedere se inserirla qui
+            return false;
+            }
         }//end switch
         if(model->push_end(veic)){
             groupView->getList()->addVeicolo(veic);
             slotFlagDataChange(true);
             inserisciVeicolo->slotResetForm();
+            return true;
         }
         //popup da implementare con messaggio di effettivo inserimento.
     }catch (Exc){
         throw Exc(4,inserisciVeicolo->getTipoVeicolo()->currentText().toStdString());
     }
-    return;
+    return false;
 }
 
 void Controller::slotShowModifica(){
@@ -263,12 +264,8 @@ void Controller::slotSaveModifica(){
     groupView->getList()->update();
     inserisciVeicolo->hideButton(true);
 
-    slotAggiungiVeicolo();
-
-
-    dialog->hide();
-
-
+    if(slotAggiungiVeicolo())
+        dialog->hide();
 }
 
 
@@ -283,7 +280,6 @@ void Controller::slotSalva() const {
 }
 
 void Controller::slotLoad(){
-
 
     groupView->getList()->clear();
     model->load();
@@ -440,9 +436,6 @@ void Controller::slotShowVisualizza()const{
 Controller::~Controller(){
     model->save();
 }
-
-
-
 
 void Controller::closeEvent(QCloseEvent *event){
 

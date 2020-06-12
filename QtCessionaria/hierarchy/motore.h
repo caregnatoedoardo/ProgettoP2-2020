@@ -3,7 +3,7 @@
 #include "hierarchy/veicolo.h"
 #include "exceptions/exceptions.h"
 
-enum alimentazione{diesel, benzina, elettrico, gpl, metano};
+enum alimentazione{diesel, benzina, elettrica, gpl, metano};
 
 class Motore: virtual public Veicolo{
 private:

@@ -37,7 +37,7 @@ string Motore::convertToAlim(alimentazione al) const{
     try{
         if(al==diesel) return "diesel";
         if(al==benzina) return "benzina";
-        if(al==elettrico) return "elettrico";
+        if(al==elettrica) return "elettrica";
         if(al==gpl) return "gpl";
         if(al==metano) return "metano";
         throw Exc();

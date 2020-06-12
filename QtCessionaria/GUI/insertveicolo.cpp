@@ -428,8 +428,6 @@ void InsertVeicolo::slotScegliFoto(){
 
 void InsertVeicolo::slotResetForm()const {
 
-
-
     marca->clear();
     modello->clear();
     numeroTelaio->clear();
@@ -439,13 +437,13 @@ void InsertVeicolo::slotResetForm()const {
     numeroMotore->clear();
     cilindrata->clear();
     cavalli->clear();
-    alimentazione->clear();
+    alimentazione->setCurrentIndex(0);
     lunghezza->clear();
     targa->clear();
     prezzo->clear();
     massa->clear();
     numeroPosti->clear();
-    segmento->clear();
+    segmento->setCurrentIndex(0);
     autocarro->setChecked(false);
     numeroAssi->clear();
     ribaltabile->setChecked(false);
