@@ -23,7 +23,8 @@ private:
    InsertVeicolo* inserisciVeicolo;
    Ricerca* ricercaView;
    GroupView* groupView;
-   ViewVeicolo* dialog;
+  // ViewVeicolo* dialog;
+   InsertVeicolo* dialog;
 public:
    Controller(Model*,QWidget* = nullptr);
    Model *getModel();

@@ -39,7 +39,8 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
         classeEmissioni(new QLineEdit(this)),
          tipoMoto(new TipomotoBox(this)),
          bottoneScegliFoto(new QPushButton(this)),
-         AddButton(new QPushButton("Aggiungi",this) )
+         AddButton(new QPushButton("Aggiungi",this) ),
+         saveEditButton(new QPushButton("Salva Modifiche",this))
 
 {
     QGridLayout* form = new QGridLayout(this);
@@ -107,6 +108,9 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     form->addWidget(tipoMoto,5,3);
 
     form->addWidget(AddButton,6,3);
+    form->addWidget(saveEditButton,6,3);
+    saveEditButton->hide();
+
 
 
     connect(tipoVeicolo,static_cast<void (QComboBox::*)(int index)>(&QComboBox::currentIndexChanged),[this]{
@@ -119,6 +123,8 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 }
 
 void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
+
+
     if(typeveic=="carrozzeria"){
         //show
 
@@ -397,6 +403,10 @@ QPushButton* InsertVeicolo::getAddButton() const
     return AddButton;
 }
 
+QPushButton* InsertVeicolo::getSaveEditButton()const {
+    return saveEditButton;
+}
+
 
 void InsertVeicolo::slotScegliFoto(){
     QString file = QFileDialog::getOpenFileName(
@@ -419,7 +429,7 @@ void InsertVeicolo::slotScegliFoto(){
 void InsertVeicolo::slotResetForm()const {
 
 
-    //tipoVeicolo->setCurrentIndex(0);
+
     marca->clear();
     modello->clear();
     numeroTelaio->clear();
@@ -447,6 +457,42 @@ void InsertVeicolo::slotResetForm()const {
 
 }
 
+void InsertVeicolo::setColore(string a ){
+    colore->setText(QString::fromStdString(a));
+}
 
+
+void InsertVeicolo::hideButton(){
+AddButton->hide();
+saveEditButton->show();
+
+}
+
+
+void InsertVeicolo::setTipoVeicolo(unsigned int i){
+ tipoVeicolo->setCurrentIndex(i);
+}
+void InsertVeicolo::setMarca(string a) {
+    marca->setText(QString::fromStdString(a));
+}
+void InsertVeicolo::setModello(string i) {}
+void InsertVeicolo::setNumeroTelaio(unsigned int i) {}
+void InsertVeicolo::setCambio(bool i) {}
+void InsertVeicolo::setLunghezza(double i) {}
+void InsertVeicolo::setNumeroMotore(unsigned int i) {}
+void InsertVeicolo::setCilindrata(unsigned int i) {}
+void InsertVeicolo::setCavalli(unsigned int i) {}
+void InsertVeicolo::setAlimentazione(int) {}
+void InsertVeicolo::setTarga(string) {}
+void InsertVeicolo::setPrezzo(double) {}
+void InsertVeicolo::setMassa(double) {}
+void InsertVeicolo::setNumeroPosti(int) {}
+void InsertVeicolo::setSegmento(string) {}
+void InsertVeicolo::setAutocarro(bool) {}
+void InsertVeicolo::setNumeroAssi(unsigned int) {}
+void InsertVeicolo::setRibaltabile(bool) {}
+void InsertVeicolo::setSidecar(bool) {}
+void InsertVeicolo::setClasseEmissioni(string) {}
+void InsertVeicolo::setTipoMoto(unsigned int) {}
 
 

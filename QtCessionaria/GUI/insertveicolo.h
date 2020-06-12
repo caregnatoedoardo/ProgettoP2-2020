@@ -63,6 +63,7 @@ class InsertVeicolo : public QWidget
 
      QPushButton* bottoneScegliFoto;
      QPushButton* AddButton;
+     QPushButton* saveEditButton;
 
 
 public:
@@ -94,6 +95,38 @@ public:
      QPushButton* getScegliFoto() const;
 
      QPushButton* getAddButton() const;
+
+     QPushButton* getSaveEditButton() const;
+
+
+     void hideButton();
+
+
+
+     void setTipoVeicolo(unsigned int) ;
+     void setMarca(string) ;
+     void setModello(string) ;
+     void setNumeroTelaio(unsigned int) ;
+     void setCambio(bool) ;
+     void setColore(string) ;
+     void setLunghezza(double) ;
+     void setNumeroMotore(unsigned int) ;
+     void setCilindrata(unsigned int) ;
+     void setCavalli(unsigned int) ;
+     void setAlimentazione(int) ;
+     void setTarga(string) ;
+     void setPrezzo(double) ;
+     void setMassa(double) ;
+     void setNumeroPosti(int) ;
+     void setSegmento(string) ;
+     void setAutocarro(bool) ;
+     void setNumeroAssi(unsigned int) ;
+     void setRibaltabile(bool) ;
+     void setSidecar(bool) ;
+     void setClasseEmissioni(string) ;
+     void setTipoMoto(unsigned int) ;
+
+
 
 
 

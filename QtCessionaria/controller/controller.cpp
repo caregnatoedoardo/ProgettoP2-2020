@@ -191,8 +191,17 @@ void Controller::slotShowModifica(){
 
     PrintListView* b = groupView->getList()->currentItem();
   if(dialog!=nullptr) delete dialog;
-  dialog = new ViewVeicolo(b,this);
+ // dialog = new ViewVeicolo(b,this);
 
+
+  dialog = new InsertVeicolo();
+  Carrozzeria* a = dynamic_cast<Carrozzeria*>(groupView->getList()->currentItem()->getItemAddress());
+
+
+  dialog->setColore(a->getColore());
+
+  dialog->hideButton();
+    dialog->setMarca(a->getMarca());
     dialog->show();
 
     slotFlagDataChange(true);
@@ -211,10 +220,13 @@ void Controller::slotSalva() const {
 
 void Controller::slotLoad(){
 
+
     groupView->getList()->clear();
     model->load();
+    try{
     if(model->getContainerSize()==0){
-       //ECCEZIONE DA FARE
+        throw Exc();
+
     } else {
         for(unsigned int i=0; i<model->getContainerSize();i++)
            // groupView->getList()->addVeicolo(model->elementAt(i));
@@ -222,6 +234,13 @@ void Controller::slotLoad(){
         slotShowVisualizza();
         slotFlagDataChange(false);
     }
+
+
+}
+    catch (Exc){
+        if (model->getContainerSize()==0) Exc(9);
+    }
+
 
 
 }
