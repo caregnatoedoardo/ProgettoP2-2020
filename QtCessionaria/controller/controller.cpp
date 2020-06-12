@@ -256,12 +256,16 @@ void Controller::slotShowModifica(){
 
 void Controller::slotSaveModifica(){
 
-   Veicolo* a= groupView->getList()->currentItem()->getItemAddress();
-   model->remove(a);
-    slotEliminaElemento();
+  // Veicolo* a= groupView->getList()->currentItem()->getItemAddress();
+  // model->remove(a);
+   slotEliminaElemento();
 
     groupView->getList()->update();
     inserisciVeicolo->hideButton(true);
+
+    slotAggiungiVeicolo();
+
+
     dialog->hide();
 
 
