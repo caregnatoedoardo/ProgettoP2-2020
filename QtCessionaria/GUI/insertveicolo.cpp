@@ -462,37 +462,110 @@ void InsertVeicolo::setColore(string a ){
 }
 
 
-void InsertVeicolo::hideButton(){
+void InsertVeicolo::hideButton(bool a){
 AddButton->hide();
 saveEditButton->show();
+
+if(a){
+    AddButton->show();
+    saveEditButton->hide();
+
+}
 
 }
 
 
 void InsertVeicolo::setTipoVeicolo(unsigned int i){
+
  tipoVeicolo->setCurrentIndex(i);
+ tipoVeicolo->setDisabled(true);
 }
 void InsertVeicolo::setMarca(string a) {
     marca->setText(QString::fromStdString(a));
 }
-void InsertVeicolo::setModello(string i) {}
-void InsertVeicolo::setNumeroTelaio(unsigned int i) {}
-void InsertVeicolo::setCambio(bool i) {}
-void InsertVeicolo::setLunghezza(double i) {}
-void InsertVeicolo::setNumeroMotore(unsigned int i) {}
-void InsertVeicolo::setCilindrata(unsigned int i) {}
-void InsertVeicolo::setCavalli(unsigned int i) {}
-void InsertVeicolo::setAlimentazione(int) {}
-void InsertVeicolo::setTarga(string) {}
-void InsertVeicolo::setPrezzo(double) {}
-void InsertVeicolo::setMassa(double) {}
-void InsertVeicolo::setNumeroPosti(int) {}
-void InsertVeicolo::setSegmento(string) {}
-void InsertVeicolo::setAutocarro(bool) {}
-void InsertVeicolo::setNumeroAssi(unsigned int) {}
-void InsertVeicolo::setRibaltabile(bool) {}
-void InsertVeicolo::setSidecar(bool) {}
-void InsertVeicolo::setClasseEmissioni(string) {}
-void InsertVeicolo::setTipoMoto(unsigned int) {}
+void InsertVeicolo::setModello(string i) {
+
+    modello->setText(QString::fromStdString(i));
+
+}
+void InsertVeicolo::setNumeroTelaio(unsigned int i) {
+
+    numeroTelaio->setText(QString::number(i));
+
+}
+void InsertVeicolo::setCambio(bool i) {
+
+    cambio->setChecked(i);
+
+}
+void InsertVeicolo::setLunghezza(double i) {
+
+    lunghezza->setText(QString::number(i));
+
+}
+void InsertVeicolo::setNumeroMotore(unsigned int i) {
+
+    numeroMotore->setText(QString::number(i));
+
+}
+void InsertVeicolo::setCilindrata(unsigned int i) {
+
+    cilindrata->setText(QString::number(i));
+
+
+}
+void InsertVeicolo::setCavalli(unsigned int i) {
+
+    cavalli->setText(QString::number(i));
+}
+void InsertVeicolo::setAlimentazione(int i) {
+
+    alimentazione->setCurrentIndex(i);
+
+
+}
+void InsertVeicolo::setTarga(string i) {
+
+    targa->setText(QString::fromStdString(i));
+}
+void InsertVeicolo::setPrezzo(double i) {
+
+    prezzo->setText(QString::number(i));
+}
+void InsertVeicolo::setMassa(unsigned int i) {
+
+    massa->setText(QString::number(i));
+}
+void InsertVeicolo::setNumeroPosti(unsigned int i) {
+
+    numeroPosti->setText(QString::number(i));
+}
+void InsertVeicolo::setSegmento(unsigned int i) {
+
+    segmento->setCurrentIndex(i);
+}
+void InsertVeicolo::setAutocarro(bool i) {
+    autocarro->setChecked(i);
+}
+void InsertVeicolo::setNumeroAssi(unsigned int i) {
+
+    numeroAssi->setText(QString::number(i));
+}
+void InsertVeicolo::setRibaltabile(bool i) {
+
+    ribaltabile->setChecked(i);
+}
+void InsertVeicolo::setSidecar(bool i) {
+
+    sidecar->setChecked(i);
+}
+void InsertVeicolo::setClasseEmissioni(unsigned int i) {
+
+    classeEmissioni->setText(QString::number(i));
+}
+void InsertVeicolo::setTipoMoto(unsigned int i) {
+
+    tipoMoto->setCurrentIndex(i);
+}
 
 

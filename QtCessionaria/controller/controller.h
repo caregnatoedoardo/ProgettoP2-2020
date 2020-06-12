@@ -42,8 +42,10 @@ public slots:
     void slotFlagDataChange(bool flag)const;
     void slotShowInserisci() const;
     void slotShowVisualizza() const;
-    void slotShowModifica() ;
+    void slotShowModifica();
+    void slotSaveModifica();
     void slotResetRicerca() const;
+
 
 };
 

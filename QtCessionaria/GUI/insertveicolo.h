@@ -99,7 +99,7 @@ public:
      QPushButton* getSaveEditButton() const;
 
 
-     void hideButton();
+     void hideButton(bool);
 
 
 
@@ -116,14 +116,14 @@ public:
      void setAlimentazione(int) ;
      void setTarga(string) ;
      void setPrezzo(double) ;
-     void setMassa(double) ;
-     void setNumeroPosti(int) ;
-     void setSegmento(string) ;
+     void setMassa(unsigned int) ;
+     void setNumeroPosti(unsigned int) ;
+     void setSegmento(unsigned int) ;
      void setAutocarro(bool) ;
      void setNumeroAssi(unsigned int) ;
      void setRibaltabile(bool) ;
      void setSidecar(bool) ;
-     void setClasseEmissioni(string) ;
+     void setClasseEmissioni(unsigned int) ;
      void setTipoMoto(unsigned int) ;
 
 

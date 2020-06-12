@@ -456,6 +456,14 @@ bool Model::push_end(Veicolo *a){
     return false;
 }
 
+bool Model::remove(Veicolo* a){
+
+   dbVeicoli->remove(a);
+   searchRes=dbVeicoli;
+   return true;
+
+
+}
 
 
 tipomoto Model::convertToTipomoto(const string st)const {
