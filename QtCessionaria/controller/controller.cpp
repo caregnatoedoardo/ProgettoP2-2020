@@ -419,9 +419,11 @@ void Controller::slotEliminaElemento() const {
 }
 
 void Controller::slotShowInserisci()const{
+
     groupView->hide();
     ricercaView->hide();
     inserisciVeicolo->show();
+    inserisciVeicolo->hideButton(true);
 
 }
 

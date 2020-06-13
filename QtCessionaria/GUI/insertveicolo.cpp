@@ -464,11 +464,13 @@ void InsertVeicolo::hideButton(bool a){
     if(!a){
         AddButton->hide();
         saveEditButton->show();
+
     }
 
     if(a){
         AddButton->show();
         saveEditButton->hide();
+        tipoVeicolo->setDisabled(false);
     }
 }
 
