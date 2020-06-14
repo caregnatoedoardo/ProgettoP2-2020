@@ -457,19 +457,38 @@ bool Model::push_end(Veicolo *a){
 }
 
 bool Model::remove(Veicolo* a){
-   dbVeicoli->remove(a);
-   searchRes=dbVeicoli;
-   return true;
+    if(dbVeicoli->remove(a)){
+        searchRes=dbVeicoli;
+        return true;
+    }
+    return false;
 }
 
+bool Model::search(Container<Veicolo*>*& ct, Veicolo *a) const{//effettua la ricerca di un Veicolo dentro un Container.
+    return(ct->search(a));
+}
 
-tipomoto Model::convertToTipomoto(const string st)const {
-    if(st=="corsa") return corsa;
-    if(st=="custom") return custom;
-    if(st=="naked") return naked;
-    if(st=="cross") return cross;
+bool Model::vendi(Veicolo *a){
+    if(search(dbVeicoli,a) && dbVenduti->push_begin(a) && dbVeicoli->remove(a)){
+        return true;
+    }
+    return false;
+}
 
-    throw Exc(4);
+bool Model::nonVenduta(Veicolo *a){//verifica se un veicolo è presente nel Db dei venudti e, se presente, lo riporta nel db dei disponibili.
+    if(search(dbVenduti, a) && dbVeicoli->push_begin(a) && dbVenduti->remove(a)){//se è presente all'interno del db venduti
+        return true;
+    }
+    return false;
+}
+
+tipomoto Model::convertToTipomoto(const string st)const{
+        if(st=="corsa") return corsa;
+        if(st=="custom") return custom;
+        if(st=="naked") return naked;
+        if(st=="cross") return cross;
+
+        throw Exc(4);
 }
 
 

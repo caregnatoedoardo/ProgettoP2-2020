@@ -65,7 +65,7 @@ public:
     bool push_begin(const T&);
     bool push_end(const T&);
     bool push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
-    void remove(const T&);
+    bool remove(const T&);
     bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il T passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
     void modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
@@ -311,13 +311,13 @@ bool Container<T>::push(const T& t, unsigned int posiz){
 }
 
 template<class T>
-void Container<T>::remove(const T& t){
+bool Container<T>::remove(const T& t){
     try{
         if(isEmpty()) throw Exc();
     }
     catch(Exc){
         Exc(7);
-        return;
+        return false;
     }
 
     if(first->info==t){                 //rimozione in testa
@@ -327,7 +327,7 @@ void Container<T>::remove(const T& t){
             first->prev=nullptr;
         elim->prev=elim->next=nullptr;
         delete elim;
-        return;
+        return true;
     }
     Nodo* scorri=first;                 //rimozione nel mezzo
     while(scorri->next){
@@ -336,7 +336,7 @@ void Container<T>::remove(const T& t){
             scorri->next->prev=scorri->prev;
             scorri->next=scorri->prev=nullptr;
             delete scorri;
-            return;
+            return true;
         }
         scorri=scorri->next;
     }
@@ -345,13 +345,15 @@ void Container<T>::remove(const T& t){
             scorri->prev->next=nullptr;
             scorri->prev=nullptr;
             delete scorri;
+            return true;
         }
         else
             throw Exc();
     }catch(Exc){
         Exc(12, "Veicolo non presente");
+        return false;
     }
-    return;
+    return false;
 }
 
 template<class T>

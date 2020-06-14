@@ -40,6 +40,10 @@ public:
     bool remove(Veicolo*);
     void clearRicerca();
 
+    bool search(Container<Veicolo*>*&, Veicolo*)const;
+    bool vendi(Veicolo*);
+    bool nonVenduta(Veicolo*);
+
     //implementazione di tutti i filtri di ricerca
     void filterByType(string ="auto");
     void filterByMarca(string="");

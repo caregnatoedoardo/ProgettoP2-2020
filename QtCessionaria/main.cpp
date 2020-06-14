@@ -68,6 +68,10 @@ int main(int argc, char *argv[])
     //CORRETTO ERRORE IN INSERIMENTO ALIMENTAZIONE NON ESISTENTE (elettricA)
     //Tipo Veicolo non più modificabile dopo Visualizza -> Modifica
 
+    //La MODIFICA di numero telaio, N chassis, e TARGA non è più possibile DOPO un inserimento per fini di SICUREZZA e per preservare l'integrità dei dati.
+
+    //Pulsante "Vendi" da fare nella sezione di visualizzazione di un veicolo. Pulsante "NON VENDUTA" per far tornare l'auto dal dbvenduti al dbveicoli.
+
     QApplication a(argc, argv);
     Controller w(new Model());
     w.setFixedSize(1024,768);
