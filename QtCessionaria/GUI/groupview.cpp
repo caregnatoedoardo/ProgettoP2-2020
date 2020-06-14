@@ -19,8 +19,8 @@ QPushButton* GroupView::getBtnVendi()const
 
 GroupView::GroupView(bool venduti,QWidget* p):
     QWidget(p),
-    status(venduti),
     btnElimina(new QPushButton("Elimina Record Selezionato",this)),
+    status(venduti),
     btnModifica(new QPushButton("Modifica",this)),
     btnVendi(new QPushButton("Vendi Elemento",this)),
     list(new ListViewWidget(this)),
