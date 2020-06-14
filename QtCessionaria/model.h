@@ -67,6 +67,7 @@ public:
     segmento convertToSeg(const string)const;
     alimentazione convertToAlimentazione(const string)const;
     bool getFlagDataSaved()const;
+    Veicolo* getElementoByPosition(unsigned int i)const;
 
 
     static QPixmap getImage(const std::string&);
