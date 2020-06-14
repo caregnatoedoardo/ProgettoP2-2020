@@ -469,9 +469,13 @@ bool Model::search(Container<Veicolo*>*& ct, Veicolo *a) const{//effettua la ric
 }
 
 bool Model::vendi(Veicolo *a){
-    if(search(dbVeicoli,a) && dbVenduti->push_begin(a) && dbVeicoli->remove(a)){
-        return true;
-    }
+    bool cerca=search(dbVeicoli,a);
+    bool pushata=dbVenduti->push_begin(a);
+    bool rimossa=dbVeicoli->remove(a);
+        //if(search(dbVeicoli,a) && dbVenduti->push_begin(a) && dbVeicoli->remove(a)){
+        if(cerca && pushata && rimossa){
+            return true;
+        }
     return false;
 }
 

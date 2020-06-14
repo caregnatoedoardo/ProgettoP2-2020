@@ -308,16 +308,12 @@ void Controller::slotSaveModifica(){
 
 void Controller::slotVendi(){
 
-
-
     PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
     vendutiView->getList()->addVeicolo(item->getItemAddress());
     model->vendi(item->getItemAddress());
 
-
     delete item;
     groupView->getList()->reset();
-
 
 
 }
