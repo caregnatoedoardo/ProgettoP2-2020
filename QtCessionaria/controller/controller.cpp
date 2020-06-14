@@ -241,11 +241,45 @@ void Controller::slotShowModifica(){
    dialog->setSegmento(a->getSegmento());
    dialog->setAlimentazione(a->getAlimentazione());
    dialog->setAutocarro(a->getAutocarro());
-
-
-
-
-
+  }
+  if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "moto"){
+      Moto* a = dynamic_cast<Moto*>(groupView->getList()->currentItem()->getItemAddress());
+      dialog->setTipoVeicolo(3);
+      dialog->setMarca(a->getMarca());
+      dialog->setModello(a->getModello());
+      dialog->setNumeroTelaio(a->getNTelaio());
+      dialog->setCambio(a->getCambio());
+      dialog->setColore(a->getColore());
+      dialog->setTarga(a->getTarga());
+      dialog->setLunghezza(a->getLunghezza());
+      dialog->setPrezzo(a->getPrezzo());
+      dialog->setNumeroMotore(a->getNMotore());
+      dialog->setMassa(a->getMassa());
+      dialog->setCilindrata(a->getCilindrata());
+      dialog->setNumeroPosti(a->getNumPosti());
+      dialog->setCavalli(a->getCavalli());
+      dialog->setSidecar(a->getSidecar());
+      dialog->setClasseEmissioni(a->getClasseEmissioni());
+      dialog->setTipoMoto(a->getTipoMoto());
+  }
+  if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "camion"){
+      Camion* a = dynamic_cast<Camion*>(groupView->getList()->currentItem()->getItemAddress());
+      dialog->setTipoVeicolo(4);
+      dialog->setMarca(a->getMarca());
+      dialog->setModello(a->getModello());
+      dialog->setNumeroTelaio(a->getNTelaio());
+      dialog->setCambio(a->getCambio());
+      dialog->setColore(a->getColore());
+      dialog->setTarga(a->getTarga());
+      dialog->setLunghezza(a->getLunghezza());
+      dialog->setPrezzo(a->getPrezzo());
+      dialog->setNumeroMotore(a->getNMotore());
+      dialog->setMassa(a->getMassa());
+      dialog->setCilindrata(a->getCilindrata());
+      dialog->setNumeroPosti(a->getNumPosti());
+      dialog->setCavalli(a->getCavalli());
+      dialog->setNumeroAssi(a->getNumAssi());
+      dialog->setRibaltabile(a->getRibaltabile());
   }
 
 
@@ -259,13 +293,13 @@ void Controller::slotSaveModifica(){
 
   // Veicolo* a= groupView->getList()->currentItem()->getItemAddress();
   // model->remove(a);
-   slotEliminaElemento();
 
-    groupView->getList()->update();
-    inserisciVeicolo->hideButton(true);
-
-    if(slotAggiungiVeicolo())
+    if(slotAggiungiVeicolo()){
+        slotEliminaElemento();
+        groupView->getList()->update();
+        inserisciVeicolo->hideButton(true);
         dialog->hide();
+    }
 }
 
 
