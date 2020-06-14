@@ -15,16 +15,21 @@ class GroupView : public QWidget
 private:
     QPushButton *btnElimina;
     QPushButton* btnModifica;
+    QPushButton* btnVendi;
     ListViewWidget* list;
+    ListViewWidget* listVenduti;
     ViewVeicolo* dialog;
     QWidget* parent;
+    bool status;
 
 public:
-    GroupView(QWidget* = nullptr);
+    GroupView(bool,QWidget* = nullptr);
     ~GroupView();
     ListViewWidget* getList() const;
+    ListViewWidget* getListVenduti() const;
     QPushButton* getBtnElimina() const;
     QPushButton* getBtnModifica() const;
+    QPushButton* getBtnVendi() const;
 
 public slots:
     void slotElementoSelezionato(bool= true)const;

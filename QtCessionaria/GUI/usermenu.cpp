@@ -5,6 +5,7 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     salva(new QAction("Salva",this)),
     carica(new QAction("Carica",this)),
     visualizza(new QAction("Visualizza",this)),
+    visualizzaVenduti(new QAction("Visualizza Venduti",this)),
     ricerca(new QAction("Ricerca",this)),
     inserisci(new QAction("Inserisci",this)),
     esci(new QAction("Esci",this))
@@ -17,6 +18,7 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     actionList.push_back(carica);
     actionList.push_back(inserisci);
     actionList.push_back(visualizza);
+    actionList.push_back(visualizzaVenduti);
     actionList.push_back(esci);
 
     menu->addActions(actionList);
@@ -35,6 +37,8 @@ Usermenu::Usermenu(QWidget* p):parent(p),
    connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotShowRicerca()));
    connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotShowInserisci()));
    connect(visualizza,SIGNAL(triggered()),parent,SLOT(slotShowVisualizza()));
+   connect(visualizzaVenduti,SIGNAL(triggered()),parent,SLOT(slotShowVisualizzaVenduti()));
+
 }
 
 

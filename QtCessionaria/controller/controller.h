@@ -18,11 +18,13 @@ private:
 
 
    Model* model;
+
    Usermenu* menuUtente;
    QHBoxLayout* mainLayout;
    InsertVeicolo* inserisciVeicolo;
    Ricerca* ricercaView;
    GroupView* groupView;
+   GroupView* vendutiView;
   // ViewVeicolo* dialog;
    InsertVeicolo* dialog;
 public:
@@ -42,9 +44,11 @@ public slots:
     void slotFlagDataChange(bool flag)const;
     void slotShowInserisci() const;
     void slotShowVisualizza() const;
+    void slotShowVisualizzaVenduti() const;
     void slotShowModifica();
     void slotSaveModifica();
     void slotResetRicerca() const;
+    void slotVendi();
 
 
 };
