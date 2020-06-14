@@ -457,12 +457,9 @@ bool Model::push_end(Veicolo *a){
 }
 
 bool Model::remove(Veicolo* a){
-
    dbVeicoli->remove(a);
    searchRes=dbVeicoli;
    return true;
-
-
 }
 
 
@@ -515,6 +512,7 @@ void Model::clearRicerca()  {
 
 }
 
+Veicolo* Model::getElementoByPosition(unsigned int i) const{return dbVeicoli->getVeicolo(i);}
 
 
 
