@@ -15,9 +15,9 @@
 class Model{
 
 private:
-    Container<Veicolo*>* dbVeicoli;//Container che rappresenta tutti i veicoli disponibili (tranne quelli già venduti)
-    Container<Veicolo*>* dbVenduti;//Container che rappresenta i veicoli venduti
-    Container<Veicolo*>* searchRes;//Container temporaneo che servirà a contenere i risultati di ricerca dell'utente
+    Container<Veicolo*>* dbVeicoli=nullptr;//Container che rappresenta tutti i veicoli disponibili (tranne quelli già venduti)
+    Container<Veicolo*>* dbVenduti=nullptr;//Container che rappresenta i veicoli venduti
+    Container<Veicolo*>* searchRes=nullptr;//Container temporaneo che servirà a contenere i risultati di ricerca dell'utente
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
