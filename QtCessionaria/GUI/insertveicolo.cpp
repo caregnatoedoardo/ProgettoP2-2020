@@ -14,7 +14,30 @@
 InsertVeicolo::InsertVeicolo(QWidget*p):
     QWidget(p),
     tipoVeicolo(new VeicoloTypeBox(this)),
-    scegliFoto(new QLabel(this)),
+    scegliFoto(new QLabel("Scegli Foto",this)),
+    descTipoVeicolo(new QLabel("Tipo Veicolo",this)),
+    descMarca(new QLabel("Marca",this)),
+    descModello(new QLabel("Modello",this)),
+    descNumeroTelaio(new QLabel("Numero Telaio",this)),
+    descCambio(new QLabel("Cambio Automatico",this)),
+    descColore(new QLabel("Colore",this)),
+    descLunghezza(new QLabel("Lunghezza",this)),
+    descNumeroMotore(new QLabel("Numero Motore",this)),
+    descCilindrata(new QLabel("Cilindrata",this)),
+    descCavalli(new QLabel("Cavalli",this)),
+    descAlimentazione(new QLabel("Alimentazione",this)),
+    descTarga(new QLabel("Targa",this)),
+    descPrezzo(new QLabel("Prezzo €",this)),
+    descMassa(new QLabel("Massa",this)),
+    descNumeroPosti(new QLabel("Numeri Posti",this)),
+    descSegmento(new QLabel("Segmento",this)),
+    descAutocarro(new QLabel("Autocarro",this)),
+    descNumeroAssi(new QLabel("Numero Assi",this)),
+    descRibaltabile(new QLabel("Ribaltabile",this)),
+    descSidecar(new QLabel("Sidecar",this)),
+    descClasseEmissioni(new QLabel("Classe Emissione",this)),
+    descTipoMoto(new QLabel("Tipo Moto",this)),
+
     marca(new QLineEdit(this)),
     modello(new QLineEdit(this)),
     numeroTelaio(new QLineEdit(this)),
@@ -45,15 +68,18 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 {
     QGridLayout* form = new QGridLayout(this);
 
+   // form->addWidget(descTipoVeicolo,0,0);
     form->addWidget(tipoVeicolo,0,0);
 
     bottoneScegliFoto->setText("Carica Immagine");
 
-    form->addWidget(scegliFoto,5,5);
+
+    form->addWidget(scegliFoto,5,7);
     form->addWidget(bottoneScegliFoto,5,6);
 
 
     marca->setPlaceholderText("MARCA");
+    form->addWidget(descMarca,1.5,0);
     form->addWidget(marca,1,0);
 
     modello->setPlaceholderText("Modello");
@@ -471,6 +497,8 @@ void InsertVeicolo::hideButton(bool a){
         AddButton->show();
         saveEditButton->hide();
         tipoVeicolo->setDisabled(false);
+        targa->setDisabled(false);
+        numeroTelaio->setDisabled(false);
     }
 }
 
@@ -491,6 +519,7 @@ void InsertVeicolo::setModello(string i) {
 void InsertVeicolo::setNumeroTelaio(unsigned int i) {
 
     numeroTelaio->setText(QString::number(i));
+    numeroTelaio->setDisabled(true);
 
 }
 void InsertVeicolo::setCambio(bool i) {
@@ -527,6 +556,7 @@ void InsertVeicolo::setAlimentazione(int i) {
 void InsertVeicolo::setTarga(string i) {
 
     targa->setText(QString::fromStdString(i));
+    targa->setDisabled(true);
 }
 void InsertVeicolo::setPrezzo(double i) {
 

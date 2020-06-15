@@ -25,6 +25,30 @@ class InsertVeicolo : public QWidget
  private:
     VeicoloTypeBox* tipoVeicolo;
     QLabel* scegliFoto;
+    QLabel* descTipoVeicolo;
+    QLabel* descMarca;
+    QLabel* descModello;
+    QLabel* descNumeroTelaio;
+    QLabel* descCambio;
+    QLabel* descColore;
+    QLabel* descLunghezza;
+    QLabel* descNumeroMotore;
+    QLabel* descCilindrata;
+    QLabel* descCavalli;
+    QLabel* descAlimentazione;
+    QLabel* descTarga;
+    QLabel* descPrezzo;
+    QLabel* descMassa;
+    QLabel* descNumeroPosti;
+    QLabel* descSegmento;
+    QLabel* descAutocarro;
+    QLabel* descNumeroAssi;
+    QLabel* descRibaltabile;
+    QLabel* descSidecar;
+    QLabel* descClasseEmissioni;
+    QLabel* descTipoMoto;
+
+
     QLineEdit* marca;
     QLineEdit* modello;
 

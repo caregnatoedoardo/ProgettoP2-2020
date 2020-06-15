@@ -12,45 +12,67 @@ QPushButton* GroupView::getBtnModifica()const
     return btnModifica;
 }
 
-GroupView::GroupView(QWidget* p):
+QPushButton* GroupView::getBtnVendi()const
+{
+    return btnVendi;
+}
+
+GroupView::GroupView(bool venduti,QWidget* p):
     QWidget(p),
     btnElimina(new QPushButton("Elimina Record Selezionato",this)),
+    status(venduti),
     btnModifica(new QPushButton("Modifica",this)),
+    btnVendi(new QPushButton("Vendi Elemento",this)),
     list(new ListViewWidget(this)),
+    listVenduti(new ListViewWidget(this)),
     dialog(nullptr)
 {
     QVBoxLayout* vBox = new QVBoxLayout(this);
     btnElimina->setEnabled(false);
     btnModifica->setEnabled(false);
-    vBox->addWidget(list);
+    btnVendi->setEnabled(false);
+    if(venduti){
+        vBox->addWidget(listVenduti);
+    }
+    else vBox->addWidget(list);
+
     list->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     QHBoxLayout* l= new QHBoxLayout();
 
 
     l->addWidget(btnModifica);
+    l->addWidget(btnVendi);
     l->addWidget(btnElimina);
 
     vBox->addLayout(l);
     connect(list, SIGNAL(currentRowChanged(int)),this,SLOT(slotElementoSelezionato()));
-    connect(this, SIGNAL(signalElementoSelezionato(bool)),this,SLOT(slotElementoSelezionato(bool)));
+    connect(listVenduti, SIGNAL(currentRowChanged(int)),this,SLOT(slotElementoSelezionato()));
 
+    connect(this, SIGNAL(signalElementoSelezionato(bool)),this,SLOT(slotElementoSelezionato(bool)));
 
 }
 
 GroupView::~GroupView(){
     delete list;
+    delete listVenduti;
     delete btnElimina;
 }
 
 ListViewWidget* GroupView::getList() const
 {
-    return list;
+    if(status) return listVenduti;
+       else  return list;
+
 }
 
+
 void GroupView::slotElementoSelezionato(bool t)const {
+
     btnElimina->setEnabled(t);
     btnModifica->setEnabled(t);
+    btnVendi->setEnabled(t);
+
 }
 
 void GroupView::slotRowChanged()const{

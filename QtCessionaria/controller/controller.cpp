@@ -30,6 +30,7 @@ Controller::Controller(Model*m, QWidget *parent):
     inserisciVeicolo(new InsertVeicolo(this)),
     ricercaView(new Ricerca(this)),
     groupView(new GroupView(this)),
+    vendutiView(new GroupView(true,this)),
     dialog(nullptr)
 
 
@@ -38,11 +39,15 @@ Controller::Controller(Model*m, QWidget *parent):
     mainLayout->setMenuBar(menuUtente);
     mainLayout->addWidget(ricercaView);
     mainLayout->addWidget(groupView);
+    mainLayout->addWidget(vendutiView);
     mainLayout->addWidget(inserisciVeicolo);
 
     slotShowInserisci();
     connect(groupView->getBtnElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
     connect(groupView->getBtnModifica(),SIGNAL(clicked()),this,SLOT(slotShowModifica()));
+    connect(groupView->getBtnVendi(),SIGNAL(clicked()),this,SLOT(slotVendi()));
+    connect(groupView->getBtnVendi(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
+
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotAggiungiVeicolo()));
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
 
@@ -293,14 +298,33 @@ void Controller::slotSaveModifica(){
 
   // Veicolo* a= groupView->getList()->currentItem()->getItemAddress();
   // model->remove(a);
+    slotEliminaElemento();
+    slotAggiungiVeicolo();
 
-    if(slotAggiungiVeicolo()){
-        slotEliminaElemento();
         groupView->getList()->update();
         inserisciVeicolo->hideButton(true);
         dialog->hide();
-    }
+
 }
+
+void Controller::slotVendi(){
+
+
+    if(groupView->getList()->currentItem()!=nullptr){
+    PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
+    vendutiView->getList()->addVeicolo(item->getItemAddress());
+
+    bool isVenduto = model->vendi(item->getItemAddress());
+    if(isVenduto){
+        delete item;
+        groupView->getList()->reset();
+    }
+
+
+
+}
+}
+
 
 
 
@@ -344,6 +368,8 @@ void Controller::slotShowRicerca() const {
     groupView->hide();
     ricercaView->show();
     inserisciVeicolo->hide();
+    vendutiView->hide();
+
 }
 
 void Controller::slotResetRicerca()const{
@@ -458,6 +484,7 @@ void Controller::slotShowInserisci()const{
     ricercaView->hide();
     inserisciVeicolo->show();
     inserisciVeicolo->hideButton(true);
+    vendutiView->hide();
 
 }
 
@@ -465,13 +492,28 @@ void Controller::slotShowVisualizza()const{
     groupView->show();
     ricercaView->hide();
     inserisciVeicolo->hide();
+    vendutiView->hide();
 
 }
+
+void Controller::slotShowVisualizzaVenduti()const{
+    groupView->hide();
+    vendutiView->show();
+    ricercaView->hide();
+    inserisciVeicolo->hide();
+
+}
+
+
+
 
 
 Controller::~Controller(){
     model->save();
 }
+
+
+
 
 void Controller::closeEvent(QCloseEvent *event){
 
