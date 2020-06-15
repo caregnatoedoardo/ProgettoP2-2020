@@ -21,7 +21,7 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
-    Model(string="../dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
+    Model(string="/Users/marco/Desktop/salvataggio/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
     ~Model();
 
 

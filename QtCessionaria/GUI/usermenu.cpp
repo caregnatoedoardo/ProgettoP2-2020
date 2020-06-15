@@ -33,7 +33,7 @@ Usermenu::Usermenu(QWidget* p):parent(p),
 
    connect(esci, SIGNAL(triggered()),parent,SLOT(slotClose()));
    connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));
-   connect(carica, SIGNAL(triggered()),parent,SLOT(slotCarica()));
+   connect(carica, SIGNAL(triggered()),parent,SLOT(slotLoad()));
    connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotShowRicerca()));
    connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotShowInserisci()));
    connect(visualizza,SIGNAL(triggered()),parent,SLOT(slotShowVisualizza()));
