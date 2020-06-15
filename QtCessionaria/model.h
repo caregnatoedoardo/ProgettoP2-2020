@@ -21,7 +21,11 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
+<<<<<<< HEAD
+    Model(string="/Users/marco/Desktop/salvataggio/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
+=======
     Model(string="../QtCessionaria/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
+>>>>>>> master
     ~Model();
 
 

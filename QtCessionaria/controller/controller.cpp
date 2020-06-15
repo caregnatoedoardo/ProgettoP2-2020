@@ -347,7 +347,7 @@ void Controller::slotLoad(){
 
     } else {
         for(unsigned int i=0; i<model->getContainerSize();i++)
-           // groupView->getList()->addVeicolo(model->elementAt(i));
+        groupView->getList()->addVeicolo(model->getElementoByPosition(i));
 
         slotShowVisualizza();
         slotFlagDataChange(false);
