@@ -23,23 +23,18 @@ private:
 public:
     Model(string="../dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
     ~Model();
+
+
     Container<Veicolo*>::Iteratore begin()const;
     Container<Veicolo*>::Iteratore end()const;
-
-
-
     void save();
     void load();
-
     void erase ();
     void erase (Veicolo*);
-
     unsigned int getContainerSize()const;
-
     bool push_end(Veicolo*);
     bool remove(Veicolo*);
     void clearRicerca();
-
     bool search(Container<Veicolo*>*&, Veicolo*)const;
     bool vendi(Veicolo*);
     bool nonVenduta(Veicolo*);
