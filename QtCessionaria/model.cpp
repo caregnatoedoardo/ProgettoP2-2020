@@ -446,7 +446,7 @@ void Model::filterByTypeMoto(string tm){
 }
 
 
-bool Model::push_end(Veicolo *a){
+bool Model::push_end(Veicolo* a){
     if(dbVeicoli->push_end(a)){
         if(!(searchRes==dbVeicoli))
             searchRes=dbVeicoli;
@@ -468,18 +468,18 @@ bool Model::search(Container<Veicolo*>*& ct, Veicolo *a) const{//effettua la ric
     return(ct->search(a));
 }
 
-bool Model::vendi(Veicolo *a){
+bool Model::vendi(Veicolo* a){
     bool cerca=search(dbVeicoli,a);
     bool pushata=dbVenduti->push_begin(a);
     bool rimossa=dbVeicoli->remove(a);
         //if(search(dbVeicoli,a) && dbVenduti->push_begin(a) && dbVeicoli->remove(a)){
-        if(cerca && pushata && rimossa){
+        if(cerca && pushata /*&& rimossa*/){
             return true;
         }
     return false;
 }
 
-bool Model::nonVenduta(Veicolo *a){//verifica se un veicolo è presente nel Db dei venudti e, se presente, lo riporta nel db dei disponibili.
+bool Model::nonVenduta(Veicolo* a){//verifica se un veicolo è presente nel Db dei venudti e, se presente, lo riporta nel db dei disponibili.
     if(search(dbVenduti, a) && dbVeicoli->push_begin(a) && dbVenduti->remove(a)){//se è presente all'interno del db venduti
         return true;
     }

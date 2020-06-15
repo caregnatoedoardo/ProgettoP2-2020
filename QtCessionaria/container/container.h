@@ -485,7 +485,9 @@ bool Container<T>::checkDuplicateEngine(const T& t)const{
         scorri=scorri->next;
     }
     //confronto ultimo nodo:
-    Motore* mttemp=dynamic_cast<Motore*>(scorri->info);
+    Motore* mttemp=nullptr;
+    if(mt && scorri)
+        mttemp=dynamic_cast<Motore*>(scorri->info);
     return(mt && mttemp && (mt->getNMotore()==mttemp->getNMotore()));
 }
 
@@ -502,7 +504,9 @@ bool Container<T>::checkDuplicateChassis(const T& t)const{
         scorri=scorri->next;
     }
     //confronto ultimo nodo:
-    Carrozzeria* crtemp=dynamic_cast<Carrozzeria*>(scorri->info);
+    Carrozzeria* crtemp=nullptr;
+    if(cr && scorri)
+        crtemp=dynamic_cast<Carrozzeria*>(scorri->info);
     return(cr && crtemp && (cr->getNTelaio()==crtemp->getNTelaio()));
 }
 
