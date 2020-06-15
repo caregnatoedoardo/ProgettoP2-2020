@@ -16,7 +16,8 @@
  *      3.5) Ricerca elemento del container
  *      3.6) Verifica elementi doppi (stessa targa) nel container
  *      3.7) COPIA DI CONTAINER (?) nel caso in cui nel progetto sia implementata la vendita di veicoli
- *      3.8) Flush del container (elimina tutti gli elementi)
+ *      3.8) Flush del container (
+ * elimina tutti gli elementi)
  * * * */
 
 template<class T>
