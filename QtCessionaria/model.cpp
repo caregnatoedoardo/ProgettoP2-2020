@@ -464,23 +464,19 @@ bool Model::remove(Veicolo* a){
     return false;
 }
 
-bool Model::search(Container<Veicolo*>*& ct, Veicolo *a) const{//effettua la ricerca di un Veicolo dentro un Container.
+bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ricerca di un Veicolo dentro un Container.
     return(ct->search(a));
 }
 
 bool Model::vendi(Veicolo* a){
-    bool cerca=search(dbVeicoli,a);
-    bool pushata=dbVenduti->push_begin(a);
-    bool rimossa=dbVeicoli->remove(a);
-        //if(search(dbVeicoli,a) && dbVenduti->push_begin(a) && dbVeicoli->remove(a)){
-        if(cerca && pushata /*&& rimossa*/){
-            return true;
-        }
+    if(search(dbVeicoli,a) && dbVenduti->push_begin(a) && dbVeicoli->cancella(a)){
+        return true;
+    }
     return false;
 }
 
 bool Model::nonVenduta(Veicolo* a){//verifica se un veicolo è presente nel Db dei venudti e, se presente, lo riporta nel db dei disponibili.
-    if(search(dbVenduti, a) && dbVeicoli->push_begin(a) && dbVenduti->remove(a)){//se è presente all'interno del db venduti
+    if(search(dbVenduti, a) && dbVeicoli->push_begin(a) && dbVenduti->cancella(a)){//se è presente all'interno del db venduti
         return true;
     }
     return false;
