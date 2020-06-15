@@ -21,11 +21,8 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
-<<<<<<< HEAD
-    Model(string="/Users/marco/Desktop/salvataggio/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
-=======
-    Model(string="../QtCessionaria/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
->>>>>>> master
+    Model(string="/home/edoardo/QT_PROJECTS/ProgettoP2-2020/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
+    //Model(string="../QtCessionaria/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
     ~Model();
 
 
