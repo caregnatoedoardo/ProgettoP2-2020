@@ -25,9 +25,14 @@ void Model::save(){
 
 
     QSaveFile file(QString::fromStdString(path));
-    if(!file.open(QIODevice::WriteOnly)){
-        throw Exc(11,"scrittura");
-    }
+    try{
+        if(!file.open(QIODevice::WriteOnly)){
+            throw Exc();
+        }
+        }catch(Exc){
+            Exc(11,"scrittura");
+            return;
+        }
 
     QXmlStreamWriter writer(&file);
     writer.setAutoFormatting(true);
