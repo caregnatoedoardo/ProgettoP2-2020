@@ -16,7 +16,8 @@
  *      3.5) Ricerca elemento del container
  *      3.6) Verifica elementi doppi (stessa targa) nel container
  *      3.7) COPIA DI CONTAINER (?) nel caso in cui nel progetto sia implementata la vendita di veicoli
- *      3.8) Flush del container (elimina tutti gli elementi)
+ *      3.8) Flush del container (
+ * elimina tutti gli elementi)
  * * * */
 
 template<class T>
@@ -66,6 +67,7 @@ public:
     bool push_end(const T&);
     bool push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
     bool remove(const T&);
+    bool cancella(const T&);
     bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il T passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
     void modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
@@ -194,12 +196,12 @@ bool Container<T>::push_begin(const T& t){
         first=new Nodo(t,nullptr,nullptr);
         return true;
     }
-    bool checkduplicate=isDuplicate(t);
+    /*bool checkduplicate=isDuplicate(t);
     bool checkduplicateengine=checkDuplicateEngine(t);
     bool checkduplicatechassis=checkDuplicateChassis(t);
-    bool checkduplicateplate=checkDuplicatePlate(t);
+    bool checkduplicateplate=checkDuplicatePlate(t);*/
     try{
-        if(checkplate && !checkduplicate && !checkduplicateengine && ! checkduplicatechassis && !checkduplicateplate){
+        if(checkPlate(t) && !isDuplicate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkDuplicatePlate(t)){
             Nodo* newfirst=new Nodo(t,nullptr,first);
             first->prev=newfirst;
             first=newfirst;
@@ -208,15 +210,15 @@ bool Container<T>::push_begin(const T& t){
         throw Exc();
     }
     catch (Exc){
-        if(checkduplicate)
+        if(isDuplicate(t))
             Exc(6,"duplicato");
-        if(checkduplicateengine)
+        if(checkDuplicateEngine(t))
             Exc(6,"N motore duplicato");
-        if(checkduplicatechassis)
+        if(checkDuplicateChassis(t))
             Exc(6,"N chassis duplicato");
-        if(checkduplicateplate)
+        if(checkDuplicatePlate(t))
             Exc(13);
-        if(!checkplate)
+        if(!checkPlate(t))
             Exc(3);
         return false;
     }
@@ -229,12 +231,12 @@ bool Container<T>::push_end(const T& t){
         first=new Nodo(t,nullptr, nullptr);
         return true;
     }
-    bool checkduplicate=isDuplicate(t);
+    /*bool checkduplicate=isDuplicate(t);
     bool checkduplicateengine=checkDuplicateEngine(t);
     bool checkduplicatechassis=checkDuplicateChassis(t);
-     bool checkduplicateplate=checkDuplicatePlate(t);
+    bool checkduplicateplate=checkDuplicatePlate(t);*/
     try{
-        if(checkplate && !checkduplicate && !checkduplicateengine && ! checkduplicatechassis && !checkduplicateplate){
+        if(checkPlate(t) && !isDuplicate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkDuplicatePlate(t)){
             Nodo* scorri=first;
             while(scorri->next)
                 scorri=scorri->next;
@@ -244,41 +246,41 @@ bool Container<T>::push_end(const T& t){
         throw Exc();
     }
     catch(Exc){
-        if(checkduplicate)
-            Exc(6,"duplicato");
-        if(checkduplicateengine)
-            Exc(6,"N motore duplicato");
-        if(checkduplicatechassis)
-            Exc(6,"N chassis duplicato");
-        if(checkduplicateplate)
-            Exc(13);
-        if(!checkplate)
-            Exc(3);
-        return false;
+         if(isDuplicate(t))
+             Exc(6,"duplicato");
+         if(checkDuplicateEngine(t))
+             Exc(6,"N motore duplicato");
+         if(checkDuplicateChassis(t))
+             Exc(6,"N chassis duplicato");
+         if(checkDuplicatePlate(t))
+             Exc(13);
+         if(!checkPlate(t))
+             Exc(3);
+         return false;
     }
 }
 
 template<class T>
 bool Container<T>::push(const T& t, unsigned int posiz){
-    bool checkplate=checkPlate(t);
+    /*bool checkplate=checkPlate(t);
     bool checkduplicate=isDuplicate(t);
     bool checkduplicateengine=checkDuplicateEngine(t);
     bool checkduplicatechassis=checkDuplicateChassis(t);
-    bool checkduplicateplate=checkDuplicatePlate(t);
+    bool checkduplicateplate=checkDuplicatePlate(t);*/
     try{
-         if(checkplate && !checkduplicate && !checkduplicateengine && !checkduplicatechassis && !checkduplicateplate)
+         if(checkPlate(t) && !isDuplicate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkDuplicatePlate(t))
              throw Exc();
     }
     catch(Exc){
-        if(checkduplicate)
+        if(isDuplicate(t))
             Exc(6,"duplicato");
-        if(checkduplicateengine)
+        if(checkDuplicateEngine(t))
             Exc(6,"N motore duplicato");
-        if(checkduplicatechassis)
+        if(checkDuplicateChassis(t))
             Exc(6,"N chassis duplicato");
-        if(checkduplicateplate)
+        if(checkDuplicatePlate(t))
             Exc(13);
-        if(!checkplate)
+        if(!checkPlate(t))
             Exc(3);
         return false;
     }
@@ -345,6 +347,49 @@ bool Container<T>::remove(const T& t){
             scorri->prev->next=nullptr;
             scorri->prev=nullptr;
             delete scorri;
+            return true;
+        }
+        else
+            throw Exc();
+    }catch(Exc){
+        Exc(12, "Veicolo non presente");
+        return false;
+    }
+    return false;
+}
+
+template<class T>
+bool Container<T>::cancella(const T& t){
+    try{
+        if(isEmpty()) throw Exc();
+    }
+    catch(Exc){
+        Exc(7);
+        return false;
+    }
+
+    if(first->info==t){                 //rimozione in testa
+        Nodo* elim=first;
+        first=first->next;
+        if(first)//se eliminiamo il solo ed unico nodo contenuto nel container
+            first->prev=nullptr;
+        elim->prev=elim->next=nullptr;
+        return true;
+    }
+    Nodo* scorri=first;                 //rimozione nel mezzo
+    while(scorri->next){
+        if(scorri->info==t){
+            scorri->prev->next=scorri->next;
+            scorri->next->prev=scorri->prev;
+            scorri->next=scorri->prev=nullptr;
+            return true;
+        }
+        scorri=scorri->next;
+    }
+    try{
+        if(scorri->info==t){                //rimozione alla fine
+            scorri->prev->next=nullptr;
+            scorri->prev=nullptr;
             return true;
         }
         else

@@ -15,7 +15,7 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     QWidget(p),
     tipoVeicolo(new VeicoloTypeBox(this)),
     scegliFoto(new QLabel("Scegli Foto",this)),
-    descTipoVeicolo(new QLabel("Tipo Veicolo",this)),
+    descTipoVeicolo(new QLabel("",this)),
     descMarca(new QLabel("Marca",this)),
     descModello(new QLabel("Modello",this)),
     descNumeroTelaio(new QLabel("Numero Telaio",this)),
@@ -68,70 +68,96 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 {
     QGridLayout* form = new QGridLayout(this);
 
-   // form->addWidget(descTipoVeicolo,0,0);
+    //form->addWidget(descTipoVeicolo,0,0);
     form->addWidget(tipoVeicolo,0,0);
 
-    bottoneScegliFoto->setText("Carica Immagine");
+   bottoneScegliFoto->setText("Carica Immagine");
 
 
     form->addWidget(scegliFoto,5,7);
-    form->addWidget(bottoneScegliFoto,5,6);
+   form->addWidget(bottoneScegliFoto,5,6);
 
 
-    marca->setPlaceholderText("MARCA");
-    form->addWidget(descMarca,1.5,0);
-    form->addWidget(marca,1,0);
+    marca->setPlaceholderText("Marca");
+    form->addWidget(descMarca,1,0);
+    form->addWidget(marca,2,0);
 
     modello->setPlaceholderText("Modello");
-    form->addWidget(modello,2,0);
+    form->addWidget(descModello,3,0);
+    form->addWidget(modello,4,0);
+
 
     numeroTelaio->setPlaceholderText("Numero Telaio");
-    form->addWidget(numeroTelaio,3,0);
+    form->addWidget(descNumeroTelaio,5,0);
+    form->addWidget(numeroTelaio,6,0);
 
-    form->addWidget(cambio,4,0);
+    form->addWidget(descCambio,7,0);
+    form->addWidget(cambio,8,0);
+
 
     colore->setPlaceholderText("Colore");
-    form->addWidget(colore,1,1);
+    form->addWidget(descColore,9,0);
+    form->addWidget(colore,10,0);
 
     lunghezza->setPlaceholderText("Lunghezza");
-    form->addWidget(lunghezza,2,1);
+    form->addWidget(descLunghezza,11,0);
+    form->addWidget(lunghezza,12,0);
 
     numeroMotore->setPlaceholderText("Numero Motore");
-    form->addWidget(numeroMotore,3,1);
+    form->addWidget(descNumeroMotore,13,0);
+    form->addWidget(numeroMotore,14,0);
 
     cilindrata->setPlaceholderText("Cilindrata");
-    form->addWidget(cilindrata,4,1);
+    form->addWidget(descCilindrata,15,0);
+    form->addWidget(cilindrata,16,0);
 
     cavalli->setPlaceholderText("Cavalli");
-    form->addWidget(cavalli,5,1);
+    form->addWidget(descCavalli,17,0);
+    form->addWidget(cavalli,18,0);
 
-    form->addWidget(alimentazione,6,1);
+    form->addWidget(descAlimentazione,19,0);
+    form->addWidget(alimentazione,20,0);
 
     targa->setPlaceholderText("Targa");
-    form->addWidget(targa,1,2);
+    form->addWidget(descTarga,1,1);
+    form->addWidget(targa,2,1);
 
     prezzo->setPlaceholderText("Prezzo");
-    form->addWidget(prezzo,2,2);
+    form->addWidget(descPrezzo,3,1);
+    form->addWidget(prezzo,4,1);
 
     massa->setPlaceholderText("Massa");
-    form->addWidget(massa,3,2);
+    form->addWidget(descMassa,5,1);
+    form->addWidget(massa,6,1);
 
     numeroPosti->setPlaceholderText("Numero Posti");
-    form->addWidget(numeroPosti,4,2);
+    form->addWidget(descNumeroPosti,7,1);
+    form->addWidget(numeroPosti,8,1);
 
-    form->addWidget(segmento,5,2);
-    form->addWidget(autocarro,6,2);
+
+    form->addWidget(descSegmento,9,1);
+    form->addWidget(segmento,10,1);
+
+    form->addWidget(descAutocarro,11,1);
+    form->addWidget(autocarro,12,1);
 
     numeroAssi->setPlaceholderText("Numero Assi");
-    form->addWidget(numeroAssi,1,3);
+    form->addWidget(descNumeroAssi,13,1);
+    form->addWidget(numeroAssi,14,1);
 
-    form->addWidget(ribaltabile,2,3);
+    form->addWidget(descRibaltabile,15,1);
+    form->addWidget(ribaltabile,16,1);
 
-    form->addWidget(sidecar,3,3);
+    form->addWidget(descSidecar,17,1);
+    form->addWidget(sidecar,18,1);
+
     classeEmissioni->setPlaceholderText("Classe Emissioni");
-    form->addWidget(classeEmissioni,4,3);
+    form->addWidget(descClasseEmissioni,19,1);
+    form->addWidget(classeEmissioni,20,1);
 
-    form->addWidget(tipoMoto,5,3);
+
+    form->addWidget(descTipoMoto,21,1);
+    form->addWidget(tipoMoto,22,1);
 
     form->addWidget(AddButton,6,3);
     form->addWidget(saveEditButton,6,3);
@@ -143,7 +169,7 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
         slotChangeFormLayout(tipoVeicolo->currentText());
     });
 
-    connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
+    //connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
 
 
 }
@@ -153,6 +179,31 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
 
     if(typeveic=="carrozzeria"){
         //show
+
+        descMarca->show();
+        descModello->show();
+        descNumeroTelaio->show();
+        descCambio->show();
+        descColore->show();
+        descLunghezza->show();
+
+        descNumeroMotore->hide();
+        descCilindrata->hide();
+        descCavalli->hide();
+        descAlimentazione->hide();
+        descLunghezza->hide();
+        descTarga->hide();
+        descPrezzo->hide();
+        descMassa->hide();
+        descNumeroPosti->hide();
+        descSegmento->hide();
+        descAutocarro->hide();
+        descNumeroAssi->hide();
+        descRibaltabile->hide();
+        descSidecar->hide();
+        descClasseEmissioni->hide();
+        descTipoMoto->hide();
+
 
         marca->show();
         modello->show();
@@ -182,6 +233,38 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
 
     }
     if(typeveic=="motore"){
+
+
+        descMarca->show();
+        descModello->show();
+        descNumeroMotore->show();
+        descCilindrata->show();
+        descCavalli->show();
+        descAlimentazione->show();
+
+
+        descNumeroTelaio->hide();
+        descCambio->hide();
+        descColore->hide();
+        descLunghezza->hide();
+
+        descTarga->hide();
+        descPrezzo->hide();
+        descMassa->hide();
+        descNumeroPosti->hide();
+        descSegmento->hide();
+        descAutocarro->hide();
+        descNumeroAssi->hide();
+        descRibaltabile->hide();
+        descSidecar->hide();
+        descClasseEmissioni->hide();
+        descTipoMoto->hide();
+
+
+
+
+
+
         //show
         marca->show();
         modello->show();
@@ -209,6 +292,34 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         AddButton->show();
     }
     if(typeveic=="auto"){
+
+
+        descMarca->show();
+        descModello->show();
+        descNumeroMotore->show();
+        descCilindrata->show();
+        descCavalli->show();
+        descAlimentazione->show();
+        descNumeroTelaio->show();
+        descCambio->show();
+        descColore->show();
+        descLunghezza->show();
+        descTarga->show();
+        descPrezzo->show();
+        descMassa->show();
+        descNumeroPosti->show();
+        descSegmento->show();
+        descAutocarro->show();
+
+        descNumeroAssi->hide();
+        descRibaltabile->hide();
+        descSidecar->hide();
+        descClasseEmissioni->hide();
+        descTipoMoto->hide();
+
+
+
+
         //show
         marca->show();
         modello->show();
@@ -237,7 +348,33 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
 
     }
     if(typeveic=="moto"){
+
+
+        descMarca->show();
+        descModello->show();
+        descNumeroMotore->show();
+        descCilindrata->show();
+        descCavalli->show();
+        descAlimentazione->show();
+        descNumeroTelaio->show();
+        descCambio->show();
+        descColore->show();
+        descLunghezza->show();
+        descTarga->show();
+        descPrezzo->show();
+        descMassa->show();
+        descNumeroPosti->show();
+        descSegmento->hide();
+        descAutocarro->hide();
+
+        descNumeroAssi->hide();
+        descRibaltabile->hide();
+        descSidecar->show();
+        descClasseEmissioni->show();
+        descTipoMoto->show();
+
         //show
+
         marca->show();
         modello->show();
         numeroTelaio->show();
@@ -264,6 +401,33 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         AddButton->show();
     }
     if(typeveic=="camion"){
+
+
+        descMarca->show();
+        descModello->show();
+        descNumeroMotore->show();
+        descCilindrata->show();
+        descCavalli->show();
+        descAlimentazione->show();
+        descNumeroTelaio->show();
+        descCambio->show();
+        descColore->show();
+        descLunghezza->show();
+        descTarga->show();
+        descPrezzo->show();
+        descMassa->show();
+        descNumeroPosti->show();
+        descSegmento->hide();
+        descAutocarro->show();
+
+        descNumeroAssi->hide();
+        descRibaltabile->hide();
+        descSidecar->hide();
+        descClasseEmissioni->hide();
+        descTipoMoto->hide();
+
+
+
         //show
         marca->show();
         modello->show();
