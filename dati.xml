@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--INIZIO SAVE FILE-->
 <root>
-    <auto marca="a" modello="a" pathimg="" n_telaio="1" cambio_auto="No" colore="1" lunghezza="1" n_motore="1" cilindrata="1" cavalli="1" alim="benzina" targa="AA000AA" prezzo="11" massa="1" numposti="1" seg="berlina" autocarro="No"/>
+    <motore marca="1" modello="1" pathimg="" n_motore="1" cilindrata="1" cavalli="1" alim="diesel"/>
+    <carrozzeria marca="2" modello="2" pathimg="" n_telaio="2" cambio_auto="No" colore="2" lunghezza="0"/>
+    <auto marca="3" modello="3" pathimg="" n_telaio="3" cambio_auto="No" colore="3" lunghezza="3" n_motore="3" cilindrata="3" cavalli="3" alim="benzina" targa="AA000AA" prezzo="3" massa="3" numposti="3" seg="berlina" autocarro="No"/>
+    <moto marca="4" modello="4" pathimg="" n_telaio="4" cambio_auto="No" colore="4" lunghezza="4" n_motore="4" cilindrata="4" cavalli="4" alim="benzina" targa="AA00000" prezzo="4" massa="4" numposti="4" sidecar="No" classe_emissioni="4" type="corsa"/>
+    <camion marca="5" modello="5" pathimg="" n_telaio="5" cambio_auto="No" colore="5" lunghezza="5" n_motore="5" cilindrata="5" cavalli="5" alim="benzina" targa="DD000DD" prezzo="5" massa="5" numposti="5" n_assi="0" ribaltabile="No"/>
 </root>

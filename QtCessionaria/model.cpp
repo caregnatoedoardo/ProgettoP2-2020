@@ -110,8 +110,13 @@ void Model::save(){
 void Model::load(){
 
     QFile file(QString::fromStdString(path));
-    if(!file.open(QIODevice::ReadOnly)){
-        throw Exc(11,"sola lettura");
+    try{
+        if(!file.open(QIODevice::ReadOnly)){
+            throw Exc();
+        }
+        }catch(Exc){
+            Exc(11,"sola lettura");
+            return;
     }
 
     QXmlStreamReader reader(&file);
@@ -141,15 +146,13 @@ void Model::load(){
                 unsigned int clemiss=0;
                 int nassi=0;
                 bool rib=false;
+                tipomoto tpm;
                 string tipomt="";
                 string pathimg="";
                 string nomereader=reader.name().toString().toStdString();
-
                 Veicolo* toPush = nullptr;
 
-                //CARROZZERIA if(carrozzeria,auto,camion,moto)
                 if(reader.name()=="carrozzeria" || reader.name()=="auto" || reader.name()=="camion" || reader.name()=="moto"){
-
                     numeroTelaio = att.hasAttribute("n_telaio")? att.value("n_telaio").toInt(): 0;
                     cambio_auto = att.hasAttribute("cambio_auto")? att.value("cambio_auto").toString()=="Si" ? true:false:false;
                     colore = att.hasAttribute("colore")? att.value("colore").toString().toStdString():"";
@@ -174,39 +177,38 @@ void Model::load(){
                     numposti = att.hasAttribute("numposti")? att.value("numposti").toInt(): 0;
                 }
                 if(reader.name() == "auto"){
-                    alimentazione al=alim;
                     seg = convertToSeg(att.hasAttribute("seg")? att.value("seg").toString().toStdString():"");
-                    segmento sg=seg;
                     autocarro = att.hasAttribute("autocarro")? att.value("autocarro").toString()=="Si" ? true:false:false;
-                    toPush = new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sg,autocarro);
+                    toPush = new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,seg,autocarro);
 
                 } else if(reader.name()=="camion"){
-                    //alimentazione al=convertToAlimentazione(alim);
-                  nassi = att.hasAttribute("n_assi")? att.value("n_assi").toDouble():1;
-                  rib = att.hasAttribute("ribaltabile")? att.value("ribaltabile").toString()=="Si" ? true:false:false;
-
-                  //toPush = new Camion(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,
-                                   //prezzo,massa,numposti,nassi,rib);
+                    nassi = att.hasAttribute("n_assi")? att.value("n_assi").toDouble():1;
+                    rib = att.hasAttribute("ribaltabile")? att.value("ribaltabile").toString()=="Si" ? true:false:false;
+                    toPush = new Camion(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,nassi,rib);
 
 
                 } else if(reader.name() =="moto"){
-                     //alimentazione al=convertToAlimentazione(alim);
                      sid = att.hasAttribute("sidecar")? att.value("sidecar").toString()=="Si" ? true:false:false;
                      clemiss = att.hasAttribute("classe_emissioni")? att.value("classe_emissioni").toInt(): 0;
-                     tipomoto tpm=convertToTipomoto(tipomt);
-                 //toPush = new Moto(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,
-                                   //prezzo,massa,numposti,sid,clemiss,tpm);
+                     tpm=convertToTipomoto(att.hasAttribute("type")? att.value("type").toString().toStdString():"");
+                     toPush = new Moto(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,sid,clemiss,tpm);
 
                 } if(toPush!= nullptr){
-                    push_end(toPush);
+                    if(!push_end(toPush)){
+                        throw Exc(11,"caricamento veicolo");
+                        return;
+                    }
                 } else throw std::exception();
 
+                if(reader.hasError()){
+                    throw Exc(11,"caricamento");
+                    return;
+                }
                 if(!reader.isEndDocument())
                     reader.skipCurrentElement();
             }
         }
     }
-
     file.close();
     flagsaved=true;
 }
