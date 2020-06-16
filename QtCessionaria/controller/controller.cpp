@@ -25,7 +25,7 @@ Controller::Controller(Model*m, QWidget *parent):
     mainLayout(new QHBoxLayout(this)),
     inserisciVeicolo(new InsertVeicolo(this)),
     ricercaView(new Ricerca(this)),
-    groupView(new GroupView(this)),
+    groupView(new GroupView(false,this)),
     vendutiView(new GroupView(true,this)),
     dialog(nullptr)
 {
@@ -40,6 +40,8 @@ Controller::Controller(Model*m, QWidget *parent):
     connect(groupView->getBtnModifica(),SIGNAL(clicked()),this,SLOT(slotShowModifica()));
     connect(groupView->getBtnVendi(),SIGNAL(clicked()),this,SLOT(slotVendi()));
     connect(groupView->getBtnVendi(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
+
+    connect(vendutiView->getBtnElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElementoVenduto()));
 
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotAggiungiVeicolo()));
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
@@ -458,6 +460,17 @@ void Controller::slotEliminaElemento()const{
     }
 }
 
+void Controller::slotEliminaElementoVenduto()const{
+    if(vendutiView->getList()->count() && vendutiView->getList()->currentItem()!=nullptr){
+        PrintListView* item = vendutiView->getList()->takeItem(vendutiView->getList()->currentRow());
+        model->removeVenduti(item->getItemAddress());
+
+        delete item;
+        vendutiView->getList()->reset();
+        //slotdatachanged(true);
+    }
+}
+
 void Controller::slotShowInserisci()const{
     groupView->hide();
     ricercaView->hide();
@@ -478,6 +491,7 @@ void Controller::slotShowVisualizzaVenduti()const{
     vendutiView->show();
     ricercaView->hide();
     inserisciVeicolo->hide();
+
 }
 
 Controller::~Controller(){

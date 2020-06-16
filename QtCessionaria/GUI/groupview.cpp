@@ -41,6 +41,11 @@ GroupView::GroupView(bool venduti,QWidget* p):
     l->addWidget(btnVendi);
     l->addWidget(btnElimina);
 
+    if(venduti){
+        btnModifica->hide();
+        btnVendi->hide();
+    }
+
     vBox->addLayout(l);
     connect(list, SIGNAL(currentRowChanged(int)),this,SLOT(slotElementoSelezionato()));
     connect(listVenduti, SIGNAL(currentRowChanged(int)),this,SLOT(slotElementoSelezionato()));

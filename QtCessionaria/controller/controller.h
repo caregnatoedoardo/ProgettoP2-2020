@@ -38,6 +38,7 @@ public slots:
     void slotShowRicerca() const;
     void slotRicerca()const;
     void slotEliminaElemento() const;
+    void slotEliminaElementoVenduto() const;
     void slotSalva() const;
     void slotLoad();
     bool slotAggiungiVeicolo() const;

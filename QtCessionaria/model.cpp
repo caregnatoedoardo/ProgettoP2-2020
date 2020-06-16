@@ -600,6 +600,16 @@ bool Model::remove(Veicolo* a){
     return false;
 }
 
+bool Model::removeVenduti(Veicolo* a){
+    if(dbVenduti->remove(a)){
+        return true;
+    }
+    return false;
+}
+
+
+
+
 bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ricerca di un Veicolo dentro un Container.
     return(ct->search(a));
 }
