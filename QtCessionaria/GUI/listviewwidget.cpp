@@ -1,14 +1,11 @@
 #include "listviewwidget.h"
 #include <QScrollBar>
 
-ListViewWidget::ListViewWidget(QWidget* p): parent(p)
-{
+ListViewWidget::ListViewWidget(QWidget* p): parent(p){
     addScrollBarWidget(new QScrollBar(Qt::Orientation::Vertical,parent),Qt::AlignRight);
-
 }
 
-void ListViewWidget::addVeicolo(Veicolo *a)
-{
+void ListViewWidget::addVeicolo(Veicolo *a){
     PrintListView* ve = new PrintListView(a,parent);
     addItem(ve);
 }
@@ -31,7 +28,6 @@ PrintListView*  ListViewWidget::takeItem(Veicolo* iad){
     }
     return ritornato;
 }
-
 
 PrintListView* ListViewWidget::currentItem() const {
     return static_cast<PrintListView*>(QListWidget::currentItem());

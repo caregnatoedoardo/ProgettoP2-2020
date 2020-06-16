@@ -58,12 +58,12 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     numeroAssi(new QLineEdit(this)),
     ribaltabile(new QCheckBox("Ribaltabile",this)),
 
-     sidecar(new QCheckBox("Sidecar",this)),
-        classeEmissioni(new QLineEdit(this)),
-         tipoMoto(new TipomotoBox(this)),
-         bottoneScegliFoto(new QPushButton(this)),
-         AddButton(new QPushButton("Aggiungi",this) ),
-         saveEditButton(new QPushButton("Salva Modifiche",this))
+    sidecar(new QCheckBox("Sidecar",this)),
+    classeEmissioni(new QLineEdit(this)),
+    tipoMoto(new TipomotoBox(this)),
+    bottoneScegliFoto(new QPushButton(this)),
+    AddButton(new QPushButton("Aggiungi",this) ),
+    saveEditButton(new QPushButton("Salva Modifiche",this))
 
 {
     QGridLayout* form = new QGridLayout(this);
@@ -71,11 +71,11 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     //form->addWidget(descTipoVeicolo,0,0);
     form->addWidget(tipoVeicolo,0,0);
 
-   bottoneScegliFoto->setText("Carica Immagine");
+    bottoneScegliFoto->setText("Carica Immagine");
 
 
     form->addWidget(scegliFoto,5,7);
-   form->addWidget(bottoneScegliFoto,5,6);
+    form->addWidget(bottoneScegliFoto,5,6);
 
 
     marca->setPlaceholderText("Marca");
@@ -163,23 +163,17 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     form->addWidget(saveEditButton,6,3);
     saveEditButton->hide();
 
-
-
     connect(tipoVeicolo,static_cast<void (QComboBox::*)(int index)>(&QComboBox::currentIndexChanged),[this]{
         slotChangeFormLayout(tipoVeicolo->currentText());
     });
 
     //connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
-
-
 }
 
 void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
 
-
     if(typeveic=="carrozzeria"){
         //show
-
         descMarca->show();
         descModello->show();
         descNumeroTelaio->show();
@@ -187,6 +181,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descColore->show();
         descLunghezza->show();
 
+        //hide
         descNumeroMotore->hide();
         descCilindrata->hide();
         descCavalli->hide();
@@ -204,13 +199,14 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descClasseEmissioni->hide();
         descTipoMoto->hide();
 
-
+        //show
         marca->show();
         modello->show();
         numeroTelaio->show();
         cambio->show();
         colore->show();
         lunghezza->show();
+
         //hide
         numeroMotore->hide();
         cilindrata->hide();
@@ -230,11 +226,8 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         tipoMoto->hide();
 
         AddButton->show();
-
     }
     if(typeveic=="motore"){
-
-
         descMarca->show();
         descModello->show();
         descNumeroMotore->show();
@@ -260,11 +253,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descClasseEmissioni->hide();
         descTipoMoto->hide();
 
-
-
-
-
-
         //show
         marca->show();
         modello->show();
@@ -272,6 +260,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         cilindrata->show();
         cavalli->show();
         alimentazione->show();
+
         //hide
         numeroTelaio->hide();
         cambio->hide();
@@ -292,8 +281,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         AddButton->show();
     }
     if(typeveic=="auto"){
-
-
         descMarca->show();
         descModello->show();
         descNumeroMotore->show();
@@ -317,9 +304,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descClasseEmissioni->hide();
         descTipoMoto->hide();
 
-
-
-
         //show
         marca->show();
         modello->show();
@@ -337,6 +321,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         numeroPosti->show();
         segmento->show();
         autocarro->show();
+
         //hide
         numeroAssi->hide();
         ribaltabile->hide();
@@ -345,10 +330,8 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         tipoMoto->hide();
 
         AddButton->show();
-
     }
     if(typeveic=="moto"){
-
 
         descMarca->show();
         descModello->show();
@@ -374,7 +357,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descTipoMoto->show();
 
         //show
-
         marca->show();
         modello->show();
         numeroTelaio->show();
@@ -392,6 +374,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         sidecar->show();
         classeEmissioni->show();
         tipoMoto->show();
+
         //hide
         segmento->hide();
         autocarro->hide();
@@ -401,7 +384,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         AddButton->show();
     }
     if(typeveic=="camion"){
-
 
         descMarca->show();
         descModello->show();
@@ -426,8 +408,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descClasseEmissioni->hide();
         descTipoMoto->hide();
 
-
-
         //show
         marca->show();
         modello->show();
@@ -443,6 +423,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         prezzo->show();
         massa->show();
         numeroPosti->show();
+
         //hide
         segmento->hide();
         autocarro->hide();
@@ -454,142 +435,109 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
     }
 }
 
-void InsertVeicolo::slotDisableForm(int i) const {
+void InsertVeicolo::slotDisableForm(int i)const{
 
     switch(i){
-    case 1: //AUTO
+        case 1: //AUTO
+            numeroAssi->setEnabled(false);
+            ribaltabile->setEnabled(false);
+            sidecar->setEnabled(false);
+            classeEmissioni->setEnabled(false);
+            tipoMoto->setEnabled(false);
+            break;
 
-        numeroAssi->setEnabled(false);
-        ribaltabile->setEnabled(false);
-        sidecar->setEnabled(false);
-        classeEmissioni->setEnabled(false);
-        tipoMoto->setEnabled(false);
-         break;
+        case 2: //CAMION
+            segmento->setEnabled(false);
+            autocarro->setEnabled(false);
+            numeroAssi->setEnabled(true);
+            ribaltabile->setEnabled(true);
+            sidecar->setEnabled(false);
+            classeEmissioni->setEnabled(false);
+            tipoMoto->setEnabled(false);
+            break;
 
-    case 2: //CAMION
+        case 3: //MOTO
+            segmento->setEnabled(false);
+            autocarro->setEnabled(false);
+            numeroAssi->setEnabled(true);
+            ribaltabile->setEnabled(true);
+            sidecar->setEnabled(true);
+            classeEmissioni->setEnabled(true);
+            tipoMoto->setEnabled(true);
+            break;
 
-        segmento->setEnabled(false);
-        autocarro->setEnabled(false);
-        numeroAssi->setEnabled(true);
-        ribaltabile->setEnabled(true);
-        sidecar->setEnabled(false);
-        classeEmissioni->setEnabled(false);
-        tipoMoto->setEnabled(false);
-        break;
-
-
-    case 3: //MOTO
-
-         segmento->setEnabled(false);
-         autocarro->setEnabled(false);
-         numeroAssi->setEnabled(true);
-         ribaltabile->setEnabled(true);
-         sidecar->setEnabled(true);
-         classeEmissioni->setEnabled(true);
-         tipoMoto->setEnabled(true);
-
-
-        break;
+        default: break;
     }
 }
 
-
-
-
-
-
-
-VeicoloTypeBox* InsertVeicolo::getTipoVeicolo() const
-{
+VeicoloTypeBox* InsertVeicolo::getTipoVeicolo() const{
     return tipoVeicolo;
 }
-QLineEdit* InsertVeicolo::getMarca() const
-{
+QLineEdit* InsertVeicolo::getMarca() const{
     return marca;
 }
-QLineEdit* InsertVeicolo::getModello() const
-{
+QLineEdit* InsertVeicolo::getModello() const{
     return modello ;
 }
-QLineEdit* InsertVeicolo::getNumeroTelaio() const
-{
+QLineEdit* InsertVeicolo::getNumeroTelaio() const{
     return  numeroTelaio;
 }
-QCheckBox* InsertVeicolo::getCambio() const
-{
+QCheckBox* InsertVeicolo::getCambio() const{
     return cambio ;
 }
-QLineEdit* InsertVeicolo::getColore() const
-{
+QLineEdit* InsertVeicolo::getColore() const{
     return colore;
 }
-QLineEdit* InsertVeicolo::getLunghezza() const
-{
+QLineEdit* InsertVeicolo::getLunghezza() const{
     return lunghezza;
 }
-QLineEdit* InsertVeicolo::getNumeroMotore() const
-{
+QLineEdit* InsertVeicolo::getNumeroMotore() const{
     return numeroMotore ;
 }
-QLineEdit* InsertVeicolo::getCilindrata() const
-{
+QLineEdit* InsertVeicolo::getCilindrata() const{
     return cilindrata;
 }
-QLineEdit* InsertVeicolo::getCavalli() const
-{
+QLineEdit* InsertVeicolo::getCavalli() const{
     return cavalli;
 }
-AlimTypeBox* InsertVeicolo::getAlimentazione() const
-{
+AlimTypeBox* InsertVeicolo::getAlimentazione() const{
     return  alimentazione;
 }
-QLineEdit* InsertVeicolo::getTarga() const
-{
+QLineEdit* InsertVeicolo::getTarga() const{
     return targa ;
 }
-QLineEdit* InsertVeicolo::getPrezzo() const
-{
+QLineEdit* InsertVeicolo::getPrezzo() const{
     return prezzo;
 }
-QLineEdit* InsertVeicolo::getMassa() const
-{
+QLineEdit* InsertVeicolo::getMassa() const{
     return massa;
 }
-QLineEdit* InsertVeicolo::getNumeroPosti() const
-{
+QLineEdit* InsertVeicolo::getNumeroPosti() const{
     return numeroPosti;
 }
-SegmentoTypeBox* InsertVeicolo::getSegmento() const
-{
+SegmentoTypeBox* InsertVeicolo::getSegmento() const{
     return segmento;
 }
-QCheckBox* InsertVeicolo::getAutocarro() const
-{
+QCheckBox* InsertVeicolo::getAutocarro() const{
     return autocarro;
 }
-QLineEdit* InsertVeicolo::getNumeroAssi() const
-{
+QLineEdit* InsertVeicolo::getNumeroAssi() const{
     return  numeroAssi;
 }
-QCheckBox* InsertVeicolo::getRibaltabile() const
-{
+QCheckBox* InsertVeicolo::getRibaltabile() const{
     return  ribaltabile;
 }
-QCheckBox* InsertVeicolo::getSidecar() const
-{
+QCheckBox* InsertVeicolo::getSidecar() const{
     return  sidecar;
 }
-QLineEdit* InsertVeicolo::getClasseEmissioni() const
-{
+QLineEdit* InsertVeicolo::getClasseEmissioni() const{
     return classeEmissioni;
 }
-TipomotoBox* InsertVeicolo::getTipoMoto() const
-{
+TipomotoBox* InsertVeicolo::getTipoMoto() const{
     return  tipoMoto;
 }
 
-QPushButton* InsertVeicolo::getAddButton() const
-{
+QPushButton* InsertVeicolo::getAddButton() const{
     return AddButton;
 }
 
@@ -597,27 +545,20 @@ QPushButton* InsertVeicolo::getSaveEditButton()const {
     return saveEditButton;
 }
 
-
 void InsertVeicolo::slotScegliFoto(){
-    QString file = QFileDialog::getOpenFileName(
-                this,
-                tr("Scegli Immagine"),
-            "../immagini",
-            "Image file (*.jpg)" );
+    QString file = QFileDialog::getOpenFileName(this,tr("Scegli Immagine"),"../immagini","Image file (*.jpg)" );
     QFileInfo relativePath(file);
 
     if(file!=""){
         QImage im(file);
         QByteArray array;
         QBuffer b(&array);
-       im.save(&b,"JPG");
-       scegliFoto->setPixmap(QPixmap::fromImage(im));
+        im.save(&b,"JPG");
+        scegliFoto->setPixmap(QPixmap::fromImage(im));
     }
 }
 
-
-void InsertVeicolo::slotResetForm()const {
-
+void InsertVeicolo::slotResetForm()const{
     marca->clear();
     modello->clear();
     numeroTelaio->clear();
@@ -640,23 +581,17 @@ void InsertVeicolo::slotResetForm()const {
     sidecar->setChecked(false);
     classeEmissioni->clear();
     tipoMoto->setCurrentIndex(0);
-
-
-
 }
 
 void InsertVeicolo::setColore(string a ){
     colore->setText(QString::fromStdString(a));
 }
 
-
 void InsertVeicolo::hideButton(bool a){
     if(!a){
         AddButton->hide();
         saveEditButton->show();
-
     }
-
     if(a){
         AddButton->show();
         saveEditButton->hide();
@@ -666,99 +601,70 @@ void InsertVeicolo::hideButton(bool a){
     }
 }
 
-
 void InsertVeicolo::setTipoVeicolo(unsigned int i){
-
- tipoVeicolo->setCurrentIndex(i);
- tipoVeicolo->setDisabled(true);
+    tipoVeicolo->setCurrentIndex(i);
+    tipoVeicolo->setDisabled(true);
 }
-void InsertVeicolo::setMarca(string a) {
+void InsertVeicolo::setMarca(string a){
     marca->setText(QString::fromStdString(a));
 }
 void InsertVeicolo::setModello(string i) {
-
     modello->setText(QString::fromStdString(i));
-
 }
-void InsertVeicolo::setNumeroTelaio(unsigned int i) {
-
+void InsertVeicolo::setNumeroTelaio(unsigned int i){
     numeroTelaio->setText(QString::number(i));
     numeroTelaio->setDisabled(true);
-
 }
-void InsertVeicolo::setCambio(bool i) {
-
+void InsertVeicolo::setCambio(bool i){
     cambio->setChecked(i);
-
 }
-void InsertVeicolo::setLunghezza(double i) {
-
+void InsertVeicolo::setLunghezza(double i){
     lunghezza->setText(QString::number(i));
-
 }
-void InsertVeicolo::setNumeroMotore(unsigned int i) {
-
+void InsertVeicolo::setNumeroMotore(unsigned int i){
     numeroMotore->setText(QString::number(i));
-
 }
 void InsertVeicolo::setCilindrata(unsigned int i) {
-
     cilindrata->setText(QString::number(i));
-
-
 }
-void InsertVeicolo::setCavalli(unsigned int i) {
-
+void InsertVeicolo::setCavalli(unsigned int i){
     cavalli->setText(QString::number(i));
 }
-void InsertVeicolo::setAlimentazione(int i) {
-
+void InsertVeicolo::setAlimentazione(int i){
     alimentazione->setCurrentIndex(i);
-
-
 }
-void InsertVeicolo::setTarga(string i) {
-
+void InsertVeicolo::setTarga(string i){
     targa->setText(QString::fromStdString(i));
     targa->setDisabled(true);
 }
-void InsertVeicolo::setPrezzo(double i) {
-
+void InsertVeicolo::setPrezzo(double i){
     prezzo->setText(QString::number(i));
 }
-void InsertVeicolo::setMassa(unsigned int i) {
-
+void InsertVeicolo::setMassa(unsigned int i){
     massa->setText(QString::number(i));
 }
-void InsertVeicolo::setNumeroPosti(unsigned int i) {
-
+void InsertVeicolo::setNumeroPosti(unsigned int i){
     numeroPosti->setText(QString::number(i));
 }
-void InsertVeicolo::setSegmento(unsigned int i) {
-
+void InsertVeicolo::setSegmento(unsigned int i){
     segmento->setCurrentIndex(i);
 }
-void InsertVeicolo::setAutocarro(bool i) {
+void InsertVeicolo::setAutocarro(bool i){
     autocarro->setChecked(i);
 }
-void InsertVeicolo::setNumeroAssi(unsigned int i) {
-
+void InsertVeicolo::setNumeroAssi(unsigned int i){
     numeroAssi->setText(QString::number(i));
 }
-void InsertVeicolo::setRibaltabile(bool i) {
-
+void InsertVeicolo::setRibaltabile(bool i){
     ribaltabile->setChecked(i);
 }
-void InsertVeicolo::setSidecar(bool i) {
-
+void InsertVeicolo::setSidecar(bool i){
     sidecar->setChecked(i);
 }
-void InsertVeicolo::setClasseEmissioni(unsigned int i) {
-
+void InsertVeicolo::setClasseEmissioni(unsigned int i){
     classeEmissioni->setText(QString::number(i));
 }
-void InsertVeicolo::setTipoMoto(unsigned int i) {
-
+void InsertVeicolo::setTipoMoto(unsigned int i){
     tipoMoto->setCurrentIndex(i);
 }
 

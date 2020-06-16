@@ -1,4 +1,3 @@
-
 #include "viewveicolo.h"
 #include "insertveicolo.h"
 
@@ -17,11 +16,7 @@
 #include <hierarchy/camion.h>
 #include <model.h>
 
-void ViewVeicolo::setFoto(const QPixmap &p){
-    immagine->setPixmap(p);
-}
-
-
+void ViewVeicolo::setFoto(const QPixmap &p){immagine->setPixmap(p);}
 
 ViewVeicolo::ViewVeicolo(PrintListView* a, QWidget* parent):
     listVeicoli(a),
@@ -44,23 +39,15 @@ ViewVeicolo::ViewVeicolo(PrintListView* a, QWidget* parent):
     picLayout->addWidget(pathFoto);
     picLayout->addWidget(bottoneScegliFoto);
 
-
     mainLayout->addLayout(picLayout);
     bottoneScegliFoto->setText("Seleziona Pic File");
 
-   setFoto(Model::getImage(listVeicoli->getItemAddress()->getPathImg()));
-   mainLayout->addWidget(immagine);
-
-
-
-
-
-
+    setFoto(Model::getImage(listVeicoli->getItemAddress()->getPathImg()));
+    mainLayout->addWidget(immagine);
 
     QHBoxLayout* btnLayout = new QHBoxLayout();
     btnLayout->addWidget(salvaMod);
     btnLayout->addWidget(btnClose);
-
 
     mainLayout->addLayout(btnLayout);
 
@@ -70,16 +57,8 @@ ViewVeicolo::ViewVeicolo(PrintListView* a, QWidget* parent):
     connect(btnClose,SIGNAL(clicked()),this,SLOT(close()));
     connect(salvaMod,SIGNAL(clicked()),this,SLOT(slotSalvaModifica()));
     connect(salvaMod,SIGNAL(clicked()),this,SLOT(close()));
-
-
 }
 
-
-
-
-
 void ViewVeicolo::slotSalvaModifica()const{
-
-
 
 }

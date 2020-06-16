@@ -9,9 +9,7 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     ricerca(new QAction("Ricerca",this)),
     inserisci(new QAction("Inserisci",this)),
     esci(new QAction("Esci",this))
-
 {
-
     QList<QAction*> actionList;
     actionList.push_back(ricerca);
     actionList.push_back(salva);
@@ -22,7 +20,7 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     actionList.push_back(esci);
 
     menu->addActions(actionList);
-   actionList.clear();
+    actionList.clear();
 
     addMenu(menu);
     addAction(inserisci);
@@ -31,29 +29,19 @@ Usermenu::Usermenu(QWidget* p):parent(p),
 
     actionList.clear();
 
-   connect(esci, SIGNAL(triggered()),parent,SLOT(slotClose()));
-   connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));
-   connect(carica, SIGNAL(triggered()),parent,SLOT(slotLoad()));
-   connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotShowRicerca()));
-   connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotShowInserisci()));
-   connect(visualizza,SIGNAL(triggered()),parent,SLOT(slotShowVisualizza()));
-   connect(visualizzaVenduti,SIGNAL(triggered()),parent,SLOT(slotShowVisualizzaVenduti()));
-
+    connect(esci, SIGNAL(triggered()),parent,SLOT(slotClose()));
+    connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));
+    connect(carica, SIGNAL(triggered()),parent,SLOT(slotLoad()));
+    connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotShowRicerca()));
+    connect(inserisci, SIGNAL(triggered()),parent,SLOT(slotShowInserisci()));
+    connect(visualizza,SIGNAL(triggered()),parent,SLOT(slotShowVisualizza()));
+    connect(visualizzaVenduti,SIGNAL(triggered()),parent,SLOT(slotShowVisualizzaVenduti()));
 }
 
+QMenu* Usermenu::getMenu()const{return menu;}
 
-QMenu* Usermenu::getMenu()const {
-    return menu;
-}
+QAction* Usermenu::getSalva() const{return salva;}
 
-QAction* Usermenu::getSalva() const {
-    return salva;
-}
+QAction* Usermenu::getCarica() const{return carica;}
 
-QAction* Usermenu::getCarica() const {
-    return carica;
-}
-
-QAction* Usermenu::getEsci() const {
-    return esci;
-}
+QAction* Usermenu::getEsci() const{return esci;}
