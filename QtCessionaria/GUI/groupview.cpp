@@ -2,18 +2,15 @@
 #include "viewveicolo.h"
 
 
-QPushButton* GroupView::getBtnElimina()const
-{
+QPushButton* GroupView::getBtnElimina()const{
     return btnElimina;
 }
 
-QPushButton* GroupView::getBtnModifica()const
-{
+QPushButton* GroupView::getBtnModifica()const{
     return btnModifica;
 }
 
-QPushButton* GroupView::getBtnVendi()const
-{
+QPushButton* GroupView::getBtnVendi()const{
     return btnVendi;
 }
 
@@ -40,7 +37,6 @@ GroupView::GroupView(bool venduti,QWidget* p):
     list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     QHBoxLayout* l= new QHBoxLayout();
 
-
     l->addWidget(btnModifica);
     l->addWidget(btnVendi);
     l->addWidget(btnElimina);
@@ -50,7 +46,6 @@ GroupView::GroupView(bool venduti,QWidget* p):
     connect(listVenduti, SIGNAL(currentRowChanged(int)),this,SLOT(slotElementoSelezionato()));
 
     connect(this, SIGNAL(signalElementoSelezionato(bool)),this,SLOT(slotElementoSelezionato(bool)));
-
 }
 
 GroupView::~GroupView(){
@@ -59,20 +54,16 @@ GroupView::~GroupView(){
     delete btnElimina;
 }
 
-ListViewWidget* GroupView::getList() const
-{
+ListViewWidget* GroupView::getList() const{
     if(status) return listVenduti;
-       else  return list;
-
+    else  return list;
 }
-
 
 void GroupView::slotElementoSelezionato(bool t)const {
 
     btnElimina->setEnabled(t);
     btnModifica->setEnabled(t);
     btnVendi->setEnabled(t);
-
 }
 
 void GroupView::slotRowChanged()const{
