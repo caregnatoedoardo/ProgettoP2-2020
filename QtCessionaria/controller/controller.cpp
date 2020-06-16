@@ -15,11 +15,7 @@
 #include <hierarchy/auto.h>
 #include <hierarchy/moto.h>
 #include <hierarchy/camion.h>
-
-
 using std::string;
-
-
 
 
 Controller::Controller(Model*m, QWidget *parent):
@@ -32,10 +28,7 @@ Controller::Controller(Model*m, QWidget *parent):
     groupView(new GroupView(this)),
     vendutiView(new GroupView(true,this)),
     dialog(nullptr)
-
-
 {
-
     mainLayout->setMenuBar(menuUtente);
     mainLayout->addWidget(ricercaView);
     mainLayout->addWidget(groupView);
@@ -198,169 +191,153 @@ bool Controller::slotAggiungiVeicolo() const{
 
 void Controller::slotShowModifica(){
 
-
-  dialog = inserisciVeicolo;
-
-
- if(groupView->getList()->currentItem()!=nullptr){
-     dialog->hideButton(false);
-  if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "motore"){
-      Motore* a = dynamic_cast<Motore*>(groupView->getList()->currentItem()->getItemAddress());
-      dialog->setTipoVeicolo(0);
-      dialog->setMarca(a->getMarca());
-      dialog->setModello(a->getModello());
-      dialog->setNumeroMotore(a->getNMotore());
-      dialog->setCilindrata(a->getCilindrata());
-      dialog->setCavalli(a->getCavalli());
-      dialog->setAlimentazione(a->getAlimentazione());
-
-  }
-
-  if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "carrozzeria"){
-   Carrozzeria* a = dynamic_cast<Carrozzeria*>(groupView->getList()->currentItem()->getItemAddress());
-    dialog->setTipoVeicolo(1);
-   dialog->setMarca(a->getMarca());
-   dialog->setModello(a->getModello());
-   dialog->setNumeroTelaio(a->getNTelaio());
-   dialog->setCambio(a->getCambio());
-   dialog->setColore(a->getColore());
-
-
-  }
-
-  if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "auto"){
-   Auto* a = dynamic_cast<Auto*>(groupView->getList()->currentItem()->getItemAddress());
-   dialog->setTipoVeicolo(2);
-   dialog->setMarca(a->getMarca());
-   dialog->setModello(a->getModello());
-   dialog->setNumeroTelaio(a->getNTelaio());
-   dialog->setCambio(a->getCambio());
-   dialog->setColore(a->getColore());
-   dialog->setTarga(a->getTarga());
-   dialog->setLunghezza(a->getLunghezza());
-   dialog->setPrezzo(a->getPrezzo());
-   dialog->setNumeroMotore(a->getNMotore());
-   dialog->setMassa(a->getMassa());
-   dialog->setCilindrata(a->getCilindrata());
-   dialog->setNumeroPosti(a->getNumPosti());
-   dialog->setCavalli(a->getCavalli());
-   dialog->setSegmento(a->getSegmento());
-   dialog->setAlimentazione(a->getAlimentazione());
-   dialog->setAutocarro(a->getAutocarro());
-  }
-  if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "moto"){
-      Moto* a = dynamic_cast<Moto*>(groupView->getList()->currentItem()->getItemAddress());
-      dialog->setTipoVeicolo(3);
-      dialog->setMarca(a->getMarca());
-      dialog->setModello(a->getModello());
-      dialog->setNumeroTelaio(a->getNTelaio());
-      dialog->setCambio(a->getCambio());
-      dialog->setColore(a->getColore());
-      dialog->setTarga(a->getTarga());
-      dialog->setLunghezza(a->getLunghezza());
-      dialog->setPrezzo(a->getPrezzo());
-      dialog->setNumeroMotore(a->getNMotore());
-      dialog->setMassa(a->getMassa());
-      dialog->setCilindrata(a->getCilindrata());
-      dialog->setNumeroPosti(a->getNumPosti());
-      dialog->setCavalli(a->getCavalli());
-      dialog->setSidecar(a->getSidecar());
-      dialog->setClasseEmissioni(a->getClasseEmissioni());
-      dialog->setTipoMoto(a->getTipoMoto());
-  }
-  if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "camion"){
-      Camion* a = dynamic_cast<Camion*>(groupView->getList()->currentItem()->getItemAddress());
-      dialog->setTipoVeicolo(4);
-      dialog->setMarca(a->getMarca());
-      dialog->setModello(a->getModello());
-      dialog->setNumeroTelaio(a->getNTelaio());
-      dialog->setCambio(a->getCambio());
-      dialog->setColore(a->getColore());
-      dialog->setTarga(a->getTarga());
-      dialog->setLunghezza(a->getLunghezza());
-      dialog->setPrezzo(a->getPrezzo());
-      dialog->setNumeroMotore(a->getNMotore());
-      dialog->setMassa(a->getMassa());
-      dialog->setCilindrata(a->getCilindrata());
-      dialog->setNumeroPosti(a->getNumPosti());
-      dialog->setCavalli(a->getCavalli());
-      dialog->setNumeroAssi(a->getNumAssi());
-      dialog->setRibaltabile(a->getRibaltabile());
-  }
-
-
-    dialog->show();
-    slotFlagDataChange(true);
- }
-
-}
-
-void Controller::slotSaveModifica(){
-
-  // Veicolo* a= groupView->getList()->currentItem()->getItemAddress();
-  // model->remove(a);
-    slotEliminaElemento();
-    slotAggiungiVeicolo();
-
-        groupView->getList()->update();
-        inserisciVeicolo->hideButton(true);
-        dialog->hide();
-
-}
-
-void Controller::slotVendi(){
+    dialog = inserisciVeicolo;
 
 
     if(groupView->getList()->currentItem()!=nullptr){
-    PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
-    vendutiView->getList()->addVeicolo(item->getItemAddress());
+        dialog->hideButton(false);
+        if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "motore"){
+            Motore* a = dynamic_cast<Motore*>(groupView->getList()->currentItem()->getItemAddress());
+            dialog->setTipoVeicolo(0);
+            dialog->setMarca(a->getMarca());
+            dialog->setModello(a->getModello());
+            dialog->setNumeroMotore(a->getNMotore());
+            dialog->setCilindrata(a->getCilindrata());
+            dialog->setCavalli(a->getCavalli());
+            dialog->setAlimentazione(a->getAlimentazione());
+        }
 
-    bool isVenduto = model->vendi(item->getItemAddress());
-    if(isVenduto){
-        delete item;
-        groupView->getList()->reset();
-    }
+        if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "carrozzeria"){
+            Carrozzeria* a = dynamic_cast<Carrozzeria*>(groupView->getList()->currentItem()->getItemAddress());
+            dialog->setTipoVeicolo(1);
+            dialog->setMarca(a->getMarca());
+            dialog->setModello(a->getModello());
+            dialog->setNumeroTelaio(a->getNTelaio());
+            dialog->setCambio(a->getCambio());
+            dialog->setColore(a->getColore());
+        }
+
+        if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "auto"){
+            Auto* a = dynamic_cast<Auto*>(groupView->getList()->currentItem()->getItemAddress());
+            dialog->setTipoVeicolo(2);
+            dialog->setMarca(a->getMarca());
+            dialog->setModello(a->getModello());
+            dialog->setNumeroTelaio(a->getNTelaio());
+            dialog->setCambio(a->getCambio());
+            dialog->setColore(a->getColore());
+            dialog->setTarga(a->getTarga());
+            dialog->setLunghezza(a->getLunghezza());
+            dialog->setPrezzo(a->getPrezzo());
+            dialog->setNumeroMotore(a->getNMotore());
+            dialog->setMassa(a->getMassa());
+            dialog->setCilindrata(a->getCilindrata());
+            dialog->setNumeroPosti(a->getNumPosti());
+            dialog->setCavalli(a->getCavalli());
+            dialog->setSegmento(a->getSegmento());
+            dialog->setAlimentazione(a->getAlimentazione());
+            dialog->setAutocarro(a->getAutocarro());
+        }
+
+        if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "moto"){
+            Moto* a = dynamic_cast<Moto*>(groupView->getList()->currentItem()->getItemAddress());
+            dialog->setTipoVeicolo(3);
+            dialog->setMarca(a->getMarca());
+            dialog->setModello(a->getModello());
+            dialog->setNumeroTelaio(a->getNTelaio());
+            dialog->setCambio(a->getCambio());
+            dialog->setColore(a->getColore());
+            dialog->setTarga(a->getTarga());
+            dialog->setLunghezza(a->getLunghezza());
+            dialog->setPrezzo(a->getPrezzo());
+            dialog->setNumeroMotore(a->getNMotore());
+            dialog->setMassa(a->getMassa());
+            dialog->setCilindrata(a->getCilindrata());
+            dialog->setNumeroPosti(a->getNumPosti());
+            dialog->setCavalli(a->getCavalli());
+            dialog->setSidecar(a->getSidecar());
+            dialog->setClasseEmissioni(a->getClasseEmissioni());
+            dialog->setTipoMoto(a->getTipoMoto());
+        }
+        if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "camion"){
+            Camion* a = dynamic_cast<Camion*>(groupView->getList()->currentItem()->getItemAddress());
+            dialog->setTipoVeicolo(4);
+            dialog->setMarca(a->getMarca());
+            dialog->setModello(a->getModello());
+            dialog->setNumeroTelaio(a->getNTelaio());
+            dialog->setCambio(a->getCambio());
+            dialog->setColore(a->getColore());
+            dialog->setTarga(a->getTarga());
+            dialog->setLunghezza(a->getLunghezza());
+            dialog->setPrezzo(a->getPrezzo());
+            dialog->setNumeroMotore(a->getNMotore());
+            dialog->setMassa(a->getMassa());
+            dialog->setCilindrata(a->getCilindrata());
+            dialog->setNumeroPosti(a->getNumPosti());
+            dialog->setCavalli(a->getCavalli());
+            dialog->setNumeroAssi(a->getNumAssi());
+            dialog->setRibaltabile(a->getRibaltabile());
+        }
+        dialog->show();
+        slotFlagDataChange(true);
     }
 }
 
+void Controller::slotSaveModifica(){
+    // Veicolo* a= groupView->getList()->currentItem()->getItemAddress();
+    // model->remove(a);
+    slotEliminaElemento();
+    slotAggiungiVeicolo();
 
+    groupView->getList()->update();
+    inserisciVeicolo->hideButton(true);
+    dialog->hide();
+}
 
+void Controller::slotVendi(){
+    if(groupView->getList()->currentItem()!=nullptr){
+        PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
+        vendutiView->getList()->addVeicolo(item->getItemAddress());
+        bool isVenduto = model->vendi(item->getItemAddress());
+        if(isVenduto){
+            delete item;
+            groupView->getList()->reset();
+        }
+    }
+}
 
-void Controller::slotSalva() const {
+void Controller::slotSalva()const{
     if(!model->getFlagDataSaved())
         model->save();
+
     slotFlagDataChange(false);
     QMessageBox info;
-   info.information(0,"avviso", "salvato");
-
+    info.information(0,"avviso", "salvato");
 }
 
 void Controller::slotLoad(){
-
     QString file= QFileDialog::getOpenFileName(this,tr("Scegli il file xml da caricare"),"../QtCessionaria","File XML(*.xml)");
     if(file != ""){
         groupView->getList()->clear();
         model->load(file.toStdString());
         try{
-        if(model->getContainerSize()==0){
-            throw Exc();
+            if(model->getContainerSize()==0)
+                throw Exc();
 
-        } else {
-            for(unsigned int i=0; i<model->getContainerSize();i++)
-            groupView->getList()->addVeicolo(model->getElementoByPosition(i));
-            slotShowVisualizza();
-            slotFlagDataChange(false);
+            else{
+                for(unsigned int i=0; i<model->getContainerSize();i++)
+                groupView->getList()->addVeicolo(model->getElementoByPosition(i));
+                slotShowVisualizza();
+                slotFlagDataChange(false);
+            }
         }
-    }
-    catch (Exc){
-        if (model->getContainerSize()==0) Exc(7);
-    }
+        catch (Exc){
+            if (model->getContainerSize()==0) Exc(7);
+        }
         return;
-}
+    }
 }
 
-
-void Controller::slotShowRicerca() const {
+void Controller::slotShowRicerca()const{
     groupView->hide();
     ricercaView->show();
     inserisciVeicolo->hide();
@@ -375,8 +352,7 @@ void Controller::slotResetRicerca()const{
 
 
 
-void Controller::slotRicerca() const {
-
+void Controller::slotRicerca()const{
     slotResetRicerca();
     try{
         if(!model->getContainerSize())
@@ -449,10 +425,9 @@ void Controller::slotRicerca() const {
                 model->filterByTypeMoto(ricercaView->getCkTipoMoto()->text().toStdString());
 
             if(1==0) return ;
-            else {
-                for(auto it=model->begin(); it!=model->end();++it){
+            else{
+                for(auto it=model->begin(); it!=model->end();++it)
                     ricercaView->getListaVeic()->addVeicolo(*it);
-                }
             }
         }
     }catch(Exc){
@@ -461,7 +436,7 @@ void Controller::slotRicerca() const {
     //ricercaView->getListaVeic()->clear();
 }
 
-void Controller::slotEliminaElemento() const {
+void Controller::slotEliminaElemento()const{
     if(groupView->getList()->count() && groupView->getList()->currentItem()!=nullptr){
         PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
         model->remove(item->getItemAddress());
@@ -469,18 +444,15 @@ void Controller::slotEliminaElemento() const {
         delete item;
         groupView->getList()->reset();
         //slotdatachanged(true);
-
     }
 }
 
 void Controller::slotShowInserisci()const{
-
     groupView->hide();
     ricercaView->hide();
     inserisciVeicolo->show();
     inserisciVeicolo->hideButton(true);
     vendutiView->hide();
-
 }
 
 void Controller::slotShowVisualizza()const{
@@ -488,7 +460,6 @@ void Controller::slotShowVisualizza()const{
     ricercaView->hide();
     inserisciVeicolo->hide();
     vendutiView->hide();
-
 }
 
 void Controller::slotShowVisualizzaVenduti()const{
@@ -496,25 +467,15 @@ void Controller::slotShowVisualizzaVenduti()const{
     vendutiView->show();
     ricercaView->hide();
     inserisciVeicolo->hide();
-
 }
-
-
-
-
 
 Controller::~Controller(){
     model->save();
 }
 
-
-
-
 void Controller::closeEvent(QCloseEvent *event){
-
     slotSalva();
     QWidget::closeEvent(event);
 }
-
 
 
