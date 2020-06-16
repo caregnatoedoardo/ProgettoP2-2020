@@ -24,10 +24,10 @@ ViewVeicolo::ViewVeicolo(PrintListView* a, QWidget* parent):
     btnClose(new QPushButton("Chiudi Senza Salvare",parent)),
     salvaMod(new QPushButton("Salva Modifiche",parent)),
     veicolo(a->getItemAddress()),
+    descrizione(new QTextEdit(parent)),
     immagine(new QLabel(parent)),
     pathFoto(new QLineEdit("Modifica Foto")),
-    bottoneScegliFoto(new QPushButton()),
-    descrizione(new QTextEdit(parent))
+    bottoneScegliFoto(new QPushButton())
 {
     pathFoto->setEnabled(false);
     QVBoxLayout* mainLayout = new QVBoxLayout();
