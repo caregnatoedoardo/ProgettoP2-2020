@@ -505,15 +505,21 @@ void Controller::slotShowVisualizzaVenduti()const{
     inserisciVeicolo->hide();
 
 }
-
+/*
 Controller::~Controller(){
-    if(model->isEmptyVenduti() || model->isEmptyDisponibili())
-        model->save();
+
 }
+*/
 
 void Controller::closeEvent(QCloseEvent *event){
-    if(model->isEmptyVenduti() || model->isEmptyDisponibili())
-        slotSalva();
+
+    QWidget::closeEvent(event);
+    if(model->isEmptyVenduti() || model->isEmptyDisponibili()){
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "AVVISO", "Vuoi salvare gli elementi presenti?",QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+                slotSalva();
+    }
     QWidget::closeEvent(event);
 }
 

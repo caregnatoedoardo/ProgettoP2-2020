@@ -26,12 +26,11 @@ private:
    Ricerca* ricercaView;
    GroupView* groupView;
    GroupView* vendutiView;
-  // ViewVeicolo* dialog;
    InsertVeicolo* dialog;
 public:
    Controller(Model*,QWidget* = nullptr);
    Model *getModel();
-   ~Controller();
+   ~Controller()=default;
    string getTarga()const;
    string getRawData(const QImage);
 public slots:
