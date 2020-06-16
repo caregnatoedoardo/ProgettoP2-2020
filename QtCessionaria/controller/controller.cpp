@@ -318,14 +318,25 @@ void Controller::slotLoad(){
     QString file= QFileDialog::getOpenFileName(this,tr("Scegli il file xml da caricare"),"../QtCessionaria","File XML(*.xml)");
     if(file != ""){
         groupView->getList()->clear();
+        vendutiView->getList()->clear();
         model->load(file.toStdString());
         try{
-            if(model->getContainerSize()==0)
+            if(model->getContainerSize()==0 && model->getContainerVendutiSize()==0)
                 throw Exc();
 
             else{
-                for(unsigned int i=0; i<model->getContainerSize();i++)
+                for(unsigned int i=0; i<model->getContainerSize();i++){
+
                 groupView->getList()->addVeicolo(model->getElementoByPosition(i));
+
+                }
+
+                for(unsigned int i=0; i<model->getContainerVendutiSize();i++){
+
+                vendutiView->getList()->addVeicolo(model->getElementoVendutoByPosition(i));
+
+                }
+
                 slotShowVisualizza();
                 slotFlagDataChange(false);
             }

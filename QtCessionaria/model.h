@@ -22,9 +22,7 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
-    Model(string="../QtCessionaria/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
-
-
+    Model(string="../QtCessionaria/dati.xml");
 
     ~Model();
 
@@ -36,6 +34,7 @@ public:
     void erase ();
     void erase (Veicolo*);
     unsigned int getContainerSize()const;
+    unsigned int getContainerVendutiSize() const;
     bool push_end(Veicolo*);
     bool push_endVenduti(Veicolo*);
     bool remove(Veicolo*);
@@ -72,6 +71,7 @@ public:
     alimentazione convertToAlimentazione(const string)const;
     bool getFlagDataSaved()const;
     Veicolo* getElementoByPosition(unsigned int i)const;
+    Veicolo* getElementoVendutoByPosition(unsigned int i)const;
 
 
     static QPixmap getImage(const std::string&);

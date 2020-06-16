@@ -108,21 +108,22 @@ void Model::save(){
 
     /* -------- SALVATAGGIO DB VENDUTI ------- */
 
-    it = dbVenduti->begin();
-    while(it!=dbVenduti->end()){
+    auto it2 = dbVenduti->begin();
+    while(it2!=dbVenduti->end()){
         //const Veicolo* save = *it;
 
         //const QString tipologia;  (*it)->getTipologia()
         //const QString tipologia = QString::fromStdString((*it)->getTipo()); //bisogna avere la tipologia auto o camion o moto
-        writer.writeEmptyElement(QString::fromStdString((*it)->getTipo()));
+        writer.writeEmptyElement(QString::fromStdString((*it2)->getTipo()));
+
         writer.writeAttribute("db","venduti");
 
-        writer.writeAttribute("marca",QString::fromStdString((*it)->getMarca()));
-        writer.writeAttribute("modello",QString::fromStdString((*it)->getModello()));
-        writer.writeAttribute("pathimg",QString::fromStdString((*it)->getPathImg()));
+        writer.writeAttribute("marca",QString::fromStdString((*it2)->getMarca()));
+        writer.writeAttribute("modello",QString::fromStdString((*it2)->getModello()));
+        writer.writeAttribute("pathimg",QString::fromStdString((*it2)->getPathImg()));
 
 
-        Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it);
+        Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it2);
         if(veicoloCarrozzeria){//in alternativa if(tipo=="carrozzeria")
         writer.writeAttribute("n_telaio",QString::number(veicoloCarrozzeria->getNTelaio()));
         writer.writeAttribute("cambio_auto",veicoloCarrozzeria->getCambio()? "Si" : "No");
@@ -130,7 +131,7 @@ void Model::save(){
         writer.writeAttribute("lunghezza",QString::number(veicoloCarrozzeria->getLunghezza()));
             }
 
-        Motore* veicoloMotore = dynamic_cast<Motore*>(*it);
+        Motore* veicoloMotore = dynamic_cast<Motore*>(*it2);
         if(veicoloMotore){//in alternativa if(tipo=="motore")
         writer.writeAttribute("n_motore",QString::number(veicoloMotore->getNMotore()));
         writer.writeAttribute("cilindrata",QString::number(veicoloMotore->getCilindrata()));
@@ -138,7 +139,7 @@ void Model::save(){
         writer.writeAttribute("alim",QString::fromStdString(veicoloMotore->convertToAlim(veicoloMotore->getAlimentazione())));
            }
 
-        Mezzo* veicoloMezzo = dynamic_cast<Mezzo*>(*it);
+        Mezzo* veicoloMezzo = dynamic_cast<Mezzo*>(*it2);
         if(veicoloMezzo){
         writer.writeAttribute("targa",QString::fromStdString(veicoloMezzo->getTarga()));
         writer.writeAttribute("prezzo",QString::number(veicoloMezzo->getPrezzo()));
@@ -147,19 +148,19 @@ void Model::save(){
         }
 
 
-        Auto* isAuto = dynamic_cast<Auto*>(*it);
+        Auto* isAuto = dynamic_cast<Auto*>(*it2);
         if(isAuto) {//in alternativa if(tipo=="auto")
             writer.writeAttribute("seg",QString::fromStdString(isAuto->convertSegmento(isAuto->getSegmento())));
             writer.writeAttribute("autocarro",isAuto->getAutocarro()? "Si" : "No");
         }
 
-        Camion* isCamion = dynamic_cast<Camion*>(*it);
+        Camion* isCamion = dynamic_cast<Camion*>(*it2);
         if(isCamion){//in alternativa if(tipo=="camion")
             writer.writeAttribute("n_assi",QString::number(isCamion->getNumAssi()));
             writer.writeAttribute("ribaltabile",isCamion->getRibaltabile()? "Si" : "No");
         }
 
-        Moto* isMoto = dynamic_cast<Moto*>(*it);
+        Moto* isMoto = dynamic_cast<Moto*>(*it2);
         if(isMoto){//in alternativa if(tipo=="camion")
             writer.writeAttribute("sidecar",isMoto->getSidecar()? "Si" : "No");
             writer.writeAttribute("classe_emissioni",QString::number(isMoto->getClasseEmissioni()));
@@ -167,7 +168,7 @@ void Model::save(){
         }
 
         if(writer.hasError()) throw Exc(11,"salvataggio");
-        ++it;
+        ++it2;
     }
 
      /* --------  FINE SALVATAGGIO DB VENDUTI ------- */
@@ -311,6 +312,11 @@ void Model::erase(){
 unsigned int Model::getContainerSize() const{
     return dbVeicoli->getSize();
 }
+
+unsigned int Model::getContainerVendutiSize() const{
+    return dbVenduti->getSize();
+}
+
 
 Container<Veicolo*>::Iteratore Model::begin() const{
     return searchRes->begin();
@@ -662,6 +668,7 @@ void Model::clearRicerca()  {
 }
 
 Veicolo* Model::getElementoByPosition(unsigned int i) const{return dbVeicoli->getVeicolo(i);}
+Veicolo* Model::getElementoVendutoByPosition(unsigned int i) const{return dbVenduti->getVeicolo(i);}
 
 
 
