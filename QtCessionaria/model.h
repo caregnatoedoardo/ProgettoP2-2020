@@ -2,6 +2,7 @@
 #define MODEL_H
 
 #include "container/container.h"
+#include <QFileDialog>
 #include <QCoreApplication>
 #include <QDir>
 #include <QString>
@@ -21,18 +22,14 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
-<<<<<<< HEAD
-    Model(string="/Users/marco/Desktop/salvataggio/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
-=======
     Model(string="../QtCessionaria/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
->>>>>>> master
     ~Model();
 
 
     Container<Veicolo*>::Iteratore begin()const;
     Container<Veicolo*>::Iteratore end()const;
     void save();
-    void load();
+    void load(string path="");
     void erase ();
     void erase (Veicolo*);
     unsigned int getContainerSize()const;

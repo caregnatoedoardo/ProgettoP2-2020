@@ -319,10 +319,7 @@ void Controller::slotVendi(){
         delete item;
         groupView->getList()->reset();
     }
-
-
-
-}
+    }
 }
 
 
@@ -339,28 +336,26 @@ void Controller::slotSalva() const {
 
 void Controller::slotLoad(){
 
-    groupView->getList()->clear();
-    model->load();
-    try{
-    if(model->getContainerSize()==0){
-        throw Exc();
+    QString file= QFileDialog::getOpenFileName(this,tr("Scegli il file xml da caricare"),"../QtCessionaria","File XML(*.xml)");
+    if(file != ""){
+        groupView->getList()->clear();
+        model->load(file.toStdString());
+        try{
+        if(model->getContainerSize()==0){
+            throw Exc();
 
-    } else {
-        for(unsigned int i=0; i<model->getContainerSize();i++)
-        groupView->getList()->addVeicolo(model->getElementoByPosition(i));
-
-        slotShowVisualizza();
-        slotFlagDataChange(false);
+        } else {
+            for(unsigned int i=0; i<model->getContainerSize();i++)
+            groupView->getList()->addVeicolo(model->getElementoByPosition(i));
+            slotShowVisualizza();
+            slotFlagDataChange(false);
+        }
     }
-
-
-}
     catch (Exc){
-        if (model->getContainerSize()==0) Exc(9);
+        if (model->getContainerSize()==0) Exc(7);
     }
-
-
-
+        return;
+}
 }
 
 
@@ -369,7 +364,6 @@ void Controller::slotShowRicerca() const {
     ricercaView->show();
     inserisciVeicolo->hide();
     vendutiView->hide();
-
 }
 
 void Controller::slotResetRicerca()const{
