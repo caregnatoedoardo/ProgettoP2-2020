@@ -446,7 +446,7 @@ void Controller::slotRicerca()const{
     }catch(Exc){
         Exc(7);
     }
-    //ricercaView->getListaVeic()->clear();
+
 }
 
 void Controller::slotEliminaElemento()const{
@@ -456,7 +456,7 @@ void Controller::slotEliminaElemento()const{
 
         delete item;
         groupView->getList()->reset();
-        //slotdatachanged(true);
+        slotFlagDataChange(true);
     }
 }
 
@@ -467,7 +467,8 @@ void Controller::slotEliminaElementoVenduto()const{
 
         delete item;
         vendutiView->getList()->reset();
-        //slotdatachanged(true);
+        slotFlagDataChange(true);
+
     }
 }
 
