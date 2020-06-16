@@ -507,11 +507,13 @@ void Controller::slotShowVisualizzaVenduti()const{
 }
 
 Controller::~Controller(){
-    model->save();
+    if(model->isEmptyVenduti() || model->isEmptyDisponibili())
+        model->save();
 }
 
 void Controller::closeEvent(QCloseEvent *event){
-    slotSalva();
+    if(model->isEmptyVenduti() || model->isEmptyDisponibili())
+        slotSalva();
     QWidget::closeEvent(event);
 }
 

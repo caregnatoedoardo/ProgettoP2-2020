@@ -45,6 +45,8 @@ public:
     bool vendi(Veicolo*);
     bool nonVenduta(Veicolo*);
     static std::string getRawData(const QImage&);
+    bool isEmptyVenduti()const;
+    bool isEmptyDisponibili()const;
 
     //implementazione di tutti i filtri di ricerca
     void filterByType(string ="auto");

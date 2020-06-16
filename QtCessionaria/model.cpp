@@ -694,6 +694,14 @@ void Model::clearRicerca()  {
 
 }
 
+bool Model::isEmptyVenduti() const{
+    return !dbVenduti->isEmpty();
+}
+
+bool Model::isEmptyDisponibili() const{
+    return !dbVeicoli->isEmpty();
+}
+
 Veicolo* Model::getElementoByPosition(unsigned int i) const{return dbVeicoli->getVeicolo(i);}
 Veicolo* Model::getElementoVendutoByPosition(unsigned int i) const{return dbVenduti->getVeicolo(i);}
 

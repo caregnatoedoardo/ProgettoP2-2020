@@ -66,7 +66,6 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 
     form->addWidget(tipoVeicolo,0,0);
 
-
     marca->setPlaceholderText("Marca");
     form->addWidget(descMarca,1,0);
     form->addWidget(marca,2,0);
