@@ -339,25 +339,28 @@ void Controller::slotSalva() const {
 
 void Controller::slotLoad(){
 
-    groupView->getList()->clear();
-    model->load();
-    try{
-    if(model->getContainerSize()==0){
-        throw Exc();
+    QString file= QFileDialog::getOpenFileName(this,tr("Scegli il file di caricamento"),"../QtCessionaria","File XML(*.xml)");
+    if(file != ""){
+        groupView->getList()->clear();
+        model->load(file.toStdString());
+        try{
+        if(model->getContainerSize()==0){
+            throw Exc();
 
-    } else {
-        for(unsigned int i=0; i<model->getContainerSize();i++)
-        groupView->getList()->addVeicolo(model->getElementoByPosition(i));
+        } else {
+            for(unsigned int i=0; i<model->getContainerSize();i++)
+            groupView->getList()->addVeicolo(model->getElementoByPosition(i));
 
-        slotShowVisualizza();
-        slotFlagDataChange(false);
-    }
-
-
+            slotShowVisualizza();
+            slotFlagDataChange(false);
+        }
 }
     catch (Exc){
-        if (model->getContainerSize()==0) Exc(9);
+        if(file==""){Exc(9); return;}
+        if (model->getContainerSize()==0) Exc(7);
     }
+        return;
+}
 
 
 

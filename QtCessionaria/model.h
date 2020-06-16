@@ -2,6 +2,7 @@
 #define MODEL_H
 
 #include "container/container.h"
+#include <QFileDialog>
 #include <QCoreApplication>
 #include <QDir>
 #include <QString>
@@ -28,7 +29,7 @@ public:
     Container<Veicolo*>::Iteratore begin()const;
     Container<Veicolo*>::Iteratore end()const;
     void save();
-    void load();
+    void load(string path="");
     void erase ();
     void erase (Veicolo*);
     unsigned int getContainerSize()const;

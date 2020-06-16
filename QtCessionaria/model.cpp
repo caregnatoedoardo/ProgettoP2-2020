@@ -107,7 +107,7 @@ void Model::save(){
 }
 
 
-void Model::load(){
+void Model::load(string path){
 
     QFile file(QString::fromStdString(path));
     try{
