@@ -72,6 +72,13 @@ int main(int argc, char *argv[])
 
     //Pulsante "Vendi" da fare nella sezione di visualizzazione di un veicolo. Pulsante "NON VENDUTA" per far tornare l'auto dal dbvenduti al dbveicoli.
 
+    //DA FARE:
+    /* SALVATAGGIO DEI VEICOLI VENDUTI
+     * IMPLEMENTAZIONE IMMAGINI
+     * RESTYLING GRAFICO
+     * ECCEZIONI DEVONO MOSTRARE UNA FINESTRA GRAFICA
+    */
+
     QApplication a(argc, argv);
     Controller w(new Model());
     w.setFixedSize(1024,768);
