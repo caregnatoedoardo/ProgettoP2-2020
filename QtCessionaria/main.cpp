@@ -63,20 +63,17 @@ int main(int argc, char *argv[])
     /*Veicolo* veic;
     veic=ctveic->getVeicolo(1);*/
 
-    //DOPO PRIMO INSERIMENTO -> RESET DEI CAMPI DATI ANCHE DI ALIMENTAZIONE E SEGMENTO, senza possibilità di selezionarli in quanto rimossi dal menu a tendina
-    //CORRETTO
-    //CORRETTO ERRORE IN INSERIMENTO ALIMENTAZIONE NON ESISTENTE (elettricA)
-    //Tipo Veicolo non più modificabile dopo Visualizza -> Modifica
 
     //La MODIFICA di numero telaio, N chassis, e TARGA non è più possibile DOPO un inserimento per fini di SICUREZZA e per preservare l'integrità dei dati.
 
     //Pulsante "Vendi" da fare nella sezione di visualizzazione di un veicolo. Pulsante "NON VENDUTA" per far tornare l'auto dal dbvenduti al dbveicoli.
 
     //DA FARE:
-    /* SALVATAGGIO DEI VEICOLI VENDUTI
-     * IMPLEMENTAZIONE IMMAGINI
-     * RESTYLING GRAFICO
-     * ECCEZIONI DEVONO MOSTRARE UNA FINESTRA GRAFICA
+    /* SALVATAGGIO DEI VEICOLI VENDUTI (Canovese)
+     * IMPLEMENTAZIONE IMMAGINI (Canovese)
+     * RESTYLING GRAFICO (Carex & Vas)
+     * ECCEZIONI DEVONO MOSTRARE UNA FINESTRA GRAFICA (Carex & Vas)
+     * TOGLIERE SALVATAGGIO ALL'USCITA DEL PROGRAMMA (Canovese)
     */
 
     QApplication a(argc, argv);
