@@ -23,6 +23,9 @@ private:
     bool flagsaved;
 public:
     Model(string="../QtCessionaria/dati.xml"); //file di salvataggio locale  !!!!! DA MODIFICARE !!!!
+
+
+
     ~Model();
 
 
@@ -34,6 +37,7 @@ public:
     void erase (Veicolo*);
     unsigned int getContainerSize()const;
     bool push_end(Veicolo*);
+    bool push_endVenduti(Veicolo*);
     bool remove(Veicolo*);
     void clearRicerca();
     bool search(Container<Veicolo*>*&, Veicolo*)const;

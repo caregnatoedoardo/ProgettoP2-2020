@@ -71,6 +71,7 @@ Model* Controller::getModel(){
 }
 
 bool Controller::slotAggiungiVeicolo() const{
+
     //MOTORE        =0
     //CARROZZERIA   =1
     //AUTO          =2

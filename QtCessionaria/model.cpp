@@ -21,6 +21,7 @@ Model::Model(string path):
 
 bool Model::getFlagDataSaved() const{return flagsaved;}
 
+
 void Model::save(){
 
 
@@ -41,12 +42,80 @@ void Model::save(){
     writer.writeStartElement("root");
 
     auto it = dbVeicoli->begin();
+
+     /* -------- SALVATAGGIO DB VEICOLI ------- */
     while(it!=dbVeicoli->end()){
         //const Veicolo* save = *it;
 
         //const QString tipologia;  (*it)->getTipologia()
         //const QString tipologia = QString::fromStdString((*it)->getTipo()); //bisogna avere la tipologia auto o camion o moto
         writer.writeEmptyElement(QString::fromStdString((*it)->getTipo()));
+        writer.writeAttribute("db","veicoli");
+        writer.writeAttribute("marca",QString::fromStdString((*it)->getMarca()));
+        writer.writeAttribute("modello",QString::fromStdString((*it)->getModello()));
+        writer.writeAttribute("pathimg",QString::fromStdString((*it)->getPathImg()));
+
+
+        Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it);
+        if(veicoloCarrozzeria){//in alternativa if(tipo=="carrozzeria")
+        writer.writeAttribute("n_telaio",QString::number(veicoloCarrozzeria->getNTelaio()));
+        writer.writeAttribute("cambio_auto",veicoloCarrozzeria->getCambio()? "Si" : "No");
+        writer.writeAttribute("colore",QString::fromStdString(veicoloCarrozzeria->getColore()));
+        writer.writeAttribute("lunghezza",QString::number(veicoloCarrozzeria->getLunghezza()));
+            }
+
+        Motore* veicoloMotore = dynamic_cast<Motore*>(*it);
+        if(veicoloMotore){//in alternativa if(tipo=="motore")
+        writer.writeAttribute("n_motore",QString::number(veicoloMotore->getNMotore()));
+        writer.writeAttribute("cilindrata",QString::number(veicoloMotore->getCilindrata()));
+        writer.writeAttribute("cavalli",QString::number(veicoloMotore->getCavalli()));
+        writer.writeAttribute("alim",QString::fromStdString(veicoloMotore->convertToAlim(veicoloMotore->getAlimentazione())));
+           }
+
+        Mezzo* veicoloMezzo = dynamic_cast<Mezzo*>(*it);
+        if(veicoloMezzo){
+        writer.writeAttribute("targa",QString::fromStdString(veicoloMezzo->getTarga()));
+        writer.writeAttribute("prezzo",QString::number(veicoloMezzo->getPrezzo()));
+        writer.writeAttribute("massa",QString::number(veicoloMezzo->getMassa()));
+        writer.writeAttribute("numposti",QString::number(veicoloMezzo->getNumPosti()));
+        }
+
+
+        Auto* isAuto = dynamic_cast<Auto*>(*it);
+        if(isAuto) {//in alternativa if(tipo=="auto")
+            writer.writeAttribute("seg",QString::fromStdString(isAuto->convertSegmento(isAuto->getSegmento())));
+            writer.writeAttribute("autocarro",isAuto->getAutocarro()? "Si" : "No");
+        }
+
+        Camion* isCamion = dynamic_cast<Camion*>(*it);
+        if(isCamion){//in alternativa if(tipo=="camion")
+            writer.writeAttribute("n_assi",QString::number(isCamion->getNumAssi()));
+            writer.writeAttribute("ribaltabile",isCamion->getRibaltabile()? "Si" : "No");
+        }
+
+        Moto* isMoto = dynamic_cast<Moto*>(*it);
+        if(isMoto){//in alternativa if(tipo=="camion")
+            writer.writeAttribute("sidecar",isMoto->getSidecar()? "Si" : "No");
+            writer.writeAttribute("classe_emissioni",QString::number(isMoto->getClasseEmissioni()));
+            writer.writeAttribute("type",QString::fromStdString(isMoto->convertToString(isMoto->getTipoMoto())));
+        }
+
+        if(writer.hasError()) throw Exc(11,"salvataggio");
+        ++it;
+    }
+
+     /* -------- FINE SALVATAGGIO DB VEICOLI ------- */
+
+    /* -------- SALVATAGGIO DB VENDUTI ------- */
+
+    it = dbVenduti->begin();
+    while(it!=dbVenduti->end()){
+        //const Veicolo* save = *it;
+
+        //const QString tipologia;  (*it)->getTipologia()
+        //const QString tipologia = QString::fromStdString((*it)->getTipo()); //bisogna avere la tipologia auto o camion o moto
+        writer.writeEmptyElement(QString::fromStdString((*it)->getTipo()));
+        writer.writeAttribute("db","venduti");
 
         writer.writeAttribute("marca",QString::fromStdString((*it)->getMarca()));
         writer.writeAttribute("modello",QString::fromStdString((*it)->getModello()));
@@ -100,6 +169,13 @@ void Model::save(){
         if(writer.hasError()) throw Exc(11,"salvataggio");
         ++it;
     }
+
+     /* --------  FINE SALVATAGGIO DB VENDUTI ------- */
+
+
+
+
+
         writer.writeEndElement();
         writer.writeEndDocument();
         flagsaved=true;               // CAMBIO LA SENTINELLA, HO SALVATO!;)
@@ -125,6 +201,7 @@ void Model::load(string path){
             while(reader.readNextStartElement()){
                 const QXmlStreamAttributes att =reader.attributes();
                 //VEICOLO
+                string db = att.hasAttribute("db")? att.value("db").toString().toStdString():"";
                 string marca = att.hasAttribute("marca")? att.value("marca").toString().toStdString():"";
                 string modello = att.hasAttribute("modello")? att.value("modello").toString().toStdString():"";
                 string path = att.hasAttribute("pathimg")?att.value("pathimg").toString().toStdString():"";
@@ -194,10 +271,23 @@ void Model::load(string path){
                      toPush = new Moto(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,sid,clemiss,tpm);
 
                 } if(toPush!= nullptr){
-                    if(!push_end(toPush)){
+
+
+                    if(db=="veicoli" && !push_end(toPush)){
+
                         throw Exc(11,"caricamento veicolo");
                         return;
                     }
+
+                    else
+                        if(db=="venduti" && !push_endVenduti(toPush)){
+
+                            throw Exc(11,"caricamento veicolo");
+                            return;
+                        }
+
+
+
                 } else throw std::exception();
 
                 if(reader.hasError()){
@@ -484,6 +574,17 @@ bool Model::push_end(Veicolo* a){
     }
     return false;
 }
+
+
+bool Model::push_endVenduti(Veicolo* a){
+    if(dbVenduti->push_end(a)){
+        flagsaved=false;
+        return true;
+    }
+    return false;
+}
+
+
 
 bool Model::remove(Veicolo* a){
     if(dbVeicoli->remove(a)){
