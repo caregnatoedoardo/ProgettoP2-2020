@@ -167,7 +167,7 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
         slotChangeFormLayout(tipoVeicolo->currentText());
     });
 
-    //connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
+    connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
 }
 
 void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
@@ -666,6 +666,11 @@ void InsertVeicolo::setClasseEmissioni(unsigned int i){
 }
 void InsertVeicolo::setTipoMoto(unsigned int i){
     tipoMoto->setCurrentIndex(i);
+}
+
+QLabel* InsertVeicolo::getScegliFoto() const
+{
+    return scegliFoto;
 }
 
 

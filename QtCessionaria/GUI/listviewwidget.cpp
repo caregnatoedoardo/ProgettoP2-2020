@@ -2,6 +2,7 @@
 #include <QScrollBar>
 
 ListViewWidget::ListViewWidget(QWidget* p): parent(p){
+    setIconSize(QSize(150,150));
     addScrollBarWidget(new QScrollBar(Qt::Orientation::Vertical,parent),Qt::AlignRight);
 }
 

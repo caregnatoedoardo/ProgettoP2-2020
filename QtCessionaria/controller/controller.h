@@ -10,6 +10,7 @@
 #include "GUI/ricerca.h"
 #include <QVBoxLayout>
 #include <QMessageBox>
+#include <QPixmap>
 #include "model.h"
 
 class Controller:public QWidget{
@@ -32,6 +33,7 @@ public:
    Model *getModel();
    ~Controller();
    string getTarga()const;
+   string getRawData(const QImage);
 public slots:
 
     void closeEvent(QCloseEvent*);
@@ -50,6 +52,7 @@ public slots:
     void slotSaveModifica();
     void slotResetRicerca() const;
     void slotVendi();
+
 
 
 };

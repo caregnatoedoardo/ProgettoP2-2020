@@ -69,11 +69,11 @@ int main(int argc, char *argv[])
     //Pulsante "Vendi" da fare nella sezione di visualizzazione di un veicolo. Pulsante "NON VENDUTA" per far tornare l'auto dal dbvenduti al dbveicoli.
 
     //DA FARE:
-    /* SALVATAGGIO DEI VEICOLI VENDUTI (Canovese)
+    /*
      * IMPLEMENTAZIONE IMMAGINI (Canovese)
      * RESTYLING GRAFICO (Carex & Vas)
      * ECCEZIONI DEVONO MOSTRARE UNA FINESTRA GRAFICA (Carex & Vas)
-     * TOGLIERE SALVATAGGIO ALL'USCITA DEL PROGRAMMA (Canovese)
+     *
     */
 
     QApplication a(argc, argv);

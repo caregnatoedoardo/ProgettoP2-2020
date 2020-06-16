@@ -6,6 +6,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QString>
+#include <QBuffer>
 #include "hierarchy/auto.h"
 #include "hierarchy/moto.h"
 #include "hierarchy/camion.h"
@@ -43,6 +44,7 @@ public:
     bool search(Container<Veicolo*>*&, Veicolo*)const;
     bool vendi(Veicolo*);
     bool nonVenduta(Veicolo*);
+    static std::string getRawData(const QImage&);
 
     //implementazione di tutti i filtri di ricerca
     void filterByType(string ="auto");

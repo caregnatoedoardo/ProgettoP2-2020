@@ -1,5 +1,7 @@
 #include "printlistview.h"
 #include <QByteArray>
+#include "model.h"
+
 
 PrintListView::PrintListView(Veicolo* i, QWidget* p):
     veicolo(i),parent(p)
@@ -9,6 +11,10 @@ PrintListView::PrintListView(Veicolo* i, QWidget* p):
 }
 
 void PrintListView::update(){
+    QPixmap a = Model::getImage(veicolo->getPathImg());
+
+
+   setIcon(a);
    setText(QString::fromStdString(veicolo->getDetails()));
 
 

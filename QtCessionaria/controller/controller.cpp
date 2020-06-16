@@ -2,10 +2,11 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
-#include <istream>
+#include <iostream>
 #include<QMessageBox>
 #include <QFileDialog>
 #include <QBuffer>
+
 
 
 #include <hierarchy/veicolo.h>
@@ -96,6 +97,11 @@ bool Controller::slotAggiungiVeicolo() const{
         bool rib=false;
         string tipomt="";
         string pathimg="";
+
+      // if(Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage()).size()==0) pathimg="";
+       pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
+
+
         //CARROZZERIA
         bool campidati=true;
         if(tipo == 1 || tipo==2 || tipo==3 || tipo==4){
@@ -104,6 +110,7 @@ bool Controller::slotAggiungiVeicolo() const{
             cambio_auto = inserisciVeicolo->getCambio()->isChecked();
             colore = inserisciVeicolo->getColore()->text().toStdString();
             lunghezza = inserisciVeicolo->getLunghezza()->text().toDouble();
+
         }
         //MOTORE
         if(campidati && (tipo==0 || tipo==2 || tipo==3 || tipo==4)){
@@ -503,5 +510,6 @@ void Controller::closeEvent(QCloseEvent *event){
     slotSalva();
     QWidget::closeEvent(event);
 }
+
 
 

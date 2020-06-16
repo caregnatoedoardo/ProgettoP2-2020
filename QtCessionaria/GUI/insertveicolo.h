@@ -116,7 +116,7 @@ public:
      QLineEdit* getClasseEmissioni() const;
      TipomotoBox* getTipoMoto() const;
 
-     QPushButton* getScegliFoto() const;
+     QLabel* getScegliFoto() const;
 
      QPushButton* getAddButton() const;
 

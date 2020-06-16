@@ -658,6 +658,20 @@ alimentazione Model::convertToAlimentazione(const string al)const{
     throw Exc(5);
 }
 
+
+
+std::string Model::getRawData(const QImage &q)
+{
+
+
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    q.save(&buffer, "PNG");
+
+    return QString(byteArray.toBase64()).toStdString();
+
+}
+
 QPixmap Model::getImage(const std::string &i){
     QImage* image= new QImage;
     QByteArray array= QByteArray(i.data());
@@ -666,6 +680,9 @@ QPixmap Model::getImage(const std::string &i){
     QPixmap p=QPixmap::fromImage(*image);
     return p.scaled(500,600,Qt::AspectRatioMode::KeepAspectRatio);
 }
+
+
+
 
 
 void Model::clearRicerca()  {
