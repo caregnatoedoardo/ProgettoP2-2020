@@ -19,7 +19,6 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     descMarca(new QLabel("Marca",this)),
     descModello(new QLabel("Modello",this)),
     descNumeroTelaio(new QLabel("Numero Telaio",this)),
-    descCambio(new QLabel("Cambio Automatico",this)),
     descColore(new QLabel("Colore",this)),
     descLunghezza(new QLabel("Lunghezza",this)),
     descNumeroMotore(new QLabel("Numero Motore",this)),
@@ -31,17 +30,14 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     descMassa(new QLabel("Massa",this)),
     descNumeroPosti(new QLabel("Numeri Posti",this)),
     descSegmento(new QLabel("Segmento",this)),
-    descAutocarro(new QLabel("Autocarro",this)),
     descNumeroAssi(new QLabel("Numero Assi",this)),
-    descRibaltabile(new QLabel("Ribaltabile",this)),
-    descSidecar(new QLabel("Sidecar",this)),
     descClasseEmissioni(new QLabel("Classe Emissione",this)),
     descTipoMoto(new QLabel("Tipo Moto",this)),
 
     marca(new QLineEdit(this)),
     modello(new QLineEdit(this)),
     numeroTelaio(new QLineEdit(this)),
-    cambio(new QCheckBox("Cambio",this)),
+    cambio(new QCheckBox("Cambio Automatico",this)),
     colore(new QLineEdit(this)),
     lunghezza(new QLineEdit(this)),
     numeroMotore(new QLineEdit(this)),
@@ -68,14 +64,7 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 {
     QGridLayout* form = new QGridLayout(this);
 
-    //form->addWidget(descTipoVeicolo,0,0);
     form->addWidget(tipoVeicolo,0,0);
-
-    bottoneScegliFoto->setText("Carica Immagine");
-
-
-    form->addWidget(scegliFoto,5,7);
-    form->addWidget(bottoneScegliFoto,5,6);
 
 
     marca->setPlaceholderText("Marca");
@@ -91,7 +80,6 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     form->addWidget(descNumeroTelaio,5,0);
     form->addWidget(numeroTelaio,6,0);
 
-    form->addWidget(descCambio,7,0);
     form->addWidget(cambio,8,0);
 
 
@@ -112,62 +100,66 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     form->addWidget(cilindrata,16,0);
 
     cavalli->setPlaceholderText("Cavalli");
-    form->addWidget(descCavalli,17,0);
-    form->addWidget(cavalli,18,0);
+    form->addWidget(descCavalli,1,1);
+    form->addWidget(cavalli,2,1);
 
-    form->addWidget(descAlimentazione,19,0);
-    form->addWidget(alimentazione,20,0);
+    form->addWidget(descAlimentazione,3,1);
+    form->addWidget(alimentazione,4,1);
 
     targa->setPlaceholderText("Targa");
-    form->addWidget(descTarga,1,1);
-    form->addWidget(targa,2,1);
+    form->addWidget(descTarga,5,1);
+    form->addWidget(targa,6,1);
 
     prezzo->setPlaceholderText("Prezzo");
-    form->addWidget(descPrezzo,3,1);
-    form->addWidget(prezzo,4,1);
+    form->addWidget(descPrezzo,7,1);
+    form->addWidget(prezzo,8,1);
 
     massa->setPlaceholderText("Massa");
-    form->addWidget(descMassa,5,1);
-    form->addWidget(massa,6,1);
+    form->addWidget(descMassa,9,1);
+    form->addWidget(massa,10,1);
 
     numeroPosti->setPlaceholderText("Numero Posti");
-    form->addWidget(descNumeroPosti,7,1);
-    form->addWidget(numeroPosti,8,1);
+    form->addWidget(descNumeroPosti,11,1);
+    form->addWidget(numeroPosti,12,1);
 
 
-    form->addWidget(descSegmento,9,1);
-    form->addWidget(segmento,10,1);
+    form->addWidget(descSegmento,13,1);
+    form->addWidget(segmento,14,1);
 
-    form->addWidget(descAutocarro,11,1);
-    form->addWidget(autocarro,12,1);
+    form->addWidget(autocarro,16,1);
 
     numeroAssi->setPlaceholderText("Numero Assi");
     form->addWidget(descNumeroAssi,13,1);
     form->addWidget(numeroAssi,14,1);
 
-    form->addWidget(descRibaltabile,15,1);
     form->addWidget(ribaltabile,16,1);
 
-    form->addWidget(descSidecar,17,1);
-    form->addWidget(sidecar,18,1);
+    form->addWidget(sidecar,14,1);
 
     classeEmissioni->setPlaceholderText("Classe Emissioni");
-    form->addWidget(descClasseEmissioni,19,1);
-    form->addWidget(classeEmissioni,20,1);
+    form->addWidget(descClasseEmissioni,15,1);
+    form->addWidget(classeEmissioni,16,1);
 
 
-    form->addWidget(descTipoMoto,21,1);
-    form->addWidget(tipoMoto,22,1);
+    form->addWidget(descTipoMoto,17,1);
+    form->addWidget(tipoMoto,18,1);
 
-    form->addWidget(AddButton,6,3);
-    form->addWidget(saveEditButton,6,3);
+    form->addWidget(AddButton,20,2);
+    form->addWidget(saveEditButton,21,1);
+
+    bottoneScegliFoto->setText("Carica Immagine");
+
+
+    form->addWidget(scegliFoto,20,0);
+    form->addWidget(bottoneScegliFoto,21,1);
+
     saveEditButton->hide();
 
     connect(tipoVeicolo,static_cast<void (QComboBox::*)(int index)>(&QComboBox::currentIndexChanged),[this]{
         slotChangeFormLayout(tipoVeicolo->currentText());
     });
 
-    //connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
+    connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
 }
 
 void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
@@ -177,7 +169,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descMarca->show();
         descModello->show();
         descNumeroTelaio->show();
-        descCambio->show();
         descColore->show();
         descLunghezza->show();
 
@@ -192,10 +183,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descMassa->hide();
         descNumeroPosti->hide();
         descSegmento->hide();
-        descAutocarro->hide();
         descNumeroAssi->hide();
-        descRibaltabile->hide();
-        descSidecar->hide();
         descClasseEmissioni->hide();
         descTipoMoto->hide();
 
@@ -237,7 +225,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
 
 
         descNumeroTelaio->hide();
-        descCambio->hide();
         descColore->hide();
         descLunghezza->hide();
 
@@ -246,10 +233,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descMassa->hide();
         descNumeroPosti->hide();
         descSegmento->hide();
-        descAutocarro->hide();
         descNumeroAssi->hide();
-        descRibaltabile->hide();
-        descSidecar->hide();
         descClasseEmissioni->hide();
         descTipoMoto->hide();
 
@@ -288,7 +272,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descCavalli->show();
         descAlimentazione->show();
         descNumeroTelaio->show();
-        descCambio->show();
         descColore->show();
         descLunghezza->show();
         descTarga->show();
@@ -296,11 +279,8 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descMassa->show();
         descNumeroPosti->show();
         descSegmento->show();
-        descAutocarro->show();
 
         descNumeroAssi->hide();
-        descRibaltabile->hide();
-        descSidecar->hide();
         descClasseEmissioni->hide();
         descTipoMoto->hide();
 
@@ -340,7 +320,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descCavalli->show();
         descAlimentazione->show();
         descNumeroTelaio->show();
-        descCambio->show();
         descColore->show();
         descLunghezza->show();
         descTarga->show();
@@ -348,11 +327,8 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descMassa->show();
         descNumeroPosti->show();
         descSegmento->hide();
-        descAutocarro->hide();
 
         descNumeroAssi->hide();
-        descRibaltabile->hide();
-        descSidecar->show();
         descClasseEmissioni->show();
         descTipoMoto->show();
 
@@ -392,19 +368,15 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descCavalli->show();
         descAlimentazione->show();
         descNumeroTelaio->show();
-        descCambio->show();
         descColore->show();
         descLunghezza->show();
         descTarga->show();
         descPrezzo->show();
         descMassa->show();
         descNumeroPosti->show();
-        descSegmento->hide();
-        descAutocarro->show();
+        descNumeroAssi->show();
 
-        descNumeroAssi->hide();
-        descRibaltabile->hide();
-        descSidecar->hide();
+        descSegmento->hide();
         descClasseEmissioni->hide();
         descTipoMoto->hide();
 
@@ -423,6 +395,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         prezzo->show();
         massa->show();
         numeroPosti->show();
+        numeroAssi->show();
 
         //hide
         segmento->hide();
@@ -430,7 +403,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         sidecar->hide();
         classeEmissioni->hide();
         tipoMoto->hide();
-
         AddButton->show();
     }
 }
