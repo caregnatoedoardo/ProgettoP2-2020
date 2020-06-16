@@ -640,9 +640,10 @@ void InsertVeicolo::setTipoMoto(unsigned int i){
     tipoMoto->setCurrentIndex(i);
 }
 
-QLabel* InsertVeicolo::getScegliFoto() const
-{
-    return scegliFoto;
+QLabel* InsertVeicolo::getScegliFoto() const{
+    if(scegliFoto)
+        return scegliFoto;
+    return nullptr;
 }
 
 

@@ -99,7 +99,11 @@ bool Controller::slotAggiungiVeicolo() const{
         string pathimg="";
 
       // if(Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage()).size()==0) pathimg="";
-       pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
+        QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
+        string pathfoto=LabelFoto->text().toStdString();
+        if(pathfoto!="Scegli Foto"){
+         pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
+        }
 
 
         //CARROZZERIA
