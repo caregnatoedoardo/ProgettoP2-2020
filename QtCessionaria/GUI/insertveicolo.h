@@ -7,6 +7,7 @@
 #include "veicolotypebox.h"
 
 #include <QComboBox>
+#include <QString>
 #include <QFormLayout>
 #include <QTextEdit>
 #include <QLineEdit>

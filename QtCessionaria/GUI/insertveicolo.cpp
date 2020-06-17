@@ -149,11 +149,11 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     bottoneScegliFoto->setText("Carica Immagine");
 
     scegliFoto->hide();
-   // form->addWidget(scegliFoto,20,0);
+    //form->addWidget(scegliFoto,20,0);
     form->addWidget(bottoneScegliFoto,21,1);
 
     saveEditButton->hide();
-
+    slotChangeFormLayout("motore");
     connect(tipoVeicolo,static_cast<void (QComboBox::*)(int index)>(&QComboBox::currentIndexChanged),[this]{
         slotChangeFormLayout(tipoVeicolo->currentText());
     });
