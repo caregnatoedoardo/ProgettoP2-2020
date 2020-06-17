@@ -207,9 +207,11 @@ void Controller::slotShowModifica(){
     dialog = inserisciVeicolo;
 
     groupView->slotDisableElimina();
+    groupView->slotDisableVendi();
 
     if(groupView->getList()->currentItem()!=nullptr){
         dialog->hideButton(false);
+
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "motore"){
             Motore* a = dynamic_cast<Motore*>(groupView->getList()->currentItem()->getItemAddress());
             dialog->setTipoVeicolo(0);

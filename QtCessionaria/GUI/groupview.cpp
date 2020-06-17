@@ -78,3 +78,7 @@ void GroupView::slotRowChanged()const{
 void GroupView::slotDisableElimina() const{
     btnElimina->setDisabled(true);
 }
+
+void GroupView::slotDisableVendi() const{
+    btnVendi->setDisabled(true);
+}

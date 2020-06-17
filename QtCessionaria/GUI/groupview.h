@@ -35,6 +35,7 @@ public slots:
     void slotElementoSelezionato(bool= true)const;
     void slotRowChanged()const;
     void slotDisableElimina() const;
+    void slotDisableVendi() const;
 
 signals:
     void signalElementoSelezionato(bool=true)const;
