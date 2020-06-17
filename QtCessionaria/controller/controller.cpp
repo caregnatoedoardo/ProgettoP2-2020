@@ -206,6 +206,7 @@ void Controller::slotShowModifica(){
 
     dialog = inserisciVeicolo;
 
+    groupView->slotDisableElimina();
 
     if(groupView->getList()->currentItem()!=nullptr){
         dialog->hideButton(false);

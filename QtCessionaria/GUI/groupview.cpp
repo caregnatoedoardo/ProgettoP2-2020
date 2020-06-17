@@ -74,3 +74,7 @@ void GroupView::slotElementoSelezionato(bool t)const {
 void GroupView::slotRowChanged()const{
     emit slotElementoSelezionato(true);
 }
+
+void GroupView::slotDisableElimina() const{
+    btnElimina->setDisabled(true);
+}
