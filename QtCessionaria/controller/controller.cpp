@@ -208,6 +208,9 @@ void Controller::slotShowModifica(){
 
     groupView->slotDisableElimina();
     groupView->slotDisableVendi();
+    groupView->slotDisableLista(true);
+
+
 
     if(groupView->getList()->currentItem()!=nullptr){
         dialog->hideButton(false);
@@ -301,13 +304,14 @@ void Controller::slotShowModifica(){
 void Controller::slotSaveModifica(){
     slotEliminaElemento();
     slotAggiungiVeicolo();
-
+   groupView->slotDisableLista(false);
     groupView->getList()->update();
     inserisciVeicolo->hideButton(true);
     dialog->hide();
 }
 
 void Controller::slotVendi(){
+
     if(groupView->getList()->currentItem()!=nullptr){
         PrintListView* item = groupView->getList()->currentItem();
         if(model->vendi(item->getItemAddress())){
