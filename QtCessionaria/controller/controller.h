@@ -51,9 +51,6 @@ public slots:
     void slotSaveModifica();
     void slotResetRicerca() const;
     void slotVendi();
-
-
-
 };
 
 #endif // CONTROLLER_H

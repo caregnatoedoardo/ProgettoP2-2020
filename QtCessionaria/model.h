@@ -24,6 +24,7 @@ private:
     bool flagsaved;
 public:
     Model(string="../QtCessionaria/dati.xml");
+    //Model(string ="/Users/edoardocaregnato/Documents/C++ Projects/ProgettoP2-2020/dati.xml");
 
     ~Model();
 

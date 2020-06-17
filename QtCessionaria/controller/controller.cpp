@@ -296,8 +296,6 @@ void Controller::slotShowModifica(){
 }
 
 void Controller::slotSaveModifica(){
-    // Veicolo* a= groupView->getList()->currentItem()->getItemAddress();
-    // model->remove(a);
     slotEliminaElemento();
     slotAggiungiVeicolo();
 
@@ -308,14 +306,14 @@ void Controller::slotSaveModifica(){
 
 void Controller::slotVendi(){
     if(groupView->getList()->currentItem()!=nullptr){
-        PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
-        vendutiView->getList()->addVeicolo(item->getItemAddress());
-        bool isVenduto = model->vendi(item->getItemAddress());
-        if(isVenduto){
+        PrintListView* item = groupView->getList()->currentItem();
+        if(model->vendi(item->getItemAddress())){
+            vendutiView->getList()->addVeicolo(item->getItemAddress());
             delete item;
             groupView->getList()->reset();
         }
     }
+    return;
 }
 
 void Controller::slotSalva()const{
@@ -336,19 +334,12 @@ void Controller::slotLoad(){
         try{
             if(model->getContainerSize()==0 && model->getContainerVendutiSize()==0)
                 throw Exc();
-
             else{
-                for(unsigned int i=0; i<model->getContainerSize();i++){
+                for(unsigned int i=0; i<model->getContainerSize();i++)
+                    groupView->getList()->addVeicolo(model->getElementoByPosition(i));
 
-                groupView->getList()->addVeicolo(model->getElementoByPosition(i));
-
-                }
-
-                for(unsigned int i=0; i<model->getContainerVendutiSize();i++){
-
-                vendutiView->getList()->addVeicolo(model->getElementoVendutoByPosition(i));
-
-                }
+                for(unsigned int i=0; i<model->getContainerVendutiSize();i++)
+                    vendutiView->getList()->addVeicolo(model->getElementoVendutoByPosition(i));
 
                 slotShowVisualizza();
                 slotFlagDataChange(false);
