@@ -148,8 +148,8 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
 
     bottoneScegliFoto->setText("Carica Immagine");
 
-
-    form->addWidget(scegliFoto,20,0);
+    scegliFoto->hide();
+   // form->addWidget(scegliFoto,20,0);
     form->addWidget(bottoneScegliFoto,21,1);
 
     saveEditButton->hide();
