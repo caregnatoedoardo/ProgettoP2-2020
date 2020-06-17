@@ -206,13 +206,16 @@ void Controller::slotShowModifica(){
 
     dialog = inserisciVeicolo;
 
-    groupView->slotDisableElimina();
-    groupView->slotDisableVendi();
-    groupView->slotDisableLista(true);
+
 
 
 
     if(groupView->getList()->currentItem()!=nullptr){
+        groupView->slotDisableElimina();
+        groupView->slotDisableVendi();
+        groupView->slotDisableLista(true);
+
+
         dialog->hideButton(false);
 
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "motore"){

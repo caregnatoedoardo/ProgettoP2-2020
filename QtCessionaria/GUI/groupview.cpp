@@ -41,6 +41,7 @@ GroupView::GroupView(bool venduti,QWidget* p):
     l->addWidget(btnVendi);
     l->addWidget(btnElimina);
 
+
     if(venduti){
         btnModifica->hide();
         btnVendi->hide();

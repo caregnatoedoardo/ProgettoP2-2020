@@ -32,6 +32,7 @@ PrintListView*  ListViewWidget::takeItem(Veicolo* iad){
 
 PrintListView* ListViewWidget::currentItem() const {
     return static_cast<PrintListView*>(QListWidget::currentItem());
+
 }
 
 
