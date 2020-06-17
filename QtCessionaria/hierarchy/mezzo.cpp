@@ -5,7 +5,7 @@
 Mezzo::Mezzo(string mar, string mo, string pt, unsigned int ntel,bool ca,string co,double lung,unsigned int nm,unsigned int cil,unsigned int cv, alimentazione al, string ta, double pr,unsigned int ma, unsigned int npos):
      Veicolo(mar,mo,pt), Carrozzeria(mar,mo,pt,ntel,ca,co,lung),Motore(mar,mo,pt,nm,cil,cv,al), targa(ta),prezzo(pr),massa(ma),numposti(npos){}
 
-Mezzo::Mezzo(const Mezzo& me): Carrozzeria(me), Motore(me), targa(me.targa),prezzo(me.prezzo),massa(me.massa),numposti(me.numposti){}
+Mezzo::Mezzo(const Mezzo& me): Veicolo(me), Carrozzeria(me), Motore(me), targa(me.targa),prezzo(me.prezzo),massa(me.massa),numposti(me.numposti){}
 
 Mezzo& Mezzo::operator=(const Mezzo &me){
     if(this!=&me){
