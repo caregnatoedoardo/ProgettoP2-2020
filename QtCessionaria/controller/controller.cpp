@@ -36,7 +36,7 @@ Controller::Controller(Model*m, QWidget *parent):
     mainLayout->addWidget(vendutiView);
     mainLayout->addWidget(inserisciVeicolo);
 
-    slotShowInserisci();
+    slotShowVisualizza();
     connect(groupView->getBtnElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
     connect(groupView->getBtnModifica(),SIGNAL(clicked()),this,SLOT(slotShowModifica()));
     connect(groupView->getBtnVendi(),SIGNAL(clicked()),this,SLOT(slotVendi()));
