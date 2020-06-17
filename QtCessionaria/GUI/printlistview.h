@@ -5,8 +5,7 @@
 #include <QListWidgetItem>
 
 
-class PrintListView : public QListWidgetItem
-{
+class PrintListView : public QListWidgetItem{
 private:
     Veicolo* veicolo;
     QWidget* parent;

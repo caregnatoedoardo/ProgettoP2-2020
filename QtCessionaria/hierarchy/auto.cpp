@@ -38,6 +38,7 @@ string Auto::convertSegmento(segmento seg) const{//converte l'enum segmento in s
     catch(Exc){
         Exc(4);
     }
+    return "berlina";
 }
 
 

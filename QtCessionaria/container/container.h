@@ -479,7 +479,7 @@ bool Container<T>::search(const T& t)const{
 template<class T>
 T Container<T>::getVeicolo(unsigned int i)const{
     if(i<0 || i>getSize()) return nullptr;
-    int index=0;
+    unsigned int index=0;
     Nodo* scorri=first;
     while(scorri && index<i){
         scorri=scorri->next;
