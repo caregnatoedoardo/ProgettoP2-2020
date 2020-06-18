@@ -226,7 +226,7 @@ void Model::load(string path){
                 bool rib=false;
                 tipomoto tpm;
                 string tipomt="";
-                string pathimg="";
+
                 string nomereader=reader.name().toString().toStdString();
                 Veicolo* toPush = nullptr;
 
@@ -236,7 +236,7 @@ void Model::load(string path){
                     colore = att.hasAttribute("colore")? att.value("colore").toString().toStdString():"";
                     lunghezza = att.hasAttribute("lunghezza")? att.value("lunghezza").toDouble():1;
                     if(reader.name()=="carrozzeria")
-                        toPush=new Carrozzeria(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza);
+                        toPush=new Carrozzeria(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza);
                 }
 
                 //MOTORE if(motore,auto,camion,moto)
@@ -245,7 +245,7 @@ void Model::load(string path){
                     cilindrata = att.hasAttribute("cilindrata")? att.value("cilindrata").toInt(): 0;
                     cavalli = att.hasAttribute("cavalli")? att.value("cavalli").toInt(): 0;
                     if(reader.name()=="motore")
-                        toPush=new Motore(marca,modello,pathimg,n_motore,cilindrata,cavalli);
+                        toPush=new Motore(marca,modello,path,n_motore,cilindrata,cavalli);
                 }
                 if(reader.name()=="auto" || reader.name()=="camion" || reader.name()=="moto"){
                     alim = convertToAlimentazione(att.hasAttribute("alim")? att.value("alim").toString().toStdString():"");
@@ -257,7 +257,7 @@ void Model::load(string path){
                 if(reader.name() == "auto"){
                     seg = convertToSeg(att.hasAttribute("seg")? att.value("seg").toString().toStdString():"");
                     autocarro = att.hasAttribute("autocarro")? att.value("autocarro").toString()=="Si" ? true:false:false;
-                    toPush = new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,seg,autocarro);
+                    toPush = new Auto(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,seg,autocarro);
 
                 } else if(reader.name()=="camion"){
                     nassi = att.hasAttribute("n_assi")? att.value("n_assi").toDouble():1;
