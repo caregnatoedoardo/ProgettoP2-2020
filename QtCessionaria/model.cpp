@@ -213,7 +213,7 @@ void Model::load(string path){
                 unsigned int n_motore=0;
                 unsigned int cilindrata=0;
                 unsigned int cavalli=0;
-                alimentazione alim;
+                alimentazione alim=diesel;
                 string targa="";
                 double prezzo=0;
                 unsigned int massa=0;
