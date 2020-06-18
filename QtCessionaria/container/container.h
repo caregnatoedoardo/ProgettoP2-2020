@@ -82,6 +82,7 @@ public:
     Container<T>* getVehicleByType(const string type);//restituisce un nuovo container con tutti i veicoli di tipo type inserito
     string getTipoVeicolo()const;//restituisce una stringa che identifica la tipologia del veicolo dell'oggetto di invocazione
     void erase();
+    Container<T>& ctcopy(const Container<T>& ct);
 };
 
 //METODI ITERATORE
@@ -186,7 +187,9 @@ bool Container<T>::operator!=(const Container<T>& ct){
 
 template<class T>
 bool Container<T>::isEmpty()const{
-    return (!first);
+    //return (!first);
+    if(!first) return true;
+    return false;
 }
 
 template<class T>
@@ -613,5 +616,19 @@ void Container<T>::erase(){
         remove(first->info);
     return;
 }
+
+template<class T>
+Container<T>& Container<T>::ctcopy(const Container<T>& ct){
+    Container<T>* nuovo=nullptr;
+    Nodo* scorri=ct.first;
+    while(scorri->next){
+        nuovo->push_begin(scorri->info);
+        scorri=scorri->next;
+    }
+    if(scorri)
+        nuovo->push_begin(scorri->info);
+    return *nuovo;
+}
+
 
 #endif // CONTAINER_H

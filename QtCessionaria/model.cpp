@@ -685,8 +685,9 @@ QPixmap Model::getImage(const std::string &i){
 
 void Model::clearRicerca()  {
 
-    if(!(searchRes == dbVeicoli))
-        searchRes = dbVeicoli;
+    //if(!(searchRes == dbVeicoli))
+    //    searchRes = dbVeicoli;
+    searchRes->ctcopy(*dbVeicoli);
     QMessageBox info;
    info.information(0,"avviso", "RESET OK");
 
