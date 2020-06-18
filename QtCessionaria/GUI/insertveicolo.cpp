@@ -149,7 +149,8 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     bottoneScegliFoto->setText("Carica Immagine");
 
     scegliFoto->hide();
-    //form->addWidget(scegliFoto,20,0);
+    form->addWidget(scegliFoto,20,0);
+    scegliFoto->hide();
     form->addWidget(bottoneScegliFoto,21,1);
 
     saveEditButton->hide();
@@ -552,6 +553,8 @@ void InsertVeicolo::slotResetForm()const{
     sidecar->setChecked(false);
     classeEmissioni->clear();
     tipoMoto->setCurrentIndex(0);
+    scegliFoto->setText("Scegli Foto");
+
 }
 
 void InsertVeicolo::setColore(string a ){
@@ -559,11 +562,14 @@ void InsertVeicolo::setColore(string a ){
 }
 
 void InsertVeicolo::hideButton(bool a){
-    if(!a){
+    if(!a){//MODIFICA
         AddButton->hide();
         saveEditButton->show();
+
+        scegliFoto->show();
     }
     if(a){
+        scegliFoto->hide();
         AddButton->show();
         saveEditButton->hide();
         tipoVeicolo->setDisabled(false);
@@ -639,10 +645,25 @@ void InsertVeicolo::setTipoMoto(unsigned int i){
     tipoMoto->setCurrentIndex(i);
 }
 
+void InsertVeicolo::setFoto(QString i){
+
+        QImage im(i);
+        QByteArray array;
+        QBuffer b(&array);
+        im.save(&b,"JPG");
+        scegliFoto->setPixmap(QPixmap::fromImage(im));
+
+
+
+}
+
 QLabel* InsertVeicolo::getScegliFoto() const{
     if(scegliFoto)
         return scegliFoto;
     return nullptr;
 }
+
+
+
 
 

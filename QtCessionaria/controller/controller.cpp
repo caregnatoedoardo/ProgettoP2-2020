@@ -224,6 +224,7 @@ void Controller::slotShowModifica(){
             dialog->setCilindrata(a->getCilindrata());
             dialog->setCavalli(a->getCavalli());
             dialog->setAlimentazione(a->getAlimentazione());
+            dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
 
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "carrozzeria"){
@@ -234,6 +235,7 @@ void Controller::slotShowModifica(){
             dialog->setNumeroTelaio(a->getNTelaio());
             dialog->setCambio(a->getCambio());
             dialog->setColore(a->getColore());
+            dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
 
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "auto"){
@@ -255,6 +257,7 @@ void Controller::slotShowModifica(){
             dialog->setSegmento(a->getSegmento());
             dialog->setAlimentazione(a->getAlimentazione());
             dialog->setAutocarro(a->getAutocarro());
+            dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
 
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "moto"){
@@ -276,6 +279,7 @@ void Controller::slotShowModifica(){
             dialog->setSidecar(a->getSidecar());
             dialog->setClasseEmissioni(a->getClasseEmissioni());
             dialog->setTipoMoto(a->getTipoMoto());
+            dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "camion"){
             Camion* a = dynamic_cast<Camion*>(groupView->getList()->currentItem()->getItemAddress());
@@ -295,6 +299,7 @@ void Controller::slotShowModifica(){
             dialog->setCavalli(a->getCavalli());
             dialog->setNumeroAssi(a->getNumAssi());
             dialog->setRibaltabile(a->getRibaltabile());
+            dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
         dialog->show();
         slotFlagDataChange(true);
@@ -307,7 +312,9 @@ void Controller::slotSaveModifica(){
    groupView->slotDisableLista(false);
     groupView->getList()->update();
     inserisciVeicolo->hideButton(true);
+
     dialog->hide();
+    inserisciVeicolo->slotResetForm();
 }
 
 void Controller::slotVendi(){

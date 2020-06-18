@@ -150,6 +150,7 @@ public:
      void setSidecar(bool) ;
      void setClasseEmissioni(unsigned int) ;
      void setTipoMoto(unsigned int) ;
+     void setFoto(QString);
 
 
 
