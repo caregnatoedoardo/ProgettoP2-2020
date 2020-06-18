@@ -48,13 +48,15 @@ Controller::Controller(Model*m, QWidget *parent):
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
 
     connect(inserisciVeicolo->getSaveEditButton(),SIGNAL(clicked()),this,SLOT(slotSaveModifica()));
-    connect(ricercaView->getButtonElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElemento()));
+
 
 
 
     connect(ricercaView->getButtonRicerca(),SIGNAL(clicked()), this, SLOT(slotRicerca()));
     connect(ricercaView->getButtonReset(), SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
     connect(ricercaView->getButtonReset(),SIGNAL(clicked()),ricercaView,SLOT(slotReset()));
+
+
 
 }
 
@@ -205,11 +207,6 @@ bool Controller::slotAggiungiVeicolo() const{
 void Controller::slotShowModifica(){
 
     dialog = inserisciVeicolo;
-
-
-
-
-
     if(groupView->getList()->currentItem()!=nullptr){
         groupView->slotDisableElimina();
         groupView->slotDisableVendi();

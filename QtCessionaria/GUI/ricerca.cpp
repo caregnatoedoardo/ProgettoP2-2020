@@ -52,12 +52,12 @@ Ricerca::Ricerca(QWidget *p):
     boxTipoMoto(new TipomotoBox(this)),
 
     cerca(new QPushButton("CERCA",this)),
-    elimina(new QPushButton("ELIMINA TUTTI I RISULTATI",this)),
+
     reset(new QPushButton("RESET RICERCA",this)),
     listaveic(new ListViewWidget(this))
 {
 
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    QHBoxLayout* mainLayout = new QHBoxLayout(this);
     QFormLayout* form = new QFormLayout();
 
     form->addRow(ckTipo,boxTipoVeicolo);
@@ -86,8 +86,9 @@ Ricerca::Ricerca(QWidget *p):
     form->addRow(cerca,reset);
 
     mainLayout->addLayout(form);
+
     mainLayout->addWidget(listaveic);
-    mainLayout->addWidget(elimina);
+
 }
 
 void Ricerca::slotDisableElements()const{
@@ -212,7 +213,6 @@ TipomotoBox* Ricerca::getBoxTipoMoto() const{return boxTipoMoto;}
 ListViewWidget* Ricerca::getListaVeic() const{return listaveic;}
 
 QPushButton* Ricerca::getButtonRicerca() const{return  cerca;}
-QPushButton* Ricerca::getButtonElimina() const{return elimina;}
 QPushButton* Ricerca::getButtonReset() const{return reset;}
 
 void Ricerca::slotReset()const {

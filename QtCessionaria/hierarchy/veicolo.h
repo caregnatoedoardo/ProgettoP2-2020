@@ -6,7 +6,6 @@
 using std::string;
 
 class Veicolo{
-private:
     string marca;
     string modello;
     string pathimg;

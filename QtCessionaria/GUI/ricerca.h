@@ -86,7 +86,6 @@ private:
     TipomotoBox* boxTipoMoto;
 
     QPushButton* cerca;
-    QPushButton* elimina;
     QPushButton* reset;
 
     ListViewWidget* listaveic;
@@ -137,7 +136,6 @@ public:
     TipomotoBox* getBoxTipoMoto()const;
 
     QPushButton* getButtonRicerca() const;
-    QPushButton* getButtonElimina() const;
     QPushButton* getButtonReset() const;
 
     ListViewWidget* getListaVeic()const;
