@@ -4,6 +4,8 @@
 #include "hierarchy/camion.h"
 #include "hierarchy/auto.h"
 #include "hierarchy/moto.h"
+#include <iostream>
+using namespace std;
 
 
 /* 1) Lista concatenata o lista doppiamente concatenata?
@@ -34,6 +36,7 @@ private:
         Nodo(const T i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
         ~Nodo(){delete info;}
         T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
+        T* cloneInfo() const { return new T(info);}
     };
     Nodo* first;
 public:
@@ -188,8 +191,10 @@ bool Container<T>::operator!=(const Container<T>& ct){
 template<class T>
 bool Container<T>::isEmpty()const{
     //return (!first);
-    if(!first) return true;
-    return false;
+   // if(first) return false;
+    //return true;
+
+    return true;
 }
 
 template<class T>
@@ -226,6 +231,7 @@ bool Container<T>::push_begin(const T& t){
         return false;
     }
 }
+
 
 template<class T>
 bool Container<T>::push_end(const T& t){
@@ -619,14 +625,22 @@ void Container<T>::erase(){
 
 template<class T>
 Container<T>& Container<T>::ctcopy(const Container<T>& ct){
-    Container<T>* nuovo=nullptr;
+    Container<T>* nuovo = new Container<T>;
+    nuovo->first = new Nodo();
+
     Nodo* scorri=ct.first;
     while(scorri->next){
-        nuovo->push_begin(scorri->info);
+        T* copia = scorri->cloneInfo();
+        nuovo->push_begin(*copia);
         scorri=scorri->next;
     }
-    if(scorri)
-        nuovo->push_begin(scorri->info);
+    if(scorri){
+        T* copia2 = scorri->cloneInfo();
+        nuovo->push_begin(*copia2);
+    }
+
+
+
     return *nuovo;
 }
 

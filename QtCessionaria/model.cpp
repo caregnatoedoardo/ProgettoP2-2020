@@ -691,6 +691,8 @@ void Model::clearRicerca()  {
     QMessageBox info;
    info.information(0,"avviso", "RESET OK");
 
+
+
 }
 
 bool Model::isEmptyVenduti() const{
