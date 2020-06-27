@@ -177,7 +177,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descCilindrata->hide();
         descCavalli->hide();
         descAlimentazione->hide();
-        descLunghezza->hide();
+
         descTarga->hide();
         descPrezzo->hide();
         descMassa->hide();
@@ -200,7 +200,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         cilindrata->hide();
         cavalli->hide();
         alimentazione->hide();
-        lunghezza->hide();
+
         targa->hide();
         prezzo->hide();
         massa->hide();
@@ -396,6 +396,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         massa->show();
         numeroPosti->show();
         numeroAssi->show();
+        ribaltabile->show();
 
         //hide
         segmento->hide();
@@ -403,6 +404,7 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         sidecar->hide();
         classeEmissioni->hide();
         tipoMoto->hide();
+
         AddButton->show();
     }
 }
