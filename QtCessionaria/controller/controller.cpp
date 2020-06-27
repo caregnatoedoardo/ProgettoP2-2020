@@ -374,8 +374,9 @@ void Controller::slotShowRicerca()const{
 }
 
 void Controller::slotResetRicerca()const{
-    //CHIAMATA CHE RI-SETTA I RISULTATI DI RICERCA = TUTTO IL VECTOR
+    ricercaView->getListaVeic()->clear();
     model->clearRicerca();
+
 }
 
 

@@ -2,6 +2,7 @@
 
 Usermenu::Usermenu(QWidget* p):parent(p),
     menu(new QMenu("File",this)),
+    menuOperation(new QMenu("Azioni Operative",this)),
     salva(new QAction("Salva",this)),
     carica(new QAction("Carica",this)),
     visualizza(new QAction("Visualizza",this)),
@@ -12,25 +13,26 @@ Usermenu::Usermenu(QWidget* p):parent(p),
 
 {
     QList<QAction*> actionList;
-    actionList.push_back(ricerca);
+
     actionList.push_back(salva);
     actionList.push_back(carica);
-    actionList.push_back(inserisci);
-    actionList.push_back(visualizza);
-    actionList.push_back(visualizzaVenduti);
+
     actionList.push_back(esci);
 
+    QList<QAction*> operationList;
+    operationList.push_back(inserisci);
+    operationList.push_back(visualizza);
+    operationList.push_back(visualizzaVenduti);
+    operationList.push_back(ricerca);
 
     menu->addActions(actionList);
+    menuOperation->addActions(operationList);
+
+    operationList.clear();
     actionList.clear();
 
     addMenu(menu);
-    addAction(inserisci);
-    addAction(visualizza);
-    addAction(ricerca);
-
-
-    actionList.clear();
+    addMenu(menuOperation);
 
 
     connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));

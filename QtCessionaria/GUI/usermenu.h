@@ -12,6 +12,7 @@ class Usermenu : public QMenuBar {
 private:
     QWidget* parent;
     QMenu* menu;
+    QMenu* menuOperation;
 
     QAction* salva;
     QAction* carica;

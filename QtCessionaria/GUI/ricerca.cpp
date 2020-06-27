@@ -216,6 +216,7 @@ QPushButton* Ricerca::getButtonRicerca() const{return  cerca;}
 QPushButton* Ricerca::getButtonReset() const{return reset;}
 
 void Ricerca::slotReset()const {
+
     ckTipo->setChecked(false);
     ckMarca->setChecked(false);
     ckModello->setChecked(false);
