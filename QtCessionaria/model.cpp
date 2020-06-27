@@ -572,13 +572,17 @@ void Model::filterByTypeMoto(string tm){
 
 
 bool Model::push_end(Veicolo* a){
-    if(dbVeicoli->push_end(a)){
+
+    dbVeicoli->push_end(a);
+            return true;
+
+    /*if(dbVeicoli->push_end(a)){
         if(!(searchRes==dbVeicoli))
             searchRes=dbVeicoli;
         flagsaved=false;
         return true;
     }
-    return false;
+    return false;*/
 }
 
 

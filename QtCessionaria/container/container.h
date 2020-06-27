@@ -34,7 +34,7 @@ private:
         T info;
         Nodo* prev=nullptr, *next =nullptr ;
         Nodo(const T i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
-        ~Nodo(){delete info;}
+        ~Nodo(){if(next) delete next;}
         T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
         T* cloneInfo() const { return new T(info);}
     };
@@ -214,7 +214,7 @@ bool Container<T>::push_begin(const T& t){
 template<class T>
 bool Container<T>::push_end(const T& t){
     bool checkplate=checkPlate(t);
-    if(isEmpty() && checkplate){
+    if(isEmpty()){
         first=new Nodo(t,nullptr, nullptr);
         return true;
     }
