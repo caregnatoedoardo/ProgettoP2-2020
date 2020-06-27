@@ -687,6 +687,7 @@ void Model::clearRicerca()  {
 
     //if(!(searchRes == dbVeicoli))
     //    searchRes = dbVeicoli;
+    searchRes->erase();
     searchRes->ctcopy(*dbVeicoli);
     QMessageBox info;
    info.information(0,"avviso", "RESET OK");

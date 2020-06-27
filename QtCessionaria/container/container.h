@@ -197,10 +197,10 @@ bool Container<T>::isEmpty()const{
     return true;
 }
 
+
 template<class T>
 bool Container<T>::push_begin(const T& t){
-    bool checkplate=checkPlate(t);
-    if(isEmpty() && checkplate){
+    if(isEmpty()){
         first=new Nodo(t,nullptr,nullptr);
         return true;
     }
@@ -484,6 +484,9 @@ bool Container<T>::search(const T& t)const{
     return (scorri->info==t);
 
 }//CERCA L'ELEMENTO t ALL'INTERNO DEL CONTAINER E RITORNA TRUE O FALSE
+
+
+
 
 template<class T>
 T Container<T>::getVeicolo(unsigned int i)const{
