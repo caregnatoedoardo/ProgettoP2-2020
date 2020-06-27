@@ -274,14 +274,14 @@ void Model::load(string path){
                 } if(toPush!= nullptr){
 
 
-                    if(db=="veicoli" && !push_end(toPush)){
+                    if(db=="veicoli" && !push_end(dbVeicoli, toPush)){
 
                         throw Exc(11,"caricamento veicolo");
                         return;
                     }
 
                     else
-                        if(db=="venduti" && !push_endVenduti(toPush)){
+                        if(db=="venduti" && !push_end(dbVenduti,toPush)){
 
                             throw Exc(11,"caricamento veicolo");
                             return;
@@ -570,26 +570,67 @@ void Model::filterByTypeMoto(string tm){
     return;
 }
 
-
-bool Model::push_end(Veicolo* a){
-
-    dbVeicoli->push_end(a);
-            return true;
-
-    /*if(dbVeicoli->push_end(a)){
-        if(!(searchRes==dbVeicoli))
-            searchRes=dbVeicoli;
-        flagsaved=false;
-        return true;
+bool Model::push_begin(Container<Veicolo *>*& ct, Veicolo *a){
+    bool correctplate=checkPlate(a);
+    bool duplicate=isDuplicate(ct,a);
+    bool duplicateEngine=checkDuplicateEngine(ct,a);
+    bool duplicateChassis=checkDuplicateChassis(ct,a);
+    bool duplicatePlate=checkDuplicatePlate(ct,a);
+    try{
+        if(correctplate && !duplicate && !duplicateEngine && !duplicateChassis && !duplicatePlate)
+            if(ct->push_begin(a))
+                return true;
+        throw Exc();
+    }catch(Exc){
+        if(duplicate) Exc(6,"duplicato");
+        if(duplicateEngine) Exc(6,"N motore duplicato");
+        if(duplicateChassis) Exc(6,"N chassis duplicato");
+        if(duplicatePlate) Exc(13);
+        if(!correctplate) Exc(3);
     }
-    return false;*/
+    return false;
 }
 
 
-bool Model::push_endVenduti(Veicolo* a){
-    if(dbVenduti->push_end(a)){
-        flagsaved=false;
-        return true;
+bool Model::push(Veicolo *a){
+    bool correctplate=checkPlate(a);
+    bool duplicate=isDuplicate(dbVeicoli,a);
+    bool duplicateEngine=checkDuplicateEngine(dbVeicoli,a);
+    bool duplicateChassis=checkDuplicateChassis(dbVeicoli,a);
+    bool duplicatePlate=checkDuplicatePlate(dbVeicoli,a);
+    try{
+        if(correctplate && !duplicate && !duplicateEngine && !duplicateChassis && !duplicatePlate)
+            if(dbVeicoli->push_begin(a))
+                return true;
+        throw Exc();
+    }catch(Exc){
+        if(duplicate) Exc(6,"duplicato");
+        if(duplicateEngine) Exc(6,"N motore duplicato");
+        if(duplicateChassis) Exc(6,"N chassis duplicato");
+        if(duplicatePlate) Exc(13);
+        if(!correctplate) Exc(3);
+    }
+    return false;
+}
+
+
+bool Model::push_end(Container<Veicolo*>*& ct, Veicolo* a){
+    bool correctplate=checkPlate(a);
+    bool duplicate=isDuplicate(ct,a);
+    bool duplicateEngine=checkDuplicateEngine(ct,a);
+    bool duplicateChassis=checkDuplicateChassis(ct,a);
+    bool duplicatePlate=checkDuplicatePlate(ct,a);
+    try{
+        if(correctplate && !duplicate && !duplicateEngine && !duplicateChassis && !duplicatePlate)
+            if(ct->push_end(a))
+                return true;
+        throw Exc();
+    }catch(Exc){
+        if(duplicate) Exc(6,"duplicato");
+        if(duplicateEngine) Exc(6,"N motore duplicato");
+        if(duplicateChassis) Exc(6,"N chassis duplicato");
+        if(duplicatePlate) Exc(13);
+        if(!correctplate) Exc(3);
     }
     return false;
 }
@@ -610,8 +651,6 @@ bool Model::removeVenduti(Veicolo* a){
     }
     return false;
 }
-
-
 
 
 bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ricerca di un Veicolo dentro un Container.
@@ -664,14 +703,11 @@ alimentazione Model::convertToAlimentazione(const string al)const{
 
 std::string Model::getRawData(const QImage &q)
 {
-
-
     QByteArray byteArray;
     QBuffer buffer(&byteArray);
     q.save(&buffer, "PNG");
 
     return QString(byteArray.toBase64()).toStdString();
-
 }
 
 QPixmap Model::getImage(const std::string &i){
@@ -684,19 +720,12 @@ QPixmap Model::getImage(const std::string &i){
 }
 
 
-
-
-
 void Model::clearRicerca()  {
 
-    //if(!(searchRes == dbVeicoli))
-    //    searchRes = dbVeicoli;
     defaultSearchRes();
 
     QMessageBox info;
-   info.information(0,"avviso", "RESET OK");
-
-
+    info.information(0,"avviso", "RESET OK");
 
 }
 
@@ -712,17 +741,16 @@ Veicolo* Model::getElementoByPosition(unsigned int i) const{return dbVeicoli->ge
 Veicolo* Model::getElementoVendutoByPosition(unsigned int i) const{return dbVenduti->getVeicolo(i);}
 
 
-bool Model::checkDuplicatePlate(const Veicolo* a)const{
-    if(dbVeicoli->isEmpty()) return false;
-
+bool Model::checkDuplicatePlate(Container<Veicolo*>*&ct, const Veicolo* a)const{
+    if(ct->isEmpty()) return false;
+    bool trovato=false;
     Mezzo* me = dynamic_cast<Mezzo*>(const_cast<Veicolo*>(a));
-    auto it = dbVeicoli->begin();
-    for(;it!=dbVeicoli->end();++it){
+    for(auto it = ct->begin();it!=ct->end();++it){
         Mezzo* mz=dynamic_cast<Mezzo*>((*it));
-        if(me && mz && (mz->getTarga()==me->getTarga()) )
-            return true;
-
+        if(me && mz && (mz->getTarga()==me->getTarga()))
+            trovato=true;
     }
+    return trovato;
 
 }
 bool Model::checkPlate(const Veicolo* a) const{
@@ -734,29 +762,43 @@ bool Model::checkPlate(const Veicolo* a) const{
     return true;
 }
 
-bool Model::checkDuplicateEngine(const Veicolo* a)const{
+bool Model::checkDuplicateEngine(Container<Veicolo*>*&ct, const Veicolo* a)const{
 
-    if(dbVeicoli->isEmpty()) return false;
-    auto it=dbVeicoli->begin();
+    if(ct->isEmpty()) return false;
+
+    bool trovato=false;
+
     Motore* mt = dynamic_cast<Motore*>(const_cast<Veicolo*>(a));
-    for(;it!=dbVeicoli->end();++it){
+    for(auto it=ct->begin();it!=ct->end();++it){
         Motore* mttemp=dynamic_cast<Mezzo*>((*it));
-        if(mttemp && mt->getNMotore()==mttemp->getNMotore()) return true;
+        if(mttemp && mt->getNMotore()==mttemp->getNMotore()) trovato= true;
     }
-
-
+    return trovato;
 }
 
-bool Model::checkDuplicateChassis(const Veicolo* a)const{
+bool Model::checkDuplicateChassis(Container<Veicolo*>*ct, const Veicolo* a)const{
 
-    if(dbVeicoli->isEmpty()) return false;
-    auto it = dbVeicoli->begin();
+    if(ct->isEmpty()) return false;
+    bool trovato=false;
+
     Carrozzeria* cr=dynamic_cast<Carrozzeria*>(const_cast<Veicolo*>(a));
-    for(;it!=dbVeicoli->end();++it){
+    for(auto it = ct->begin();it!=ct->end();++it){
         Carrozzeria* crtemp=dynamic_cast<Carrozzeria*>((*it));
-        if(crtemp && cr->getNTelaio()==crtemp->getNTelaio()) return true;
+        if(crtemp && cr->getNTelaio()==crtemp->getNTelaio()) trovato=true;
     }
+    return trovato;
 }
+
+
+bool Model::isDuplicate(Container<Veicolo*>*&ct, const Veicolo* t)const{
+    if(ct->isEmpty()) return false;
+
+    for(auto it=ct->begin();it!=ct->end();++it)
+        if((*it)==t) return true;
+
+    return false;
+}
+
 
 string Model::getTipoVeicolo(const Veicolo* a)const{
 
@@ -779,24 +821,15 @@ string Model::getTipoVeicolo(const Veicolo* a)const{
     }catch(Exc){
          Exc(4,"non valido");
     }
+    return "auto";//return di default solo per far scoparire il warning
 }
 
-bool Model::defaultSearchRes(){
 
+bool Model::defaultSearchRes(){
      auto it = dbVeicoli->begin();
      searchRes->erase();
      for(;it!=dbVeicoli->end();++it){
          searchRes->push_begin(*it);
      }
-
      return true;
-
-
 }
-
-
-
-
-
-
-

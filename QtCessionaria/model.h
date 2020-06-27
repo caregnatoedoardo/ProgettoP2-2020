@@ -37,8 +37,9 @@ public:
     void erase (Veicolo*);
     unsigned int getContainerSize()const;
     unsigned int getContainerVendutiSize() const;
-    bool push_end(Veicolo*);
-    bool push_endVenduti(Veicolo*);
+    bool push_begin(Container<Veicolo*>*&, Veicolo*);
+    bool push(Veicolo*);
+    bool push_end(Container<Veicolo*>*&, Veicolo*);
     bool remove(Veicolo*);
     bool removeVenduti(Veicolo*);
     void clearRicerca();
@@ -81,11 +82,13 @@ public:
     static QPixmap getImage(const std::string&);
 
 
-    bool checkDuplicatePlate(const Veicolo*)const;
+    bool checkDuplicatePlate(Container<Veicolo*>*&ct, const Veicolo*)const;
     bool checkPlate(const Veicolo*) const;
-    bool checkDuplicateEngine(const Veicolo*)const;
-    bool checkDuplicateChassis(const Veicolo*)const;
+    bool checkDuplicateEngine(Container<Veicolo*>*&ct, const Veicolo*)const;
+    bool checkDuplicateChassis(Container<Veicolo*>*ct, const Veicolo*)const;
+    bool isDuplicate(Container<Veicolo*>*&ct, const Veicolo*)const;
     string getTipoVeicolo(const Veicolo*)const;
+
 
     bool defaultSearchRes();
 

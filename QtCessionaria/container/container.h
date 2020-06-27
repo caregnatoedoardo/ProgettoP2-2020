@@ -82,7 +82,7 @@ public:
     bool checkDuplicateEngine(const T&)const;
     unsigned int getSize()const;
     Container<T>& copy(const Container&);//esegue una copia del container
-    Container<T>* getVehicleByType(const string type);//restituisce un nuovo container con tutti i veicoli di tipo type inserito
+    Container<T>& getNewContainerByType(const string type);//restituisce un nuovo container con tutti i veicoli di tipo type inserito
     string getTipoVeicolo()const;//restituisce una stringa che identifica la tipologia del veicolo dell'oggetto di invocazione
     void erase();
     Container<T>& ctcopy(const Container<T>& ct);
@@ -191,8 +191,6 @@ bool Container<T>::operator!=(const Container<T>& ct){
 template<class T>
 bool Container<T>::isEmpty()const{
    return (!first);
-
-
 }
 
 
@@ -202,7 +200,6 @@ bool Container<T>::push_begin(const T& t){
         first=new Nodo(t,nullptr,nullptr);
         return true;
     }
-
     Nodo* newfirst=new Nodo(t,nullptr,first);
     first->prev=newfirst;
     first=newfirst;
@@ -213,12 +210,10 @@ bool Container<T>::push_begin(const T& t){
 
 template<class T>
 bool Container<T>::push_end(const T& t){
-    bool checkplate=checkPlate(t);
     if(isEmpty()){
         first=new Nodo(t,nullptr, nullptr);
         return true;
     }
-
     Nodo* scorri=first;
     while(scorri->next)
         scorri=scorri->next;
@@ -344,17 +339,6 @@ bool Container<T>::cancella(const T& t){
     return false;
 }
 
-template<class T>
-bool Container<T>::isDuplicate(const T& t)const{
-    if(isEmpty()) return false;
-
-    Nodo* scorri=first;
-    while(scorri && scorri->next){
-        if(scorri->info == t) return true;
-        scorri=scorri->next;
-    }
-    return (scorri->info==t);
-}
 
 template<class T>
 int Container<T>::getPosiz(const T& t)const{
@@ -434,7 +418,7 @@ T Container<T>::getVeicolo(unsigned int i)const{
     return scorri->info;
 }
 
-template<class T>  // RICREATO NEL MODEL //
+/*template<class T>  // RICREATO NEL MODEL //
 bool Container<T>::checkDuplicatePlate(const T& t)const{
     if(isEmpty()) return false;
 
@@ -500,7 +484,7 @@ bool Container<T>::checkDuplicateChassis(const T& t)const{
         crtemp=dynamic_cast<Carrozzeria*>(scorri->info);
     return(cr && crtemp && (cr->getNTelaio()==crtemp->getNTelaio()));
 }
-
+*/
 template<class T>
 unsigned int Container<T>::getSize()const{
     if(isEmpty()) return 0;
@@ -521,16 +505,16 @@ Container<T>& Container<T>::copy(const Container<T>& ct){ //usata per fare dei f
     return *this;
 }
 
-template<class T>
-Container<T>* Container<T>::getVehicleByType(const string type){
+template<class T>    // RICREATO NEL MODEL //
+Container<T>& Container<T>::getNewContainerByType(const string type){
     Container<T>* nuovo=new Container<T>;
     for(auto it=begin(); it != end();++it)
         if((*it)->getTipo()==type)
             nuovo->push_end(*it);
-    return nuovo;
+    return *nuovo;
 }//ritorna un container templatizzato con tutti gli elementi pari al tipo di typeveic
 
-template<class T>  // RICREATO NEL MODEL //
+/*template<class T>  // RICREATO NEL MODEL //
 string Container<T>::getTipoVeicolo()const{
     try{
         Carrozzeria*cr=dynamic_cast<Carrozzeria*>(*this);
@@ -551,7 +535,7 @@ string Container<T>::getTipoVeicolo()const{
     }catch(Exc){
          Exc(4,"non valido");
     }
-}
+}*/
 
 template<class T>
 void Container<T>::erase(){
@@ -577,11 +561,6 @@ Container<T>& Container<T>::ctcopy(const Container<T>& ct){
            copia2=scorri->cloneInfo();
         nuovo->push_begin(*copia2);
     }
-
-
-
     return *nuovo;
 }
-
-
 #endif // CONTAINER_H

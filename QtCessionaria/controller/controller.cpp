@@ -191,7 +191,7 @@ bool Controller::slotAggiungiVeicolo() const{
             return false;
             }
         }//end switch
-        if(model->push_end(veic)){
+        if(model->push(veic)){
             groupView->getList()->addVeicolo(veic);
             slotFlagDataChange(true);
             inserisciVeicolo->slotResetForm();
