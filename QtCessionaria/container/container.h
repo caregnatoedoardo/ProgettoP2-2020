@@ -202,36 +202,11 @@ bool Container<T>::push_begin(const T& t){
         first=new Nodo(t,nullptr,nullptr);
         return true;
     }
-    /*bool checkduplicate=isDuplicate(t);
-    bool checkduplicateengine=checkDuplicateEngine(t);
-    bool checkduplicatechassis=checkDuplicateChassis(t);
-    bool checkduplicateplate=checkDuplicatePlate(t);*/
+
     Nodo* newfirst=new Nodo(t,nullptr,first);
     first->prev=newfirst;
     first=newfirst;
     return true;
-
-    /*
-    try{
-        if(checkPlate(t) && !isDuplicate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkDuplicatePlate(t)){
-
-        }
-        throw Exc();
-    }
-    catch (Exc){
-        if(isDuplicate(t))
-            Exc(6,"duplicato");
-        if(checkDuplicateEngine(t))
-            Exc(6,"N motore duplicato");
-        if(checkDuplicateChassis(t))
-            Exc(6,"N chassis duplicato");
-        if(checkDuplicatePlate(t))
-            Exc(13);
-        if(!checkPlate(t))
-            Exc(3);
-        return false;
-    }
-    */
 }
 
 
@@ -243,60 +218,16 @@ bool Container<T>::push_end(const T& t){
         first=new Nodo(t,nullptr, nullptr);
         return true;
     }
-    /*bool checkduplicate=isDuplicate(t);
-    bool checkduplicateengine=checkDuplicateEngine(t);
-    bool checkduplicatechassis=checkDuplicateChassis(t);
-    bool checkduplicateplate=checkDuplicatePlate(t);*/
-    try{
-        if(checkPlate(t) && !isDuplicate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkDuplicatePlate(t)){
-            Nodo* scorri=first;
-            while(scorri->next)
-                scorri=scorri->next;
-            scorri->next=new Nodo(t,scorri,nullptr);
-            return true;
-        }
-        throw Exc();
-    }
-    catch(Exc){
-         if(isDuplicate(t))
-             Exc(6,"duplicato");
-         if(checkDuplicateEngine(t))
-             Exc(6,"N motore duplicato");
-         if(checkDuplicateChassis(t))
-             Exc(6,"N chassis duplicato");
-         if(checkDuplicatePlate(t))
-             Exc(13);
-         if(!checkPlate(t))
-             Exc(3);
-         return false;
-    }
+
+    Nodo* scorri=first;
+    while(scorri->next)
+        scorri=scorri->next;
+    scorri->next=new Nodo(t,scorri,nullptr);
+    return true;
 }
 
 template<class T>
 bool Container<T>::push(const T& t, unsigned int posiz){
-    /*bool checkplate=checkPlate(t);
-    bool checkduplicate=isDuplicate(t);
-    bool checkduplicateengine=checkDuplicateEngine(t);
-    bool checkduplicatechassis=checkDuplicateChassis(t);
-    bool checkduplicateplate=checkDuplicatePlate(t);*/
-    try{
-         if(checkPlate(t) && !isDuplicate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkDuplicatePlate(t))
-             throw Exc();
-    }
-    catch(Exc){
-        if(isDuplicate(t))
-            Exc(6,"duplicato");
-        if(checkDuplicateEngine(t))
-            Exc(6,"N motore duplicato");
-        if(checkDuplicateChassis(t))
-            Exc(6,"N chassis duplicato");
-        if(checkDuplicatePlate(t))
-            Exc(13);
-        if(!checkPlate(t))
-            Exc(3);
-        return false;
-    }
-
     if(posiz>getSize()){
         push_end(t);
         return true;
