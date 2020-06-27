@@ -708,6 +708,76 @@ Veicolo* Model::getElementoByPosition(unsigned int i) const{return dbVeicoli->ge
 Veicolo* Model::getElementoVendutoByPosition(unsigned int i) const{return dbVenduti->getVeicolo(i);}
 
 
+bool Model::checkDuplicatePlate(const Veicolo* a)const{
+    if(dbVeicoli->isEmpty()) return false;
+
+    Mezzo* me = dynamic_cast<Mezzo*>(const_cast<Veicolo*>(a));
+    auto it = dbVeicoli->begin();
+    for(;it!=dbVeicoli->end();++it){
+        Mezzo* mz=dynamic_cast<Mezzo*>((*it));
+        if(me && mz && (mz->getTarga()==me->getTarga()) )
+            return true;
+
+    }
+
+}
+bool Model::checkPlate(const Veicolo* a) const{
+    Moto*mt=dynamic_cast<Moto*>(const_cast<Veicolo*>(a));
+    if(mt) return mt->checkTarga();
+
+    Mezzo*mz=dynamic_cast<Mezzo*>(const_cast<Veicolo*>(a));
+    if(mz) return mz->checkTarga();
+    return true;
+}
+
+bool Model::checkDuplicateEngine(const Veicolo* a)const{
+
+    if(dbVeicoli->isEmpty()) return false;
+    auto it=dbVeicoli->begin();
+    Motore* mt = dynamic_cast<Motore*>(const_cast<Veicolo*>(a));
+    for(;it!=dbVeicoli->end();++it){
+        Motore* mttemp=dynamic_cast<Mezzo*>((*it));
+        if(mttemp && mt->getNMotore()==mttemp->getNMotore()) return true;
+    }
+
+
+}
+
+bool Model::checkDuplicateChassis(const Veicolo* a)const{
+
+    if(dbVeicoli->isEmpty()) return false;
+    auto it = dbVeicoli->begin();
+    Carrozzeria* cr=dynamic_cast<Carrozzeria*>(const_cast<Veicolo*>(a));
+    for(;it!=dbVeicoli->end();++it){
+        Carrozzeria* crtemp=dynamic_cast<Carrozzeria*>((*it));
+        if(crtemp && cr->getNTelaio()==crtemp->getNTelaio()) return true;
+    }
+}
+
+string Model::getTipoVeicolo(const Veicolo* a)const{
+
+    try{
+        Carrozzeria*cr=dynamic_cast<Carrozzeria*>(const_cast<Veicolo*>(a));
+        if(cr) return "carrozzeria";
+
+        Motore* mt=dynamic_cast<Motore*>(const_cast<Veicolo*>(a));
+        if(mt) return "motore";
+
+        Auto* au=dynamic_cast<Auto*>(const_cast<Veicolo*>(a));
+        if(au) return "auto";
+
+        Camion* cm=dynamic_cast<Camion*>(const_cast<Veicolo*>(a));
+        if(cm) return "camion";
+
+        Moto* mto=dynamic_cast<Moto*>(const_cast<Veicolo*>(a));
+        if(mto) return "moto";
+        throw Exc();
+    }catch(Exc){
+         Exc(4,"non valido");
+    }
+}
+
+
 
 
 

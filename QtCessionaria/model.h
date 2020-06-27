@@ -78,9 +78,15 @@ public:
     bool getFlagDataSaved()const;
     Veicolo* getElementoByPosition(unsigned int i)const;
     Veicolo* getElementoVendutoByPosition(unsigned int i)const;
-
-
     static QPixmap getImage(const std::string&);
+
+
+    bool checkDuplicatePlate(const Veicolo*)const;
+    bool checkPlate(const Veicolo*) const;
+    bool checkDuplicateEngine(const Veicolo*)const;
+    bool checkDuplicateChassis(const Veicolo*)const;
+    string getTipoVeicolo(const Veicolo*)const;
+
 
 };
 

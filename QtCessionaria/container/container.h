@@ -500,7 +500,7 @@ T Container<T>::getVeicolo(unsigned int i)const{
     return scorri->info;
 }
 
-template<class T>
+template<class T>  // RICREATO NEL MODEL //
 bool Container<T>::checkDuplicatePlate(const T& t)const{
     if(isEmpty()) return false;
 
@@ -518,7 +518,7 @@ bool Container<T>::checkDuplicatePlate(const T& t)const{
     return(me && mz && (mz->getTarga()==me->getTarga()));
 }
 
-template<class T>
+template<class T>  // RICREATO NEL MODEL //
 bool Container<T>::checkPlate(const T& t)const{
     Moto*mt=dynamic_cast<Moto*>(t);
     if(mt)
@@ -529,7 +529,7 @@ bool Container<T>::checkPlate(const T& t)const{
     return true;
 }
 
-template<class T>
+template<class T>  // RICREATO NEL MODEL //
 bool Container<T>::checkDuplicateEngine(const T& t)const{
     if(isEmpty()) return false;
 
@@ -548,7 +548,7 @@ bool Container<T>::checkDuplicateEngine(const T& t)const{
     return(mt && mttemp && (mt->getNMotore()==mttemp->getNMotore()));
 }
 
-template<class T>
+template<class T>  // RICREATO NEL MODEL //
 bool Container<T>::checkDuplicateChassis(const T& t)const{
     if(isEmpty()) return false;
 
@@ -596,7 +596,7 @@ Container<T>* Container<T>::getVehicleByType(const string type){
     return nuovo;
 }//ritorna un container templatizzato con tutti gli elementi pari al tipo di typeveic
 
-template<class T>
+template<class T>  // RICREATO NEL MODEL //
 string Container<T>::getTipoVeicolo()const{
     try{
         Carrozzeria*cr=dynamic_cast<Carrozzeria*>(*this);
