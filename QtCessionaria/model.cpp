@@ -776,7 +776,7 @@ bool Model::checkDuplicateEngine(Container<Veicolo*>*&ct, const Veicolo* a)const
     return trovato;
 }
 
-bool Model::checkDuplicateChassis(Container<Veicolo*>*ct, const Veicolo* a)const{
+bool Model::checkDuplicateChassis(Container<Veicolo*>*&ct, const Veicolo* a)const{
 
     if(ct->isEmpty()) return false;
     bool trovato=false;

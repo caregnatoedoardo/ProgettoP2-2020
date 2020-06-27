@@ -85,7 +85,7 @@ public:
     bool checkDuplicatePlate(Container<Veicolo*>*&ct, const Veicolo*)const;
     bool checkPlate(const Veicolo*) const;
     bool checkDuplicateEngine(Container<Veicolo*>*&ct, const Veicolo*)const;
-    bool checkDuplicateChassis(Container<Veicolo*>*ct, const Veicolo*)const;
+    bool checkDuplicateChassis(Container<Veicolo*>*&ct, const Veicolo*)const;
     bool isDuplicate(Container<Veicolo*>*&ct, const Veicolo*)const;
     string getTipoVeicolo(const Veicolo*)const;
 
