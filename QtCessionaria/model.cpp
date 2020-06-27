@@ -687,8 +687,8 @@ void Model::clearRicerca()  {
 
     //if(!(searchRes == dbVeicoli))
     //    searchRes = dbVeicoli;
-    searchRes->erase();
-    searchRes->ctcopy(*dbVeicoli);
+    defaultSearchRes();
+
     QMessageBox info;
    info.information(0,"avviso", "RESET OK");
 
@@ -777,6 +777,18 @@ string Model::getTipoVeicolo(const Veicolo* a)const{
     }
 }
 
+bool Model::defaultSearchRes(){
+
+     auto it = dbVeicoli->begin();
+     searchRes->erase();
+     for(;it!=dbVeicoli->end();++it){
+         searchRes->push_begin(*it);
+     }
+
+     return true;
+
+
+}
 
 
 

@@ -190,11 +190,9 @@ bool Container<T>::operator!=(const Container<T>& ct){
 
 template<class T>
 bool Container<T>::isEmpty()const{
-    //return (!first);
-   // if(first) return false;
-    //return true;
+   return (!first);
 
-    return true;
+
 }
 
 
@@ -208,12 +206,15 @@ bool Container<T>::push_begin(const T& t){
     bool checkduplicateengine=checkDuplicateEngine(t);
     bool checkduplicatechassis=checkDuplicateChassis(t);
     bool checkduplicateplate=checkDuplicatePlate(t);*/
+    Nodo* newfirst=new Nodo(t,nullptr,first);
+    first->prev=newfirst;
+    first=newfirst;
+    return true;
+
+    /*
     try{
         if(checkPlate(t) && !isDuplicate(t) && !checkDuplicateEngine(t) && !checkDuplicateChassis(t) && !checkDuplicatePlate(t)){
-            Nodo* newfirst=new Nodo(t,nullptr,first);
-            first->prev=newfirst;
-            first=newfirst;
-            return true;
+
         }
         throw Exc();
     }
@@ -230,7 +231,9 @@ bool Container<T>::push_begin(const T& t){
             Exc(3);
         return false;
     }
+    */
 }
+
 
 
 template<class T>
@@ -633,12 +636,14 @@ Container<T>& Container<T>::ctcopy(const Container<T>& ct){
 
     Nodo* scorri=ct.first;
     while(scorri->next){
-        T* copia = scorri->cloneInfo();
+        T* copia = new T();
+           copia= scorri->cloneInfo();
         nuovo->push_begin(*copia);
         scorri=scorri->next;
     }
     if(scorri){
-        T* copia2 = scorri->cloneInfo();
+        T* copia2 = new T();
+           copia2=scorri->cloneInfo();
         nuovo->push_begin(*copia2);
     }
 

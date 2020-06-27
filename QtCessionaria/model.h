@@ -87,6 +87,9 @@ public:
     bool checkDuplicateChassis(const Veicolo*)const;
     string getTipoVeicolo(const Veicolo*)const;
 
+    bool defaultSearchRes();
+
+
 
 };
 
