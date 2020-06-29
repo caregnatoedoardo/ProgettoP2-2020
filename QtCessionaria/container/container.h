@@ -363,8 +363,6 @@ void Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una p
     return;
 }
 
-
->>>>>>> master
 template<class T>
 bool Container<T>::search(const T& t)const{
     try{
