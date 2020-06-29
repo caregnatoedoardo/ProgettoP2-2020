@@ -343,7 +343,7 @@ int Container<T>::getPosiz(const T& t)const{
         scorri=scorri->next;
     }
 
-    if(scorri->info==t) return posiz++;
+    if(scorri->info==t) return posiz;
 
     return -1;
 
@@ -364,6 +364,7 @@ void Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una p
 }
 
 
+>>>>>>> master
 template<class T>
 bool Container<T>::search(const T& t)const{
     try{
@@ -382,9 +383,6 @@ bool Container<T>::search(const T& t)const{
     return (scorri->info==t);
 
 }//CERCA L'ELEMENTO t ALL'INTERNO DEL CONTAINER E RITORNA TRUE O FALSE
-
-
-
 
 template<class T>
 T Container<T>::getVeicolo(unsigned int i)const{
