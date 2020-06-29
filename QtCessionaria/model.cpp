@@ -10,12 +10,10 @@
 using std::cerr;
 using std::endl;
 
-
-
-Model::Model(string path):
-    dbVeicoli(new Container<Veicolo*>),
-    dbVenduti(new Container<Veicolo*>),
-    searchRes(new Container<Veicolo*>),
+Model::Model(Container<Veicolo*>* dbVei, Container<Veicolo*>* dbVen, Container<Veicolo*>* sRes, string path):
+    dbVeicoli(dbVei),
+    dbVenduti(dbVen),
+    searchRes(sRes),
     path(path),
     flagsaved(false){}
 

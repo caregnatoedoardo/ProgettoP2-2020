@@ -23,7 +23,8 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
-    Model(string="../QtCessionaria/dati.xml");
+    //dbVeicoli(new Container<Veicolo*>)
+    Model(Container<Veicolo*>* dbVei = new Container<Veicolo*>, Container<Veicolo*>* dbVen = new Container<Veicolo*>, Container<Veicolo*>* sRes = new Container<Veicolo*>, string="../QtCessionaria/dati.xml");
     //Model(string ="/Users/edoardocaregnato/Documents/C++ Projects/ProgettoP2-2020/dati.xml");
 
     ~Model();
