@@ -17,15 +17,15 @@ Model::Model(string path):
     dbVenduti(new Container<Veicolo*>),
     searchRes(new Container<Veicolo*>),
     path(path),
-    flagsaved(true){}
+    flagsaved(false){}
 
 bool Model::getFlagDataSaved() const{return flagsaved;}
 
 
-void Model::save(){
+void Model::save(string p){
 
 
-    QSaveFile file(QString::fromStdString(path));
+    QSaveFile file(QString::fromStdString(p));
     try{
         if(!file.open(QIODevice::WriteOnly)){
             throw Exc();

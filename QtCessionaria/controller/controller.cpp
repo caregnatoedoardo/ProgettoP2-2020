@@ -331,12 +331,22 @@ void Controller::slotVendi(){
 }
 
 void Controller::slotSalva()const{
-    if(!model->getFlagDataSaved())
+    /*if(!model->getFlagDataSaved())
         model->save();
 
     slotFlagDataChange(false);
     QMessageBox info;
-    info.information(0,"avviso", "salvato");
+    info.information(0,"avviso", "salvato");*/
+    QString file= QFileDialog::getSaveFileName(nullptr,tr("Scegli il percorso per il file xml da salvare"),"../QtCessionaria","File XML(*.xml)");
+    file+=".xml";
+    if(file != ""){
+        if(!model->getFlagDataSaved())
+                model->save(file.toStdString());
+
+            slotFlagDataChange(false);
+            QMessageBox info;
+            info.information(0,"avviso", "salvato");
+    }
 }
 
 void Controller::slotLoad(){

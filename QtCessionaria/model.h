@@ -31,7 +31,7 @@ public:
 
     Container<Veicolo*>::Iteratore begin()const;
     Container<Veicolo*>::Iteratore end()const;
-    void save();
+    void save(string path="");
     void load(string path="");
     void erase ();
     void erase (Veicolo*);
