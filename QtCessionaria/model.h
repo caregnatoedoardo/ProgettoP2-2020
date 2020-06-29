@@ -23,8 +23,8 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
-    Model(string="../QtCessionaria/dati.xml");
-    //Model(string ="/Users/edoardocaregnato/Documents/C++ Projects/ProgettoP2-2020/dati.xml");
+    //Model(string="../QtCessionaria/dati.xml");
+    Model(string ="/Users/edoardocaregnato/Documents/C++ Projects/ProgettoP2-2020/dati.xml");
 
     ~Model();
 

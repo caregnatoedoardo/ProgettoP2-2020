@@ -7,21 +7,6 @@
 #include <iostream>
 using namespace std;
 
-
-/* 1) Lista concatenata o lista doppiamente concatenata?
- * 2) Obbligatorio un iteratore per scorrere gli elementi della lista (cuscino tra la lista e l'interfaccia)
- * 3) Funzionalità della lista:
- *      3.1) Inserimento - Inizio e Fine con verifica se duplicati
- *      3.2) Rimozione  -   eventuale rimozione anche dei duplicati
- *      3.3) Modifica
- *      3.4) Estrazione (come visualizzazione e non come anche rimozione) elemento del container in tempo lineare - Inizio - nella lista - Fine
- *      3.5) Ricerca elemento del container
- *      3.6) Verifica elementi doppi (stessa targa) nel container
- *      3.7) COPIA DI CONTAINER (?) nel caso in cui nel progetto sia implementata la vendita di veicoli
- *      3.8) Flush del container (
- * elimina tutti gli elementi)
- * * * */
-
 template<class T>
 class Iteratore;
 
