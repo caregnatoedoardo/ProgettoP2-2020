@@ -1,10 +1,6 @@
 #ifndef VIEWVEICOLO_H
 #define VIEWVEICOLO_H
 
-
-#include "printlistview.h"
-#include "listviewwidget.h"
-
 #include <QDialog>
 #include <QFormLayout>
 #include <QLabel>
@@ -12,6 +8,8 @@
 #include <QTextEdit>
 #include <QWidget>
 #include <QObject>
+#include "printlistview.h"
+#include "listviewwidget.h"
 
 
 

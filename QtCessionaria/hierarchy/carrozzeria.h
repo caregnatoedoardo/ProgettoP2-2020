@@ -1,7 +1,6 @@
 #ifndef CARROZZERIA_H
 #define CARROZZERIA_H
 #include "hierarchy/veicolo.h"
-#include "exceptions/exceptions.h"
 
 class Carrozzeria: virtual public Veicolo{
 private:

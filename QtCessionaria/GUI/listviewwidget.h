@@ -1,10 +1,10 @@
 #ifndef LISTVIEWWIDGET_H
 #define LISTVIEWWIDGET_H
 
-#include "printlistview.h"
 #include <QListWidget>
 #include <QPushButton>
 #include <QObject>
+#include "printlistview.h"
 
 
 class ListViewWidget : public QListWidget

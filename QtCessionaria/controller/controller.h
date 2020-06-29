@@ -1,16 +1,17 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
-#include<QObject>
-#include<QWidget>
+#include <QObject>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QMessageBox>
+#include <QPixmap>
+
 #include "container/container.h"
 #include "GUI/usermenu.h"
 #include "GUI/insertveicolo.h"
 #include "GUI/groupview.h"
 #include "GUI/viewveicolo.h"
 #include "GUI/ricerca.h"
-#include <QVBoxLayout>
-#include <QMessageBox>
-#include <QPixmap>
 #include "model.h"
 
 class Controller:public QWidget{

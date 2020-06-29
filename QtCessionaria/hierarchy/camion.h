@@ -1,7 +1,6 @@
 #ifndef CAMION_H
 #define CAMION_H
 #include "hierarchy/mezzo.h"
-#include "exceptions/exceptions.h"
 
 class Camion: public Mezzo{
 private:

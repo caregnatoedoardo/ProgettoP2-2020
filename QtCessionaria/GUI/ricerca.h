@@ -1,11 +1,6 @@
 #ifndef RICERCA_H
 #define RICERCA_H
 
-#include "veicolotypebox.h"
-#include "alimtypebox.h"
-#include "tipomotobox.h"
-#include "segmentotypebox.h"
-#include "listviewwidget.h"
 #include <QObject>
 #include <QWidget>
 #include <QLineEdit>
@@ -15,6 +10,11 @@
 #include <QFormLayout>
 #include <QRadioButton>
 #include <model.h>
+#include "veicolotypebox.h"
+#include "alimtypebox.h"
+#include "tipomotobox.h"
+#include "segmentotypebox.h"
+#include "listviewwidget.h"
 
 
 

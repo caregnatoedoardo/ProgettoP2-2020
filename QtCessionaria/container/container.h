@@ -346,7 +346,6 @@ int Container<T>::getPosiz(const T& t)const{
     if(scorri->info==t) return posiz++;
 
     return -1;
-    //throw Exc(...);
 
 }//RITORNA LA POSIZIONE DELL'ELEMENTO t SE ESISTE, SENNO' RITORNA -1 (oppure solleva una eccezione???);
 
@@ -364,10 +363,6 @@ void Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una p
     return;
 }
 
-/*template<class T>
-T& Container<T>::getVeicolo(const Nodo* n)const{
-    return new T(n->info);
-}//RITORNA L'OGGETTO t CONTENUTO NEL NODO*/
 
 template<class T>
 bool Container<T>::search(const T& t)const{
@@ -403,73 +398,6 @@ T Container<T>::getVeicolo(unsigned int i)const{
     return scorri->info;
 }
 
-/*template<class T>  // RICREATO NEL MODEL //
-bool Container<T>::checkDuplicatePlate(const T& t)const{
-    if(isEmpty()) return false;
-
-    Mezzo* me=dynamic_cast<Mezzo*>(t);
-    Nodo* scorri=first;
-    while(me && scorri->next){
-       Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-        if(me && mz && (mz->getTarga()==me->getTarga()))
-            return true;
-
-        scorri=scorri->next;
-    }
-    //confronto ultimo nodo:
-    Mezzo* mz=dynamic_cast<Mezzo*>(scorri->info);
-    return(me && mz && (mz->getTarga()==me->getTarga()));
-}
-
-template<class T>  // RICREATO NEL MODEL //
-bool Container<T>::checkPlate(const T& t)const{
-    Moto*mt=dynamic_cast<Moto*>(t);
-    if(mt)
-        return mt->checkTarga();
-    Mezzo* mz=dynamic_cast<Mezzo*>(t);
-    if(mz)
-        return mz->checkTarga();
-    return true;
-}
-
-template<class T>  // RICREATO NEL MODEL //
-bool Container<T>::checkDuplicateEngine(const T& t)const{
-    if(isEmpty()) return false;
-
-    Nodo* scorri=first;
-    Motore* mt=dynamic_cast<Motore*>(t);
-    while(mt && scorri->next){
-        Motore* mttemp=dynamic_cast<Mezzo*>(scorri->info);
-        if(mttemp && mt->getNMotore()==mttemp->getNMotore())
-            return true;
-        scorri=scorri->next;
-    }
-    //confronto ultimo nodo:
-    Motore* mttemp=nullptr;
-    if(mt && scorri)
-        mttemp=dynamic_cast<Motore*>(scorri->info);
-    return(mt && mttemp && (mt->getNMotore()==mttemp->getNMotore()));
-}
-
-template<class T>  // RICREATO NEL MODEL //
-bool Container<T>::checkDuplicateChassis(const T& t)const{
-    if(isEmpty()) return false;
-
-    Nodo* scorri=first;
-    Carrozzeria* cr=dynamic_cast<Carrozzeria*>(t);
-    while(cr && scorri->next){
-        Carrozzeria* crtemp=dynamic_cast<Carrozzeria*>(scorri->info);
-        if(crtemp && cr->getNTelaio()==crtemp->getNTelaio())
-            return true;
-        scorri=scorri->next;
-    }
-    //confronto ultimo nodo:
-    Carrozzeria* crtemp=nullptr;
-    if(cr && scorri)
-        crtemp=dynamic_cast<Carrozzeria*>(scorri->info);
-    return(cr && crtemp && (cr->getNTelaio()==crtemp->getNTelaio()));
-}
-*/
 template<class T>
 unsigned int Container<T>::getSize()const{
     if(isEmpty()) return 0;
@@ -498,29 +426,6 @@ Container<T>& Container<T>::getNewContainerByType(const string type){
             nuovo->push_end(*it);
     return *nuovo;
 }//ritorna un container templatizzato con tutti gli elementi pari al tipo di typeveic
-
-/*template<class T>  // RICREATO NEL MODEL //
-string Container<T>::getTipoVeicolo()const{
-    try{
-        Carrozzeria*cr=dynamic_cast<Carrozzeria*>(*this);
-        if(cr) return "carrozzeria";
-
-        Motore* mt=dynamic_cast<Motore*>(*this);
-        if(mt) return "motore";
-
-        Auto* au=dynamic_cast<Auto*>(*this);
-        if(au) return "auto";
-
-        Camion* cm=dynamic_cast<Camion*>(*this);
-        if(cm) return "camion";
-
-        Moto* mto=dynamic_cast<Moto*>(*this);
-        if(mto) return "moto";
-        throw Exc();
-    }catch(Exc){
-         Exc(4,"non valido");
-    }
-}*/
 
 template<class T>
 void Container<T>::erase(){

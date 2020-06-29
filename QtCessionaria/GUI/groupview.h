@@ -1,13 +1,11 @@
 #ifndef GROUPVIEW_H
 #define GROUPVIEW_H
-
-#include "listviewwidget.h"
-#include "viewveicolo.h"
-
 #include <QPushButton>
 #include <QScrollBar>
 #include <QVBoxLayout>
 #include <QObject>
+#include "listviewwidget.h"
+#include "viewveicolo.h"
 
 class GroupView : public QWidget
 {

@@ -20,7 +20,7 @@ PrintListView*  ListViewWidget::takeItem(Veicolo* iad){
 
     bool find = false;
     PrintListView* ritornato = nullptr;
-    for(int i=0; i<count()&& !find; i++){
+    for(int i=0; i<count() && !find; i++){
         PrintListView* t = static_cast<PrintListView*>(item(i));
         if(t->getItemAddress()== iad){
             ritornato = static_cast<PrintListView*>(takeItem(i));
@@ -32,7 +32,6 @@ PrintListView*  ListViewWidget::takeItem(Veicolo* iad){
 
 PrintListView* ListViewWidget::currentItem() const {
     return static_cast<PrintListView*>(QListWidget::currentItem());
-
 }
 
 

@@ -1,7 +1,6 @@
 #ifndef MOTO_H
 #define MOTO_H
 #include "hierarchy/mezzo.h"
-#include "exceptions/exceptions.h"
 
 enum tipomoto{corsa, custom, naked, cross};
 

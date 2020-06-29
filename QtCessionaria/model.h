@@ -1,12 +1,12 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "container/container.h"
 #include <QFileDialog>
 #include <QCoreApplication>
 #include <QDir>
 #include <QString>
 #include <QBuffer>
+#include "container/container.h"
 #include "hierarchy/auto.h"
 #include "hierarchy/moto.h"
 #include "hierarchy/camion.h"

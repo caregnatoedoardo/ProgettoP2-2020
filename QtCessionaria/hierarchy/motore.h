@@ -1,7 +1,6 @@
 #ifndef MOTORE_H
 #define MOTORE_H
 #include "hierarchy/veicolo.h"
-#include "exceptions/exceptions.h"
 
 enum alimentazione{diesel, benzina, elettrica, gpl, metano};
 

@@ -1,11 +1,6 @@
 #ifndef INSERTVEICOLO_H
 #define INSERTVEICOLO_H
 
-#include "alimtypebox.h"
-#include "segmentotypebox.h"
-#include "tipomotobox.h"
-#include "veicolotypebox.h"
-
 #include <QComboBox>
 #include <QString>
 #include <QFormLayout>
@@ -15,6 +10,10 @@
 #include <qcheckbox.h>
 #include <QLabel>
 #include <QObject>
+#include "alimtypebox.h"
+#include "segmentotypebox.h"
+#include "tipomotobox.h"
+#include "veicolotypebox.h"
 
 
 

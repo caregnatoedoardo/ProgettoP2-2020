@@ -1,8 +1,6 @@
 #ifndef AUTO_H
 #define AUTO_H
 #include "hierarchy/mezzo.h"
-#include "hierarchy/veicolo.h"
-#include "exceptions/exceptions.h"
 
 enum segmento{berlina, station, coupe, suv};
 
