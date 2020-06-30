@@ -55,7 +55,7 @@ public:
     bool push_end(const T&);
     bool push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
     bool remove(const T&);
-    bool cancella(const T&);
+    //bool cancella(const T&);
     bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il T passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
     void modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
@@ -283,7 +283,7 @@ bool Container<T>::remove(const T& t){
     return false;
 }
 
-template<class T>
+/*template<class T>
 bool Container<T>::cancella(const T& t){
     try{
         if(isEmpty()) throw Exc();
@@ -325,7 +325,7 @@ bool Container<T>::cancella(const T& t){
     }
     return false;
 }
-
+*/
 
 template<class T>
 int Container<T>::getPosiz(const T& t)const{

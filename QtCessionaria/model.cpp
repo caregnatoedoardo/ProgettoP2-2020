@@ -333,9 +333,9 @@ Container<Veicolo*>::Iteratore Model::end() const{
 void Model::filterByType(string ty){
     if(searchRes->isEmpty()) return;
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
-
-        if((*it) && (*it)->getTipo()!=ty)
-            searchRes->remove(*it);
+        Veicolo* ve=dynamic_cast<Veicolo*>(*it);
+        if(ve->getTipo()!=ty)
+            searchRes->remove(ve);
     }
     return;
 }
