@@ -644,7 +644,7 @@ bool Model::push_end(Container<Veicolo*>*& ct, Veicolo* a){
 
 bool Model::remove(Veicolo* a){
     if(dbVeicoli->remove(a)){
-        searchRes=dbVeicoli;
+
         return true;
     }
     return false;
