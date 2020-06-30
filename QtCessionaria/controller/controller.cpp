@@ -338,7 +338,6 @@ void Controller::slotSalva()const{
         //if(!model->getFlagDataSaved()){
                 model->save(file.toStdString());
             slotFlagDataChange(false);
-        }
             QMessageBox info;
             info.information(0,"avviso", "salvato");
     }
