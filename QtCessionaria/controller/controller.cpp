@@ -386,6 +386,7 @@ void Controller::slotResetRicerca()const{
 
 void Controller::slotRicerca()const{
     slotResetRicerca();
+    ricercaView->getListaVeic()->clear();
     try{
         if(!model->getContainerSize())
             throw Exc();

@@ -649,11 +649,8 @@ void InsertVeicolo::setTipoMoto(unsigned int i){
 
 void InsertVeicolo::setFoto(QString i){
 
-        QImage im(i);
-        QByteArray array;
-        QBuffer b(&array);
-        im.save(&b,"JPG");
-        scegliFoto->setPixmap(QPixmap::fromImage(im));
+
+        scegliFoto->setText(i);
 
 
 

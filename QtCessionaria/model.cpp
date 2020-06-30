@@ -22,7 +22,9 @@ bool Model::getFlagDataSaved() const{return flagsaved;}
 
 void Model::save(string p){
 
-    if(!dbVeicoli->getSize() && !dbVenduti->getSize()) return;
+
+
+    //if(!dbVeicoli->getSize() && !dbVenduti->getSize()) return;
     QSaveFile file(QString::fromStdString(p));
     try{
         if(!file.open(QIODevice::WriteOnly)){
@@ -32,10 +34,6 @@ void Model::save(string p){
             Exc(11,"scrittura");
             return;
         }
-
-    dbVenduti->erase();
-    dbVeicoli->erase();
-    searchRes->erase();
 
     QXmlStreamWriter writer(&file);
     writer.setAutoFormatting(true);
@@ -665,8 +663,7 @@ bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ric
 }
 
 bool Model::vendi(Veicolo* a){
-    if(search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->remove(a)){
-        flagsaved=false;
+    if(search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->cancella(a))
         return true;
     }
     return false;
