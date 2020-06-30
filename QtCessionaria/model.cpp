@@ -663,9 +663,8 @@ bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ric
 }
 
 bool Model::vendi(Veicolo* a){
-    if(search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->cancella(a))
+    if(search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->remove(a))
         return true;
-    }
     return false;
 }
 
