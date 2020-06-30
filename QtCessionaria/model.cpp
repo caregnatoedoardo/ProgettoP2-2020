@@ -22,7 +22,9 @@ bool Model::getFlagDataSaved() const{return flagsaved;}
 
 void Model::save(string p){
 
-    if(!dbVeicoli->getSize() && !dbVenduti->getSize()) return;
+
+
+    //if(!dbVeicoli->getSize() && !dbVenduti->getSize()) return;
     QSaveFile file(QString::fromStdString(p));
     try{
         if(!file.open(QIODevice::WriteOnly)){
@@ -32,10 +34,6 @@ void Model::save(string p){
             Exc(11,"scrittura");
             return;
         }
-
-    dbVenduti->erase();
-    dbVeicoli->erase();
-    searchRes->erase();
 
     QXmlStreamWriter writer(&file);
     writer.setAutoFormatting(true);
@@ -335,9 +333,9 @@ Container<Veicolo*>::Iteratore Model::end() const{
 void Model::filterByType(string ty){
     if(searchRes->isEmpty()) return;
     for(auto it=searchRes->begin();it!=searchRes->end();++it){
-        Veicolo* ve=dynamic_cast<Veicolo*>(*it);
-        if(ve && ve->getTipo()!=ty)
-            searchRes->remove(ve);
+
+        if((*it) && (*it)->getTipo()!=ty)
+            searchRes->remove(*it);
     }
     return;
 }
@@ -665,13 +663,13 @@ bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ric
 }
 
 bool Model::vendi(Veicolo* a){
-    if(search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->cancella(a))
+    if(search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->remove(a))
         return true;
     return false;
 }
 
 bool Model::nonVenduta(Veicolo* a){//verifica se un veicolo è presente nel Db dei venduti e, se presente, lo riporta nel db dei disponibili.
-    if(search(dbVenduti, a) && push_begin(dbVeicoli,a) && dbVeicoli->cancella(a))//se è presente all'interno del db venduti
+    if(search(dbVenduti, a) && push_begin(dbVeicoli,a) && dbVeicoli->remove(a))//se è presente all'interno del db venduti
         return true;
     return false;
 }

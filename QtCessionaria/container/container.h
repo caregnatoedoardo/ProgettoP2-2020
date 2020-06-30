@@ -23,7 +23,7 @@ private:
         T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
         T* cloneInfo() const { return new T(info);}
     };
-    Nodo* first;
+    Nodo* first=nullptr;
 public:
     class Iteratore{
         friend class Container<T>;
@@ -176,6 +176,8 @@ bool Container<T>::operator!=(const Container<T>& ct){
 template<class T>
 bool Container<T>::isEmpty()const{
    return (!first);
+
+
 }
 
 
