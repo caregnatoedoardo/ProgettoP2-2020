@@ -623,8 +623,10 @@ bool Model::push_end(Container<Veicolo*>*& ct, Veicolo* a){
     bool duplicatePlate=checkDuplicatePlate(ct,a);
     try{
         if(correctplate && !duplicate && !duplicateEngine && !duplicateChassis && !duplicatePlate)
-            if(ct->push_end(a))
+            if(ct->push_end(a)){
+                flagsaved=false;
                 return true;
+            }
         throw Exc();
     }catch(Exc){
         if(duplicate) Exc(6,"duplicato");
