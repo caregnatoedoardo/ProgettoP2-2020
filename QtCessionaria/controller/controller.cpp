@@ -335,7 +335,7 @@ void Controller::slotSalva()const{
     if(file != ""){
         if(!file.endsWith(".xml"))
             file.append(".xml");
-        if(!model->getFlagDataSaved()){
+        //if(!model->getFlagDataSaved()){
                 model->save(file.toStdString());
             slotFlagDataChange(false);
         }
