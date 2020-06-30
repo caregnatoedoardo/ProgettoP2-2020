@@ -33,6 +33,10 @@ void Model::save(string p){
             return;
         }
 
+    dbVenduti->erase();
+    dbVeicoli->erase();
+    searchRes->erase();
+
     QXmlStreamWriter writer(&file);
     writer.setAutoFormatting(true);
     writer.writeStartDocument();

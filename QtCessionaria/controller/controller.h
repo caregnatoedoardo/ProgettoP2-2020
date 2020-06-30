@@ -44,7 +44,6 @@ public slots:
     void slotSalva() const;
     void slotLoad();
     bool slotAggiungiVeicolo() const;
-    void slotFlagDataChange(bool flag)const;
     void slotShowInserisci() const;
     void slotShowVisualizza() const;
     void slotShowVisualizzaVenduti() const;

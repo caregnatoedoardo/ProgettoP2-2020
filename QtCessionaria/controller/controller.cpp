@@ -60,9 +60,7 @@ Controller::Controller(Model*m, QWidget *parent):
 
 }
 
-void Controller::slotFlagDataChange(bool flag)const{
-    menuUtente->getSalva()->setEnabled(flag);
-}
+
 
 Model* Controller::getModel(){
     return model;
@@ -193,7 +191,7 @@ bool Controller::slotAggiungiVeicolo() const{
         }//end switch
         if(model->push(veic)){
             groupView->getList()->addVeicolo(veic);
-            slotFlagDataChange(true);
+
             inserisciVeicolo->slotResetForm();
             return true;
         }
@@ -302,11 +300,12 @@ void Controller::slotShowModifica(){
             dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
         dialog->show();
-        slotFlagDataChange(true);
+
     }
 }
 
 void Controller::slotSaveModifica(){
+
     slotEliminaElemento();
     slotAggiungiVeicolo();
    groupView->slotDisableLista(false);
@@ -337,7 +336,6 @@ void Controller::slotSalva()const{
             file.append(".xml");
         //if(!model->getFlagDataSaved()){
                 model->save(file.toStdString());
-            slotFlagDataChange(false);
             QMessageBox info;
             info.information(0,"avviso", "salvato");
     }
@@ -360,7 +358,7 @@ void Controller::slotLoad(){
                     vendutiView->getList()->addVeicolo(model->getElementoVendutoByPosition(i));
 
                 slotShowVisualizza();
-                slotFlagDataChange(false);
+
             }
         }
         catch (Exc){
@@ -477,7 +475,7 @@ void Controller::slotEliminaElemento()const{
 
         delete item;
         groupView->getList()->reset();
-        slotFlagDataChange(true);
+
     }
 }
 
@@ -488,7 +486,7 @@ void Controller::slotEliminaElementoVenduto()const{
 
         delete item;
         vendutiView->getList()->reset();
-        slotFlagDataChange(true);
+
 
     }
 }
