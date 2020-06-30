@@ -331,12 +331,6 @@ void Controller::slotVendi(){
 }
 
 void Controller::slotSalva()const{
-    /*if(!model->getFlagDataSaved())
-        model->save();
-
-    slotFlagDataChange(false);
-    QMessageBox info;
-    info.information(0,"avviso", "salvato");*/
     QString file= QFileDialog::getSaveFileName(nullptr,tr("Scegli il percorso per il file xml da salvare"),"../QtCessionaria");
     if(file != ""){
         if(!file.endsWith(".xml"))
