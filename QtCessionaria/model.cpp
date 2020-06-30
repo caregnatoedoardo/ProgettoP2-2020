@@ -193,6 +193,9 @@ void Model::load(string path){
             Exc(11,"sola lettura");
             return;
     }
+    dbVeicoli->erase();
+    dbVenduti->erase();
+    searchRes->erase();
 
     QXmlStreamReader reader(&file);
     if(reader.readNextStartElement()){
@@ -743,10 +746,12 @@ bool Model::checkDuplicatePlate(Container<Veicolo*>*&ct, const Veicolo* a)const{
     if(ct->isEmpty()) return false;
     bool trovato=false;
     Mezzo* me = dynamic_cast<Mezzo*>(const_cast<Veicolo*>(a));
-    for(auto it = ct->begin();it!=ct->end();++it){
-        Mezzo* mz=dynamic_cast<Mezzo*>((*it));
-        if(me && mz && (mz->getTarga()==me->getTarga()))
-            trovato=true;
+    if(me){
+        for(auto it = ct->begin();it!=ct->end();++it){
+            Mezzo* mz=dynamic_cast<Mezzo*>((*it));
+            if(me && mz && (mz->getTarga()==me->getTarga()))
+                trovato=true;
+        }
     }
     return trovato;
 
@@ -767,9 +772,11 @@ bool Model::checkDuplicateEngine(Container<Veicolo*>*&ct, const Veicolo* a)const
     bool trovato=false;
 
     Motore* mt = dynamic_cast<Motore*>(const_cast<Veicolo*>(a));
-    for(auto it=ct->begin();it!=ct->end();++it){
-        Motore* mttemp=dynamic_cast<Mezzo*>((*it));
-        if(mttemp && mt->getNMotore()==mttemp->getNMotore()) trovato= true;
+    if(mt){
+        for(auto it=ct->begin();it!=ct->end();++it){
+            Motore* mttemp=dynamic_cast<Mezzo*>((*it));
+            if(mttemp && mt->getNMotore()==mttemp->getNMotore()) trovato= true;
+        }
     }
     return trovato;
 }
@@ -780,9 +787,11 @@ bool Model::checkDuplicateChassis(Container<Veicolo*>*&ct, const Veicolo* a)cons
     bool trovato=false;
 
     Carrozzeria* cr=dynamic_cast<Carrozzeria*>(const_cast<Veicolo*>(a));
-    for(auto it = ct->begin();it!=ct->end();++it){
-        Carrozzeria* crtemp=dynamic_cast<Carrozzeria*>((*it));
-        if(crtemp && cr->getNTelaio()==crtemp->getNTelaio()) trovato=true;
+    if(cr){
+        for(auto it = ct->begin();it!=ct->end();++it){
+            Carrozzeria* crtemp=dynamic_cast<Carrozzeria*>((*it));
+            if(crtemp && cr->getNTelaio()==crtemp->getNTelaio()) trovato=true;
+        }
     }
     return trovato;
 }
