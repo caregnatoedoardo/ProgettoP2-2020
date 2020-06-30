@@ -659,13 +659,13 @@ bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ric
 }
 
 bool Model::vendi(Veicolo* a){
-    if(search(dbVeicoli,a) && dbVenduti->push_begin(a) && dbVeicoli->cancella(a))
+    if(search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->cancella(a))
         return true;
     return false;
 }
 
-bool Model::nonVenduta(Veicolo* a){//verifica se un veicolo è presente nel Db dei venudti e, se presente, lo riporta nel db dei disponibili.
-    if(search(dbVenduti, a) && dbVeicoli->push_begin(a) && dbVenduti->cancella(a))//se è presente all'interno del db venduti
+bool Model::nonVenduta(Veicolo* a){//verifica se un veicolo è presente nel Db dei venduti e, se presente, lo riporta nel db dei disponibili.
+    if(search(dbVenduti, a) && push_begin(dbVeicoli,a) && dbVeicoli->cancella(a))//se è presente all'interno del db venduti
         return true;
     return false;
 }
