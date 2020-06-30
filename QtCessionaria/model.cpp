@@ -22,7 +22,7 @@ bool Model::getFlagDataSaved() const{return flagsaved;}
 
 void Model::save(string p){
 
-
+    if(!dbVeicoli->getSize() && !dbVenduti->getSize()) return;
     QSaveFile file(QString::fromStdString(p));
     try{
         if(!file.open(QIODevice::WriteOnly)){
