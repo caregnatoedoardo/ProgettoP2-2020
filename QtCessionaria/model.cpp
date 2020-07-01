@@ -343,22 +343,14 @@ void Model::filterByType(string ty){
     return;
 }
 
-
-
-
-
-
-
-
-
-
 void Model::filterByMarca(string ma){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Veicolo* ve=dynamic_cast<Veicolo*>(*it);
-        if(ve && ve->getMarca()!=ma)
-            searchRes->remove(ve);
+        if(ve && ve->getMarca()!=ma){
+            ++it;
+            searchRes->remove(ve);} else ++it;
     }
     return;
 }
@@ -366,10 +358,11 @@ void Model::filterByMarca(string ma){
 void Model::filterByModello(string mo){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Veicolo* ve=dynamic_cast<Veicolo*>(*it);
-        if(ve && ve->getModello()!=mo)
-            searchRes->remove(ve);
+        if(ve && ve->getModello()!=mo){
+            ++it;
+            searchRes->remove(ve);} else ++it;
     }
     return;
 }
@@ -377,10 +370,11 @@ void Model::filterByModello(string mo){
 void Model::filterByNTelaio(unsigned int nt){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Carrozzeria* car=dynamic_cast<Carrozzeria*>(*it);
-        if(car && car->getNTelaio()!=nt)
-            searchRes->remove(car);
+        if(car && car->getNTelaio()!=nt){
+            ++it;
+            searchRes->remove(car);} else ++it;
     }
     return;
 }
@@ -388,10 +382,11 @@ void Model::filterByNTelaio(unsigned int nt){
 void Model::filterByCambio(bool gbx){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Carrozzeria* car=dynamic_cast<Carrozzeria*>(*it);
-        if(car && car->getCambio()!=gbx)
-            searchRes->remove(car);
+        if(car && car->getCambio()!=gbx){
+            ++it;
+            searchRes->remove(car);} else ++it;
     }
     return;
 }
@@ -399,10 +394,11 @@ void Model::filterByCambio(bool gbx){
 void Model::filterByColore(string col){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Carrozzeria* car=dynamic_cast<Carrozzeria*>(*it);
-        if(car && car->getColore()!=col)
-            searchRes->remove(car);
+        if(car && car->getColore()!=col){
+            ++it;
+            searchRes->remove(car);} else ++it;
     }
     return;
 }
@@ -410,10 +406,11 @@ void Model::filterByColore(string col){
 void Model::filterByLunghezza(double lun){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Carrozzeria* car=dynamic_cast<Carrozzeria*>(*it);
-        if(car && car->getLunghezza()>=lun)
-            searchRes->remove(car);
+        if(car && car->getLunghezza()>=lun){
+            ++it;
+            searchRes->remove(car);} else ++it;
     }
     return;
 }
@@ -421,10 +418,11 @@ void Model::filterByLunghezza(double lun){
 void Model::filterByNMotore(unsigned int nm){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Motore* eng=dynamic_cast<Motore*>(*it);
-        if(eng && eng->getNMotore()!=nm)
-            searchRes->remove(eng);
+        if(eng && eng->getNMotore()!=nm){
+            ++it;
+            searchRes->remove(eng);} else ++it;
     }
     return;
 }
@@ -432,10 +430,11 @@ void Model::filterByNMotore(unsigned int nm){
 void Model::filterByCilindrata(unsigned int cc){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Motore* eng=dynamic_cast<Motore*>(*it);
-        if(eng && eng->getCilindrata()!=cc)
-            searchRes->remove(eng);
+        if(eng && eng->getCilindrata()!=cc){
+            ++it;
+            searchRes->remove(eng);} else ++it;
     }
     return;
 }
@@ -443,10 +442,11 @@ void Model::filterByCilindrata(unsigned int cc){
 void Model::filterByCavalli(unsigned int cv){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Motore* eng=dynamic_cast<Motore*>(*it);
-        if(eng && eng->getCavalli()!=cv)
-            searchRes->remove(eng);
+        if(eng && eng->getCavalli()!=cv){
+            ++it;
+            searchRes->remove(eng);} else ++it;
     }
     return;
 }
@@ -456,10 +456,11 @@ void Model::filterByCavalli(unsigned int cv){
 void Model::filterByAlim(string al){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Motore* eng=dynamic_cast<Motore*>(*it);
-        if(eng && eng->convertToAlim(eng->getAlimentazione())!=al)
-            searchRes->remove(eng);
+        if(eng && eng->convertToAlim(eng->getAlimentazione())!=al){
+            ++it;
+            searchRes->remove(eng);} else ++it;
     }
     return;
 }
@@ -467,10 +468,11 @@ void Model::filterByAlim(string al){
 void Model::filterByTarga(string pl){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Mezzo* mz=dynamic_cast<Mezzo*>(*it);
-        if(mz && mz->getTarga()!=pl)
-            searchRes->remove(mz);
+        if(mz && mz->getTarga()!=pl){
+            ++it;
+            searchRes->remove(mz);} else ++it;
     }
     return;
 }
@@ -478,10 +480,11 @@ void Model::filterByTarga(string pl){
 void Model::filterByPrezzo(double pr){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Mezzo* mz=dynamic_cast<Mezzo*>(*it);
-        if(mz && mz->getPrezzo()>=pr)
-            searchRes->remove(mz);
+        if(mz && mz->getPrezzo()>=pr){
+            ++it;
+            searchRes->remove(mz);} else ++it;
     }
     return;
 }
@@ -489,10 +492,11 @@ void Model::filterByPrezzo(double pr){
 void Model::filterByMassa(unsigned int ma){
         if(searchRes->isEmpty()) return;
 
-        for(auto it=searchRes->begin();it!=searchRes->end();++it){
+        for(auto it=searchRes->begin();it!=searchRes->end();){
             Mezzo* mz=dynamic_cast<Mezzo*>(*it);
-            if(mz && mz->getMassa()>=ma)
-                searchRes->remove(mz);
+            if(mz && mz->getMassa()>=ma){
+                ++it;
+                searchRes->remove(mz);} else ++it;
         }
         return;
 }
@@ -500,10 +504,23 @@ void Model::filterByMassa(unsigned int ma){
 void Model::filterByNPosti(unsigned int np){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Mezzo* mz=dynamic_cast<Mezzo*>(*it);
-        if(mz && mz->getNumPosti()!=np)
-            searchRes->remove(mz);
+        if(mz){
+            if(mz->getNumPosti()!=np){
+              ++it;
+              searchRes->remove(mz);
+            }
+
+            if(mz->getNumPosti()==np){
+                ++it;
+            }
+        }
+        if (!mz){
+            Veicolo* ve = dynamic_cast<Veicolo*>(*it);
+             ++it;
+            searchRes->remove(ve);
+        }
     }
     return;
 }
@@ -511,10 +528,11 @@ void Model::filterByNPosti(unsigned int np){
 void Model::filterBySegmento(string sg){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Auto* aut=dynamic_cast<Auto*>(*it);
-        if(aut && aut->convertSegmento(aut->getSegmento())!=sg)
-            searchRes->remove(aut);
+        if(aut && aut->convertSegmento(aut->getSegmento())!=sg){
+            ++it;
+            searchRes->remove(aut);} else ++it;
     }
     return;
 }
@@ -522,10 +540,11 @@ void Model::filterBySegmento(string sg){
 void Model::filterByAutocarro(bool au){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Auto* aut=dynamic_cast<Auto*>(*it);
-        if(aut && aut->getAutocarro()!=au)
-            searchRes->remove(aut);
+        if(aut && aut->getAutocarro()!=au){
+            ++it;
+            searchRes->remove(aut);} else ++it;
     }
     return;
 }
@@ -533,10 +552,11 @@ void Model::filterByAutocarro(bool au){
 void Model::filterByNAssi(unsigned int na){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Camion* cmi=dynamic_cast<Camion*>(*it);
-        if(cmi && cmi->getNumAssi()!=na)
-            searchRes->remove(cmi);
+        if(cmi && cmi->getNumAssi()!=na){
+            ++it;
+            searchRes->remove(cmi);}else ++it;
     }
     return;
 }
@@ -544,10 +564,11 @@ void Model::filterByNAssi(unsigned int na){
 void Model::filterByRibaltabile(bool rib){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Camion* cmi=dynamic_cast<Camion*>(*it);
-        if(cmi && cmi->getRibaltabile()!=rib)
-            searchRes->remove(cmi);
+        if(cmi && cmi->getRibaltabile()!=rib){
+            ++it;
+            searchRes->remove(cmi);} else ++it;
     }
     return;
 }
@@ -555,10 +576,11 @@ void Model::filterByRibaltabile(bool rib){
 void Model::filterBySidecar(bool sid){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Moto* mt=dynamic_cast<Moto*>(*it);
-        if(mt && mt->getSidecar()!=sid)
-            searchRes->remove(mt);
+        if(mt && mt->getSidecar()!=sid){
+            ++it;
+            searchRes->remove(mt);} else ++it;
     }
     return;
 }
@@ -566,10 +588,11 @@ void Model::filterBySidecar(bool sid){
 void Model::filterByClasseEmissioni(unsigned int ce){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Moto* mt=dynamic_cast<Moto*>(*it);
-        if(mt && mt->getClasseEmissioni()!=ce)
-            searchRes->remove(mt);
+        if(mt && mt->getClasseEmissioni()!=ce){
+            ++it;
+            searchRes->remove(mt);}else ++it;
     }
     return;
 }
@@ -577,10 +600,11 @@ void Model::filterByClasseEmissioni(unsigned int ce){
 void Model::filterByTypeMoto(string tm){
     if(searchRes->isEmpty()) return;
 
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Moto* mt=dynamic_cast<Moto*>(*it);
-        if(mt && mt->convertToString(mt->getTipoMoto())!=tm)
-            searchRes->remove(mt);
+        if(mt && mt->convertToString(mt->getTipoMoto())!=tm){
+            ++it;
+            searchRes->remove(mt);}else ++it;
     }
     return;
 }
