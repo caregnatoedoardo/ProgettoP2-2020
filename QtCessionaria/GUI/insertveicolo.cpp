@@ -568,7 +568,7 @@ void InsertVeicolo::hideButton(bool a){
         AddButton->hide();
         saveEditButton->show();
 
-        scegliFoto->show();
+        scegliFoto->hide();
     }
     if(a){
         scegliFoto->hide();
