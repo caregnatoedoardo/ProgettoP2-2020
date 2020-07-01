@@ -330,15 +330,27 @@ Container<Veicolo*>::Iteratore Model::end() const{
 }
 
 //lavorano tutti su SearchRes, che all'inizio sarà una copia di dbveicoli
+
 void Model::filterByType(string ty){
     if(searchRes->isEmpty()) return;
-    for(auto it=searchRes->begin();it!=searchRes->end();++it){
+    for(auto it=searchRes->begin();it!=searchRes->end();){
         Veicolo* ve=dynamic_cast<Veicolo*>(*it);
-        if(ve->getTipo()!=ty)
-            searchRes->remove(ve);
+        if(ve->getTipo()!=ty){
+            ++it;
+            searchRes->remove(ve);}else ++it;
+
     }
     return;
 }
+
+
+
+
+
+
+
+
+
 
 void Model::filterByMarca(string ma){
     if(searchRes->isEmpty()) return;
