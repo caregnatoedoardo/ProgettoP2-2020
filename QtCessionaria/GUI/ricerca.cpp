@@ -88,83 +88,31 @@ Ricerca::Ricerca(QWidget *p):
     mainLayout->addLayout(form);
 
     mainLayout->addWidget(listaveic);
+    slotDisableElements();
+
+       connect(ckTipo,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckMarca,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckModello,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckNumeroTelaio,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckColore,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckLunghezza,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckNumeroMotore,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckCilindrata,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckCavalli,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckAlimentazione,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckTarga,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckPrezzo,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckMassa,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckNumeroPosti,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckSegmento,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckNumeroAssi,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckClasseEmissioni,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+       connect(ckTipoMoto,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
+
+
 
 }
 
-void Ricerca::slotDisableElements()const{
-
-    ckTipo->isChecked()?
-        boxTipoVeicolo->setEnabled(true):
-        boxTipoVeicolo->setEnabled(false);
-
-    ckMarca->isChecked()?
-        cercaMarca->setEnabled(true):
-        cercaMarca->setEnabled(false);
-
-    ckModello->isChecked()?
-        cercaModello->setEnabled(true):
-        cercaModello->setEnabled(false);
-
-    ckNumeroTelaio->isChecked()?
-        cercaNumeroTelaio->setEnabled(true):
-        cercaNumeroTelaio->setEnabled(false);
-
-    ckColore->isChecked()?
-        cercaColore->setEnabled(true):
-        cercaColore->setEnabled(false);
-
-    ckLunghezza->isChecked()?
-        cercaLunghezza->setEnabled(true):
-        cercaLunghezza->setEnabled(false);
-
-    ckNumeroMotore->isChecked()?
-        cercaNumeroMotore->setEnabled(true):
-        cercaNumeroMotore->setEnabled(false);
-
-    ckCilindrata->isChecked()?
-        cercaCilindrata->setEnabled(true):
-        cercaCilindrata->setEnabled(false);
-
-    ckCavalli->isChecked()?
-        cercaCavalli->setEnabled(true):
-        cercaCavalli->setEnabled(false);
-
-    ckAlimentazione->isChecked()?
-        boxAlimentazione->setEnabled(true):
-        boxAlimentazione->setEnabled(false);
-
-    ckTarga->isChecked()?
-        cercaTarga->setEnabled(true):
-        cercaTarga->setEnabled(false);
-
-    ckPrezzo->isChecked()?
-        cercaPrezzo->setEnabled(true):
-        cercaPrezzo->setEnabled(false);
-
-    ckMassa->isChecked()?
-        cercaMassa->setEnabled(true):
-        cercaMassa->setEnabled(false);
-
-    ckNumeroPosti->isChecked()?
-        cercaNumeroPosti->setEnabled(true):
-        cercaNumeroPosti->setEnabled(false);
-
-    ckSegmento->isChecked()?
-        boxSegmento->setEnabled(true):
-        boxSegmento->setEnabled(false);
-
-    ckNumeroAssi->isChecked()?
-        cercaNumeroAssi->setEnabled(true):
-        cercaNumeroAssi->setEnabled(false);
-
-    ckClasseEmissioni->isChecked()?
-        cercaClasseEmissioni->setEnabled(true):
-        cercaClasseEmissioni->setEnabled(false);
-
-    ckTipoMoto->isChecked()?
-        boxTipoMoto->setEnabled(true):
-        boxTipoMoto->setEnabled(false);
-}
 
 //GET ricerca:
 
@@ -216,6 +164,7 @@ QPushButton* Ricerca::getButtonRicerca() const{return  cerca;}
 QPushButton* Ricerca::getButtonReset() const{return reset;}
 
 void Ricerca::slotReset()const {
+    slotDisableElements();
 
     ckTipo->setChecked(false);
     ckMarca->setChecked(false);
@@ -255,6 +204,67 @@ void Ricerca::slotReset()const {
     cercaNumeroAssi->clear();
     cercaClasseEmissioni->clear();
     boxTipoMoto->setCurrentIndex(0);
+}
+
+void Ricerca::slotDisableElements() const{
+
+    ckTipo->isChecked() ?
+                boxTipoVeicolo->setEnabled(true):
+                boxTipoVeicolo->setEnabled(false);
+   ckMarca->isChecked()?
+                cercaMarca->setEnabled(true):
+                cercaMarca->setEnabled(false);
+    ckModello->isChecked() ?
+                cercaModello->setEnabled(true):
+                cercaModello->setEnabled(false);
+    ckNumeroTelaio->isChecked() ?
+                cercaNumeroTelaio->setEnabled(true):
+                cercaNumeroTelaio->setEnabled(false);
+    ckColore->isChecked() ?
+                cercaColore->setEnabled(true):
+                cercaColore->setEnabled(false);
+    ckLunghezza->isChecked() ?
+                cercaLunghezza->setEnabled(true):
+                cercaLunghezza->setEnabled(false);
+    ckNumeroMotore->isChecked() ?
+                cercaNumeroMotore->setEnabled(true):
+                cercaNumeroMotore->setEnabled(false);
+    ckCilindrata->isChecked() ?
+                cercaCilindrata->setEnabled(true):
+                cercaCilindrata->setEnabled(false);
+    ckCavalli->isChecked() ?
+                cercaCavalli->setEnabled(true):
+                cercaCavalli->setEnabled(false);
+    ckAlimentazione->isChecked() ?
+                boxAlimentazione->setEnabled(true):
+                boxAlimentazione->setEnabled(false);
+    ckTarga->isChecked() ?
+                cercaTarga->setEnabled(true):
+                cercaTarga->setEnabled(false);
+    ckPrezzo->isChecked() ?
+                cercaPrezzo->setEnabled(true):
+                cercaPrezzo->setEnabled(false);
+    ckMassa->isChecked() ?
+                cercaMassa->setEnabled(true):
+                cercaMassa->setEnabled(false);
+    ckNumeroPosti->isChecked() ?
+                cercaNumeroPosti->setEnabled(true):
+                cercaNumeroPosti->setEnabled(false);
+    ckSegmento->isChecked() ?
+                boxSegmento->setEnabled(true):
+                boxSegmento->setEnabled(false);
+    ckNumeroAssi->isChecked() ?
+                cercaNumeroAssi->setEnabled(true):
+                cercaNumeroAssi->setEnabled(false);
+    ckClasseEmissioni->isChecked() ?
+                cercaClasseEmissioni->setEnabled(true):
+                cercaClasseEmissioni->setEnabled(false);
+    ckTipoMoto->isChecked() ?
+                boxTipoMoto->setEnabled(true):
+                boxTipoMoto->setEnabled(false);
+
+
+
 }
 
 

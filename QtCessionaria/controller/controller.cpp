@@ -370,6 +370,7 @@ void Controller::slotLoad(){
 
 void Controller::slotShowRicerca()const{
     groupView->hide();
+
     ricercaView->show();
     inserisciVeicolo->hide();
     vendutiView->hide();
@@ -457,11 +458,10 @@ void Controller::slotRicerca()const{
             if(ricercaView->getCkTipoMoto()->isChecked())
                 model->filterByTypeMoto(ricercaView->getBoxTipoMoto()->currentText().toStdString());
 
-            if(1==0) return ;
-            else{
+
                 for(auto it=model->begin(); it!=model->end();++it)
                     ricercaView->getListaVeic()->addVeicolo(*it);
-            }
+
         }
     }catch(Exc){
         Exc(7);
