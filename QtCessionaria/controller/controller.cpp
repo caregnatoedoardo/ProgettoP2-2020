@@ -41,26 +41,15 @@ Controller::Controller(Model*m, QWidget *parent):
     connect(groupView->getBtnModifica(),SIGNAL(clicked()),this,SLOT(slotShowModifica()));
     connect(groupView->getBtnVendi(),SIGNAL(clicked()),this,SLOT(slotVendi()));
     connect(groupView->getBtnVendi(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
-
     connect(vendutiView->getBtnElimina(),SIGNAL(clicked()),this,SLOT(slotEliminaElementoVenduto()));
-
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotAggiungiVeicolo()));
     connect(inserisciVeicolo->getAddButton(),SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
-
     connect(inserisciVeicolo->getSaveEditButton(),SIGNAL(clicked()),this,SLOT(slotSaveModifica()));
-
-
-
-
     connect(ricercaView->getButtonRicerca(),SIGNAL(clicked()), this, SLOT(slotRicerca()));
     connect(ricercaView->getButtonReset(), SIGNAL(clicked()),this,SLOT(slotResetRicerca()));
     connect(ricercaView->getButtonReset(),SIGNAL(clicked()),ricercaView,SLOT(slotReset()));
 
-
-
 }
-
-
 
 Model* Controller::getModel(){
     return model;
@@ -98,13 +87,11 @@ bool Controller::slotAggiungiVeicolo() const{
         string tipomt="";
         string pathimg="";
 
-      // if(Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage()).size()==0) pathimg="";
         QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
         string pathfoto=LabelFoto->text().toStdString();
         if(pathfoto!="Scegli Foto"){
          pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
         }
-
 
         //CARROZZERIA
         bool campidati=true;
@@ -229,14 +216,7 @@ bool Controller::slotModificaVeicolo() const{
         bool rib=false;
         string tipomt="";
         string pathimg="";
-
-      // if(Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage()).size()==0) pathimg="";
-        //QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
-        //string pathfoto=LabelFoto->text().toStdString();
-        //if(pathfoto!="Scegli Foto"){
-         pathimg=inserisciVeicolo->getScegliFoto()->text().toStdString();
-        //}
-
+        pathimg=inserisciVeicolo->getScegliFoto()->text().toStdString();
 
         //CARROZZERIA
         bool campidati=true;
@@ -323,11 +303,9 @@ bool Controller::slotModificaVeicolo() const{
         }//end switch
         if(model->push(veic)){
             groupView->getList()->addVeicolo(veic);
-
             inserisciVeicolo->slotResetForm();
             return true;
         }
-        //popup da implementare con messaggio di effettivo inserimento.
     }catch (Exc){
         throw Exc(4,inserisciVeicolo->getTipoVeicolo()->currentText().toStdString());
     }
@@ -341,8 +319,6 @@ void Controller::slotShowModifica(){
         groupView->slotDisableElimina();
         groupView->slotDisableVendi();
         groupView->slotDisableLista(true);
-
-
         dialog->hideButton(false);
 
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "motore"){
@@ -431,7 +407,7 @@ void Controller::slotShowModifica(){
             dialog->setRibaltabile(a->getRibaltabile());
             dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
-        dialog->show();
+            dialog->show();
 
     }
 }
@@ -440,10 +416,9 @@ void Controller::slotSaveModifica(){
 
     slotEliminaElemento();
     slotModificaVeicolo();
-   groupView->slotDisableLista(false);
+    groupView->slotDisableLista(false);
     groupView->getList()->update();
     inserisciVeicolo->hideButton(true);
-
     dialog->hide();
     inserisciVeicolo->slotResetForm();
 }
@@ -466,8 +441,7 @@ void Controller::slotSalva()const{
     if(file != ""){
         if(!file.endsWith(".xml"))
             file.append(".xml");
-        //if(!model->getFlagDataSaved()){
-                model->save(file.toStdString());
+            model->save(file.toStdString());
             QMessageBox info;
             info.information(0,"avviso", "salvato");
     }
@@ -488,9 +462,7 @@ void Controller::slotLoad(){
 
                 for(unsigned int i=0; i<model->getContainerVendutiSize();i++)
                     vendutiView->getList()->addVeicolo(model->getElementoVendutoByPosition(i));
-
                 slotShowVisualizza();
-
             }
         }
         catch (Exc){
@@ -511,10 +483,7 @@ void Controller::slotShowRicerca()const{
 void Controller::slotResetRicerca()const{
     ricercaView->getListaVeic()->clear();
     model->clearRicerca();
-
 }
-
-
 
 
 void Controller::slotRicerca()const{
@@ -590,7 +559,6 @@ void Controller::slotRicerca()const{
             if(ricercaView->getCkTipoMoto()->isChecked())
                 model->filterByTypeMoto(ricercaView->getBoxTipoMoto()->currentText().toStdString());
 
-
                 for(auto it=model->begin(); it!=model->end();++it)
                     ricercaView->getListaVeic()->addVeicolo(*it);
 
@@ -605,7 +573,6 @@ void Controller::slotEliminaElemento()const{
     if(groupView->getList()->count() && groupView->getList()->currentItem()!=nullptr){
         PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
         model->remove(item->getItemAddress());
-
         delete item;
         groupView->getList()->reset();
 
@@ -616,11 +583,8 @@ void Controller::slotEliminaElementoVenduto()const{
     if(vendutiView->getList()->count() && vendutiView->getList()->currentItem()!=nullptr){
         PrintListView* item = vendutiView->getList()->takeItem(vendutiView->getList()->currentRow());
         model->removeVenduti(item->getItemAddress());
-
         delete item;
         vendutiView->getList()->reset();
-
-
     }
 }
 
@@ -646,14 +610,9 @@ void Controller::slotShowVisualizzaVenduti()const{
     inserisciVeicolo->hide();
 
 }
-/*
-Controller::~Controller(){
 
-}
-*/
 
 void Controller::closeEvent(QCloseEvent *event){
-
     QWidget::closeEvent(event);
     if(model->isEmptyVenduti() || model->isEmptyDisponibili()){
         QMessageBox::StandardButton reply;

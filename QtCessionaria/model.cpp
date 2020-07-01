@@ -21,7 +21,6 @@ bool Model::getFlagDataSaved() const{return flagsaved;}
 
 
 void Model::save(string p){
-    //if(!dbVeicoli->getSize() && !dbVenduti->getSize()) return;
     QSaveFile file(QString::fromStdString(p));
     try{
         if(!file.open(QIODevice::WriteOnly)){
@@ -44,14 +43,11 @@ void Model::save(string p){
     while(it!=dbVeicoli->end()){
         //const Veicolo* save = *it;
 
-        //const QString tipologia;  (*it)->getTipologia()
-        //const QString tipologia = QString::fromStdString((*it)->getTipo()); //bisogna avere la tipologia auto o camion o moto
         writer.writeEmptyElement(QString::fromStdString((*it)->getTipo()));
         writer.writeAttribute("db","veicoli");
         writer.writeAttribute("marca",QString::fromStdString((*it)->getMarca()));
         writer.writeAttribute("modello",QString::fromStdString((*it)->getModello()));
         writer.writeAttribute("pathimg",QString::fromStdString((*it)->getPathImg()));
-
 
         Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it);
         if(veicoloCarrozzeria){//in alternativa if(tipo=="carrozzeria")
@@ -107,18 +103,12 @@ void Model::save(string p){
 
     auto it2 = dbVenduti->begin();
     while(it2!=dbVenduti->end()){
-        //const Veicolo* save = *it;
 
-        //const QString tipologia;  (*it)->getTipologia()
-        //const QString tipologia = QString::fromStdString((*it)->getTipo()); //bisogna avere la tipologia auto o camion o moto
         writer.writeEmptyElement(QString::fromStdString((*it2)->getTipo()));
-
         writer.writeAttribute("db","venduti");
-
         writer.writeAttribute("marca",QString::fromStdString((*it2)->getMarca()));
         writer.writeAttribute("modello",QString::fromStdString((*it2)->getModello()));
         writer.writeAttribute("pathimg",QString::fromStdString((*it2)->getPathImg()));
-
 
         Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it2);
         if(veicoloCarrozzeria){//in alternativa if(tipo=="carrozzeria")
@@ -170,13 +160,9 @@ void Model::save(string p){
 
      /* --------  FINE SALVATAGGIO DB VENDUTI ------- */
 
-
-
-
-
         writer.writeEndElement();
         writer.writeEndDocument();
-        flagsaved=true;               // CAMBIO LA SENTINELLA, HO SALVATO!;)
+        flagsaved=true;
         file.commit();
 }
 
@@ -284,10 +270,7 @@ void Model::load(string path){
                         if(db=="venduti" && !push_end(dbVenduti,toPush)){
 
                             throw Exc(11,"caricamento veicolo");
-                            return;
-                        }
-
-
+                            return; }
 
                 } else throw std::exception();
 
@@ -316,7 +299,6 @@ unsigned int Model::getContainerSize() const{
 unsigned int Model::getContainerVendutiSize() const{
     return dbVenduti->getSize();
 }
-
 
 Container<Veicolo*>::Iteratore Model::begin() const{
     return searchRes->begin();
@@ -523,7 +505,6 @@ void Model::filterByCavalli(unsigned int cv){
              ++it;
             searchRes->remove(ve);
         }
-
     }
     return;
 }
@@ -592,7 +573,6 @@ void Model::filterByPrezzo(double pr){
              ++it;
             searchRes->remove(ve);
         }
-
     }
     return;
 }
@@ -615,9 +595,6 @@ void Model::filterByMassa(unsigned int ma){
                  ++it;
                 searchRes->remove(ve);
             }
-
-
-
         }
         return;
 }
@@ -664,9 +641,6 @@ void Model::filterBySegmento(string sg){
              ++it;
             searchRes->remove(ve);
         }
-
-
-
     }
     return;
 }
@@ -688,10 +662,6 @@ void Model::filterByAutocarro(bool au){
              ++it;
             searchRes->remove(ve);
         }
-
-
-
-
     }
     return;
 }
@@ -713,7 +683,6 @@ void Model::filterByNAssi(unsigned int na){
              ++it;
             searchRes->remove(ve);
         }
-
     }
     return;
 }
@@ -735,8 +704,6 @@ void Model::filterByRibaltabile(bool rib){
              ++it;
             searchRes->remove(ve);
         }
-
-
     }
     return;
 }
@@ -761,10 +728,6 @@ void Model::filterBySidecar(bool sid){
              ++it;
             searchRes->remove(ve);
         }
-
-
-
-
     }
     return;
 }
@@ -786,9 +749,6 @@ void Model::filterByClasseEmissioni(unsigned int ce){
              ++it;
             searchRes->remove(ve);
         }
-
-
-
     }
     return;
 }
@@ -810,9 +770,6 @@ void Model::filterByTypeMoto(string tm){
              ++it;
             searchRes->remove(ve);
         }
-
-
-
     }
     return;
 }
