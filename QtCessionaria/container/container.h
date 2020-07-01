@@ -58,7 +58,7 @@ public:
     //bool cancella(const T&);
     bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il T passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
-    void modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
+    bool modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
     bool search(const T&)const;
     T getVeicolo(unsigned int)const;
     bool checkDuplicatePlate(const T&)const;
@@ -352,17 +352,19 @@ int Container<T>::getPosiz(const T& t)const{
 }//RITORNA LA POSIZIONE DELL'ELEMENTO t SE ESISTE, SENNO' RITORNA -1 (oppure solleva una eccezione???);
 
 template<class T>
-void Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una push con posizione del nodo t2
+bool Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una push con posizione del nodo t2
     try{
         if(isEmpty()) throw Exc();
     }
     catch(Exc){
         Exc(7);
-        return;
+        return false;
     }
-    push(t2,getPosiz(t1));
-    remove(t1);
-    return;
+    if(push(t2,getPosiz(t1))){
+        remove(t1);
+        return true;
+    }
+    return false;
 }
 
 template<class T>

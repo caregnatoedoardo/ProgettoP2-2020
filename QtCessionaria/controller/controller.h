@@ -44,11 +44,13 @@ public slots:
     void slotSalva() const;
     void slotLoad();
     bool slotAggiungiVeicolo() const;
+    bool slotModificaVeicolo() const;
     void slotShowInserisci() const;
     void slotShowVisualizza() const;
     void slotShowVisualizzaVenduti() const;
     void slotShowModifica();
     void slotSaveModifica();
+
     void slotResetRicerca() const;
     void slotVendi();
 };

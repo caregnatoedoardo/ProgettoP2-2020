@@ -102,7 +102,7 @@ bool Controller::slotAggiungiVeicolo() const{
         QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
         string pathfoto=LabelFoto->text().toStdString();
         if(pathfoto!="Scegli Foto"){
-         pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
+         //pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
         }
 
 
@@ -190,6 +190,141 @@ bool Controller::slotAggiungiVeicolo() const{
             }
         }//end switch
         if(model->push(veic)){
+            groupView->getList()->addVeicolo(veic);
+
+            inserisciVeicolo->slotResetForm();
+            return true;
+        }
+        //popup da implementare con messaggio di effettivo inserimento.
+    }catch (Exc){
+        throw Exc(4,inserisciVeicolo->getTipoVeicolo()->currentText().toStdString());
+    }
+    return false;
+}
+
+bool Controller::slotModificaVeicolo() const{
+
+    int tipo = inserisciVeicolo->getTipoVeicolo()->currentIndex(); //acquisisco index select
+    try{
+        string marca = inserisciVeicolo->getMarca()->text().toStdString();
+        string modello = inserisciVeicolo->getModello()->text().toStdString();
+        unsigned int numeroTelaio=0;
+        int cambio_auto=0;
+        string colore="";
+        double lunghezza=0;
+        unsigned int n_motore=0;
+        unsigned int cilindrata=0;
+        unsigned int cavalli=0;
+        string alim="";
+        string targa="";
+        double prezzo=0;
+        unsigned int massa=0;
+        unsigned int numposti=0;
+        string seg="";
+        bool autocarro=false;
+        bool sid=false;
+        unsigned int clemiss=0;
+        int nassi=0;
+        bool rib=false;
+        string tipomt="";
+        string pathimg="";
+
+      // if(Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage()).size()==0) pathimg="";
+        QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
+        string pathfoto=LabelFoto->text().toStdString();
+        if(pathfoto!="Scegli Foto"){
+         //pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
+        }
+
+
+        //CARROZZERIA
+        bool campidati=true;
+        if(tipo == 1 || tipo==2 || tipo==3 || tipo==4){
+            numeroTelaio = inserisciVeicolo->getNumeroTelaio()->text().toInt();
+            if(numeroTelaio==0) campidati=false;
+            cambio_auto = inserisciVeicolo->getCambio()->isChecked();
+            colore = inserisciVeicolo->getColore()->text().toStdString();
+            lunghezza = inserisciVeicolo->getLunghezza()->text().toDouble();
+
+        }
+        //MOTORE
+        if(campidati && (tipo==0 || tipo==2 || tipo==3 || tipo==4)){
+            n_motore = inserisciVeicolo->getNumeroMotore()->text().toInt();
+            if(!n_motore) campidati=false;
+            cilindrata = inserisciVeicolo->getCilindrata()->text().toInt();
+            cavalli = inserisciVeicolo->getCavalli()->text().toInt();
+            alim = inserisciVeicolo->getAlimentazione()->currentText().toStdString();
+        }
+
+        //MEZZO
+        if(campidati && (tipo==2 || tipo==3 || tipo==4)){
+            targa = inserisciVeicolo->getTarga()->text().toStdString();
+            if(targa=="") campidati=false;
+            prezzo = inserisciVeicolo->getPrezzo()->text().toDouble();
+            massa = inserisciVeicolo->getMassa()->text().toInt();
+            numposti = inserisciVeicolo->getNumeroPosti()->text().toInt();
+        }
+
+        //AUTO
+        if(campidati && (tipo==2)){
+             seg = inserisciVeicolo->getSegmento()->currentText().toStdString();
+             autocarro = inserisciVeicolo->getAutocarro()->isChecked();
+
+        }
+        //MOTO
+        if(campidati && (tipo==3)){
+            sid=inserisciVeicolo->getSidecar()->isChecked();
+            clemiss=inserisciVeicolo->getClasseEmissioni()->text().toInt();
+            tipomt=inserisciVeicolo->getTipoMoto()->currentText().toStdString();
+        }
+        // CAMION
+        if(campidati && (tipo==4)){
+             nassi=inserisciVeicolo->getNumeroAssi()->text().toInt();
+             rib=inserisciVeicolo->getRibaltabile()->isChecked();
+        }
+        if(!campidati){
+            QMessageBox avviso;
+            avviso.information(0,"AVVISO","ERRORE CAMPI DATI MANCANTI!");
+            return false;
+        }
+
+        Veicolo* veic=nullptr;
+        switch (tipo){
+        case 0:{
+            alimentazione al=model->convertToAlimentazione(alim);
+            veic=new Motore(marca,modello,pathimg,n_motore,cilindrata,cavalli,al);
+            break;
+        }
+        case 1:{
+            veic=new Carrozzeria(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza);
+            break;
+        }
+        case 2:{
+            alimentazione al=model->convertToAlimentazione(alim);
+            segmento sg=model->convertToSeg(seg);
+            veic=new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sg,autocarro);
+            break;
+        }
+        case 3:{
+            alimentazione al=model->convertToAlimentazione(alim);
+            tipomoto tpm=model->convertToTipomoto(tipomt);
+            veic=new Moto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sid,clemiss,tpm);
+            break;
+        }
+        case 4:{
+            alimentazione al=model->convertToAlimentazione(alim);
+            veic=new Camion(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,nassi,rib);            break;
+            break;
+        }
+        default:{throw Exc(12);
+            return false;
+            }
+        }//end switch
+
+        PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
+        Veicolo* elim=item->getItemAddress();
+
+        if(model->modify(veic,elim)){ //modify(nuovoveic, da sostituire);
             groupView->getList()->addVeicolo(veic);
 
             inserisciVeicolo->slotResetForm();
@@ -306,8 +441,8 @@ void Controller::slotShowModifica(){
 
 void Controller::slotSaveModifica(){
 
-    slotEliminaElemento();
-    slotAggiungiVeicolo();
+    //slotEliminaElemento();
+    slotModificaVeicolo();
    groupView->slotDisableLista(false);
     groupView->getList()->update();
     inserisciVeicolo->hideButton(true);

@@ -41,6 +41,7 @@ public:
     bool push_begin(Container<Veicolo*>*&, Veicolo*);
     bool push(Veicolo*);
     bool push_end(Container<Veicolo*>*&, Veicolo*);
+    bool modify(Veicolo*, Veicolo*);
     bool remove(Veicolo*);
     bool removeVenduti(Veicolo*);
     void clearRicerca();

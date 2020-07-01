@@ -21,9 +21,6 @@ bool Model::getFlagDataSaved() const{return flagsaved;}
 
 
 void Model::save(string p){
-
-
-
     //if(!dbVeicoli->getSize() && !dbVenduti->getSize()) return;
     QSaveFile file(QString::fromStdString(p));
     try{
@@ -842,6 +839,7 @@ bool Model::push_begin(Container<Veicolo *>*& ct, Veicolo *a){
 }
 
 
+
 bool Model::push(Veicolo *a){
     bool correctplate=checkPlate(a);
     bool duplicate=isDuplicate(dbVeicoli,a);
@@ -885,6 +883,11 @@ bool Model::push_end(Container<Veicolo*>*& ct, Veicolo* a){
         if(!correctplate) Exc(3);
     }
     return false;
+}
+
+bool Model::modify(Veicolo* nuovo,Veicolo* elim){
+    if(!nuovo || !elim) return false;
+    return dbVeicoli->modify(nuovo,elim);
 }
 
 
