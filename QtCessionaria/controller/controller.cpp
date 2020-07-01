@@ -455,7 +455,7 @@ void Controller::slotRicerca()const{
                 model->filterByClasseEmissioni(ricercaView->getCercaClasseEmissioni()->text().toInt());
 
             if(ricercaView->getCkTipoMoto()->isChecked())
-                model->filterByTypeMoto(ricercaView->getCkTipoMoto()->text().toStdString());
+                model->filterByTypeMoto(ricercaView->getBoxTipoMoto()->currentText().toStdString());
 
             if(1==0) return ;
             else{
