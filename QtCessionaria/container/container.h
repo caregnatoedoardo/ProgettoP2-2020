@@ -361,7 +361,7 @@ bool Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una p
         return false;
     }
     if(push(t2,getPosiz(t1))){
-        remove(t1);
+        delete(t1);
         return true;
     }
     return false;

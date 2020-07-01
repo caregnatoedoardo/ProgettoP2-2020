@@ -102,7 +102,7 @@ bool Controller::slotAggiungiVeicolo() const{
         QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
         string pathfoto=LabelFoto->text().toStdString();
         if(pathfoto!="Scegli Foto"){
-         //pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
+         pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
         }
 
 
@@ -204,6 +204,7 @@ bool Controller::slotAggiungiVeicolo() const{
 
 bool Controller::slotModificaVeicolo() const{
 
+
     int tipo = inserisciVeicolo->getTipoVeicolo()->currentIndex(); //acquisisco index select
     try{
         string marca = inserisciVeicolo->getMarca()->text().toStdString();
@@ -230,11 +231,11 @@ bool Controller::slotModificaVeicolo() const{
         string pathimg="";
 
       // if(Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage()).size()==0) pathimg="";
-        QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
-        string pathfoto=LabelFoto->text().toStdString();
-        if(pathfoto!="Scegli Foto"){
-         //pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
-        }
+        //QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
+        //string pathfoto=LabelFoto->text().toStdString();
+        //if(pathfoto!="Scegli Foto"){
+         pathimg=inserisciVeicolo->getScegliFoto()->text().toStdString();
+        //}
 
 
         //CARROZZERIA
@@ -320,11 +321,7 @@ bool Controller::slotModificaVeicolo() const{
             return false;
             }
         }//end switch
-
-        PrintListView* item = groupView->getList()->takeItem(groupView->getList()->currentRow());
-        Veicolo* elim=item->getItemAddress();
-
-        if(model->modify(veic,elim)){ //modify(nuovoveic, da sostituire);
+        if(model->push(veic)){
             groupView->getList()->addVeicolo(veic);
 
             inserisciVeicolo->slotResetForm();
@@ -441,7 +438,7 @@ void Controller::slotShowModifica(){
 
 void Controller::slotSaveModifica(){
 
-    //slotEliminaElemento();
+    slotEliminaElemento();
     slotModificaVeicolo();
    groupView->slotDisableLista(false);
     groupView->getList()->update();
