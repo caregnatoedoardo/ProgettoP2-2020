@@ -89,9 +89,11 @@ bool Controller::slotAggiungiVeicolo() const{
 
         QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
         string pathfoto=LabelFoto->text().toStdString();
+        QPixmap defaultimg("./Immagini/defaultimg.jpg");
         if(pathfoto!="Scegli Foto"){
-         pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
-        }
+            pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
+        }else
+            pathimg=Model::getRawData(defaultimg.toImage());
 
         //CARROZZERIA
         bool campidati=true;

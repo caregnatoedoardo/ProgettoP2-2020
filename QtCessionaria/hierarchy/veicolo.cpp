@@ -3,9 +3,7 @@
 using std::string;
 
 
-Veicolo::Veicolo(string ma, string mo, string pt):marca(ma),modello(mo),pathimg(pt){
-    //implementare il controllo di marca e modello con le eccezioni
-}
+Veicolo::Veicolo(string ma, string mo, string pt):marca(ma),modello(mo),pathimg(pt){}
 
 Veicolo::Veicolo(const Veicolo& ve):marca(ve.marca), modello(ve.modello), pathimg(ve.pathimg){}
 
