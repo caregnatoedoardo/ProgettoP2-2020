@@ -28,5 +28,5 @@ bool Camion::getRibaltabile() const{return ribaltabile;}
 string Camion::getTipo() const{return "camion";}
 
 string Camion::getDetails() const{
-    return Mezzo::getDetails()+"NUM. ASSI: "+std::to_string(n_assi)+"\nRIBALTABILE: "+std::to_string(ribaltabile)+"\n";
+    return Mezzo::getDetails()+"NUM. ASSI: "+std::to_string(n_assi)+"\nRIBALTABILE: "+(ribaltabile?"Sì":"No")+"\n";
 }

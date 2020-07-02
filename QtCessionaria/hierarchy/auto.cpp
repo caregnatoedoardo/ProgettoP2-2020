@@ -50,6 +50,6 @@ bool Auto::checkSegmento(string segmento) const{
 string Auto::getTipo() const{return "auto";}
 
 string Auto::getDetails() const{
-    return Mezzo::getDetails()+"SEGMENTO: "+convertSegmento(seg)+"\nAUTOCARRO: "+std::to_string(autocarro)+"\n";
+    return Mezzo::getDetails()+"SEGMENTO: "+convertSegmento(seg)+"\nAUTOCARRO: "+(autocarro?"Sì":"No")+"\n";
 }
 
