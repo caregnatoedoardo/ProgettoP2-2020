@@ -20,7 +20,7 @@ private:
         Nodo* prev=nullptr, *next =nullptr ;
         Nodo(const T i=nullptr, Nodo*pr=nullptr, Nodo*ne=nullptr):info(i),prev(pr),next(ne){}
         ~Nodo(){if(next) delete next;}
-        T& getInfo()const{return new T(info);}//RITORNA L'OGGETTO t (auto, moto, camion) CONTENUTO NEL NODO
+        T& getInfo()const{return new T(info);}
         T* cloneInfo() const { return new T(info);}
     };
     Nodo* first=nullptr;
@@ -28,7 +28,7 @@ public:
     class Iteratore{
         friend class Container<T>;
     private:
-        Nodo* punt;//è il puntatore che punta ad un nodo della doppialista;
+        Nodo* punt;
     public:
         Iteratore(Nodo* p=nullptr):punt(p){}
         Iteratore& operator=(const Iteratore&);
@@ -37,7 +37,7 @@ public:
         Iteratore(const Iteratore& it):punt(it.punt){}
         bool operator==(const Iteratore&)const;
         bool operator!=(const Iteratore&)const;
-        T& operator*()const; //dereferenziazione, restituisce l'oggetto a cui punta l'iteratore
+        T& operator*()const;
         ~Iteratore(){delete punt;}
     };
 public:
@@ -54,9 +54,8 @@ public:
     bool push_begin(const T&);
     bool push_end(const T&);
     bool push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
-    bool remove(const T&);
-    //bool cancella(const T&);
-    bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il T passato è già presente nel container.
+    bool remove(const T&);//rimuove l'elemento t dal container
+    bool isDuplicate(const T&) const;//richiamata le push per vedere se il T passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
     bool modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
     bool search(const T&)const;
@@ -176,10 +175,7 @@ bool Container<T>::operator!=(const Container<T>& ct){
 template<class T>
 bool Container<T>::isEmpty()const{
    return (!first);
-
-
 }
-
 
 template<class T>
 bool Container<T>::push_begin(const T& t){
@@ -192,8 +188,6 @@ bool Container<T>::push_begin(const T& t){
     first=newfirst;
     return true;
 }
-
-
 
 template<class T>
 bool Container<T>::push_end(const T& t){
@@ -250,7 +244,7 @@ bool Container<T>::remove(const T& t){
     if(first->info==t){                 //rimozione in testa
         Nodo* elim=first;
         first=first->next;
-        if(first)//se eliminiamo il solo ed unico nodo contenuto nel container
+        if(first)
             first->prev=nullptr;
         elim->prev=elim->next=nullptr;
         delete elim;
@@ -282,50 +276,6 @@ bool Container<T>::remove(const T& t){
     }
     return false;
 }
-
-/*template<class T>
-bool Container<T>::cancella(const T& t){
-    try{
-        if(isEmpty()) throw Exc();
-    }
-    catch(Exc){
-        Exc(7);
-        return false;
-    }
-
-    if(first->info==t){                 //rimozione in testa
-        Nodo* elim=first;
-        first=first->next;
-        if(first)//se eliminiamo il solo ed unico nodo contenuto nel container
-            first->prev=nullptr;
-        elim->prev=elim->next=nullptr;
-        return true;
-    }
-    Nodo* scorri=first;                 //rimozione nel mezzo
-    while(scorri->next){
-        if(scorri->info==t){
-            scorri->prev->next=scorri->next;
-            scorri->next->prev=scorri->prev;
-            scorri->next=scorri->prev=nullptr;
-            return true;
-        }
-        scorri=scorri->next;
-    }
-    try{
-        if(scorri->info==t){                //rimozione alla fine
-            scorri->prev->next=nullptr;
-            scorri->prev=nullptr;
-            return true;
-        }
-        else
-            throw Exc();
-    }catch(Exc){
-        Exc(12, "Veicolo non presente");
-        return false;
-    }
-    return false;
-}
-*/
 
 template<class T>
 int Container<T>::getPosiz(const T& t)const{

@@ -408,7 +408,6 @@ void Controller::slotShowModifica(){
             dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
             dialog->show();
-
     }
 }
 

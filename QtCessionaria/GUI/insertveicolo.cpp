@@ -602,6 +602,7 @@ void InsertVeicolo::setLunghezza(double i){
 }
 void InsertVeicolo::setNumeroMotore(unsigned int i){
     numeroMotore->setText(QString::number(i));
+    numeroMotore->setDisabled(true);
 }
 void InsertVeicolo::setCilindrata(unsigned int i) {
     cilindrata->setText(QString::number(i));

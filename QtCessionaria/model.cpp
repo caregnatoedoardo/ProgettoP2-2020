@@ -933,12 +933,7 @@ QPixmap Model::getImage(const std::string &i){
 
 
 void Model::clearRicerca()  {
-
     defaultSearchRes();
-
-    QMessageBox info;
-    info.information(0,"avviso", "RESET OK");
-
 }
 
 bool Model::isEmptyVenduti() const{
@@ -977,11 +972,9 @@ bool Model::checkPlate(const Veicolo* a) const{
 }
 
 bool Model::checkDuplicateEngine(Container<Veicolo*>*&ct, const Veicolo* a)const{
-
     if(ct->isEmpty()) return false;
 
     bool trovato=false;
-
     Motore* mt = dynamic_cast<Motore*>(const_cast<Veicolo*>(a));
     if(mt){
         for(auto it=ct->begin();it!=ct->end();++it){

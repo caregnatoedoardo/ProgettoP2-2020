@@ -262,11 +262,4 @@ void Ricerca::slotDisableElements() const{
     ckTipoMoto->isChecked() ?
                 boxTipoMoto->setEnabled(true):
                 boxTipoMoto->setEnabled(false);
-
-
-
 }
-
-
-
-
