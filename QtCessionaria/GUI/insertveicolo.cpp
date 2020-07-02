@@ -567,7 +567,6 @@ void InsertVeicolo::hideButton(bool a){
     if(!a){//MODIFICA
         AddButton->hide();
         saveEditButton->show();
-
         scegliFoto->hide();
     }
     if(a){
@@ -577,6 +576,7 @@ void InsertVeicolo::hideButton(bool a){
         tipoVeicolo->setDisabled(false);
         targa->setDisabled(false);
         numeroTelaio->setDisabled(false);
+        numeroMotore->setDisabled(false);
     }
 }
 

@@ -592,8 +592,9 @@ void Controller::slotEliminaElementoVenduto()const{
 void Controller::slotShowInserisci()const{
     groupView->hide();
     ricercaView->hide();
-    inserisciVeicolo->show();
+    inserisciVeicolo->slotResetForm();
     inserisciVeicolo->hideButton(true);
+    inserisciVeicolo->show();
     vendutiView->hide();
 }
 
