@@ -187,6 +187,7 @@ void Ricerca::slotReset()const {
     ckCambio->setChecked(false);
 
     boxTipoVeicolo->setCurrentIndex(0);
+    boxTipoVeicolo->setDisabled(true);
     cercaMarca->clear();
     cercaModello->clear();
     cercaNumeroTelaio->clear();
@@ -196,14 +197,20 @@ void Ricerca::slotReset()const {
     cercaCilindrata->clear();
     cercaCavalli->clear();
     boxAlimentazione->setCurrentIndex(0);
+    boxAlimentazione->setDisabled(true);
     cercaTarga->clear();
     cercaPrezzo->clear();
     cercaMassa->clear();
     cercaNumeroPosti->clear();
     boxSegmento->setCurrentIndex(0);
+    boxSegmento->setDisabled(true);
     cercaNumeroAssi->clear();
     cercaClasseEmissioni->clear();
     boxTipoMoto->setCurrentIndex(0);
+    boxTipoMoto->setDisabled(true);
+    ckSidecar->setChecked(false);
+    ckRibaltabile->setChecked(false);
+    ckAutocarro->setChecked(false);
 }
 
 void Ricerca::slotDisableElements() const{
