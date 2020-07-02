@@ -62,5 +62,9 @@ bool Moto::checkTarga() const{
 string Moto::getTipo() const{return "moto";}
 
 string Moto::getDetails() const{
+<<<<<<< HEAD
     return Mezzo::getDetails()+"SIDECAR: "+(sidecar? "Sì":"No")+"\nCLASSE EMISSIONI: "+std::to_string(classe_emissioni)+"\nTIPO: "+convertToString(type)+"\n";
+=======
+    return Mezzo::getDetails()+"SIDECAR: "+(sidecar?"Sì":"No")+"\nCLASSE EMISSIONI: "+std::to_string(classe_emissioni)+"\nTIPO: "+convertToString(type)+"\n";
+>>>>>>> master
 }
