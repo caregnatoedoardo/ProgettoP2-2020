@@ -23,8 +23,8 @@ bool Auto::operator!=(const Auto &au) const{
 }
 
 segmento Auto::getSegmento() const{return seg;}
-bool Auto::getAutocarro() const{return autocarro;}
 
+bool Auto::getAutocarro() const{return autocarro;}
 
 
 string Auto::convertSegmento(segmento seg) const{//converte l'enum segmento in stringa
@@ -41,8 +41,6 @@ string Auto::convertSegmento(segmento seg) const{//converte l'enum segmento in s
     return "berlina";
 }
 
-
-
 bool Auto::checkSegmento(string segmento) const{
     return ((segmento == "suv") || (segmento== "berlina") || (segmento == "station") || (segmento== "coupe"));
 }
@@ -50,6 +48,5 @@ bool Auto::checkSegmento(string segmento) const{
 string Auto::getTipo() const{return "auto";}
 
 string Auto::getDetails() const{
-    return Mezzo::getDetails()+"SEGMENTO: "+convertSegmento(seg)+"\nAUTOCARRO: "+std::to_string(autocarro)+"\n";
+    return Mezzo::getDetails()+"SEGMENTO: "+convertSegmento(seg)+"\nAUTOCARRO: "+(autocarro ? "Sì":"No")+"\n";
 }
-

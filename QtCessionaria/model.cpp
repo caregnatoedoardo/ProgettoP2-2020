@@ -536,9 +536,8 @@ void Model::filterByPrezzo(double pr){
 
     for(auto it=searchRes->begin();it!=searchRes->end();){
         Mezzo* mz=dynamic_cast<Mezzo*>(*it);
-
         if(mz){
-            if(mz->getPrezzo()>=pr){
+            if(mz->getPrezzo()>pr){
               ++it;
               searchRes->remove(mz);
             } else ++it;
@@ -558,7 +557,7 @@ void Model::filterByMassa(unsigned int ma){
         for(auto it=searchRes->begin();it!=searchRes->end();){
             Mezzo* mz=dynamic_cast<Mezzo*>(*it);
             if(mz){
-                if(mz->getMassa()>=ma){
+                if(mz->getMassa()>ma){
                   ++it;
                   searchRes->remove(mz);
                 } else ++it;
