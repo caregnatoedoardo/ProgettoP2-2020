@@ -152,7 +152,7 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     form->addWidget(scegliFoto,20,0);
     scegliFoto->hide();
     form->addWidget(bottoneScegliFoto,21,1);
-
+    AddButton->hide();
     saveEditButton->hide();
     slotChangeFormLayout("motore");
     connect(tipoVeicolo,static_cast<void (QComboBox::*)(int index)>(&QComboBox::currentIndexChanged),[this]{
@@ -213,7 +213,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         classeEmissioni->hide();
         tipoMoto->hide();
 
-        AddButton->show();
     }
     if(typeveic=="motore"){
         descMarca->show();

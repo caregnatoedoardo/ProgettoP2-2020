@@ -315,7 +315,7 @@ bool Controller::slotModificaVeicolo() const{
 }
 
 void Controller::slotShowModifica(){
-
+    inserisciVeicolo->hideButton(false);
     dialog = inserisciVeicolo;
     if(groupView->getList()->currentItem()!=nullptr){
         groupView->slotDisableElimina();
