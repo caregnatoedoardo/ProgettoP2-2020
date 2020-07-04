@@ -21,47 +21,47 @@ public:
             cerr<<"E' stato rilevato un errore all'interno del programma! Il testo dell'errore è il seguente: ";
             break;
         }
-        case 1: {                                                                                                       //identifica errori dei parametri nei costruttori.
+        case 1: {
             info.information(0,"avviso", QString::fromStdString("Rilevato parametro "+t+" non valido. Nessuna operazione eseguita."));
             cerr<<"Errore nel costruttore! Rilevato parametro "<<t<<" non valido. Nessuna operazione eseguita.";
             break;
         }
-        case 2:{                                                                                                        //identifica errori nelle eliminazioni.
+        case 2:{
             info.information(0,"avviso", QString::fromStdString("Errore nella eliminazione del "+t+" selezionato. Nessuna operazione eseguita."));
             cerr<<"Errore nella eliminazione del "<<t<<" selezionato. Nessuna operazione eseguita.";
             break;
         }
-        case 3:{                                                                                                         //identifica errori nelle targhe.
+        case 3:{
             info.information(0,"avviso", QString::fromStdString("Errore! Rilevata targa "+t+" mal formata. La targa è una stringa avente solo questo formato: AA000AA per i veicoli, o AA00000 per i motoveicoli. Nessuna operazione eseguita."));
             cerr<<"Errore! Rilevata targa "<<t<<" mal formata. La targa è una stringa avente solo questo formato: AA000AA per i veicoli, o AA00000 per i motoveicoli. Nessuna operazione eseguita.";
             break;
         }
-        case 4:{                                                                                                        //identifica errori nel segmento.
+        case 4:{
             info.information(0,"avviso", QString::fromStdString("Errore! Rilevato segmento "+t+" non valido. Nessuna operazione eseguita."));
             cerr<<"Errore! Rilevato segmento "<<t<<" non valido. Nessuna operazione eseguita.";
             break;
         }
-        case 5:{                                                                                                        //identifica errori nell'alimentazione.
+        case 5:{
             info.information(0,"avviso", QString::fromStdString("Errore! Rilevata alimentazione "+t+" non valida. Nessuna operazione eseguita."));
             cerr<<"Errore! Rilevata alimentazione "<<t<<" non valida. Nessuna operazione eseguita.";
             break;
         }
-        case 6:{                                                                                                        //identifica errori nell'inserimento dei veicoli nel Qontainer.
+        case 6:{
             info.information(0,"avviso", QString::fromStdString("Errore! Rilevato veicolo "+t+". Nessuna operazione eseguita."));
             cerr<<"Errore! Rilevato veicolo "<<t<<". Nessuna operazione eseguita.";
             break;
         }
-        case 7:{                                                                                                        //identifica il qontainer vuoto!
+        case 7:{
             info.information(0,"avviso", "Errore! Rilevato container vuoto! Nessuna operazione eseguita.");
             cerr<<"Errore! Rilevato container vuoto! Nessuna operazione eseguita.";
             break;
         }
-        case 8:{                                                                                                        //identifica un errore nella struttura del file.
+        case 8:{
             info.information(0,"avviso", QString::fromStdString("Errore nella "+t+" del file. Nessuna operazione eseguita."));
             cerr<<"Errore nella "<<t<<" del file. Nessuna operazione eseguita.";
             break;
         }
-        case 9:{                                                                                                        //identifica un file in caricamento vuoto.
+        case 9:{
             info.information(0,"avviso", "Errore! Rilevato file vuoto! Nessuna operazione eseguita.");
             cerr<<"Errore! Rilevato file vuoto! Nessuna operazione eseguita.";
             break;

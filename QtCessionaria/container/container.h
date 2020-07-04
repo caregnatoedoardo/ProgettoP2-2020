@@ -55,18 +55,14 @@ public:
     bool push_end(const T&);
     bool push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
     bool remove(const T&);//rimuove l'elemento t dal container
-    bool isDuplicate(const T&) const;//richiamata le push per vedere se il T passato è già presente nel container.
+    bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il t passato è già presente nel container.
     int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
-    bool modify(const T&, const T&);//t1 è l'elemento dentro il container. Modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
-    bool search(const T&)const;
-    T getVeicolo(unsigned int)const;
-    bool checkDuplicatePlate(const T&)const;
-    bool checkPlate(const T&)const;//sarà usata per controllare la stringa nella textbox dell'interfaccia grafica. Uguale a checkDuplicatePlate ma senza cast del parametro formale
-    bool checkDuplicateChassis(const T&)const;
-    bool checkDuplicateEngine(const T&)const;
-    unsigned int getSize()const;
+    bool modify(const T&, const T&);//modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
+    bool search(const T&)const;//ricerca all'interno del container un tipo t desiderato
+    T getVeicolo(unsigned int)const;//ritorna il tipo t desiderato in posizione i
+    unsigned int getSize()const;//ritorna la size del container
     Container<T>& copy(const Container&);//esegue una copia del container
-    Container<T>& getNewContainerByType(const string type);//restituisce un nuovo container con tutti i veicoli di tipo type inserito
+    Container<T>& getNewContainerByType(const string type);//restituisce un nuovo container con tutti i tipi presenti uguali a t passati come parametro formale
     string getTipoVeicolo()const;//restituisce una stringa che identifica la tipologia del veicolo dell'oggetto di invocazione
     void erase();
     Container<T>& ctcopy(const Container<T>& ct);

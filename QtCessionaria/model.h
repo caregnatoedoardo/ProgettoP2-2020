@@ -23,12 +23,8 @@ private:
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
 public:
-    //dbVeicoli(new Container<Veicolo*>)
     Model(Container<Veicolo*>* dbVei = new Container<Veicolo*>, Container<Veicolo*>* dbVen = new Container<Veicolo*>, Container<Veicolo*>* sRes = new Container<Veicolo*>, string="../QtCessionaria/dati.xml");
-    //Model(string ="/Users/edoardocaregnato/Documents/C++ Projects/ProgettoP2-2020/dati.xml");
-
     ~Model();
-
 
     Container<Veicolo*>::Iteratore begin()const;
     Container<Veicolo*>::Iteratore end()const;
@@ -91,11 +87,7 @@ public:
     bool isDuplicate(Container<Veicolo*>*&ct, const Veicolo*)const;
     string getTipoVeicolo(const Veicolo*)const;
 
-
     bool defaultSearchRes();
-
-
-
 };
 
 #endif // MODEL_H
