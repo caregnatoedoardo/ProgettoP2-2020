@@ -212,7 +212,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         sidecar->hide();
         classeEmissioni->hide();
         tipoMoto->hide();
-
     }
     if(typeveic=="motore"){
         descMarca->show();
@@ -260,8 +259,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         sidecar->hide();
         classeEmissioni->hide();
         tipoMoto->hide();
-
-        AddButton->show();
     }
     if(typeveic=="auto"){
         descMarca->show();
@@ -307,8 +304,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         sidecar->hide();
         classeEmissioni->hide();
         tipoMoto->hide();
-
-        AddButton->show();
     }
     if(typeveic=="moto"){
 
@@ -356,7 +351,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         numeroAssi->hide();
         ribaltabile->hide();
 
-        AddButton->show();
     }
     if(typeveic=="camion"){
 
@@ -404,7 +398,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         classeEmissioni->hide();
         tipoMoto->hide();
 
-        AddButton->show();
     }
 }
 
