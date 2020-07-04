@@ -16,7 +16,7 @@ private:
     QPushButton* btnVendi;
     ListViewWidget* list;
     ListViewWidget* listVenduti;
-    ViewVeicolo* dialog;
+
     QWidget* parent;
     bool status;
 

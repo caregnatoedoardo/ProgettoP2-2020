@@ -36,7 +36,6 @@ SOURCES += \
     GUI/ricerca.cpp \
     GUI/listviewwidget.cpp \
     GUI/printlistview.cpp \
-    GUI/viewveicolo.cpp \
     GUI/groupview.cpp
 
 
@@ -65,7 +64,6 @@ HEADERS += \
     GUI/ricerca.h \
     GUI/listviewwidget.h \
     GUI/printlistview.h \
-    GUI/viewveicolo.h \
     GUI/groupview.h
 
 

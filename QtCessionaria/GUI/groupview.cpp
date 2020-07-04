@@ -1,5 +1,5 @@
 #include "groupview.h"
-#include "viewveicolo.h"
+
 
 
 QPushButton* GroupView::getBtnElimina()const{
@@ -21,7 +21,7 @@ GroupView::GroupView(bool venduti,QWidget* p):
     btnVendi(new QPushButton("Vendi Elemento",this)),
     list(new ListViewWidget(this)),
     listVenduti(new ListViewWidget(this)),
-    dialog(nullptr),
+
     status(venduti)
 {
     QVBoxLayout* vBox = new QVBoxLayout(this);
