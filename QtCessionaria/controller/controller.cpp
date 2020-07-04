@@ -87,7 +87,7 @@ bool Controller::slotAggiungiVeicolo() const{
 
         QLabel* LabelFoto=inserisciVeicolo->getScegliFoto();
         string pathfoto=LabelFoto->text().toStdString();
-        QPixmap defaultimg("./QtCessionaria/Immagini/defaultimg.jpg");
+        QPixmap defaultimg("../QtCessionaria/Immagini/defaultimg.jpg");
         if(pathfoto!="Scegli Foto"){
             pathimg=Model::getRawData(inserisciVeicolo->getScegliFoto()->pixmap()->toImage());
         }else
