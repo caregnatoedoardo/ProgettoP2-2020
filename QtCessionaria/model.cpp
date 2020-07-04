@@ -19,7 +19,6 @@ Model::Model(Container<Veicolo*>* dbVei, Container<Veicolo*>* dbVen, Container<V
 
 bool Model::getFlagDataSaved() const{return flagsaved;}
 
-
 void Model::save(string p){
     QSaveFile file(QString::fromStdString(p));
     try{
@@ -30,7 +29,6 @@ void Model::save(string p){
             Exc(11,"scrittura");
             return;
         }
-
     QXmlStreamWriter writer(&file);
     writer.setAutoFormatting(true);
     writer.writeStartDocument();
@@ -50,31 +48,30 @@ void Model::save(string p){
 
         Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it);
         if(veicoloCarrozzeria){//in alternativa if(tipo=="carrozzeria")
-        writer.writeAttribute("n_telaio",QString::number(veicoloCarrozzeria->getNTelaio()));
-        writer.writeAttribute("cambio_auto",veicoloCarrozzeria->getCambio()? "Si" : "No");
-        writer.writeAttribute("colore",QString::fromStdString(veicoloCarrozzeria->getColore()));
-        writer.writeAttribute("lunghezza",QString::number(veicoloCarrozzeria->getLunghezza()));
-            }
+            writer.writeAttribute("n_telaio",QString::number(veicoloCarrozzeria->getNTelaio()));
+            writer.writeAttribute("cambio_auto",veicoloCarrozzeria->getCambio()? "Si" : "No");
+            writer.writeAttribute("colore",QString::fromStdString(veicoloCarrozzeria->getColore()));
+            writer.writeAttribute("lunghezza",QString::number(veicoloCarrozzeria->getLunghezza()));
+        }
 
         Motore* veicoloMotore = dynamic_cast<Motore*>(*it);
         if(veicoloMotore){//in alternativa if(tipo=="motore")
-        writer.writeAttribute("n_motore",QString::number(veicoloMotore->getNMotore()));
-        writer.writeAttribute("cilindrata",QString::number(veicoloMotore->getCilindrata()));
-        writer.writeAttribute("cavalli",QString::number(veicoloMotore->getCavalli()));
-        writer.writeAttribute("alim",QString::fromStdString(veicoloMotore->convertToAlim(veicoloMotore->getAlimentazione())));
-           }
+            writer.writeAttribute("n_motore",QString::number(veicoloMotore->getNMotore()));
+            writer.writeAttribute("cilindrata",QString::number(veicoloMotore->getCilindrata()));
+            writer.writeAttribute("cavalli",QString::number(veicoloMotore->getCavalli()));
+            writer.writeAttribute("alim",QString::fromStdString(veicoloMotore->convertToAlim(veicoloMotore->getAlimentazione())));
+        }
 
         Mezzo* veicoloMezzo = dynamic_cast<Mezzo*>(*it);
         if(veicoloMezzo){
-        writer.writeAttribute("targa",QString::fromStdString(veicoloMezzo->getTarga()));
-        writer.writeAttribute("prezzo",QString::number(veicoloMezzo->getPrezzo()));
-        writer.writeAttribute("massa",QString::number(veicoloMezzo->getMassa()));
-        writer.writeAttribute("numposti",QString::number(veicoloMezzo->getNumPosti()));
+            writer.writeAttribute("targa",QString::fromStdString(veicoloMezzo->getTarga()));
+            writer.writeAttribute("prezzo",QString::number(veicoloMezzo->getPrezzo()));
+            writer.writeAttribute("massa",QString::number(veicoloMezzo->getMassa()));
+            writer.writeAttribute("numposti",QString::number(veicoloMezzo->getNumPosti()));
         }
 
-
         Auto* isAuto = dynamic_cast<Auto*>(*it);
-        if(isAuto) {//in alternativa if(tipo=="auto")
+        if(isAuto){//in alternativa if(tipo=="auto")
             writer.writeAttribute("seg",QString::fromStdString(isAuto->convertSegmento(isAuto->getSegmento())));
             writer.writeAttribute("autocarro",isAuto->getAutocarro()? "Si" : "No");
         }
@@ -110,49 +107,47 @@ void Model::save(string p){
         writer.writeAttribute("pathimg",QString::fromStdString((*it2)->getPathImg()));
 
         Carrozzeria* veicoloCarrozzeria = dynamic_cast<Carrozzeria*>(*it2);
-        if(veicoloCarrozzeria){//in alternativa if(tipo=="carrozzeria")
-        writer.writeAttribute("n_telaio",QString::number(veicoloCarrozzeria->getNTelaio()));
-        writer.writeAttribute("cambio_auto",veicoloCarrozzeria->getCambio()? "Si" : "No");
-        writer.writeAttribute("colore",QString::fromStdString(veicoloCarrozzeria->getColore()));
-        writer.writeAttribute("lunghezza",QString::number(veicoloCarrozzeria->getLunghezza()));
-            }
+        if(veicoloCarrozzeria){
+            writer.writeAttribute("n_telaio",QString::number(veicoloCarrozzeria->getNTelaio()));
+            writer.writeAttribute("cambio_auto",veicoloCarrozzeria->getCambio()? "Si" : "No");
+            writer.writeAttribute("colore",QString::fromStdString(veicoloCarrozzeria->getColore()));
+            writer.writeAttribute("lunghezza",QString::number(veicoloCarrozzeria->getLunghezza()));
+        }
 
         Motore* veicoloMotore = dynamic_cast<Motore*>(*it2);
-        if(veicoloMotore){//in alternativa if(tipo=="motore")
-        writer.writeAttribute("n_motore",QString::number(veicoloMotore->getNMotore()));
-        writer.writeAttribute("cilindrata",QString::number(veicoloMotore->getCilindrata()));
-        writer.writeAttribute("cavalli",QString::number(veicoloMotore->getCavalli()));
-        writer.writeAttribute("alim",QString::fromStdString(veicoloMotore->convertToAlim(veicoloMotore->getAlimentazione())));
-           }
+        if(veicoloMotore){
+            writer.writeAttribute("n_motore",QString::number(veicoloMotore->getNMotore()));
+            writer.writeAttribute("cilindrata",QString::number(veicoloMotore->getCilindrata()));
+            writer.writeAttribute("cavalli",QString::number(veicoloMotore->getCavalli()));
+            writer.writeAttribute("alim",QString::fromStdString(veicoloMotore->convertToAlim(veicoloMotore->getAlimentazione())));
+        }
 
         Mezzo* veicoloMezzo = dynamic_cast<Mezzo*>(*it2);
         if(veicoloMezzo){
-        writer.writeAttribute("targa",QString::fromStdString(veicoloMezzo->getTarga()));
-        writer.writeAttribute("prezzo",QString::number(veicoloMezzo->getPrezzo()));
-        writer.writeAttribute("massa",QString::number(veicoloMezzo->getMassa()));
-        writer.writeAttribute("numposti",QString::number(veicoloMezzo->getNumPosti()));
+            writer.writeAttribute("targa",QString::fromStdString(veicoloMezzo->getTarga()));
+            writer.writeAttribute("prezzo",QString::number(veicoloMezzo->getPrezzo()));
+            writer.writeAttribute("massa",QString::number(veicoloMezzo->getMassa()));
+            writer.writeAttribute("numposti",QString::number(veicoloMezzo->getNumPosti()));
         }
 
-
         Auto* isAuto = dynamic_cast<Auto*>(*it2);
-        if(isAuto) {//in alternativa if(tipo=="auto")
+        if(isAuto) {
             writer.writeAttribute("seg",QString::fromStdString(isAuto->convertSegmento(isAuto->getSegmento())));
             writer.writeAttribute("autocarro",isAuto->getAutocarro()? "Si" : "No");
         }
 
         Camion* isCamion = dynamic_cast<Camion*>(*it2);
-        if(isCamion){//in alternativa if(tipo=="camion")
+        if(isCamion){
             writer.writeAttribute("n_assi",QString::number(isCamion->getNumAssi()));
             writer.writeAttribute("ribaltabile",isCamion->getRibaltabile()? "Si" : "No");
         }
 
         Moto* isMoto = dynamic_cast<Moto*>(*it2);
-        if(isMoto){//in alternativa if(tipo=="camion")
+        if(isMoto){
             writer.writeAttribute("sidecar",isMoto->getSidecar()? "Si" : "No");
             writer.writeAttribute("classe_emissioni",QString::number(isMoto->getClasseEmissioni()));
             writer.writeAttribute("type",QString::fromStdString(isMoto->convertToString(isMoto->getTipoMoto())));
         }
-
         if(writer.hasError()) throw Exc(11,"salvataggio");
         ++it2;
     }
@@ -170,9 +165,8 @@ void Model::load(string path){
 
     QFile file(QString::fromStdString(path));
     try{
-        if(!file.open(QIODevice::ReadOnly)){
+        if(!file.open(QIODevice::ReadOnly))
             throw Exc();
-        }
         }catch(Exc){
             Exc(11,"sola lettura");
             return;
@@ -211,7 +205,6 @@ void Model::load(string path){
                 bool rib=false;
                 tipomoto tpm;
                 string tipomt="";
-
                 string nomereader=reader.name().toString().toStdString();
                 Veicolo* toPush = nullptr;
 
@@ -223,8 +216,6 @@ void Model::load(string path){
                     if(reader.name()=="carrozzeria")
                         toPush=new Carrozzeria(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza);
                 }
-
-                //MOTORE i
                 if(reader.name()=="motore" || reader.name()=="auto" || reader.name()=="camion" || reader.name()=="moto"){
                     n_motore = att.hasAttribute("n_motore")? att.value("n_motore").toInt(): 0;
                     cilindrata = att.hasAttribute("cilindrata")? att.value("cilindrata").toInt(): 0;
@@ -244,33 +235,28 @@ void Model::load(string path){
                     autocarro = att.hasAttribute("autocarro")? att.value("autocarro").toString()=="Si" ? true:false:false;
                     toPush = new Auto(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,seg,autocarro);
 
-                } else if(reader.name()=="camion"){
+                }else if(reader.name()=="camion"){
                     nassi = att.hasAttribute("n_assi")? att.value("n_assi").toDouble():1;
                     rib = att.hasAttribute("ribaltabile")? att.value("ribaltabile").toString()=="Si" ? true:false:false;
                     toPush = new Camion(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,nassi,rib);
 
 
-                } else if(reader.name() =="moto"){
+                }else if(reader.name() =="moto"){
                      sid = att.hasAttribute("sidecar")? att.value("sidecar").toString()=="Si" ? true:false:false;
                      clemiss = att.hasAttribute("classe_emissioni")? att.value("classe_emissioni").toInt(): 0;
                      tpm=convertToTipomoto(att.hasAttribute("type")? att.value("type").toString().toStdString():"");
                      toPush = new Moto(marca,modello,path,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,alim,targa,prezzo,massa,numposti,sid,clemiss,tpm);
 
-                } if(toPush!= nullptr){
-
-
+                }if(toPush!= nullptr){
                     if(db=="veicoli" && !push_end(dbVeicoli, toPush)){
-
                         throw Exc(11,"caricamento veicolo");
                         return;
                     }
-
                     else
                         if(db=="venduti" && !push_end(dbVenduti,toPush)){
-
                             throw Exc(11,"caricamento veicolo");
-                            return; }
-
+                            return;
+                        }
                 } else throw std::exception();
 
                 if(reader.hasError()){
@@ -325,7 +311,8 @@ void Model::filterByMarca(string ma){
         Veicolo* ve=dynamic_cast<Veicolo*>(*it);
         if(ve && ve->getMarca()!=ma){
             ++it;
-            searchRes->remove(ve);} else ++it;
+            searchRes->remove(ve);
+        }else ++it;
     }
     return;
 }
@@ -337,7 +324,8 @@ void Model::filterByModello(string mo){
         Veicolo* ve=dynamic_cast<Veicolo*>(*it);
         if(ve && ve->getModello()!=mo){
             ++it;
-            searchRes->remove(ve);} else ++it;
+            searchRes->remove(ve);
+        }else ++it;
     }
     return;
 }
@@ -351,9 +339,7 @@ void Model::filterByNTelaio(unsigned int nt){
             if(car->getNTelaio()!=nt){
                   ++it;
                   searchRes->remove(car);
-            }
-            else
-                ++it;
+            }else ++it;
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
@@ -373,9 +359,7 @@ void Model::filterByCambio(bool gbx){
             if(car->getCambio()!=gbx){
                   ++it;
                   searchRes->remove(car);
-                }
-                else
-                    ++it;
+                }else ++it;
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
@@ -395,15 +379,14 @@ void Model::filterByColore(string col){
             if(car->getColore()!=col){
                 ++it;
                 searchRes->remove(car);
-            }
-            else ++it;
+            }else ++it;
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
             ++it;
             searchRes->remove(ve);
-            }
         }
+    }
     return;
 }
 
@@ -416,14 +399,14 @@ void Model::filterByLunghezza(double lun){
                 if(car->getLunghezza()!=lun){
                   ++it;
                   searchRes->remove(car);
-                } else ++it;
+                }else ++it;
             }
             else{
                 Veicolo* ve = dynamic_cast<Veicolo*>(*it);
                  ++it;
                 searchRes->remove(ve);
             }
-        }
+    }
     return;
 }
 
@@ -434,13 +417,13 @@ void Model::filterByNMotore(unsigned int nm){
         Motore* eng=dynamic_cast<Motore*>(*it);
         if(eng){
             if(eng->getNMotore()!=nm){
-              ++it;
-              searchRes->remove(eng);
-            } else ++it;
+                ++it;
+                searchRes->remove(eng);
+            }else ++it;
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -461,7 +444,7 @@ void Model::filterByCilindrata(unsigned int cc){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -482,13 +465,12 @@ void Model::filterByCavalli(unsigned int cv){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
     return;
 }
-
 
 void Model::filterByAlim(string al){
     if(searchRes->isEmpty()) return;
@@ -503,7 +485,7 @@ void Model::filterByAlim(string al){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -524,7 +506,7 @@ void Model::filterByTarga(string pl){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -564,7 +546,7 @@ void Model::filterByMassa(unsigned int ma){
             }
             else{
                 Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-                 ++it;
+                ++it;
                 searchRes->remove(ve);
             }
         }
@@ -605,7 +587,7 @@ void Model::filterBySegmento(string sg){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -626,7 +608,7 @@ void Model::filterByAutocarro(bool au){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -647,7 +629,7 @@ void Model::filterByNAssi(unsigned int na){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -668,7 +650,7 @@ void Model::filterByRibaltabile(bool rib){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -688,7 +670,7 @@ void Model::filterBySidecar(bool sid){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -709,7 +691,7 @@ void Model::filterByClasseEmissioni(unsigned int ce){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -730,7 +712,7 @@ void Model::filterByTypeMoto(string tm){
         }
         else{
             Veicolo* ve = dynamic_cast<Veicolo*>(*it);
-             ++it;
+            ++it;
             searchRes->remove(ve);
         }
     }
@@ -808,18 +790,11 @@ bool Model::modify(Veicolo* nuovo,Veicolo* elim){
 }
 
 bool Model::remove(Veicolo* a){
-    if(dbVeicoli->remove(a)){
-
-        return true;
-    }
-    return false;
+    return dbVeicoli->remove(a);
 }
 
 bool Model::removeVenduti(Veicolo* a){
-    if(dbVenduti->remove(a)){
-        return true;
-    }
-    return false;
+    return dbVenduti->remove(a);
 }
 
 bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ricerca di un Veicolo dentro un Container.
@@ -827,15 +802,11 @@ bool Model::search(Container<Veicolo*>*& ct, Veicolo* a) const{//effettua la ric
 }
 
 bool Model::vendi(Veicolo* a){
-    if(search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->remove(a))
-        return true;
-    return false;
+    return ((search(dbVeicoli,a) && push_begin(dbVenduti,a) && dbVeicoli->remove(a)));
 }
 
 bool Model::nonVenduta(Veicolo* a){//verifica se un veicolo è presente nel Db dei venduti e, se presente, lo riporta nel db dei disponibili.
-    if(search(dbVenduti, a) && push_begin(dbVeicoli,a) && dbVeicoli->remove(a))//se è presente all'interno del db venduti
-        return true;
-    return false;
+    return (search(dbVenduti, a) && push_begin(dbVeicoli,a) && dbVeicoli->remove(a));
 }
 
 tipomoto Model::convertToTipomoto(const string st)const{
@@ -897,7 +868,6 @@ bool Model::isEmptyDisponibili() const{
 Veicolo* Model::getElementoByPosition(unsigned int i) const{return dbVeicoli->getVeicolo(i);}
 Veicolo* Model::getElementoVendutoByPosition(unsigned int i) const{return dbVenduti->getVeicolo(i);}
 
-
 bool Model::checkDuplicatePlate(Container<Veicolo*>*&ct, const Veicolo* a)const{
     if(ct->isEmpty()) return false;
     bool trovato=false;
@@ -948,16 +918,13 @@ bool Model::checkDuplicateChassis(Container<Veicolo*>*&ct, const Veicolo* a)cons
     return trovato;
 }
 
-
 bool Model::isDuplicate(Container<Veicolo*>*&ct, const Veicolo* t)const{
     if(ct->isEmpty()) return false;
 
     for(auto it=ct->begin();it!=ct->end();++it)
         if((*it)==t) return true;
-
     return false;
 }
-
 
 string Model::getTipoVeicolo(const Veicolo* a)const{
 

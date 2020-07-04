@@ -34,7 +34,6 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     addMenu(menu);
     addMenu(menuOperation);
 
-
     connect(salva, SIGNAL(triggered()),parent,SLOT(slotSalva()));
     connect(carica, SIGNAL(triggered()),parent,SLOT(slotLoad()));
     connect(ricerca, SIGNAL(triggered()),parent,SLOT(slotShowRicerca()));
@@ -43,7 +42,6 @@ Usermenu::Usermenu(QWidget* p):parent(p),
     connect(visualizzaVenduti,SIGNAL(triggered()),parent,SLOT(slotShowVisualizzaVenduti()));
     connect(esci,SIGNAL(triggered()),parent,SLOT(slotSalva()));
     connect(esci,SIGNAL(triggered()),parent,SLOT(close()));
-
 }
 
 QMenu* Usermenu::getMenu()const{return menu;}

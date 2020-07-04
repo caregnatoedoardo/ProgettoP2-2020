@@ -158,7 +158,6 @@ InsertVeicolo::InsertVeicolo(QWidget*p):
     connect(tipoVeicolo,static_cast<void (QComboBox::*)(int index)>(&QComboBox::currentIndexChanged),[this]{
         slotChangeFormLayout(tipoVeicolo->currentText());
     });
-
     connect(bottoneScegliFoto,SIGNAL(clicked()),this,SLOT(slotScegliFoto()));
 }
 
@@ -220,7 +219,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         descCilindrata->show();
         descCavalli->show();
         descAlimentazione->show();
-
 
         descNumeroTelaio->hide();
         descColore->hide();
@@ -397,7 +395,6 @@ void InsertVeicolo::slotChangeFormLayout(QString typeveic)const{
         sidecar->hide();
         classeEmissioni->hide();
         tipoMoto->hide();
-
     }
 }
 
@@ -458,7 +455,7 @@ QLineEdit* InsertVeicolo::getLunghezza() const{
     return lunghezza;
 }
 QLineEdit* InsertVeicolo::getNumeroMotore() const{
-    return numeroMotore ;
+    return numeroMotore;
 }
 QLineEdit* InsertVeicolo::getCilindrata() const{
     return cilindrata;
@@ -548,7 +545,6 @@ void InsertVeicolo::slotResetForm()const{
     classeEmissioni->clear();
     tipoMoto->setCurrentIndex(0);
     scegliFoto->setText("Scegli Foto");
-
 }
 
 void InsertVeicolo::setColore(string a ){
@@ -641,12 +637,7 @@ void InsertVeicolo::setTipoMoto(unsigned int i){
 }
 
 void InsertVeicolo::setFoto(QString i){
-
-
-        scegliFoto->setText(i);
-
-
-
+    scegliFoto->setText(i);
 }
 
 QLabel* InsertVeicolo::getScegliFoto() const{
@@ -654,8 +645,3 @@ QLabel* InsertVeicolo::getScegliFoto() const{
         return scegliFoto;
     return nullptr;
 }
-
-
-
-
-

@@ -7,17 +7,12 @@ PrintListView::PrintListView(Veicolo* i, QWidget* p):
     veicolo(i),parent(p)
 {
    update();
-
 }
 
 void PrintListView::update(){
     QPixmap a = Model::getImage(veicolo->getPathImg());
-
-
-   setIcon(a);
-   setText(QString::fromStdString(veicolo->getDetails()));
-
-
+    setIcon(a);
+    setText(QString::fromStdString(veicolo->getDetails()));
 }
 
 Veicolo* PrintListView::getItemAddress()const{

@@ -1,7 +1,6 @@
 #include "groupview.h"
 
 
-
 QPushButton* GroupView::getBtnElimina()const{
     return btnElimina;
 }
@@ -28,9 +27,8 @@ GroupView::GroupView(bool venduti,QWidget* p):
     btnElimina->setEnabled(false);
     btnModifica->setEnabled(false);
     btnVendi->setEnabled(false);
-    if(venduti){
+    if(venduti)
         vBox->addWidget(listVenduti);
-    }
     else vBox->addWidget(list);
 
     list->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -41,7 +39,6 @@ GroupView::GroupView(bool venduti,QWidget* p):
     l->addWidget(btnVendi);
     l->addWidget(btnElimina);
 
-
     if(venduti){
         btnModifica->hide();
         btnVendi->hide();
@@ -50,7 +47,6 @@ GroupView::GroupView(bool venduti,QWidget* p):
     vBox->addLayout(l);
     connect(list, SIGNAL(currentRowChanged(int)),this,SLOT(slotElementoSelezionato()));
     connect(listVenduti, SIGNAL(currentRowChanged(int)),this,SLOT(slotElementoSelezionato()));
-
     connect(this, SIGNAL(signalElementoSelezionato(bool)),this,SLOT(slotElementoSelezionato(bool)));
 }
 
@@ -66,7 +62,6 @@ ListViewWidget* GroupView::getList() const{
 }
 
 void GroupView::slotElementoSelezionato(bool t)const {
-
     btnElimina->setEnabled(t);
     btnModifica->setEnabled(t);
     btnVendi->setEnabled(t);
@@ -78,7 +73,6 @@ void GroupView::slotRowChanged()const{
 
 void GroupView::slotDisableElimina() const{
     btnElimina->setDisabled(true);
-
 }
 
 void GroupView::slotDisableVendi() const{

@@ -56,7 +56,6 @@ Ricerca::Ricerca(QWidget *p):
     reset(new QPushButton("RESET RICERCA",this)),
     listaveic(new ListViewWidget(this))
 {
-
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
     QFormLayout* form = new QFormLayout();
 
@@ -82,7 +81,6 @@ Ricerca::Ricerca(QWidget *p):
     form->addRow(ckSidecar);
     form->addRow(ckClasseEmissioni,cercaClasseEmissioni);
     form->addRow(ckTipoMoto,boxTipoMoto);
-
     form->addRow(cerca,reset);
 
     mainLayout->addLayout(form);
@@ -108,9 +106,6 @@ Ricerca::Ricerca(QWidget *p):
        connect(ckNumeroAssi,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
        connect(ckClasseEmissioni,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
        connect(ckTipoMoto,SIGNAL(clicked(bool)),this,SLOT(slotDisableElements()));
-
-
-
 }
 
 
@@ -165,7 +160,6 @@ QPushButton* Ricerca::getButtonReset() const{return reset;}
 
 void Ricerca::slotReset()const {
     slotDisableElements();
-
     ckTipo->setChecked(false);
     ckMarca->setChecked(false);
     ckModello->setChecked(false);

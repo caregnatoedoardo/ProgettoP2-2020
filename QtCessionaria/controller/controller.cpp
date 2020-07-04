@@ -51,9 +51,7 @@ Controller::Controller(Model*m, QWidget *parent):
 
 }
 
-Model* Controller::getModel(){
-    return model;
-}
+Model* Controller::getModel(){return model;}
 
 bool Controller::slotAggiungiVeicolo() const{
 
@@ -103,8 +101,8 @@ bool Controller::slotAggiungiVeicolo() const{
             cambio_auto = inserisciVeicolo->getCambio()->isChecked();
             colore = inserisciVeicolo->getColore()->text().toStdString();
             lunghezza = inserisciVeicolo->getLunghezza()->text().toDouble();
-
         }
+
         //MOTORE
         if(campidati && (tipo==0 || tipo==2 || tipo==3 || tipo==4)){
             n_motore = inserisciVeicolo->getNumeroMotore()->text().toInt();
@@ -129,17 +127,20 @@ bool Controller::slotAggiungiVeicolo() const{
              autocarro = inserisciVeicolo->getAutocarro()->isChecked();
 
         }
+
         //MOTO
         if(campidati && (tipo==3)){
             sid=inserisciVeicolo->getSidecar()->isChecked();
             clemiss=inserisciVeicolo->getClasseEmissioni()->text().toInt();
             tipomt=inserisciVeicolo->getTipoMoto()->currentText().toStdString();
         }
+
         // CAMION
         if(campidati && (tipo==4)){
              nassi=inserisciVeicolo->getNumeroAssi()->text().toInt();
              rib=inserisciVeicolo->getRibaltabile()->isChecked();
         }
+
         if(!campidati){
             QMessageBox avviso;
             avviso.information(0,"AVVISO","ERRORE CAMPI DATI MANCANTI!");
@@ -148,35 +149,37 @@ bool Controller::slotAggiungiVeicolo() const{
 
         Veicolo* veic=nullptr;
         switch (tipo){
-        case 0:{
-            alimentazione al=model->convertToAlimentazione(alim);
-            veic=new Motore(marca,modello,pathimg,n_motore,cilindrata,cavalli,al);
-            break;
-        }
-        case 1:{
-            veic=new Carrozzeria(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza);
-            break;
-        }
-        case 2:{
-            alimentazione al=model->convertToAlimentazione(alim);
-            segmento sg=model->convertToSeg(seg);
-            veic=new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sg,autocarro);
-            break;
-        }
-        case 3:{
-            alimentazione al=model->convertToAlimentazione(alim);
-            tipomoto tpm=model->convertToTipomoto(tipomt);
-            veic=new Moto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sid,clemiss,tpm);
-            break;
-        }
-        case 4:{
-            alimentazione al=model->convertToAlimentazione(alim);
-            veic=new Camion(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,nassi,rib);            break;
-            break;
-        }
-        default:{throw Exc(12);
-            return false;
+            case 0:{
+                alimentazione al=model->convertToAlimentazione(alim);
+                veic=new Motore(marca,modello,pathimg,n_motore,cilindrata,cavalli,al);
+                break;
             }
+            case 1:{
+                veic=new Carrozzeria(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza);
+                break;
+            }
+            case 2:{
+                alimentazione al=model->convertToAlimentazione(alim);
+                segmento sg=model->convertToSeg(seg);
+                veic=new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sg,autocarro);
+                break;
+            }
+            case 3:{
+                alimentazione al=model->convertToAlimentazione(alim);
+                tipomoto tpm=model->convertToTipomoto(tipomt);
+                veic=new Moto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sid,clemiss,tpm);
+                break;
+            }
+            case 4:{
+                alimentazione al=model->convertToAlimentazione(alim);
+                veic=new Camion(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,nassi,rib);            break;
+                break;
+            }
+            default:{
+                throw Exc(12);
+                return false;
+            }
+
         }//end switch
         if(model->push(veic)){
             groupView->getList()->addVeicolo(veic);
@@ -184,7 +187,7 @@ bool Controller::slotAggiungiVeicolo() const{
             inserisciVeicolo->slotResetForm();
             return true;
         }
-        //popup da implementare con messaggio di effettivo inserimento.
+
     }catch (Exc){
         throw Exc(4,inserisciVeicolo->getTipoVeicolo()->currentText().toStdString());
     }
@@ -192,9 +195,7 @@ bool Controller::slotAggiungiVeicolo() const{
 }
 
 bool Controller::slotModificaVeicolo() const{
-
-
-    int tipo = inserisciVeicolo->getTipoVeicolo()->currentIndex(); //acquisisco index select
+    int tipo = inserisciVeicolo->getTipoVeicolo()->currentIndex();
     try{
         string marca = inserisciVeicolo->getMarca()->text().toStdString();
         string modello = inserisciVeicolo->getModello()->text().toStdString();
@@ -230,6 +231,7 @@ bool Controller::slotModificaVeicolo() const{
             lunghezza = inserisciVeicolo->getLunghezza()->text().toDouble();
 
         }
+
         //MOTORE
         if(campidati && (tipo==0 || tipo==2 || tipo==3 || tipo==4)){
             n_motore = inserisciVeicolo->getNumeroMotore()->text().toInt();
@@ -254,12 +256,14 @@ bool Controller::slotModificaVeicolo() const{
              autocarro = inserisciVeicolo->getAutocarro()->isChecked();
 
         }
+
         //MOTO
         if(campidati && (tipo==3)){
             sid=inserisciVeicolo->getSidecar()->isChecked();
             clemiss=inserisciVeicolo->getClasseEmissioni()->text().toInt();
             tipomt=inserisciVeicolo->getTipoMoto()->currentText().toStdString();
         }
+
         // CAMION
         if(campidati && (tipo==4)){
              nassi=inserisciVeicolo->getNumeroAssi()->text().toInt();
@@ -273,34 +277,34 @@ bool Controller::slotModificaVeicolo() const{
 
         Veicolo* veic=nullptr;
         switch (tipo){
-        case 0:{
-            alimentazione al=model->convertToAlimentazione(alim);
-            veic=new Motore(marca,modello,pathimg,n_motore,cilindrata,cavalli,al);
-            break;
-        }
-        case 1:{
-            veic=new Carrozzeria(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza);
-            break;
-        }
-        case 2:{
-            alimentazione al=model->convertToAlimentazione(alim);
-            segmento sg=model->convertToSeg(seg);
-            veic=new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sg,autocarro);
-            break;
-        }
-        case 3:{
-            alimentazione al=model->convertToAlimentazione(alim);
-            tipomoto tpm=model->convertToTipomoto(tipomt);
-            veic=new Moto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sid,clemiss,tpm);
-            break;
-        }
-        case 4:{
-            alimentazione al=model->convertToAlimentazione(alim);
-            veic=new Camion(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,nassi,rib);            break;
-            break;
-        }
-        default:{throw Exc(12);
-            return false;
+            case 0:{
+                alimentazione al=model->convertToAlimentazione(alim);
+                veic=new Motore(marca,modello,pathimg,n_motore,cilindrata,cavalli,al);
+                break;
+            }
+            case 1:{
+                veic=new Carrozzeria(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza);
+                break;
+            }
+            case 2:{
+                alimentazione al=model->convertToAlimentazione(alim);
+                segmento sg=model->convertToSeg(seg);
+                veic=new Auto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sg,autocarro);
+                break;
+            }
+            case 3:{
+                alimentazione al=model->convertToAlimentazione(alim);
+                tipomoto tpm=model->convertToTipomoto(tipomt);
+                veic=new Moto(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,sid,clemiss,tpm);
+                break;
+            }
+            case 4:{
+                alimentazione al=model->convertToAlimentazione(alim);
+                veic=new Camion(marca,modello,pathimg,numeroTelaio,cambio_auto,colore,lunghezza,n_motore,cilindrata,cavalli,al,targa,prezzo,massa,numposti,nassi,rib);            break;
+                break;
+            }
+            default:{throw Exc(12);
+                return false;
             }
         }//end switch
         if(model->push(veic)){
@@ -334,7 +338,6 @@ void Controller::slotShowModifica(){
             dialog->setAlimentazione(a->getAlimentazione());
             dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
-
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "carrozzeria"){
             Carrozzeria* a = dynamic_cast<Carrozzeria*>(groupView->getList()->currentItem()->getItemAddress());
             dialog->setTipoVeicolo(1);
@@ -345,7 +348,6 @@ void Controller::slotShowModifica(){
             dialog->setColore(a->getColore());
             dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
-
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "auto"){
             Auto* a = dynamic_cast<Auto*>(groupView->getList()->currentItem()->getItemAddress());
             dialog->setTipoVeicolo(2);
@@ -367,7 +369,6 @@ void Controller::slotShowModifica(){
             dialog->setAutocarro(a->getAutocarro());
             dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
-
         if(groupView->getList()->currentItem()->getItemAddress()->getTipo() == "moto"){
             Moto* a = dynamic_cast<Moto*>(groupView->getList()->currentItem()->getItemAddress());
             dialog->setTipoVeicolo(3);
@@ -409,12 +410,11 @@ void Controller::slotShowModifica(){
             dialog->setRibaltabile(a->getRibaltabile());
             dialog->setFoto(QString::fromStdString(a->getPathImg()));
         }
-            dialog->show();
+        dialog->show();
     }
 }
 
 void Controller::slotSaveModifica(){
-
     slotEliminaElemento();
     slotModificaVeicolo();
     groupView->slotDisableLista(false);
@@ -425,7 +425,6 @@ void Controller::slotSaveModifica(){
 }
 
 void Controller::slotVendi(){
-
     if(groupView->getList()->currentItem()!=nullptr){
         PrintListView* item = groupView->getList()->currentItem();
         if(model->vendi(item->getItemAddress())){
@@ -442,9 +441,9 @@ void Controller::slotSalva()const{
     if(file != ""){
         if(!file.endsWith(".xml"))
             file.append(".xml");
-            model->save(file.toStdString());
-            QMessageBox info;
-            info.information(0,"avviso", "salvato");
+        model->save(file.toStdString());
+        QMessageBox info;
+        info.information(0,"avviso", "salvato");
     }
 }
 
@@ -485,7 +484,6 @@ void Controller::slotResetRicerca()const{
     ricercaView->getListaVeic()->clear();
     model->clearRicerca();
 }
-
 
 void Controller::slotRicerca()const{
     slotResetRicerca();
@@ -567,7 +565,6 @@ void Controller::slotRicerca()const{
     }catch(Exc){
         Exc(7);
     }
-
 }
 
 void Controller::slotEliminaElemento()const{
@@ -576,7 +573,6 @@ void Controller::slotEliminaElemento()const{
         model->remove(item->getItemAddress());
         delete item;
         groupView->getList()->reset();
-
     }
 }
 
@@ -610,9 +606,7 @@ void Controller::slotShowVisualizzaVenduti()const{
     vendutiView->show();
     ricercaView->hide();
     inserisciVeicolo->hide();
-
 }
-
 
 void Controller::closeEvent(QCloseEvent *event){
     QWidget::closeEvent(event);
@@ -620,7 +614,7 @@ void Controller::closeEvent(QCloseEvent *event){
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "AVVISO", "Vuoi salvare gli elementi presenti?",QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
-                slotSalva();
+            slotSalva();
     }
     QWidget::closeEvent(event);
 }
