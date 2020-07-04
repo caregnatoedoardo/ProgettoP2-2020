@@ -11,9 +11,6 @@
 #include "hierarchy/moto.h"
 #include "hierarchy/camion.h"
 
-
-
-
 class Model{
 
 private:
@@ -78,7 +75,6 @@ public:
     Veicolo* getElementoByPosition(unsigned int i)const;
     Veicolo* getElementoVendutoByPosition(unsigned int i)const;
     static QPixmap getImage(const std::string&);
-
 
     bool checkDuplicatePlate(Container<Veicolo*>*&ct, const Veicolo*)const;
     bool checkPlate(const Veicolo*) const;

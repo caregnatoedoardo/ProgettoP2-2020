@@ -6,7 +6,6 @@
 #include "hierarchy/moto.h"
 #include <iostream>
 using namespace std;
-
 template<class T>
 class Iteratore;
 
@@ -50,13 +49,13 @@ public:
     bool operator!=(const Container&);
     ~Container(){if(first) delete first;}
 
-    bool isEmpty()const;
-    bool push_begin(const T&);
-    bool push_end(const T&);
+    bool isEmpty()const;//indica se il container di invocazione è vuoto
+    bool push_begin(const T&);//inserisce un elemento t in testa
+    bool push_end(const T&);//inserisce un elemento t in coda
     bool push(const T&, unsigned int =0);//inserisce l'elemento t in posizione posiz (se la posizione è valida)
     bool remove(const T&);//rimuove l'elemento t dal container
     bool isDuplicate(const T&) const;//richiamata dalle push per vedere se il t passato è già presente nel container.
-    int getPosiz(const T&)const; //ritorna la posizione (se presente) dell'elemento passato nel container
+    int getPosiz(const T&)const;//ritorna la posizione (se presente) dell'elemento passato nel container
     bool modify(const T&, const T&);//modifica l'elemento dentro il container eliminando quello vecchio(t1) ed inserendo nella stessa posizione quello nuovo (t2)
     bool search(const T&)const;//ricerca all'interno del container un tipo t desiderato
     T getVeicolo(unsigned int)const;//ritorna il tipo t desiderato in posizione i
@@ -64,13 +63,11 @@ public:
     Container<T>& copy(const Container&);//esegue una copia del container
     Container<T>& getNewContainerByType(const string type);//restituisce un nuovo container con tutti i tipi presenti uguali a t passati come parametro formale
     string getTipoVeicolo()const;//restituisce una stringa che identifica la tipologia del veicolo dell'oggetto di invocazione
-    void erase();
-    Container<T>& ctcopy(const Container<T>& ct);
+    void erase();//elimina completamente il contenuto del container
+    Container<T>& ctcopy(const Container<T>& ct);//esegue una copia del container
 };
 
 //METODI ITERATORE
-
-
 template<class T>
 typename Container<T>::Iteratore& Container<T>::Iteratore::operator=(const Iteratore& it){
     if(this != &it){
@@ -121,7 +118,6 @@ typename Container<T>::Iteratore Container<T>::end()const{
 }
 
 //METODI CONTAINER
-
 template<class T>
 Container<T>::Container(const Container& ct){
     delete first;
@@ -282,7 +278,6 @@ int Container<T>::getPosiz(const T& t)const{
         Exc(7);
         return -1;
     }
-
     int posiz=0;
     Nodo* scorri=first;
     while (scorri->next){
@@ -290,15 +285,12 @@ int Container<T>::getPosiz(const T& t)const{
         posiz++;
         scorri=scorri->next;
     }
-
     if(scorri->info==t) return posiz;
-
     return -1;
-
-}//RITORNA LA POSIZIONE DELL'ELEMENTO t SE ESISTE, SENNO' RITORNA -1 (oppure solleva una eccezione???);
+}
 
 template<class T>
-bool Container<T>::modify(const T& t1, const T& t2){//remove del nodo t1 e una push con posizione del nodo t2
+bool Container<T>::modify(const T& t1, const T& t2){
     try{
         if(isEmpty()) throw Exc();
     }
@@ -329,12 +321,12 @@ bool Container<T>::search(const T& t)const{
         scorri=scorri->next;
     }
     return (scorri->info==t);
-
-}//CERCA L'ELEMENTO t ALL'INTERNO DEL CONTAINER E RITORNA TRUE O FALSE
+}
 
 template<class T>
 T Container<T>::getVeicolo(unsigned int i)const{
     if(i<0 || i>getSize()) return nullptr;
+
     unsigned int index=0;
     Nodo* scorri=first;
     while(scorri && index<i){
@@ -358,13 +350,13 @@ unsigned int Container<T>::getSize()const{
 }
 
 template<class T>
-Container<T>& Container<T>::copy(const Container<T>& ct){ //usata per fare dei file di backup dei container delle auto vendute e presenti
+Container<T>& Container<T>::copy(const Container<T>& ct){
     delete first;
     first=ct.first;
     return *this;
 }
 
-template<class T>    // RICREATO NEL MODEL //
+template<class T>
 Container<T>& Container<T>::getNewContainerByType(const string type){
     Container<T>* nuovo=new Container<T>;
     for(auto it=begin(); it != end();++it)

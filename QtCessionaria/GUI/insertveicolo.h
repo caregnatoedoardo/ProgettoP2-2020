@@ -15,13 +15,9 @@
 #include "tipomotobox.h"
 #include "veicolotypebox.h"
 
-
-
 class InsertVeicolo : public QWidget
 {
-
     Q_OBJECT
-
  private:
     VeicoloTypeBox* tipoVeicolo;
     QLabel* scegliFoto;
@@ -48,7 +44,6 @@ class InsertVeicolo : public QWidget
     QLabel* descClasseEmissioni;
     QLabel* descTipoMoto;
 
-
     QLineEdit* marca;
     QLineEdit* modello;
 
@@ -67,7 +62,6 @@ class InsertVeicolo : public QWidget
     QLineEdit* massa;
     QLineEdit* numeroPosti;
 
-
     //AUTO
 
     SegmentoTypeBox* segmento;
@@ -83,11 +77,11 @@ class InsertVeicolo : public QWidget
 
     QCheckBox* sidecar;
     QLineEdit* classeEmissioni;
-     TipomotoBox* tipoMoto;
+    TipomotoBox* tipoMoto;
 
-     QPushButton* bottoneScegliFoto;
-     QPushButton* AddButton;
-     QPushButton* saveEditButton;
+    QPushButton* bottoneScegliFoto;
+    QPushButton* AddButton;
+    QPushButton* saveEditButton;
 
 
 public:
@@ -115,17 +109,11 @@ public:
      QCheckBox* getSidecar() const;
      QLineEdit* getClasseEmissioni() const;
      TipomotoBox* getTipoMoto() const;
-
      QLabel* getScegliFoto() const;
-
      QPushButton* getAddButton() const;
-
      QPushButton* getSaveEditButton() const;
 
-
      void hideButton(bool);
-
-
 
      void setTipoVeicolo(unsigned int) ;
      void setMarca(string) ;
@@ -151,24 +139,14 @@ public:
      void setTipoMoto(unsigned int) ;
      void setFoto(QString);
 
-
-
-
-
 public slots:
      void slotDisableForm(int) const; // disabilita form sulla base del case dell'inseriemnto
      void slotChangeFormLayout(QString typeVeic)const;
      void slotScegliFoto();
      void slotResetForm()const;
 
-
 signals:
     void signalDisableForm(int);
-
-
-
-
-
 };
 
 #endif // INSERTVEICOLO_H
