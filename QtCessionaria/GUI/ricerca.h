@@ -16,8 +16,6 @@
 #include "segmentotypebox.h"
 #include "listviewwidget.h"
 
-
-
 class Ricerca : public QWidget
 {
     Q_OBJECT
@@ -141,16 +139,10 @@ public:
     ListViewWidget* getListaVeic()const;
 
 private slots:
-
     void slotDisableElements() const;
 
 public slots:
-
     void slotReset() const;
-
-signals:
-
-   // void signalDelete(Model*);
 };
 
 #endif // RICERCA_H

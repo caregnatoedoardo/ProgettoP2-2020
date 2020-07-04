@@ -4,11 +4,8 @@
 #include <QComboBox>
 #include <QObject>
 
-
-
 class TipomotoBox : public QComboBox
 {
-
 public:
     TipomotoBox(QWidget* = nullptr);
 };

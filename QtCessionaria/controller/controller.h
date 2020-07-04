@@ -16,10 +16,7 @@
 class Controller:public QWidget{
      Q_OBJECT
 private:
-
-
    Model* model;
-
    Usermenu* menuUtente;
    QHBoxLayout* mainLayout;
    InsertVeicolo* inserisciVeicolo;
@@ -27,12 +24,14 @@ private:
    GroupView* groupView;
    GroupView* vendutiView;
    InsertVeicolo* dialog;
+
 public:
    Controller(Model*,QWidget* = nullptr);
    Model *getModel();
    ~Controller()=default;
    string getTarga()const;
    string getRawData(const QImage);
+
 public slots:
 
     void closeEvent(QCloseEvent*);

@@ -14,16 +14,13 @@ class ListViewWidget : public QListWidget
     QAction* onClickAction, *onRightClickAction;
 
 public:
-
     ListViewWidget(QWidget* =nullptr);
     void addVeicolo(Veicolo*);
     PrintListView* takeItem(int);
     PrintListView* currentItem()const;
     PrintListView* takeItem(Veicolo*);
 
-
 signals:
-
     void signalEliminaElementoDaList(Veicolo*);
 };
 

@@ -12,5 +12,4 @@ class VeicoloTypeBox : public QComboBox
 public:
     VeicoloTypeBox(QWidget* = nullptr);
 };
-
 #endif // VEICOLOTIPEBOX_H

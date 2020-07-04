@@ -19,6 +19,7 @@ private:
     Container<Veicolo*>* searchRes=nullptr;//Container temporaneo che servirà a contenere i risultati di ricerca dell'utente
     string path;                   //Percorso dei file di salvataggio/caricamento
     bool flagsaved;
+
 public:
     Model(Container<Veicolo*>* dbVei = new Container<Veicolo*>, Container<Veicolo*>* dbVen = new Container<Veicolo*>, Container<Veicolo*>* sRes = new Container<Veicolo*>, string="../QtCessionaria/dati.xml");
     ~Model();
@@ -85,5 +86,4 @@ public:
 
     bool defaultSearchRes();
 };
-
 #endif // MODEL_H

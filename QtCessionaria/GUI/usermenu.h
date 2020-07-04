@@ -1,11 +1,9 @@
 #ifndef USERMENU_H
 #define USERMENU_H
 
-
 #include <QObject>
 #include <qmenubar.h>
 #include <qwidget.h>
-
 
 class Usermenu : public QMenuBar {
     Q_OBJECT
@@ -23,7 +21,6 @@ private:
     QAction* esci;
 
 public:
-
     Usermenu(QWidget* = nullptr);
     QMenu *getMenu() const;
     QAction *getSalva() const;
@@ -31,8 +28,5 @@ public:
     QAction *getRicerca() const;
     QAction *getInserici() const;
     QAction *getEsci() const;
-
 };
-
-
 #endif // USERMENU_H

@@ -35,10 +35,8 @@ public slots:
     void slotDisableVendi() const;
     void slotDisableLista(bool) const;
 
-
 signals:
     void signalElementoSelezionato(bool=true)const;
-
 };
 
 #endif // GROUPVIEW_H

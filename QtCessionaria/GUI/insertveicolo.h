@@ -72,7 +72,6 @@ class InsertVeicolo : public QWidget
     QLineEdit* numeroAssi;
     QCheckBox* ribaltabile;
 
-
     //MOTO
 
     QCheckBox* sidecar;
