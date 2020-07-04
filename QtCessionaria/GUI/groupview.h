@@ -5,7 +5,6 @@
 #include <QVBoxLayout>
 #include <QObject>
 #include "listviewwidget.h"
-#include "viewveicolo.h"
 
 class GroupView : public QWidget
 {

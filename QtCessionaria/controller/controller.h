@@ -10,7 +10,6 @@
 #include "GUI/usermenu.h"
 #include "GUI/insertveicolo.h"
 #include "GUI/groupview.h"
-#include "GUI/viewveicolo.h"
 #include "GUI/ricerca.h"
 #include "model.h"
 
