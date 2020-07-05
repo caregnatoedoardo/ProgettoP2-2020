@@ -558,9 +558,8 @@ void Controller::slotRicerca()const{
             if(ricercaView->getCkTipoMoto()->isChecked())
                 model->filterByTypeMoto(ricercaView->getBoxTipoMoto()->currentText().toStdString());
 
-                for(auto it=model->begin(); it!=model->end();++it)
-                    ricercaView->getListaVeic()->addVeicolo(*it);
-
+            for(auto it=model->begin(); it!=model->end();++it)
+                ricercaView->getListaVeic()->addVeicolo(*it);
         }
     }catch(Exc){
         Exc(7);
